@@ -36,7 +36,7 @@ export interface TimelineTheme {
 }
 
 const TIMELINE_TEAL = "#3CE6AC";
-const TIMELINE_TEAL_LABEL = "#E9FFF6";
+const TIMELINE_TEAL_LABEL = "var(--hf-timeline-label, #E9FFF6)";
 const TIMELINE_TEAL_ICON_BACKGROUND = "rgba(60,230,172,0.12)";
 
 function createTrackStyle(): TimelineTrackStyle {
@@ -90,6 +90,37 @@ export const defaultTimelineTheme: TimelineTheme = {
   panelResizeSeam: "rgba(255,255,255,0.12)",
   panelResizeActive: "rgba(255,255,255,0.24)",
   clipRadius: "11px 15px 13px 9px / 10px 14px 12px 10px",
+};
+
+export const lightTimelineTheme: TimelineTheme = {
+  shellBackground: "#F8FAFC",
+  shellBorder: "#DCE5F0",
+  rulerBorder: "#E2E8F0",
+  rowBackground: "#FFFFFF",
+  rowBorder: "#E2E8F0",
+  gutterBackground: "#F8FAFC",
+  gutterBorder: "#DCE5F0",
+  textPrimary: "#0F172A",
+  textSecondary: "#475569",
+  tickText: "rgba(71,85,105,0.92)",
+  tickMajor: "rgba(15,23,42,0.16)",
+  tickMinor: "rgba(15,23,42,0.08)",
+  clipBackground: "linear-gradient(180deg, rgba(240,253,250,0.98), rgba(220,252,231,0.98))",
+  clipBackgroundActive:
+    "linear-gradient(180deg, rgba(209,250,229,0.99), rgba(187,247,208,0.99))",
+  clipBorder: "rgba(5,150,105,0.32)",
+  clipBorderHover: "rgba(5,150,105,0.52)",
+  clipBorderActive: "rgba(5,150,105,0.72)",
+  clipShadow: "inset 0 1px 0 rgba(255,255,255,0.86), 0 6px 18px rgba(15,23,42,0.08)",
+  clipShadowHover: "inset 0 1px 0 rgba(255,255,255,0.9), 0 8px 20px rgba(15,23,42,0.1)",
+  clipShadowActive:
+    "inset 0 1px 0 rgba(255,255,255,0.92), 0 10px 24px rgba(15,23,42,0.12), 0 0 0 1px rgba(5,150,105,0.18)",
+  clipShadowDragging:
+    "inset 0 1px 0 rgba(255,255,255,0.92), 0 18px 36px rgba(15,23,42,0.16), 0 8px 16px rgba(15,23,42,0.1), 0 0 0 1px rgba(5,150,105,0.22)",
+  handleColor: "rgba(15,23,42,0.22)",
+  panelResizeSeam: "rgba(15,23,42,0.12)",
+  panelResizeActive: "rgba(15,23,42,0.24)",
+  clipRadius: defaultTimelineTheme.clipRadius,
 };
 
 export function getTimelineTrackStyle(tag: string): TimelineTrackStyle {

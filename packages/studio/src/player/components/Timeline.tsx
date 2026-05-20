@@ -3,7 +3,7 @@ import { usePlayerStore, type TimelineElement } from "../store/playerStore";
 import { useMountEffect } from "../../hooks/useMountEffect";
 import { EditPopover } from "./EditModal";
 import { type BlockedTimelineEditIntent } from "./timelineEditing";
-import { defaultTimelineTheme, type TimelineTheme } from "./timelineTheme";
+import { defaultTimelineTheme, lightTimelineTheme, type TimelineTheme } from "./timelineTheme";
 import { useTimelineRangeSelection } from "./useTimelineRangeSelection";
 import { useTimelinePlayhead } from "./useTimelinePlayhead";
 import { type TrackVisualStyle, getTrackStyle } from "./timelineIcons";
@@ -66,6 +66,11 @@ interface TimelineProps {
   theme?: Partial<TimelineTheme>;
 }
 
+function getStudioThemeMode(): "light" | "dark" {
+  if (typeof document === "undefined") return "dark";
+  return document.documentElement.dataset.studioTheme === "light" ? "light" : "dark";
+}
+
 export const Timeline = memo(function Timeline({
   onSeek,
   onDrillDown,
@@ -80,7 +85,20 @@ export const Timeline = memo(function Timeline({
   onSelectElement,
   theme: themeOverrides,
 }: TimelineProps = {}) {
-  const theme = useMemo(() => ({ ...defaultTimelineTheme, ...themeOverrides }), [themeOverrides]);
+  const [studioThemeMode, setStudioThemeMode] = useState(getStudioThemeMode);
+
+  useEffect(() => {
+    if (typeof document === "undefined" || typeof MutationObserver === "undefined") return;
+    const observer = new MutationObserver(() => setStudioThemeMode(getStudioThemeMode()));
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["data-studio-theme"],
+    });
+    return () => observer.disconnect();
+  }, []);
+
+  const baseTheme = studioThemeMode === "light" ? lightTimelineTheme : defaultTimelineTheme;
+  const theme = useMemo(() => ({ ...baseTheme, ...themeOverrides }), [baseTheme, themeOverrides]);
   const elements = usePlayerStore((s) => s.elements);
   const duration = usePlayerStore((s) => s.duration);
   const timelineReady = usePlayerStore((s) => s.timelineReady);
@@ -458,11 +476,21 @@ export const Timeline = memo(function Timeline({
         <div className="absolute bottom-2 right-3 pointer-events-none z-20">
           <div
             className="flex items-center gap-1.5 px-2 py-1 rounded-md border"
-            style={{ background: "rgba(17,23,35,0.84)", borderColor: theme.gutterBorder }}
+            style={{
+              background:
+                studioThemeMode === "light" ? "rgba(255,255,255,0.9)" : "rgba(17,23,35,0.84)",
+              borderColor: theme.gutterBorder,
+            }}
           >
             <kbd
               className="text-[9px] font-mono px-1 py-0.5 rounded"
-              style={{ color: theme.textSecondary, background: "rgba(255,255,255,0.06)" }}
+              style={{
+                color: theme.textSecondary,
+                background:
+                  studioThemeMode === "light"
+                    ? "rgba(15,23,42,0.06)"
+                    : "rgba(255,255,255,0.06)",
+              }}
             >
               Shift
             </kbd>

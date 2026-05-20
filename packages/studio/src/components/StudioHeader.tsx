@@ -1,5 +1,5 @@
-import type { MouseEvent } from "react";
-import { RotateCcw, RotateCw, Camera } from "../icons/SystemIcons";
+import { useEffect, useState, type MouseEvent } from "react";
+import { RotateCcw, RotateCw, Camera, MoonIcon, SunIcon } from "../icons/SystemIcons";
 import {
   STUDIO_INSPECTOR_PANELS_ENABLED,
   STUDIO_MANUAL_EDITING_DISABLED_TITLE,
@@ -16,6 +16,18 @@ export interface StudioHeaderProps {
   refreshCaptureFrameTime: () => void;
   inspectorButtonActive: boolean;
   inspectorPanelActive: boolean;
+}
+
+type StudioTheme = "light" | "dark";
+
+const STUDIO_THEME_STORAGE_KEY = "hyperframes:studio-theme";
+
+function readStudioTheme(): StudioTheme {
+  try {
+    return localStorage.getItem(STUDIO_THEME_STORAGE_KEY) === "dark" ? "dark" : "light";
+  } catch {
+    return "light";
+  }
 }
 
 function HyperframesLogo() {
@@ -150,6 +162,16 @@ export function StudioHeader({
   const { projectId, editHistory, handleUndo, handleRedo } = useStudioContext();
   const { rightCollapsed, setRightCollapsed, setRightPanelTab } = usePanelLayoutContext();
   const { clearDomSelection } = useDomEditContext();
+  const [studioTheme, setStudioTheme] = useState<StudioTheme>(() => readStudioTheme());
+
+  useEffect(() => {
+    document.documentElement.dataset.studioTheme = studioTheme;
+    try {
+      localStorage.setItem(STUDIO_THEME_STORAGE_KEY, studioTheme);
+    } catch {
+      // Theme persistence is optional; the DOM attribute is the source of truth.
+    }
+  }, [studioTheme]);
 
   return (
     <div className="flex items-center justify-between h-10 px-3 bg-neutral-900 border-b border-neutral-800 flex-shrink-0">
@@ -163,6 +185,15 @@ export function StudioHeader({
       </div>
       {/* Right: toolbar buttons */}
       <div className="flex items-center gap-1.5">
+        <button
+          type="button"
+          onClick={() => setStudioTheme((theme) => (theme === "light" ? "dark" : "light"))}
+          className="h-7 w-7 flex items-center justify-center rounded-md border border-neutral-700 text-neutral-300 transition-colors hover:border-neutral-500 hover:bg-neutral-800"
+          title={studioTheme === "light" ? "Switch to dark theme" : "Switch to light theme"}
+          aria-label={studioTheme === "light" ? "Switch to dark theme" : "Switch to light theme"}
+        >
+          {studioTheme === "light" ? <MoonIcon size={14} /> : <SunIcon size={14} />}
+        </button>
         <button
           type="button"
           onClick={() => void handleUndo()}
