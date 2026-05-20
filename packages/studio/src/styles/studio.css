@@ -17,6 +17,8 @@
   --hf-timeline-label: #065f46;
   --hf-player-control-button-bg: rgba(15, 23, 42, 0.1);
   --hf-player-control-icon: #0f172a;
+  --hf-preview-frame-outline: rgba(226, 232, 240, 0.85);
+  --hf-preview-frame-shadow: rgba(255, 255, 255, 0.92);
 }
 
 :root[data-studio-theme="dark"] {
@@ -29,6 +31,8 @@
   --hf-timeline-label: #e9fff6;
   --hf-player-control-button-bg: rgba(255, 255, 255, 0.06);
   --hf-player-control-icon: #fafafa;
+  --hf-preview-frame-outline: rgba(255, 255, 255, 0.08);
+  --hf-preview-frame-shadow: rgba(0, 0, 0, 0.7);
 }
 
 body {

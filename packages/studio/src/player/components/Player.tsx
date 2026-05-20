@@ -168,13 +168,12 @@ export const Player = forwardRef<HTMLIFrameElement, PlayerProps>(
 
         // Inject pasteboard shadow: let the shadow around the canvas bleed
         // into the surrounding pasteboard area (overflow: visible on the container)
-        // and add a subtle outline + drop-shadow so the canvas boundary reads
-        // against the gray pasteboard, consistent with professional editors.
+        // and add a theme-aware outline + glow around the canvas boundary.
         if (player.shadowRoot) {
           const pasteboardStyle = document.createElement("style");
           pasteboardStyle.textContent =
             ".hfp-container{overflow:visible}" +
-            ".hfp-iframe{box-shadow:0 0 0 1px rgba(255,255,255,0.08),0 4px 32px rgba(0,0,0,.7)}";
+            ".hfp-iframe{box-shadow:0 0 0 1px var(--hf-preview-frame-outline,rgba(255,255,255,0.08)),0 4px 32px var(--hf-preview-frame-shadow,rgba(0,0,0,.7))}";
           player.shadowRoot.appendChild(pasteboardStyle);
         }
 

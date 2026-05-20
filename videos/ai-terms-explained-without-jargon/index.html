@@ -1,0 +1,988 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #f7fbff;
+        font-family: Inter, Arial, Helvetica, sans-serif;
+        color: #162033;
+      }
+
+      #root {
+        position: relative;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #f7fbff;
+        perspective: 1400px;
+      }
+
+      .clip {
+        position: absolute;
+        inset: 0;
+      }
+
+      .bg {
+        background:
+          linear-gradient(90deg, rgba(29, 108, 255, 0.05) 1px, transparent 1px),
+          linear-gradient(0deg, rgba(255, 62, 165, 0.04) 1px, transparent 1px),
+          linear-gradient(135deg, #f7fbff 0%, #eef6ff 48%, #fff8f2 100%);
+        background-size: 88px 88px, 88px 88px, 100% 100%;
+        overflow: hidden;
+      }
+
+      .bg-line {
+        position: absolute;
+        width: 1120px;
+        height: 2px;
+        left: -20px;
+        background: linear-gradient(90deg, transparent, rgba(29, 108, 255, 0.28), transparent);
+        transform: rotate(-18deg);
+      }
+
+      .bg-line.line-1 { top: 260px; }
+      .bg-line.line-2 { top: 970px; transform: rotate(15deg); background: linear-gradient(90deg, transparent, rgba(255, 62, 165, 0.22), transparent); }
+      .bg-line.line-3 { top: 1490px; transform: rotate(-9deg); background: linear-gradient(90deg, transparent, rgba(255, 138, 29, 0.26), transparent); }
+
+      .bg-chip {
+        position: absolute;
+        width: 106px;
+        height: 44px;
+        border-radius: 16px;
+        border: 2px solid rgba(29, 108, 255, 0.18);
+        background: rgba(255, 255, 255, 0.72);
+        box-shadow: 0 18px 50px rgba(29, 108, 255, 0.12);
+        transform-style: preserve-3d;
+      }
+
+      .chip-a { left: 72px; top: 180px; }
+      .chip-b { right: 86px; top: 420px; border-color: rgba(255, 62, 165, 0.22); }
+      .chip-c { left: 120px; bottom: 350px; border-color: rgba(255, 138, 29, 0.24); }
+      .chip-d { right: 120px; bottom: 150px; }
+
+      .scene-content {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+        padding: 128px 78px 150px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 44px;
+        transform-style: preserve-3d;
+      }
+
+      .kicker {
+        align-self: flex-start;
+        padding: 16px 22px;
+        border-radius: 999px;
+        background: #ffffff;
+        border: 2px solid #ddebff;
+        color: #1d6cff;
+        font-size: 30px;
+        font-weight: 800;
+        text-transform: uppercase;
+        box-shadow: 0 14px 34px rgba(29, 108, 255, 0.12);
+      }
+
+      .headline {
+        font-size: 108px;
+        line-height: 0.94;
+        font-weight: 900;
+        color: #162033;
+      }
+
+      .headline.small {
+        font-size: 76px;
+        line-height: 1.02;
+      }
+
+      .term-card {
+        position: relative;
+        width: 100%;
+        min-height: 430px;
+        border-radius: 38px;
+        padding: 46px 46px 42px;
+        background: rgba(255, 255, 255, 0.88);
+        border: 3px solid #ffffff;
+        box-shadow:
+          0 48px 110px rgba(29, 108, 255, 0.18),
+          inset 0 0 0 2px rgba(221, 235, 255, 0.78);
+        transform-style: preserve-3d;
+      }
+
+      .term-card::after {
+        content: "";
+        position: absolute;
+        inset: 18px;
+        border-radius: 28px;
+        border: 2px dashed rgba(29, 108, 255, 0.12);
+        pointer-events: none;
+      }
+
+      .term {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        gap: 16px;
+        color: #1d6cff;
+        font-size: 84px;
+        line-height: 1;
+        font-weight: 900;
+        z-index: 1;
+      }
+
+      .definition {
+        position: relative;
+        margin-top: 42px;
+        max-width: 790px;
+        color: #162033;
+        font-size: 49px;
+        line-height: 1.36;
+        font-weight: 800;
+        z-index: 1;
+      }
+
+      .caption {
+        position: absolute;
+        left: 78px;
+        right: 78px;
+        bottom: 78px;
+        min-height: 90px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px 34px;
+        border-radius: 28px;
+        background: #ffffff;
+        color: #162033;
+        border: 3px solid #ddebff;
+        font-size: 43px;
+        line-height: 1.08;
+        font-weight: 850;
+        text-align: center;
+        box-shadow: 0 26px 60px rgba(22, 32, 51, 0.28);
+      }
+
+      .accent-pink { color: #b0005c; }
+      .accent-orange { color: #974300; }
+      .accent-blue { color: #0e4dbe; }
+
+      .icon-cloud {
+        position: relative;
+        height: 420px;
+        transform-style: preserve-3d;
+      }
+
+      .icon-card,
+      .mini-card,
+      .token,
+      .word-tile,
+      .source-card,
+      .action-step {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 28px;
+        background: #ffffff;
+        border: 3px solid rgba(221, 235, 255, 0.95);
+        box-shadow: 0 30px 70px rgba(29, 108, 255, 0.18);
+        color: #162033;
+        font-weight: 900;
+        transform-style: preserve-3d;
+      }
+
+      .icon-card {
+        width: 164px;
+        height: 164px;
+        font-size: 42px;
+      }
+
+      .icon-blue { background: #e9f2ff; color: #0e4dbe; }
+      .icon-pink { background: #fff0f8; color: #b0005c; }
+      .icon-orange { background: #fff3e6; color: #974300; }
+
+      .big-cube {
+        width: 360px;
+        height: 360px;
+        border-radius: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #ffffff, #e7f1ff);
+        border: 5px solid #ffffff;
+        box-shadow: 0 48px 110px rgba(29, 108, 255, 0.26);
+        font-size: 138px;
+        font-weight: 950;
+        color: #1d6cff;
+        transform-style: preserve-3d;
+      }
+
+      .center-cube {
+        position: absolute;
+        left: 282px;
+        top: 10px;
+      }
+
+      .popup-badge {
+        position: absolute;
+        left: 58px;
+        right: 58px;
+        top: 54px;
+        min-height: 104px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 28px;
+        background: #ffffff;
+        border: 3px solid #ddebff;
+        box-shadow: 0 24px 72px rgba(29, 108, 255, 0.16);
+        color: #162033;
+        font-size: 42px;
+        line-height: 1.06;
+        font-weight: 900;
+        text-align: center;
+        z-index: 8;
+      }
+
+      .badge-pink {
+        color: #b0005c;
+        border-color: rgba(255, 62, 165, 0.28);
+      }
+
+      .badge-orange {
+        color: #974300;
+        border-color: rgba(255, 138, 29, 0.3);
+      }
+
+      .trail {
+        position: absolute;
+        height: 8px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, rgba(29, 108, 255, 0), rgba(29, 108, 255, 0.8), rgba(255, 62, 165, 0.82));
+        transform-origin: center left;
+      }
+
+      .engine {
+        position: absolute;
+        left: 240px;
+        top: 70px;
+        width: 440px;
+        height: 300px;
+        border-radius: 58px;
+        background: #ffffff;
+        border: 5px solid #ddebff;
+        box-shadow: 0 45px 100px rgba(29, 108, 255, 0.22);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 90px;
+        font-weight: 950;
+        color: #1d6cff;
+        transform-style: preserve-3d;
+        z-index: 2;
+      }
+
+      .engine::before,
+      .engine::after {
+        content: "";
+        position: absolute;
+        width: 92px;
+        height: 92px;
+        border-radius: 50%;
+        background: #fff3e6;
+        border: 4px solid #ff8a1d;
+        top: 104px;
+      }
+
+      .engine::before { left: -50px; }
+      .engine::after { right: -50px; }
+
+      .pattern-line {
+        position: absolute;
+        height: 5px;
+        border-radius: 999px;
+        background: rgba(255, 62, 165, 0.7);
+        transform-origin: left center;
+        z-index: 0;
+      }
+
+      .word-tile {
+        width: 188px;
+        height: 96px;
+        font-size: 39px;
+      }
+
+      .prompt-box {
+        width: 100%;
+        min-height: 310px;
+        border-radius: 38px;
+        padding: 36px;
+        background: #ffffff;
+        border: 4px solid #ddebff;
+        box-shadow: 0 38px 90px rgba(29, 108, 255, 0.16);
+      }
+
+      .input-line {
+        height: 82px;
+        border-radius: 22px;
+        padding: 18px 24px;
+        background: #eef6ff;
+        color: #1d6cff;
+        font-size: 38px;
+        font-weight: 850;
+      }
+
+      .answer-card {
+        margin-top: 26px;
+        width: 78%;
+        min-height: 102px;
+        border-radius: 24px;
+        padding: 24px;
+        background: #fff8f2;
+        color: #974300;
+        font-size: 38px;
+        font-weight: 850;
+        box-shadow: 0 22px 50px rgba(255, 138, 29, 0.15);
+      }
+
+      .token {
+        width: 140px;
+        height: 76px;
+        border-radius: 24px;
+        font-size: 34px;
+      }
+
+      .window {
+        position: relative;
+        width: 100%;
+        min-height: 520px;
+        border-radius: 38px;
+        background: #ffffff;
+        border: 4px solid #ddebff;
+        box-shadow: 0 42px 100px rgba(29, 108, 255, 0.18);
+        overflow: hidden;
+      }
+
+      .window-bar {
+        height: 76px;
+        background: #e9f2ff;
+        display: flex;
+        align-items: center;
+        padding: 0 28px;
+        gap: 16px;
+      }
+
+      .dot {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: #ff3ea5;
+      }
+
+      .memory-fill {
+        position: absolute;
+        left: 30px;
+        right: 30px;
+        top: 108px;
+        height: 18px;
+        border-radius: 999px;
+        background: #ddebff;
+        overflow: hidden;
+      }
+
+      .memory-fill span {
+        display: block;
+        width: 86%;
+        height: 100%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, #1d6cff, #ff8a1d);
+      }
+
+      .split {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 28px;
+        min-height: 500px;
+      }
+
+      .split-panel {
+        border-radius: 34px;
+        background: #ffffff;
+        border: 4px solid #ddebff;
+        box-shadow: 0 34px 86px rgba(29, 108, 255, 0.14);
+        padding: 34px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .panel-icon {
+        font-size: 92px;
+        font-weight: 950;
+      }
+
+      .panel-label {
+        font-size: 44px;
+        line-height: 1.05;
+        font-weight: 900;
+      }
+
+      .warning-card {
+        position: relative;
+        min-height: 520px;
+        border-radius: 40px;
+        background: #ffffff;
+        border: 4px solid #ddebff;
+        box-shadow: 0 44px 100px rgba(29, 108, 255, 0.18);
+        padding: 48px;
+      }
+
+      .warn-symbol {
+        font-size: 132px;
+        color: #ff3ea5;
+        font-weight: 950;
+      }
+
+      .stamp {
+        position: absolute;
+        right: 52px;
+        top: 74px;
+        transform: rotate(9deg);
+        padding: 18px 26px;
+        border-radius: 18px;
+        background: #fff0f8;
+        border: 4px solid #ff3ea5;
+        color: #ff3ea5;
+        font-size: 36px;
+        font-weight: 950;
+      }
+
+      .vector-field {
+        position: relative;
+        min-height: 560px;
+        border-radius: 42px;
+        background: #ffffff;
+        border: 4px solid #ddebff;
+        box-shadow: 0 44px 100px rgba(29, 108, 255, 0.16);
+        overflow: hidden;
+      }
+
+      .vector-dot {
+        position: absolute;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: #1d6cff;
+        box-shadow: 0 0 0 10px rgba(29, 108, 255, 0.12);
+      }
+
+      .tag {
+        position: absolute;
+        padding: 12px 18px;
+        border-radius: 999px;
+        background: #fff;
+        border: 3px solid #ddebff;
+        color: #162033;
+        font-size: 28px;
+        font-weight: 850;
+        box-shadow: 0 18px 40px rgba(29, 108, 255, 0.12);
+      }
+
+      .source-card {
+        width: 220px;
+        height: 150px;
+        padding: 22px;
+        font-size: 31px;
+        line-height: 1.05;
+        text-align: center;
+      }
+
+      .action-path {
+        position: relative;
+        min-height: 560px;
+      }
+
+      .path-line {
+        position: absolute;
+        left: 90px;
+        top: 260px;
+        width: 760px;
+        height: 12px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, #1d6cff, #ff3ea5, #ff8a1d);
+      }
+
+      .action-step {
+        width: 128px;
+        height: 128px;
+        border-radius: 34px;
+        font-size: 31px;
+      }
+
+      .end-deck {
+        width: 620px;
+        min-height: 520px;
+        align-self: center;
+        border-radius: 48px;
+        background: #ffffff;
+        border: 5px solid #ddebff;
+        box-shadow: 0 54px 120px rgba(29, 108, 255, 0.24);
+        padding: 58px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 24px;
+        text-align: center;
+        transform-style: preserve-3d;
+      }
+
+      .end-title {
+        font-size: 76px;
+        line-height: 0.98;
+        font-weight: 950;
+        color: #162033;
+      }
+
+      .term-strip {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+      }
+
+      .term-pill {
+        padding: 10px 16px;
+        border-radius: 999px;
+        background: #e9f2ff;
+        color: #1d6cff;
+        font-size: 24px;
+        font-weight: 850;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="ai-terms-short"
+      data-start="0"
+      data-duration="60"
+      data-width="1080"
+      data-height="1920"
+    >
+      <div id="bg" class="clip bg" data-start="0" data-duration="60" data-track-index="0" data-layout-ignore>
+        <div class="bg-line line-1"></div>
+        <div class="bg-line line-2"></div>
+        <div class="bg-line line-3"></div>
+        <div class="bg-chip chip-a"></div>
+        <div class="bg-chip chip-b"></div>
+        <div class="bg-chip chip-c"></div>
+        <div class="bg-chip chip-d"></div>
+      </div>
+
+      <section id="scene-hook" class="clip scene" data-start="0" data-duration="3" data-track-index="1">
+        <div class="popup-badge badge-pink">AI TERMS, PLAIN ENGLISH</div>
+        <div class="scene-content">
+          <div class="kicker">No jargon</div>
+          <h1 class="headline">AI words sound complicated.</h1>
+          <div class="icon-cloud" data-layout-allow-overflow>
+            <div class="mini-card icon-blue" style="left: 44px; top: 30px; width: 180px; height: 88px; font-size: 38px;">LLM</div>
+            <div class="mini-card icon-pink" style="right: 18px; top: 214px; width: 180px; height: 88px; font-size: 38px;">RAG</div>
+            <div class="mini-card icon-orange" style="right: 50px; top: 56px; width: 240px; height: 88px; font-size: 34px;">TOKENS</div>
+            <div class="big-cube center-cube">AI</div>
+            <div class="mini-card icon-blue" style="left: 110px; bottom: 26px; width: 230px; height: 88px; font-size: 34px;">AGENTS</div>
+            <div class="mini-card icon-pink" style="right: 110px; bottom: 10px; width: 220px; height: 88px; font-size: 34px;">MODEL</div>
+          </div>
+        </div>
+        <div class="caption">Normal ideas, fancy labels.</div>
+      </section>
+
+      <section id="scene-ai" class="clip scene" data-start="3" data-duration="4" data-track-index="1">
+        <div class="popup-badge">AI = software that does smart tasks</div>
+        <div class="scene-content">
+          <div class="kicker">Term 01</div>
+          <div class="icon-cloud" data-layout-allow-overflow>
+            <div class="big-cube center-cube">AI</div>
+            <div class="icon-card icon-blue" style="left: 20px; top: 250px;">WRITE</div>
+            <div class="icon-card icon-pink" style="left: 260px; top: 340px;">SEE</div>
+            <div class="icon-card icon-orange" style="right: 250px; top: 340px;">SORT</div>
+            <div class="icon-card icon-blue" style="right: 20px; top: 250px;">DO</div>
+          </div>
+          <div class="term-card">
+            <div class="term">AI</div>
+            <div class="definition">Software that does smart tasks people usually do.</div>
+          </div>
+        </div>
+        <div class="caption">Software doing smart tasks.</div>
+      </section>
+
+      <section id="scene-model" class="clip scene" data-start="7" data-duration="5" data-track-index="1">
+        <div class="popup-badge badge-orange">Model = pattern engine</div>
+        <div class="scene-content">
+          <div class="kicker">Term 02</div>
+          <div class="icon-cloud" data-layout-allow-overflow>
+            <div class="pattern-line" style="left: 216px; top: 86px; width: 52px; transform: rotate(34deg);"></div>
+            <div class="pattern-line" style="left: 678px; top: 136px; width: 64px; transform: rotate(-40deg);"></div>
+            <div class="pattern-line" style="left: 216px; top: 318px; width: 52px; transform: rotate(-34deg);"></div>
+            <div class="pattern-line" style="left: 678px; top: 306px; width: 64px; transform: rotate(32deg);"></div>
+            <div class="engine">MODEL</div>
+            <div class="mini-card icon-blue ex" style="left: 30px; top: 0px; width: 190px; height: 96px; font-size: 32px;">TEXT</div>
+            <div class="mini-card icon-pink ex" style="right: 10px; top: 18px; width: 190px; height: 96px; font-size: 32px;">IMAGE</div>
+            <div class="mini-card icon-orange ex" style="left: 30px; bottom: 15px; width: 190px; height: 96px; font-size: 32px;">CHART</div>
+            <div class="mini-card icon-blue ex" style="right: 10px; bottom: 2px; width: 190px; height: 96px; font-size: 32px;">Q + A</div>
+          </div>
+          <div class="term-card">
+            <div class="term">Model</div>
+            <div class="definition">An engine trained to spot patterns from examples.</div>
+          </div>
+        </div>
+        <div class="caption">The engine underneath.</div>
+      </section>
+
+      <section id="scene-llm" class="clip scene" data-start="12" data-duration="5" data-track-index="1">
+        <div class="popup-badge">LLM = word prediction machine</div>
+        <div class="scene-content">
+          <div class="kicker">Term 03</div>
+          <div class="icon-cloud" data-layout-allow-overflow>
+            <div class="word-tile icon-blue" style="left: 40px; top: 80px;">The</div>
+            <div class="word-tile icon-pink" style="left: 260px; top: 145px;">AI</div>
+            <div class="word-tile icon-orange" style="left: 480px; top: 220px;">can</div>
+            <div class="word-tile icon-blue option" style="left: 690px; top: 100px;">chat</div>
+            <div class="word-tile icon-pink option" style="left: 710px; top: 245px;">write</div>
+            <div class="word-tile icon-orange option" style="left: 650px; top: 390px;">reason</div>
+          </div>
+          <div class="term-card">
+            <div class="term">LLM</div>
+            <div class="definition">A language model that predicts words really well.</div>
+          </div>
+        </div>
+        <div class="caption">That is why it chats.</div>
+      </section>
+
+      <section id="scene-prompt" class="clip scene" data-start="17" data-duration="5" data-track-index="1">
+        <div class="popup-badge badge-pink">Prompt = your instruction</div>
+        <div class="scene-content">
+          <div class="kicker">Term 04</div>
+          <div class="prompt-box">
+            <div class="input-line messy">"Explain AI stuff?"</div>
+            <div class="answer-card bad-answer">Vague answer...</div>
+            <div class="input-line clean" style="margin-top: 28px;">"Explain AI terms simply."</div>
+            <div class="answer-card good-answer">Clear answer, useful examples.</div>
+          </div>
+          <div class="term-card">
+            <div class="term">Prompt</div>
+            <div class="definition">The instruction you give the AI.</div>
+          </div>
+        </div>
+        <div class="caption">Better prompt, better answer.</div>
+      </section>
+
+      <section id="scene-tokens" class="clip scene" data-start="22" data-duration="5" data-track-index="1">
+        <div class="popup-badge">Tokens = text chunks</div>
+        <div class="scene-content">
+          <div class="kicker">Term 05</div>
+          <div class="icon-cloud" data-layout-allow-overflow>
+            <div class="token icon-blue" style="left: 86px; top: 138px;">AI</div>
+            <div class="token icon-pink" style="left: 248px; top: 138px;">read</div>
+            <div class="token icon-orange" style="left: 410px; top: 138px;">s</div>
+            <div class="token icon-blue" style="left: 572px; top: 138px;">text</div>
+            <div class="token icon-pink" style="left: 734px; top: 138px;">.</div>
+            <div class="trail" style="left: 118px; top: 254px; width: 720px;"></div>
+          </div>
+          <div class="term-card">
+            <div class="term">Tokens</div>
+            <div class="definition">Tiny chunks of text. Sometimes whole words, sometimes pieces.</div>
+          </div>
+        </div>
+        <div class="caption">Tiny chunks of text.</div>
+      </section>
+
+      <section id="scene-context" class="clip scene" data-start="27" data-duration="5" data-track-index="1">
+        <div class="popup-badge badge-orange">Context window = short-term memory</div>
+        <div class="scene-content">
+          <div class="kicker">Term 06</div>
+          <div class="window">
+            <div class="window-bar"><span class="dot"></span><span class="dot" style="background:#ff8a1d"></span><span class="dot" style="background:#1d6cff"></span></div>
+            <div class="memory-fill"><span></span></div>
+            <div class="token icon-blue mem" style="left: 48px; top: 176px;">start</div>
+            <div class="token icon-pink mem" style="left: 220px; top: 250px;">your</div>
+            <div class="token icon-orange mem" style="left: 392px; top: 176px;">chat</div>
+            <div class="token icon-blue mem" style="left: 564px; top: 250px;">more</div>
+            <div class="token icon-pink mem old" style="left: 736px; top: 176px;">old</div>
+          </div>
+          <div class="term-card">
+            <div class="term">Context window</div>
+            <div class="definition">The AI's short-term memory for the current conversation.</div>
+          </div>
+        </div>
+        <div class="caption">When full, old stuff drops.</div>
+      </section>
+
+      <section id="scene-training" class="clip scene" data-start="32" data-duration="5" data-track-index="1">
+        <div class="popup-badge">Training = learning / Inference = answering</div>
+        <div class="scene-content">
+          <div class="kicker">Term 07</div>
+          <div class="split" data-layout-allow-overflow>
+            <div class="split-panel learn">
+              <div class="panel-icon accent-blue">LEARN</div>
+              <div class="panel-label">Training data helps teach the model.</div>
+            </div>
+            <div class="split-panel answer">
+              <div class="panel-icon accent-orange">ANS</div>
+              <div class="panel-label">Inference is the model answering now.</div>
+            </div>
+          </div>
+          <div class="term-card">
+            <div class="term">Training + Inference</div>
+            <div class="definition">First it learns patterns. Later it uses them.</div>
+          </div>
+        </div>
+        <div class="caption">Learning versus answering.</div>
+      </section>
+
+      <section id="scene-hallucination" class="clip scene" data-start="37" data-duration="6" data-track-index="1">
+        <div class="popup-badge badge-pink">Hallucination = confident mistake</div>
+        <div class="scene-content">
+          <div class="kicker">Term 08</div>
+          <div class="warning-card">
+            <div class="warn-symbol">!</div>
+            <div class="stamp">CONFIDENT?</div>
+            <h2 class="headline small" style="margin-top: 24px;">Sounds smooth. Gets facts wrong.</h2>
+            <div class="mini-card icon-pink q1" style="right: 160px; bottom: 34px; width: 110px; height: 90px; font-size: 52px;">?</div>
+            <div class="mini-card icon-orange q2" style="right: 34px; bottom: 98px; width: 110px; height: 90px; font-size: 52px;">?</div>
+          </div>
+          <div class="term-card">
+            <div class="term">Hallucination</div>
+            <div class="definition">When AI sounds sure, but the facts are wrong.</div>
+          </div>
+        </div>
+        <div class="caption">Fluent nonsense happens.</div>
+      </section>
+
+      <section id="scene-embeddings" class="clip scene" data-start="43" data-duration="6" data-track-index="1">
+        <div class="popup-badge">Embeddings = meaning as numbers</div>
+        <div class="scene-content">
+          <div class="kicker">Term 09</div>
+          <div class="vector-field">
+            <div class="vector-dot" style="left: 180px; top: 190px;"></div>
+            <div class="vector-dot" style="left: 260px; top: 270px; background:#ff3ea5;"></div>
+            <div class="vector-dot" style="left: 352px; top: 220px;"></div>
+            <div class="vector-dot" style="right: 220px; top: 350px; background:#ff8a1d;"></div>
+            <div class="vector-dot" style="right: 150px; top: 430px; background:#ff8a1d;"></div>
+            <div class="tag" style="left: 118px; top: 120px;">car</div>
+            <div class="tag" style="left: 300px; top: 310px;">vehicle</div>
+            <div class="tag" style="right: 100px; top: 280px;">recipe</div>
+            <div class="tag" style="left: 300px; bottom: 70px;">[0.42, 0.18, 0.91]</div>
+          </div>
+          <div class="term-card">
+            <div class="term">Embeddings</div>
+            <div class="definition">Meaning turned into numbers, so similar ideas sit near each other.</div>
+          </div>
+        </div>
+        <div class="caption">Similar ideas cluster together.</div>
+      </section>
+
+      <section id="scene-rag" class="clip scene" data-start="49" data-duration="5" data-track-index="1">
+        <div class="popup-badge badge-orange">RAG = AI + reference material</div>
+        <div class="scene-content">
+          <div class="kicker">Term 10</div>
+          <div class="icon-cloud" data-layout-allow-overflow>
+            <div class="source-card icon-blue" style="left: 337px; top: 18px; width: 250px;">QUESTION</div>
+            <div class="trail" style="left: 140px; top: 218px; width: 650px; transform: rotate(0deg);"></div>
+            <div class="source-card icon-pink source" style="left: 70px; top: 250px;">DOCS</div>
+            <div class="source-card icon-orange source" style="left: 352px; top: 250px;">WEB</div>
+            <div class="source-card icon-blue source" style="right: 70px; top: 250px;">NOTES</div>
+          </div>
+          <div class="term-card">
+            <div class="term">RAG</div>
+            <div class="definition">The AI checks outside sources before answering.</div>
+          </div>
+        </div>
+        <div class="caption">Open-book test mode.</div>
+      </section>
+
+      <section id="scene-agent" class="clip scene" data-start="54" data-duration="5" data-track-index="1">
+        <div class="popup-badge">Agent = AI that takes actions</div>
+        <div class="scene-content">
+          <div class="kicker">Term 11</div>
+          <div class="action-path" data-layout-allow-overflow>
+            <div class="path-line"></div>
+            <div class="action-step icon-blue" style="left: 56px; top: 200px;">GO</div>
+            <div class="action-step icon-pink" style="left: 230px; top: 200px;">FIND</div>
+            <div class="action-step icon-orange" style="left: 404px; top: 200px;">CLICK</div>
+            <div class="action-step icon-blue" style="left: 578px; top: 200px;">WRITE</div>
+            <div class="action-step icon-pink" style="left: 752px; top: 200px;">CHECK</div>
+          </div>
+          <div class="term-card">
+            <div class="term">Agent</div>
+            <div class="definition">AI that can take steps toward a goal.</div>
+          </div>
+        </div>
+        <div class="caption">Search, click, write, check.</div>
+      </section>
+
+      <section id="scene-end" class="clip scene" data-start="58.4" data-duration="1.6" data-track-index="2">
+        <div class="scene-content">
+          <div class="end-deck">
+            <div class="kicker" style="align-self:center;">Cheat sheet</div>
+            <div class="end-title">SAVE THIS GLOSSARY</div>
+            <div class="term-strip">
+              <span class="term-pill">AI</span>
+              <span class="term-pill">Model</span>
+              <span class="term-pill">LLM</span>
+              <span class="term-pill">Prompt</span>
+              <span class="term-pill">Tokens</span>
+              <span class="term-pill">Context</span>
+              <span class="term-pill">RAG</span>
+              <span class="term-pill">Agent</span>
+            </div>
+          </div>
+        </div>
+        <div class="caption">Less magic. Better words.</div>
+      </section>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      gsap.set(".scene", { transformPerspective: 1400 });
+      gsap.set(".term-card", { rotateX: 5, rotateY: -5, transformOrigin: "50% 50%" });
+      gsap.set(".icon-card, .mini-card, .token, .word-tile, .source-card, .action-step, .big-cube, .engine, .end-deck", { transformPerspective: 1000 });
+
+      tl.to(".bg", { backgroundPosition: "88px 54px, -88px 64px, 0 0", duration: 60, ease: "none" }, 0);
+      tl.to(".bg-chip", { y: -34, rotateY: 16, rotateX: -8, duration: 7, stagger: 0.6, repeat: 8, yoyo: true, ease: "sine.inOut" }, 0);
+      tl.to(".bg-line", { x: 90, duration: 8, stagger: 0.8, repeat: 7, yoyo: true, ease: "sine.inOut" }, 0);
+
+      function has(selector) {
+        return document.querySelector(selector) !== null;
+      }
+
+      function fromIf(selector, vars, at) {
+        if (has(selector)) {
+          tl.from(selector, vars, at);
+        }
+      }
+
+      function toIf(selector, vars, at) {
+        if (has(selector)) {
+          tl.to(selector, vars, at);
+        }
+      }
+
+      function sceneIn(id, at) {
+        fromIf(id + " .kicker", { y: -42, opacity: 0, duration: 0.38, ease: "back.out(1.8)" }, at + 0.05);
+        fromIf(id + " .headline", { y: 70, opacity: 0, scale: 0.96, duration: 0.48, ease: "power4.out" }, at + 0.12);
+        fromIf(id + " .term-card", { y: 110, rotateX: 22, rotateY: -18, opacity: 0, scale: 0.9, duration: 0.62, ease: "back.out(1.35)" }, at + 0.22);
+        fromIf(id + " .popup-badge", { y: -80, opacity: 0, scale: 0.86, rotateX: 24, duration: 0.48, ease: "back.out(1.7)" }, at + 0.1);
+        fromIf(id + " .caption", { y: 80, opacity: 0, duration: 0.42, ease: "power3.out" }, at + 0.28);
+      }
+
+      function sceneOut(id, at) {
+        toIf(id + " .term-card", { x: -120, rotateY: 20, opacity: 0, duration: 0.34, ease: "power3.in" }, at - 0.34);
+        toIf(id + " .popup-badge", { y: -70, opacity: 0, duration: 0.28, ease: "power3.in" }, at - 0.3);
+        toIf(id + " .caption", { y: 55, opacity: 0, duration: 0.24, ease: "power2.in" }, at - 0.24);
+      }
+
+      sceneIn("#scene-hook", 0);
+      tl.from("#scene-hook .mini-card", { y: -420, x: 120, rotateZ: 24, rotateY: 80, opacity: 0, duration: 0.72, stagger: 0.05, ease: "back.out(1.8)" }, 0.08);
+      tl.from("#scene-hook .big-cube", { z: -600, rotateX: 80, rotateY: -70, opacity: 0, duration: 0.72, ease: "expo.out" }, 0.35);
+      tl.to("#scene-hook .mini-card", { y: 0, rotateZ: "-=4", duration: 1.5, stagger: 0.04, ease: "sine.inOut" }, 1.0);
+      sceneOut("#scene-hook", 3);
+
+      sceneIn("#scene-ai", 3);
+      tl.from("#scene-ai .big-cube", { y: -520, rotateX: 75, scale: 0.6, opacity: 0, duration: 0.62, ease: "bounce.out" }, 3.05);
+      tl.from("#scene-ai .icon-card", { x: 0, y: -80, z: -260, rotateY: -90, opacity: 0, duration: 0.52, stagger: 0.08, ease: "back.out(1.8)" }, 3.45);
+      tl.to("#scene-ai .icon-card", { y: -18, rotateZ: 3, duration: 0.9, stagger: 0.04, yoyo: true, repeat: 2, ease: "sine.inOut" }, 4.0);
+      sceneOut("#scene-ai", 7);
+
+      sceneIn("#scene-model", 7);
+      tl.from("#scene-model .engine", { scale: 0.4, rotateY: -120, opacity: 0, duration: 0.64, ease: "back.out(1.5)" }, 7.1);
+      tl.from("#scene-model .ex", { x: -420, y: 150, rotateZ: -14, opacity: 0, duration: 0.5, stagger: 0.08, ease: "power4.out" }, 7.3);
+      tl.from("#scene-model .pattern-line", { scaleX: 0, opacity: 0, duration: 0.42, stagger: 0.08, ease: "power3.out" }, 7.76);
+      tl.to("#scene-model .engine", { rotateY: 8, duration: 1.2, repeat: 2, yoyo: true, ease: "sine.inOut" }, 8.1);
+      sceneOut("#scene-model", 12);
+
+      sceneIn("#scene-llm", 12);
+      tl.from("#scene-llm .word-tile", { y: -220, rotateX: 80, opacity: 0, duration: 0.42, stagger: 0.09, ease: "back.out(1.6)" }, 12.12);
+      tl.to("#scene-llm .option", { scale: 1.16, y: -18, duration: 0.24, stagger: 0.14, yoyo: true, repeat: 1, ease: "power2.inOut" }, 13.2);
+      tl.to("#scene-llm .word-tile", { x: 20, rotateY: 10, duration: 1.2, stagger: 0.05, yoyo: true, repeat: 2, ease: "sine.inOut" }, 14.0);
+      sceneOut("#scene-llm", 17);
+
+      sceneIn("#scene-prompt", 17);
+      tl.from("#scene-prompt .prompt-box", { y: 90, rotateX: 18, opacity: 0, duration: 0.54, ease: "back.out(1.4)" }, 17.1);
+      tl.from("#scene-prompt .messy, #scene-prompt .bad-answer", { x: -80, opacity: 0, duration: 0.35, stagger: 0.12, ease: "power3.out" }, 17.45);
+      tl.from("#scene-prompt .clean, #scene-prompt .good-answer", { x: 100, opacity: 0, scale: 0.96, duration: 0.4, stagger: 0.12, ease: "back.out(1.5)" }, 18.25);
+      tl.to("#scene-prompt .good-answer", { scale: 1.04, duration: 0.28, yoyo: true, repeat: 1, ease: "power2.inOut" }, 19.0);
+      sceneOut("#scene-prompt", 22);
+
+      sceneIn("#scene-tokens", 22);
+      tl.from("#scene-tokens .token", { y: -260, x: 90, rotateZ: 30, rotateY: 90, opacity: 0, duration: 0.48, stagger: 0.07, ease: "back.out(1.8)" }, 22.15);
+      tl.from("#scene-tokens .trail", { scaleX: 0, opacity: 0, duration: 0.38, ease: "power4.out" }, 22.8);
+      tl.to("#scene-tokens .token", { y: 28, scale: 0.92, duration: 0.5, stagger: 0.04, yoyo: true, repeat: 1, ease: "sine.inOut" }, 23.25);
+      tl.to("#scene-tokens .token", { y: "+=14", duration: 0.6, stagger: 0.03, repeat: 2, yoyo: true, ease: "sine.inOut" }, 24.45);
+      sceneOut("#scene-tokens", 27);
+
+      sceneIn("#scene-context", 27);
+      tl.from("#scene-context .window", { scale: 0.82, rotateX: 20, opacity: 0, duration: 0.55, ease: "back.out(1.4)" }, 27.1);
+      tl.from("#scene-context .mem", { y: -160, opacity: 0, rotateY: 70, duration: 0.44, stagger: 0.08, ease: "back.out(1.7)" }, 27.52);
+      tl.to("#scene-context .window", { rotateY: -4, duration: 0.9, yoyo: true, repeat: 2, ease: "sine.inOut" }, 28.2);
+      sceneOut("#scene-context", 32);
+
+      sceneIn("#scene-training", 32);
+      tl.from("#scene-training .learn", { x: -180, rotateY: -25, opacity: 0, duration: 0.52, ease: "back.out(1.4)" }, 32.16);
+      tl.from("#scene-training .answer", { x: 180, rotateY: 25, opacity: 0, duration: 0.52, ease: "back.out(1.4)" }, 32.28);
+      tl.to("#scene-training .panel-icon", { y: -16, scale: 1.05, duration: 0.42, stagger: 0.18, yoyo: true, repeat: 2, ease: "power2.inOut" }, 33.1);
+      sceneOut("#scene-training", 37);
+
+      sceneIn("#scene-hallucination", 37);
+      tl.from("#scene-hallucination .warning-card", { y: 110, rotateX: 20, opacity: 0, duration: 0.5, ease: "back.out(1.4)" }, 37.12);
+      tl.from("#scene-hallucination .warn-symbol", { scale: 0.1, rotateZ: -35, opacity: 0, duration: 0.5, ease: "back.out(2)" }, 37.35);
+      tl.from("#scene-hallucination .stamp", { scale: 2.2, rotateZ: -20, opacity: 0, duration: 0.28, ease: "power4.out" }, 38.05);
+      tl.from("#scene-hallucination .q1, #scene-hallucination .q2", { y: 90, scale: 0, opacity: 0, duration: 0.4, stagger: 0.12, ease: "back.out(1.8)" }, 38.45);
+      tl.to("#scene-hallucination .warning-card", { x: -10, duration: 0.08, repeat: 8, yoyo: true, ease: "steps(2)" }, 39.1);
+      sceneOut("#scene-hallucination", 43);
+
+      sceneIn("#scene-embeddings", 43);
+      tl.from("#scene-embeddings .vector-field", { scale: 0.84, rotateX: 18, opacity: 0, duration: 0.55, ease: "back.out(1.4)" }, 43.1);
+      tl.from("#scene-embeddings .vector-dot", { scale: 0, opacity: 0, duration: 0.38, stagger: 0.06, ease: "back.out(1.8)" }, 43.5);
+      tl.from("#scene-embeddings .tag", { y: 40, opacity: 0, duration: 0.36, stagger: 0.09, ease: "power3.out" }, 43.9);
+      tl.to("#scene-embeddings .vector-dot", { x: 22, y: -18, duration: 0.7, stagger: 0.05, yoyo: true, repeat: 3, ease: "sine.inOut" }, 44.5);
+      sceneOut("#scene-embeddings", 49);
+
+      sceneIn("#scene-rag", 49);
+      tl.from("#scene-rag .source-card", { y: -260, rotateX: 80, opacity: 0, duration: 0.48, stagger: 0.08, ease: "back.out(1.6)" }, 49.16);
+      tl.from("#scene-rag .trail", { scaleX: 0, opacity: 0, duration: 0.38, ease: "power4.out" }, 49.74);
+      tl.to("#scene-rag .source", { y: -60, scale: 0.95, duration: 0.62, stagger: 0.08, yoyo: true, repeat: 2, ease: "sine.inOut" }, 50.3);
+      tl.to("#scene-rag .source-card, #scene-rag .trail, #scene-rag .term-card, #scene-rag .popup-badge, #scene-rag .caption", { y: 80, opacity: 0, duration: 0.34, stagger: 0.03, ease: "power3.in" }, 53.62);
+      tl.set("#scene-rag .source-card, #scene-rag .trail, #scene-rag .term-card, #scene-rag .popup-badge, #scene-rag .caption", { opacity: 0 }, 54.0);
+
+      sceneIn("#scene-agent", 54);
+      tl.from("#scene-agent .path-line", { scaleX: 0, opacity: 0, transformOrigin: "left center", duration: 0.5, ease: "power4.out" }, 54.12);
+      tl.from("#scene-agent .action-step", { y: -210, rotateY: 90, opacity: 0, duration: 0.42, stagger: 0.1, ease: "back.out(1.7)" }, 54.34);
+      tl.to("#scene-agent .action-step", { y: -20, scale: 1.08, duration: 0.26, stagger: 0.1, yoyo: true, repeat: 1, ease: "power2.inOut" }, 55.2);
+      sceneOut("#scene-agent", 59);
+
+      tl.from("#scene-end .end-deck", { y: 180, rotateX: 22, rotateY: -20, scale: 0.74, opacity: 0, duration: 0.44, ease: "back.out(1.4)" }, 58.42);
+      tl.from("#scene-end .term-pill", { y: 50, opacity: 0, scale: 0.7, duration: 0.18, stagger: 0.025, ease: "back.out(1.6)" }, 58.74);
+      tl.from("#scene-end .caption", { y: 60, opacity: 0, duration: 0.24, ease: "power3.out" }, 58.82);
+
+      window.__timelines["ai-terms-short"] = tl;
+    </script>
+  </body>
+</html>

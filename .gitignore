@@ -111,3 +111,6 @@ claude-design-hyperframes-video/
 .claude/
 docs/superpowers/
 .worktrees
+
+# mp4 in videos
+videos/**/*.mp4
