@@ -338,15 +338,27 @@ export const PlayerControls = memo(function PlayerControls({
         onClick={onTogglePlay}
         disabled={controlsDisabled}
         className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-lg disabled:opacity-30 disabled:pointer-events-none transition-colors"
-        style={{ background: "rgba(255,255,255,0.06)" }}
+        style={{ background: "var(--hf-player-control-button-bg, rgba(255,255,255,0.06))" }}
       >
         {isPlaying ? (
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="#FAFAFA" aria-hidden="true">
+          <svg
+            width="12"
+            height="12"
+            viewBox="0 0 24 24"
+            fill="var(--hf-player-control-icon, #FAFAFA)"
+            aria-hidden="true"
+          >
             <rect x="6" y="4" width="4" height="16" rx="1" />
             <rect x="14" y="4" width="4" height="16" rx="1" />
           </svg>
         ) : (
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="#FAFAFA" aria-hidden="true">
+          <svg
+            width="12"
+            height="12"
+            viewBox="0 0 24 24"
+            fill="var(--hf-player-control-icon, #FAFAFA)"
+            aria-hidden="true"
+          >
             <polygon points="6,3 20,12 6,21" />
           </svg>
         )}
