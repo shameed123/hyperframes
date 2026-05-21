@@ -1,0 +1,283 @@
+1
+00:00:00,000 --> 00:00:02,030
+Google I/O 2026 just happened, and the
+
+2
+00:00:02,060 --> 00:00:03,620
+message was very clear: Google does not
+
+3
+00:00:03,670 --> 00:00:05,190
+want Gemini to be just another chatbot
+
+4
+00:00:05,210 --> 00:00:05,630
+anymore.
+
+5
+00:00:05,790 --> 00:00:07,590
+They want it to become your personal AI
+
+6
+00:00:07,650 --> 00:00:08,020
+agent.
+
+7
+00:00:08,350 --> 00:00:10,400
+The biggest announcement was Gemini 3.5.
+
+8
+00:00:10,660 --> 00:00:12,380
+This is Google's new model upgrade, and
+
+9
+00:00:12,440 --> 00:00:13,500
+it is built for more than answering
+
+10
+00:00:13,550 --> 00:00:13,980
+questions.
+
+11
+00:00:14,140 --> 00:00:15,670
+It is designed for coding, planning,
+
+12
+00:00:15,840 --> 00:00:17,440
+multi-step tasks, and actually getting
+
+13
+00:00:17,470 --> 00:00:17,870
+work done.
+
+14
+00:00:17,980 --> 00:00:19,320
+And for creators, Google announced
+
+15
+00:00:19,380 --> 00:00:21,030
+something huge: Gemini Omni.
+
+16
+00:00:21,140 --> 00:00:22,510
+This is their new video generation and
+
+17
+00:00:22,560 --> 00:00:23,290
+video editing model.
+
+18
+00:00:23,350 --> 00:00:25,150
+You can give it text, images, audio, or
+
+19
+00:00:25,210 --> 00:00:26,720
+video, and ask it to create or edit
+
+20
+00:00:26,760 --> 00:00:27,160
+footage.
+
+21
+00:00:27,200 --> 00:00:28,350
+So instead of learning complicated
+
+22
+00:00:28,410 --> 00:00:29,990
+editing software, you may be able to say
+
+23
+00:00:30,050 --> 00:00:31,320
+things like, "change the background,"
+
+24
+00:00:31,320 --> 00:00:33,000
+"make this shot more cinematic," or
+
+25
+00:00:33,000 --> 00:00:34,450
+"turn this into a YouTube Short." That
+
+26
+00:00:34,480 --> 00:00:34,980
+is a big deal.
+
+27
+00:00:35,130 --> 00:00:36,640
+But the real direction is even bigger.
+
+28
+00:00:36,850 --> 00:00:38,420
+Google also showed updates to the Gemini
+
+29
+00:00:38,480 --> 00:00:39,850
+app, including features like a daily
+
+30
+00:00:39,880 --> 00:00:41,290
+brief and a personal AI agent that can
+
+31
+00:00:41,320 --> 00:00:42,570
+work with Gmail, Calendar, and
+
+32
+00:00:42,620 --> 00:00:43,100
+Workspace.
+
+33
+00:00:43,210 --> 00:00:44,700
+That means Gemini may soon help you plan
+
+34
+00:00:44,730 --> 00:00:46,210
+your day, summarize what matters, and
+
+35
+00:00:46,250 --> 00:00:47,590
+even complete tasks in the background.
+
+36
+00:00:47,670 --> 00:00:48,390
+Search is changing too.
+
+37
+00:00:48,540 --> 00:00:49,410
+Google is making Search more
+
+38
+00:00:49,450 --> 00:00:50,590
+conversational with AI Mode.
+
+39
+00:00:50,630 --> 00:00:52,010
+Instead of typing short keywords, you
+
+40
+00:00:52,040 --> 00:00:53,860
+can ask longer questions, upload images,
+
+41
+00:00:53,930 --> 00:00:56,010
+files, videos, or even use Chrome tabs
+
+42
+00:00:56,040 --> 00:00:56,610
+as context.
+
+43
+00:00:56,690 --> 00:00:57,740
+For developers, one of the biggest
+
+44
+00:00:57,760 --> 00:00:59,710
+updates is Google Antigravity 2.0.
+
+45
+00:00:59,800 --> 00:01:01,500
+This is Google's AI coding environment
+
+46
+00:01:01,530 --> 00:01:03,000
+where multiple coding agents can work in
+
+47
+00:01:03,050 --> 00:01:03,360
+parallel.
+
+48
+00:01:03,460 --> 00:01:04,920
+That means one agent can fix bugs,
+
+49
+00:01:05,040 --> 00:01:06,530
+another can write tests, and another can
+
+50
+00:01:06,570 --> 00:01:07,950
+build features, all inside a coding
+
+51
+00:01:07,990 --> 00:01:08,330
+workflow.
+
+52
+00:01:08,650 --> 00:01:09,920
+Chrome is also moving toward what Google
+
+53
+00:01:09,940 --> 00:01:11,740
+calls the agentic web, where websites
+
+54
+00:01:11,800 --> 00:01:13,330
+may become easier for AI agents to
+
+55
+00:01:13,390 --> 00:01:14,210
+understand and use.
+
+56
+00:01:14,270 --> 00:01:15,640
+And yes, smart glasses are coming back
+
+57
+00:01:15,700 --> 00:01:17,020
+too, this time with Gemini built in.
+
+58
+00:01:17,150 --> 00:01:18,080
+So what does all this mean?
+
+59
+00:01:18,160 --> 00:01:19,620
+Google is not just adding AI features
+
+60
+00:01:19,660 --> 00:01:19,970
+everywhere.
+
+61
+00:01:20,020 --> 00:01:21,310
+They are building an ecosystem where
+
+62
+00:01:21,340 --> 00:01:23,040
+Gemini can see, listen, search, code,
+
+63
+00:01:23,080 --> 00:01:24,460
+create videos, manage your work, and
+
+64
+00:01:24,510 --> 00:01:25,450
+interact with websites.
+
+65
+00:01:25,530 --> 00:01:26,900
+The future Google is showing us is not
+
+66
+00:01:26,940 --> 00:01:27,540
+just AI chat.
+
+67
+00:01:27,590 --> 00:01:29,080
+It is AI that actually does things.
+
+68
+00:01:29,130 --> 00:01:30,290
+And honestly, that changes everything.
+
+69
+00:01:30,360 --> 00:01:31,930
+If you like AI explanation videos like
+
+70
+00:01:31,950 --> 00:01:33,350
+this, like, subscribe, and follow for
+
+71
+00:01:33,390 --> 00:01:33,580
+more.

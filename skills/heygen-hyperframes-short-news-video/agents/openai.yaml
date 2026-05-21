@@ -1,0 +1,8 @@
+interface:
+  display_name: "HeyGen HyperFrames Short News Video"
+  short_description: "Build avatar-led news shorts"
+  brand_color: "#2458FF"
+  default_prompt: "Use $heygen-hyperframes-short-news-video to create a new avatar-led short news video with synced HyperFrames motion graphics."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,2318 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #fbfaf7;
+        color: #15161f;
+        font-family: Helvetica, Arial, sans-serif;
+      }
+
+      #root {
+        position: relative;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #fbfaf7;
+        perspective: 1800px;
+      }
+
+      .clip {
+        position: absolute;
+      }
+
+      .full {
+        inset: 0;
+      }
+
+      .thumbnail-overlay {
+        inset: 0;
+        z-index: 80;
+        overflow: hidden;
+        background: #fbfaf7;
+        transform-style: preserve-3d;
+      }
+
+      .thumbnail-overlay::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: url("assets/thumbnail/google-io-2026-thumbnail.png");
+        background-position: center;
+        background-size: cover;
+        filter: blur(34px) saturate(1.18);
+        transform: scale(1.16);
+        opacity: 0.62;
+      }
+
+      .thumbnail-overlay img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .thumb-hero {
+        object-fit: contain;
+        filter: drop-shadow(0 34px 82px rgba(21, 22, 31, 0.22));
+      }
+
+      .bg {
+        z-index: 0;
+        overflow: hidden;
+        background:
+          linear-gradient(90deg, rgba(36, 88, 255, 0.09) 1px, rgba(251, 250, 247, 0) 1px),
+          linear-gradient(0deg, rgba(255, 58, 168, 0.07) 1px, rgba(251, 250, 247, 0) 1px), #fbfaf7;
+        background-size:
+          90px 90px,
+          90px 90px,
+          100% 100%;
+      }
+
+      .bg-wash {
+        position: absolute;
+        left: -180px;
+        top: -180px;
+        width: 1440px;
+        height: 2240px;
+        background:
+          radial-gradient(ellipse at 12% 8%, rgba(36, 88, 255, 0.16), rgba(36, 88, 255, 0) 28%),
+          radial-gradient(ellipse at 88% 28%, rgba(255, 58, 168, 0.16), rgba(255, 58, 168, 0) 30%),
+          radial-gradient(ellipse at 30% 92%, rgba(255, 138, 33, 0.18), rgba(255, 138, 33, 0) 32%);
+      }
+
+      .bg-stripe {
+        position: absolute;
+        left: -160px;
+        width: 1460px;
+        height: 14px;
+        background: linear-gradient(
+          90deg,
+          rgba(36, 88, 255, 0),
+          rgba(36, 88, 255, 0.55),
+          rgba(255, 58, 168, 0.55),
+          rgba(255, 138, 33, 0)
+        );
+        transform: rotate(-16deg);
+        opacity: 0.48;
+      }
+
+      .bg-stripe.s1 {
+        top: 250px;
+      }
+
+      .bg-stripe.s2 {
+        top: 940px;
+        transform: rotate(13deg);
+      }
+
+      .bg-stripe.s3 {
+        top: 1600px;
+        transform: rotate(-8deg);
+      }
+
+      .track-dash {
+        position: absolute;
+        width: 120px;
+        height: 8px;
+        border-radius: 999px;
+        background: #2458ff;
+        opacity: 0.22;
+      }
+
+      .dash-pink {
+        background: #ff3aa8;
+      }
+
+      .dash-orange {
+        background: #ff8a21;
+      }
+
+      .scene {
+        inset: 0;
+        z-index: 4;
+        overflow: hidden;
+        opacity: 0;
+        visibility: hidden;
+        transform-style: preserve-3d;
+      }
+
+      .scene-content {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+        padding: 118px 72px 132px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 34px;
+        transform-style: preserve-3d;
+      }
+
+      .top-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+      }
+
+      .kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        align-self: flex-start;
+        min-height: 54px;
+        padding: 12px 16px;
+        border: 1px solid #dfe5f2;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.84);
+        color: #2458ff;
+        font-family: "IBM Plex Mono", Consolas, monospace;
+        font-size: 22px;
+        line-height: 1;
+        font-weight: 700;
+        text-transform: uppercase;
+        box-shadow: 0 18px 44px rgba(36, 88, 255, 0.13);
+        backdrop-filter: blur(16px) saturate(1.2);
+      }
+
+      .timer {
+        min-height: 54px;
+        padding: 12px 16px;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 58, 168, 0.28);
+        background: rgba(255, 255, 255, 0.78);
+        color: #a20d65;
+        font-family: "IBM Plex Mono", Consolas, monospace;
+        font-size: 22px;
+        font-weight: 700;
+        font-variant-numeric: tabular-nums;
+        box-shadow: 0 18px 44px rgba(255, 58, 168, 0.11);
+      }
+
+      .headline {
+        max-width: 900px;
+        color: #15161f;
+        font-family: "Archivo Black", "Arial Black", Arial, sans-serif;
+        font-size: 86px;
+        line-height: 0.96;
+        font-weight: 900;
+        letter-spacing: 0;
+      }
+
+      .headline.tight {
+        font-size: 78px;
+      }
+
+      .headline.huge {
+        font-size: 108px;
+      }
+
+      .subline {
+        max-width: 820px;
+        color: #353947;
+        font-size: 38px;
+        line-height: 1.16;
+        font-weight: 750;
+      }
+
+      .accent-blue {
+        color: #2458ff;
+      }
+
+      .accent-pink {
+        color: #c20a74;
+      }
+
+      .accent-orange {
+        color: #b04d00;
+      }
+
+      .glass {
+        position: relative;
+        border: 1px solid rgba(255, 255, 255, 0.95);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.78);
+        box-shadow:
+          0 34px 92px rgba(21, 22, 31, 0.16),
+          inset 0 1px 0 rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(18px) saturate(1.25);
+        transform-style: preserve-3d;
+      }
+
+      .glass::after {
+        content: "";
+        position: absolute;
+        inset: 10px;
+        border: 1px solid rgba(223, 229, 242, 0.72);
+        border-radius: 6px;
+        pointer-events: none;
+      }
+
+      .icon {
+        width: 48px;
+        height: 48px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: currentColor;
+      }
+
+      .icon svg {
+        width: 42px;
+        height: 42px;
+        stroke: currentColor;
+        stroke-width: 2.5;
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .avatar-shot {
+        z-index: 18;
+        overflow: hidden;
+        background: #ffffff;
+        box-shadow:
+          0 52px 128px rgba(21, 22, 31, 0.46),
+          0 0 62px rgba(36, 88, 255, 0.24);
+        filter: drop-shadow(0 44px 54px rgba(21, 22, 31, 0.44))
+          drop-shadow(0 0 38px rgba(36, 88, 255, 0.22));
+        transform-style: preserve-3d;
+        will-change: transform, opacity;
+      }
+
+      .avatar-shot video,
+      video.avatar-shot {
+        object-fit: cover;
+      }
+
+      .avatar-pip {
+        right: 54px;
+        bottom: 72px;
+        width: 286px;
+        height: 286px;
+        border-radius: 22px;
+        box-shadow:
+          0 38px 92px rgba(21, 22, 31, 0.58),
+          0 0 52px rgba(255, 58, 168, 0.22);
+        filter: drop-shadow(0 32px 42px rgba(21, 22, 31, 0.52))
+          drop-shadow(0 0 34px rgba(255, 58, 168, 0.2));
+      }
+
+      .avatar-feature-top {
+        left: 230px;
+        top: 1234px;
+        width: 620px;
+        height: 430px;
+        border-radius: 24px;
+        object-position: center center;
+      }
+
+      .avatar-feature-side {
+        right: 64px;
+        top: 1116px;
+        width: 448px;
+        height: 448px;
+        border-radius: 24px;
+      }
+
+      .avatar-feature-web {
+        left: 210px;
+        bottom: 204px;
+        width: 660px;
+        height: 460px;
+        border-radius: 24px;
+        object-position: center center;
+      }
+
+      .avatar-cta {
+        left: 150px;
+        top: 350px;
+        width: 780px;
+        height: 780px;
+        border-radius: 28px;
+      }
+
+      .caption-card {
+        position: absolute;
+        left: 72px;
+        right: 72px;
+        bottom: 64px;
+        min-height: 92px;
+        z-index: 16;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 18px 26px;
+        border: 1px solid rgba(223, 229, 242, 0.9);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.86);
+        color: #15161f;
+        font-family: "Archivo Black", "Arial Black", Arial, sans-serif;
+        font-size: 36px;
+        line-height: 1.05;
+        text-align: center;
+        box-shadow: 0 22px 68px rgba(21, 22, 31, 0.2);
+        backdrop-filter: blur(16px);
+      }
+
+      .caption-card .hot {
+        color: #2458ff;
+      }
+
+      .pip-scene .caption-card {
+        right: 376px;
+        justify-content: flex-start;
+        text-align: left;
+      }
+
+      .stage-label {
+        position: absolute;
+        z-index: 19;
+        padding: 10px 14px;
+        border-radius: 8px;
+        background: #15161f;
+        color: #ffffff;
+        font-family: "IBM Plex Mono", Consolas, monospace;
+        font-size: 18px;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+
+      .intro-stage {
+        min-height: 660px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 22px;
+        align-items: start;
+        padding-bottom: 470px;
+      }
+
+      .keynote-panel {
+        min-height: 310px;
+        padding: 26px;
+      }
+
+      .agent-chip {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 72px;
+        margin-top: 16px;
+        padding: 14px 16px;
+        border-radius: 8px;
+        border: 1px solid #dfe5f2;
+        background: rgba(255, 255, 255, 0.78);
+        font-family: "IBM Plex Mono", Consolas, monospace;
+        font-size: 22px;
+        font-weight: 700;
+      }
+
+      .chat-stack {
+        min-height: 310px;
+        padding: 22px;
+      }
+
+      .bubble {
+        min-height: 78px;
+        padding: 18px;
+        margin-bottom: 16px;
+        border-radius: 8px;
+        background: #f4f6fb;
+        color: #4b5161;
+        font-size: 24px;
+        font-weight: 700;
+      }
+
+      .action-console {
+        min-height: 116px;
+        padding: 18px;
+        border-radius: 8px;
+        background: #15161f;
+        color: #ffffff;
+        font-family: "IBM Plex Mono", Consolas, monospace;
+        font-size: 23px;
+        line-height: 1.28;
+      }
+
+      .orbit {
+        position: relative;
+        min-height: 610px;
+        transform-style: preserve-3d;
+      }
+
+      .core-card {
+        position: absolute;
+        left: 260px;
+        top: 116px;
+        width: 420px;
+        height: 300px;
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 18px;
+      }
+
+      .core-title {
+        font-family: "Archivo Black", "Arial Black", Arial, sans-serif;
+        font-size: 62px;
+        line-height: 0.96;
+      }
+
+      .core-sub {
+        font-family: "IBM Plex Mono", Consolas, monospace;
+        color: #5d6270;
+        font-size: 22px;
+        font-weight: 700;
+      }
+
+      .module {
+        position: absolute;
+        width: 206px;
+        min-height: 118px;
+        padding: 18px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        border-radius: 8px;
+        border: 1px solid #dfe5f2;
+        background: rgba(255, 255, 255, 0.86);
+        color: #15161f;
+        font-family: "IBM Plex Mono", Consolas, monospace;
+        font-size: 20px;
+        font-weight: 800;
+        box-shadow: 0 24px 64px rgba(36, 88, 255, 0.14);
+        transform-style: preserve-3d;
+      }
+
+      .line {
+        position: absolute;
+        height: 4px;
+        border-radius: 999px;
+        background: linear-gradient(
+          90deg,
+          rgba(36, 88, 255, 0.15),
+          rgba(255, 58, 168, 0.78),
+          rgba(255, 138, 33, 0.16)
+        );
+        transform-origin: left center;
+      }
+
+      .omni-board {
+        min-height: 780px;
+        padding: 28px;
+        display: grid;
+        grid-template-columns: 230px 1fr;
+        gap: 24px;
+      }
+
+      .input-rail {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .input-pill,
+      .command-pill,
+      .capability-pill {
+        min-height: 64px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 16px;
+        border-radius: 8px;
+        border: 1px solid #dfe5f2;
+        background: rgba(255, 255, 255, 0.82);
+        font-family: "IBM Plex Mono", Consolas, monospace;
+        font-size: 20px;
+        font-weight: 800;
+        box-shadow: 0 16px 42px rgba(21, 22, 31, 0.09);
+      }
+
+      .edit-canvas {
+        position: relative;
+        min-height: 690px;
+        border-radius: 8px;
+        border: 1px solid #dfe5f2;
+        background:
+          linear-gradient(90deg, rgba(36, 88, 255, 0.08) 1px, rgba(255, 255, 255, 0) 1px),
+          linear-gradient(0deg, rgba(255, 138, 33, 0.08) 1px, rgba(255, 255, 255, 0) 1px), #ffffff;
+        background-size: 46px 46px;
+        overflow: hidden;
+      }
+
+      .preview-frame {
+        position: absolute;
+        left: 54px;
+        top: 66px;
+        width: 500px;
+        height: 282px;
+        padding: 18px;
+        border-radius: 8px;
+        background: #15161f;
+        color: #ffffff;
+        box-shadow: 0 30px 78px rgba(21, 22, 31, 0.24);
+      }
+
+      .preview-image {
+        height: 178px;
+        border-radius: 6px;
+        background:
+          linear-gradient(135deg, rgba(36, 88, 255, 0.7), rgba(255, 58, 168, 0.6)), #ffffff;
+      }
+
+      .preview-label {
+        margin-top: 16px;
+        font-family: "IBM Plex Mono", Consolas, monospace;
+        font-size: 20px;
+        font-weight: 800;
+      }
+
+      .timeline-bars {
+        position: absolute;
+        left: 54px;
+        right: 54px;
+        bottom: 54px;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      .bar {
+        height: 30px;
+        border-radius: 8px;
+        background: #2458ff;
+      }
+
+      .bar.pink {
+        width: 72%;
+        background: #ff3aa8;
+      }
+
+      .bar.orange {
+        width: 58%;
+        background: #ff8a21;
+      }
+
+      .command-stack {
+        position: absolute;
+        right: 36px;
+        top: 386px;
+        width: 360px;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      .workspace-grid {
+        min-height: 750px;
+        display: grid;
+        grid-template-columns: 1fr 448px;
+        gap: 28px;
+        align-items: start;
+        padding-bottom: 420px;
+      }
+
+      .phone {
+        min-height: 700px;
+        padding: 26px;
+      }
+
+      .phone-top {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 22px;
+        color: #5d6270;
+        font-family: "IBM Plex Mono", Consolas, monospace;
+        font-size: 18px;
+        font-weight: 700;
+      }
+
+      .brief-card {
+        min-height: 142px;
+        margin-bottom: 16px;
+        padding: 20px;
+        border-radius: 8px;
+        border: 1px solid #dfe5f2;
+        background: #ffffff;
+      }
+
+      .brief-title {
+        font-family: "Archivo Black", "Arial Black", Arial, sans-serif;
+        font-size: 32px;
+        line-height: 1;
+      }
+
+      .brief-copy {
+        margin-top: 10px;
+        color: #5d6270;
+        font-size: 22px;
+        font-weight: 700;
+      }
+
+      .task-queue {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      .task-card {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        min-height: 86px;
+        padding: 14px 16px;
+        border-radius: 8px;
+        border: 1px solid #dfe5f2;
+        background: rgba(255, 255, 255, 0.82);
+        font-size: 23px;
+        font-weight: 800;
+      }
+
+      .search-panel {
+        min-height: 720px;
+        padding: 28px;
+      }
+
+      .search-box {
+        min-height: 128px;
+        padding: 26px;
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        border-radius: 8px;
+        border: 2px solid rgba(36, 88, 255, 0.32);
+        background: #ffffff;
+        font-family: "Archivo Black", "Arial Black", Arial, sans-serif;
+        font-size: 40px;
+        line-height: 1.06;
+      }
+
+      .context-grid {
+        margin-top: 24px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+
+      .context-card {
+        min-height: 166px;
+        padding: 18px;
+        border-radius: 8px;
+        border: 1px solid #dfe5f2;
+        background: rgba(255, 255, 255, 0.82);
+        font-family: "IBM Plex Mono", Consolas, monospace;
+        font-size: 21px;
+        font-weight: 800;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .dev-board {
+        min-height: 760px;
+        padding: 26px;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .agent-lane {
+        min-height: 168px;
+        display: grid;
+        grid-template-columns: 166px 1fr 128px;
+        gap: 14px;
+        align-items: center;
+        padding: 18px;
+        border-radius: 8px;
+        border: 1px solid #dfe5f2;
+        background: rgba(255, 255, 255, 0.84);
+      }
+
+      .lane-name {
+        font-family: "IBM Plex Mono", Consolas, monospace;
+        color: #2458ff;
+        font-size: 24px;
+        font-weight: 800;
+      }
+
+      .code-stack {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .code-line {
+        height: 18px;
+        border-radius: 8px;
+        background: #dfe5f2;
+      }
+
+      .lane-status {
+        min-height: 52px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        background: #15161f;
+        color: #ffffff;
+        font-family: "IBM Plex Mono", Consolas, monospace;
+        font-size: 18px;
+        font-weight: 800;
+      }
+
+      .web-stage {
+        min-height: 690px;
+        padding-bottom: 560px;
+      }
+
+      .web-map {
+        position: relative;
+        min-height: 500px;
+      }
+
+      .node {
+        position: absolute;
+        width: 170px;
+        min-height: 92px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 14px;
+        border-radius: 8px;
+        border: 1px solid #dfe5f2;
+        background: rgba(255, 255, 255, 0.88);
+        font-family: "IBM Plex Mono", Consolas, monospace;
+        font-size: 20px;
+        font-weight: 800;
+        text-align: center;
+        box-shadow: 0 18px 54px rgba(21, 22, 31, 0.12);
+      }
+
+      .glasses {
+        position: absolute;
+        right: 50px;
+        top: 100px;
+        width: 320px;
+        height: 128px;
+        border: 10px solid #15161f;
+        border-radius: 8px;
+      }
+
+      .glasses::before,
+      .glasses::after {
+        content: "";
+        position: absolute;
+        top: 22px;
+        width: 96px;
+        height: 62px;
+        border: 4px solid #2458ff;
+        border-radius: 8px;
+        background: rgba(36, 88, 255, 0.08);
+      }
+
+      .glasses::before {
+        left: 36px;
+      }
+
+      .glasses::after {
+        right: 36px;
+      }
+
+      .ecosystem-map {
+        position: relative;
+        min-height: 870px;
+      }
+
+      .gemini-hub {
+        position: absolute;
+        left: 304px;
+        top: 238px;
+        width: 330px;
+        height: 330px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-family: "Archivo Black", "Arial Black", Arial, sans-serif;
+        font-size: 58px;
+        line-height: 0.94;
+      }
+
+      .capability-pill {
+        position: absolute;
+        width: 220px;
+        min-height: 86px;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .future-board {
+        min-height: 760px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 26px;
+      }
+
+      .chat-panel,
+      .action-panel {
+        min-height: 620px;
+        padding: 28px;
+      }
+
+      .panel-heading {
+        font-family: "Archivo Black", "Arial Black", Arial, sans-serif;
+        font-size: 42px;
+        line-height: 1;
+        margin-bottom: 24px;
+      }
+
+      .chat-bubble {
+        min-height: 90px;
+        margin-bottom: 16px;
+        padding: 18px;
+        border-radius: 8px;
+        background: #f3f5fb;
+        color: #5d6270;
+        font-size: 25px;
+        font-weight: 750;
+      }
+
+      .do-item {
+        min-height: 92px;
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 18px;
+        border-radius: 8px;
+        background: #15161f;
+        color: #ffffff;
+        font-family: "IBM Plex Mono", Consolas, monospace;
+        font-size: 21px;
+        font-weight: 800;
+      }
+
+      .cta-layout {
+        align-items: center;
+        text-align: center;
+        justify-content: flex-start;
+        padding-top: 1140px;
+      }
+
+      .cta-buttons {
+        display: flex;
+        gap: 16px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .cta-pill {
+        min-width: 180px;
+        min-height: 68px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        background: #15161f;
+        color: #ffffff;
+        font-family: "IBM Plex Mono", Consolas, monospace;
+        font-size: 22px;
+        font-weight: 800;
+      }
+
+      .transition {
+        inset: 0;
+        z-index: 40;
+        pointer-events: none;
+        overflow: hidden;
+        opacity: 0;
+      }
+
+      .wipe-band {
+        position: absolute;
+        top: -160px;
+        width: 360px;
+        height: 2300px;
+        transform: rotate(14deg);
+        box-shadow: 0 0 56px rgba(255, 255, 255, 0.6);
+      }
+
+      .band-blue {
+        left: -420px;
+        background: #2458ff;
+      }
+
+      .band-pink {
+        left: -560px;
+        background: #ff3aa8;
+      }
+
+      .band-orange {
+        left: -700px;
+        background: #ff8a21;
+      }
+
+      .flash {
+        position: absolute;
+        inset: 0;
+        background: rgba(255, 255, 255, 0.86);
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="google-io-2026-update"
+      data-start="0"
+      data-duration="93.66"
+      data-width="1080"
+      data-height="1920"
+    >
+      <div
+        id="background"
+        class="clip full bg"
+        data-start="0"
+        data-duration="93.66"
+        data-track-index="0"
+        data-layout-ignore
+      >
+        <div class="bg-wash"></div>
+        <div class="bg-stripe s1"></div>
+        <div class="bg-stripe s2"></div>
+        <div class="bg-stripe s3"></div>
+        <div class="track-dash" style="left: 84px; top: 210px"></div>
+        <div class="track-dash dash-pink" style="right: 120px; top: 520px"></div>
+        <div class="track-dash dash-orange" style="left: 180px; top: 1480px"></div>
+        <div class="track-dash" style="right: 90px; top: 1690px"></div>
+      </div>
+
+      <audio
+        id="narration"
+        class="clip"
+        data-start="0"
+        data-duration="93.66"
+        data-track-index="1"
+        data-volume="1"
+        src="assets/avatar/heygen-avatar-16x9.mp4"
+      ></audio>
+
+      <div
+        id="opening-thumbnail"
+        class="clip thumbnail-overlay"
+        data-start="0"
+        data-duration="0.5"
+        data-track-index="40"
+      >
+        <img
+          class="thumb-hero"
+          src="assets/thumbnail/google-io-2026-thumbnail.png"
+          alt="Google I/O 2026 Gemini Takes Over thumbnail"
+          draggable="false"
+        />
+      </div>
+
+      <video
+        id="avatar-intro"
+        class="clip avatar-shot avatar-feature-top"
+        data-start="0"
+        data-duration="8.1"
+        data-media-start="0"
+        data-track-index="2"
+        src="assets/avatar/heygen-avatar-16x9.mp4"
+        muted
+        playsinline
+      ></video>
+      <video
+        id="avatar-pip-a"
+        class="clip avatar-shot avatar-pip"
+        data-start="8.1"
+        data-duration="27"
+        data-media-start="8.1"
+        data-track-index="2"
+        src="assets/avatar/heygen-avatar-16x9.mp4"
+        muted
+        playsinline
+      ></video>
+      <video
+        id="avatar-workspace"
+        class="clip avatar-shot avatar-feature-side"
+        data-start="35.1"
+        data-duration="12.6"
+        data-media-start="35.1"
+        data-track-index="2"
+        src="assets/avatar/heygen-avatar-16x9.mp4"
+        muted
+        playsinline
+      ></video>
+      <video
+        id="avatar-pip-b"
+        class="clip avatar-shot avatar-pip"
+        data-start="47.7"
+        data-duration="20.95"
+        data-media-start="47.7"
+        data-track-index="2"
+        src="assets/avatar/heygen-avatar-16x9.mp4"
+        muted
+        playsinline
+      ></video>
+      <video
+        id="avatar-web"
+        class="clip avatar-shot avatar-feature-web"
+        data-start="68.65"
+        data-duration="8.5"
+        data-media-start="68.65"
+        data-track-index="2"
+        src="assets/avatar/heygen-avatar-16x9.mp4"
+        muted
+        playsinline
+      ></video>
+      <video
+        id="avatar-pip-c"
+        class="clip avatar-shot avatar-pip"
+        data-start="77.15"
+        data-duration="13.2"
+        data-media-start="77.15"
+        data-track-index="2"
+        src="assets/avatar/heygen-avatar-16x9.mp4"
+        muted
+        playsinline
+      ></video>
+      <video
+        id="avatar-cta"
+        class="clip avatar-shot avatar-cta"
+        data-start="90.36"
+        data-duration="3.3"
+        data-media-start="90.36"
+        data-track-index="2"
+        src="assets/avatar/heygen-avatar-16x9.mp4"
+        muted
+        playsinline
+      ></video>
+
+      <section
+        id="scene-intro"
+        class="clip scene"
+        data-start="0"
+        data-duration="8.1"
+        data-track-index="3"
+      >
+        <div class="scene-content">
+          <div class="top-row">
+            <div class="kicker">
+              <span class="icon">
+                <svg viewBox="0 0 24 24">
+                  <path d="M12 3v18" />
+                  <path d="M3 12h18" />
+                  <path d="M5 5l14 14" />
+                  <path d="M19 5L5 19" />
+                </svg>
+              </span>
+              Google I/O 2026
+            </div>
+            <div class="timer">00:00-00:08</div>
+          </div>
+          <h1 class="headline huge">Gemini is moving beyond chat.</h1>
+          <p class="subline">
+            The message was clear: Google wants Gemini to become a personal AI agent.
+          </p>
+          <div class="intro-stage" data-layout-allow-overflow>
+            <div class="glass keynote-panel float-card">
+              <div class="core-title">CHATBOT</div>
+              <div class="agent-chip">
+                <span>answer questions</span>
+                <span class="accent-pink">old mode</span>
+              </div>
+              <div class="agent-chip">
+                <span>take actions</span>
+                <span class="accent-blue">agent mode</span>
+              </div>
+            </div>
+            <div class="glass chat-stack float-card">
+              <div class="bubble">"What should I do today?"</div>
+              <div class="action-console">plan_day(); summarize(); execute_tasks();</div>
+            </div>
+          </div>
+        </div>
+        <div class="stage-label" style="left: 244px; top: 1196px">avatar focus</div>
+        <div class="caption-card">
+          <span class="hot">Not just chat.</span>&nbsp;Personal AI agent.
+        </div>
+      </section>
+
+      <section
+        id="scene-model"
+        class="clip scene pip-scene"
+        data-start="8.1"
+        data-duration="9.9"
+        data-track-index="3"
+      >
+        <div class="scene-content">
+          <div class="top-row">
+            <div class="kicker">
+              <span class="icon">
+                <svg viewBox="0 0 24 24">
+                  <path d="M12 2l8 5v10l-8 5-8-5V7z" />
+                  <path d="M12 22V12" />
+                  <path d="M4 7l8 5 8-5" />
+                </svg>
+              </span>
+              Biggest model update
+            </div>
+            <div class="timer">00:08-00:18</div>
+          </div>
+          <h2 class="headline">Gemini 3.5 is built to get work done.</h2>
+          <div class="orbit" data-layout-allow-overflow>
+            <div
+              class="line model-line"
+              style="left: 180px; top: 270px; width: 610px; transform: rotate(0deg)"
+            ></div>
+            <div
+              class="line model-line"
+              style="left: 270px; top: 420px; width: 420px; transform: rotate(34deg)"
+            ></div>
+            <div
+              class="line model-line"
+              style="left: 270px; top: 180px; width: 420px; transform: rotate(-34deg)"
+            ></div>
+            <div class="glass core-card float-card">
+              <div class="core-title accent-blue">Gemini 3.5</div>
+              <div class="core-sub">model upgrade</div>
+            </div>
+            <div class="module m-code" style="left: 20px; top: 60px">
+              <span class="icon accent-blue">
+                <svg viewBox="0 0 24 24">
+                  <path d="M16 18l6-6-6-6" />
+                  <path d="M8 6l-6 6 6 6" />
+                </svg>
+              </span>
+              Coding
+            </div>
+            <div class="module m-plan" style="right: 10px; top: 62px">
+              <span class="icon accent-pink">
+                <svg viewBox="0 0 24 24">
+                  <path d="M8 6h13" />
+                  <path d="M8 12h13" />
+                  <path d="M8 18h13" />
+                  <path d="M3 6h.01" />
+                  <path d="M3 12h.01" />
+                  <path d="M3 18h.01" />
+                </svg>
+              </span>
+              Planning
+            </div>
+            <div class="module m-step" style="left: 40px; bottom: 40px">
+              <span class="icon accent-orange">
+                <svg viewBox="0 0 24 24">
+                  <path d="M3 5h6v6H3z" />
+                  <path d="M15 13h6v6h-6z" />
+                  <path d="M9 8h4a4 4 0 0 1 4 4v1" />
+                </svg>
+              </span>
+              Multi-step
+            </div>
+            <div class="module m-work" style="right: 34px; bottom: 38px">
+              <span class="icon accent-blue">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M20 7h-8l-2-2H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"
+                  />
+                </svg>
+              </span>
+              Execute
+            </div>
+          </div>
+        </div>
+        <div class="caption-card">
+          Coding, planning, multi-step tasks, <span class="hot">actual work</span>.
+        </div>
+      </section>
+
+      <section
+        id="scene-omni"
+        class="clip scene pip-scene"
+        data-start="18"
+        data-duration="17.1"
+        data-track-index="3"
+      >
+        <div class="scene-content">
+          <div class="top-row">
+            <div class="kicker">
+              <span class="icon">
+                <svg viewBox="0 0 24 24">
+                  <path d="M15 10l4.55-2.28A1 1 0 0 1 21 8.62v6.76a1 1 0 0 1-1.45.9L15 14" />
+                  <rect x="3" y="6" width="12" height="12" rx="2" />
+                </svg>
+              </span>
+              Creator update
+            </div>
+            <div class="timer">00:18-00:35</div>
+          </div>
+          <h2 class="headline">Gemini Omni turns editing into instructions.</h2>
+          <div class="glass omni-board" data-layout-allow-overflow>
+            <div class="input-rail">
+              <div class="input-pill input-a accent-blue">Text</div>
+              <div class="input-pill input-b accent-pink">Images</div>
+              <div class="input-pill input-c accent-orange">Audio</div>
+              <div class="input-pill input-d accent-blue">Video</div>
+            </div>
+            <div class="edit-canvas">
+              <div class="preview-frame">
+                <div class="preview-image"></div>
+                <div class="preview-label">Gemini Omni edit stack</div>
+              </div>
+              <div class="command-stack">
+                <div class="command-pill accent-blue">change background</div>
+                <div class="command-pill accent-pink">make cinematic</div>
+                <div class="command-pill accent-orange">turn into a Short</div>
+              </div>
+              <div class="timeline-bars">
+                <div class="bar"></div>
+                <div class="bar pink"></div>
+                <div class="bar orange"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="caption-card">
+          <span class="hot">Text, images, audio, video</span>&nbsp;in. Edited footage out.
+        </div>
+      </section>
+
+      <section
+        id="scene-workspace"
+        class="clip scene"
+        data-start="35.1"
+        data-duration="12.6"
+        data-track-index="3"
+      >
+        <div class="scene-content">
+          <div class="top-row">
+            <div class="kicker">
+              <span class="icon">
+                <svg viewBox="0 0 24 24">
+                  <rect x="5" y="2" width="14" height="20" rx="2" />
+                  <path d="M9 18h6" />
+                </svg>
+              </span>
+              Personal agent
+            </div>
+            <div class="timer">00:35-00:48</div>
+          </div>
+          <h2 class="headline tight">Gemini starts managing the workday.</h2>
+          <div class="workspace-grid" data-layout-allow-overflow>
+            <div class="glass phone float-card">
+              <div class="phone-top"><span>DAILY BRIEF</span><span>08:00</span></div>
+              <div class="brief-card">
+                <div class="brief-title accent-blue">What matters today</div>
+                <div class="brief-copy">Summaries, schedule changes, and priority tasks.</div>
+              </div>
+              <div class="task-queue">
+                <div class="task-card task-a">
+                  <span class="icon accent-pink">
+                    <svg viewBox="0 0 24 24">
+                      <path d="M4 4h16v16H4z" />
+                      <path d="M22 6l-10 7L2 6" />
+                    </svg>
+                  </span>
+                  Gmail summaries
+                </div>
+                <div class="task-card task-b">
+                  <span class="icon accent-orange">
+                    <svg viewBox="0 0 24 24">
+                      <rect x="3" y="4" width="18" height="18" rx="2" />
+                      <path d="M16 2v4" />
+                      <path d="M8 2v4" />
+                      <path d="M3 10h18" />
+                    </svg>
+                  </span>
+                  Calendar planning
+                </div>
+                <div class="task-card task-c">
+                  <span class="icon accent-blue">
+                    <svg viewBox="0 0 24 24">
+                      <path d="M4 4h16v5H4z" />
+                      <path d="M4 13h7v7H4z" />
+                      <path d="M15 13h5v7h-5z" />
+                    </svg>
+                  </span>
+                  Workspace actions
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="stage-label" style="right: 86px; top: 1074px">speaker returns</div>
+        <div class="caption-card">Daily brief. Gmail. Calendar. Background tasks.</div>
+      </section>
+
+      <section
+        id="scene-search"
+        class="clip scene pip-scene"
+        data-start="47.7"
+        data-duration="9"
+        data-track-index="3"
+      >
+        <div class="scene-content">
+          <div class="top-row">
+            <div class="kicker">
+              <span class="icon">
+                <svg viewBox="0 0 24 24">
+                  <circle cx="11" cy="11" r="7" />
+                  <path d="M21 21l-4.3-4.3" />
+                </svg>
+              </span>
+              AI Mode search
+            </div>
+            <div class="timer">00:48-00:57</div>
+          </div>
+          <h2 class="headline">Search becomes a conversation with context.</h2>
+          <div class="glass search-panel">
+            <div class="search-box search-main">
+              <span class="icon accent-blue">
+                <svg viewBox="0 0 24 24">
+                  <circle cx="11" cy="11" r="7" />
+                  <path d="M21 21l-4.3-4.3" />
+                </svg>
+              </span>
+              Ask a longer question with files attached.
+            </div>
+            <div class="context-grid">
+              <div class="context-card context-a">
+                <span class="accent-blue">Image</span><span>visual clue</span>
+              </div>
+              <div class="context-card context-b">
+                <span class="accent-pink">File</span><span>source document</span>
+              </div>
+              <div class="context-card context-c">
+                <span class="accent-orange">Video</span><span>frame context</span>
+              </div>
+              <div class="context-card context-d">
+                <span class="accent-blue">Chrome tabs</span><span>live workspace</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="caption-card">Longer questions. Images, files, video, tabs.</div>
+      </section>
+
+      <section
+        id="scene-dev"
+        class="clip scene pip-scene"
+        data-start="56.7"
+        data-duration="11.95"
+        data-track-index="3"
+      >
+        <div class="scene-content">
+          <div class="top-row">
+            <div class="kicker">
+              <span class="icon">
+                <svg viewBox="0 0 24 24">
+                  <path d="M16 18l6-6-6-6" />
+                  <path d="M8 6l-6 6 6 6" />
+                </svg>
+              </span>
+              Developer workflow
+            </div>
+            <div class="timer">00:57-01:09</div>
+          </div>
+          <h2 class="headline tight">Antigravity 2.0 runs coding agents in parallel.</h2>
+          <div class="glass dev-board">
+            <div class="agent-lane lane-a">
+              <div class="lane-name">Agent A</div>
+              <div class="code-stack">
+                <div class="code-line" style="width: 88%; background: #2458ff"></div>
+                <div class="code-line" style="width: 64%"></div>
+                <div class="code-line" style="width: 78%"></div>
+              </div>
+              <div class="lane-status">BUG FIX</div>
+            </div>
+            <div class="agent-lane lane-b">
+              <div class="lane-name accent-pink">Agent B</div>
+              <div class="code-stack">
+                <div class="code-line" style="width: 76%; background: #ff3aa8"></div>
+                <div class="code-line" style="width: 82%"></div>
+                <div class="code-line" style="width: 52%"></div>
+              </div>
+              <div class="lane-status">TESTS</div>
+            </div>
+            <div class="agent-lane lane-c">
+              <div class="lane-name accent-orange">Agent C</div>
+              <div class="code-stack">
+                <div class="code-line" style="width: 70%; background: #ff8a21"></div>
+                <div class="code-line" style="width: 90%"></div>
+                <div class="code-line" style="width: 58%"></div>
+              </div>
+              <div class="lane-status">FEATURE</div>
+            </div>
+          </div>
+        </div>
+        <div class="caption-card">One fixes bugs. One writes tests. One builds features.</div>
+      </section>
+
+      <section
+        id="scene-web"
+        class="clip scene"
+        data-start="68.65"
+        data-duration="8.5"
+        data-track-index="3"
+      >
+        <div class="scene-content">
+          <div class="top-row">
+            <div class="kicker">
+              <span class="icon">
+                <svg viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M2 12h20" />
+                  <path d="M12 2a15 15 0 0 1 0 20" />
+                  <path d="M12 2a15 15 0 0 0 0 20" />
+                </svg>
+              </span>
+              Agentic web
+            </div>
+            <div class="timer">01:09-01:17</div>
+          </div>
+          <h2 class="headline tight">Chrome and smart glasses move toward agent-first context.</h2>
+          <div class="web-stage" data-layout-allow-overflow>
+            <div class="web-map">
+              <div
+                class="line web-line"
+                style="left: 166px; top: 248px; width: 610px; transform: rotate(0deg)"
+              ></div>
+              <div
+                class="line web-line"
+                style="left: 190px; top: 170px; width: 420px; transform: rotate(24deg)"
+              ></div>
+              <div
+                class="line web-line"
+                style="left: 200px; top: 320px; width: 420px; transform: rotate(-22deg)"
+              ></div>
+              <div class="node node-a accent-blue" style="left: 20px; top: 200px">Website UI</div>
+              <div class="node node-b accent-pink" style="left: 356px; top: 74px">Agent reads</div>
+              <div class="node node-c accent-orange" style="left: 386px; top: 340px">
+                Agent acts
+              </div>
+              <div class="node node-d accent-blue" style="right: 16px; top: 210px">Chrome tab</div>
+              <div class="glasses"></div>
+            </div>
+          </div>
+        </div>
+        <div class="stage-label" style="left: 224px; top: 1188px">wide avatar beat</div>
+        <div class="caption-card">Websites become easier for agents to understand and use.</div>
+      </section>
+
+      <section
+        id="scene-ecosystem"
+        class="clip scene pip-scene"
+        data-start="77.15"
+        data-duration="8.35"
+        data-track-index="3"
+      >
+        <div class="scene-content">
+          <div class="top-row">
+            <div class="kicker">
+              <span class="icon">
+                <svg viewBox="0 0 24 24">
+                  <path d="M12 3v18" />
+                  <path d="M3 12h18" />
+                  <circle cx="12" cy="12" r="4" />
+                </svg>
+              </span>
+              Ecosystem view
+            </div>
+            <div class="timer">01:17-01:25</div>
+          </div>
+          <h2 class="headline tight">
+            Gemini is becoming a system that sees, listens, searches, codes, and creates.
+          </h2>
+          <div class="ecosystem-map" data-layout-allow-overflow>
+            <div
+              class="line eco-line"
+              style="left: 190px; top: 396px; width: 570px; transform: rotate(0deg)"
+            ></div>
+            <div
+              class="line eco-line"
+              style="left: 320px; top: 250px; width: 330px; transform: rotate(48deg)"
+            ></div>
+            <div
+              class="line eco-line"
+              style="left: 320px; top: 535px; width: 330px; transform: rotate(-48deg)"
+            ></div>
+            <div class="glass gemini-hub float-card">Gemini</div>
+            <div class="capability-pill cap-a accent-blue" style="left: 34px; top: 80px">See</div>
+            <div class="capability-pill cap-b accent-pink" style="right: 28px; top: 80px">
+              Listen
+            </div>
+            <div class="capability-pill cap-c accent-orange" style="left: 34px; top: 370px">
+              Search
+            </div>
+            <div class="capability-pill cap-d accent-blue" style="right: 28px; top: 370px">
+              Code
+            </div>
+            <div class="capability-pill cap-e accent-pink" style="left: 140px; bottom: 90px">
+              Create video
+            </div>
+            <div class="capability-pill cap-f accent-orange" style="right: 132px; bottom: 90px">
+              Manage work
+            </div>
+          </div>
+        </div>
+        <div class="caption-card">
+          <span class="hot">One ecosystem</span>&nbsp;for search, work, code, video, and websites.
+        </div>
+      </section>
+
+      <section
+        id="scene-future"
+        class="clip scene pip-scene"
+        data-start="85.5"
+        data-duration="4.85"
+        data-track-index="3"
+      >
+        <div class="scene-content">
+          <div class="top-row">
+            <div class="kicker">
+              <span class="icon">
+                <svg viewBox="0 0 24 24">
+                  <path d="M5 12h14" />
+                  <path d="M13 6l6 6-6 6" />
+                </svg>
+              </span>
+              The real shift
+            </div>
+            <div class="timer">01:25-01:30</div>
+          </div>
+          <h2 class="headline huge">AI that actually does things.</h2>
+          <div class="future-board">
+            <div class="glass chat-panel">
+              <div class="panel-heading">AI chat</div>
+              <div class="chat-bubble">Answers a question</div>
+              <div class="chat-bubble">Writes a draft</div>
+              <div class="chat-bubble">Suggests next steps</div>
+            </div>
+            <div class="glass action-panel">
+              <div class="panel-heading accent-blue">AI agent</div>
+              <div class="do-item">Reads context</div>
+              <div class="do-item">Plans actions</div>
+              <div class="do-item">Completes work</div>
+            </div>
+          </div>
+        </div>
+        <div class="caption-card">
+          The future is not just chat. <span class="hot">It acts.</span>
+        </div>
+      </section>
+
+      <section
+        id="scene-cta"
+        class="clip scene"
+        data-start="90.36"
+        data-duration="3.3"
+        data-track-index="3"
+      >
+        <div class="scene-content cta-layout">
+          <div class="kicker" style="align-self: center">AI explainers</div>
+          <h2 class="headline">Follow for more.</h2>
+          <div class="cta-buttons">
+            <div class="cta-pill cta-a">LIKE</div>
+            <div class="cta-pill cta-b" style="background: #2458ff">SUBSCRIBE</div>
+            <div class="cta-pill cta-c" style="background: #ff3aa8">FOLLOW</div>
+          </div>
+        </div>
+      </section>
+
+      <div
+        id="tr-model"
+        class="clip transition"
+        data-start="7.82"
+        data-duration="0.56"
+        data-track-index="20"
+      >
+        <div class="wipe-band band-blue"></div>
+        <div class="wipe-band band-pink"></div>
+        <div class="wipe-band band-orange"></div>
+      </div>
+      <div
+        id="tr-omni"
+        class="clip transition"
+        data-start="17.72"
+        data-duration="0.56"
+        data-track-index="20"
+      >
+        <div class="wipe-band band-blue"></div>
+        <div class="wipe-band band-pink"></div>
+        <div class="wipe-band band-orange"></div>
+      </div>
+      <div
+        id="tr-workspace"
+        class="clip transition"
+        data-start="34.82"
+        data-duration="0.56"
+        data-track-index="20"
+      >
+        <div class="wipe-band band-blue"></div>
+        <div class="wipe-band band-pink"></div>
+        <div class="wipe-band band-orange"></div>
+      </div>
+      <div
+        id="tr-search"
+        class="clip transition"
+        data-start="47.42"
+        data-duration="0.56"
+        data-track-index="20"
+      >
+        <div class="wipe-band band-blue"></div>
+        <div class="wipe-band band-pink"></div>
+        <div class="wipe-band band-orange"></div>
+      </div>
+      <div
+        id="tr-dev"
+        class="clip transition"
+        data-start="56.42"
+        data-duration="0.56"
+        data-track-index="20"
+      >
+        <div class="wipe-band band-blue"></div>
+        <div class="wipe-band band-pink"></div>
+        <div class="wipe-band band-orange"></div>
+      </div>
+      <div
+        id="tr-web"
+        class="clip transition"
+        data-start="68.37"
+        data-duration="0.56"
+        data-track-index="20"
+      >
+        <div class="wipe-band band-blue"></div>
+        <div class="wipe-band band-pink"></div>
+        <div class="wipe-band band-orange"></div>
+      </div>
+      <div
+        id="tr-ecosystem"
+        class="clip transition"
+        data-start="76.87"
+        data-duration="0.56"
+        data-track-index="20"
+      >
+        <div class="wipe-band band-blue"></div>
+        <div class="wipe-band band-pink"></div>
+        <div class="wipe-band band-orange"></div>
+      </div>
+      <div
+        id="tr-future"
+        class="clip transition"
+        data-start="85.22"
+        data-duration="0.56"
+        data-track-index="20"
+      >
+        <div class="wipe-band band-blue"></div>
+        <div class="wipe-band band-pink"></div>
+        <div class="wipe-band band-orange"></div>
+      </div>
+      <div
+        id="tr-cta"
+        class="clip transition"
+        data-start="90.07"
+        data-duration="0.56"
+        data-track-index="20"
+      >
+        <div class="wipe-band band-blue"></div>
+        <div class="wipe-band band-pink"></div>
+        <div class="wipe-band band-orange"></div>
+      </div>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      gsap.set(".scene, .glass, .module, .avatar-shot, .capability-pill, .node", {
+        transformPerspective: 1800,
+        transformStyle: "preserve-3d",
+      });
+
+      tl.to(
+        ".bg",
+        { backgroundPosition: "180px 90px, -120px 140px, 0 0", duration: 93.66, ease: "none" },
+        0,
+      );
+      tl.to(
+        ".bg-stripe",
+        { x: 160, duration: 7, repeat: 13, yoyo: true, ease: "sine.inOut", stagger: 0.7 },
+        0,
+      );
+      tl.to(
+        ".track-dash",
+        {
+          x: 80,
+          rotation: 6,
+          duration: 5.2,
+          repeat: 17,
+          yoyo: true,
+          ease: "sine.inOut",
+          stagger: 0.5,
+        },
+        0.2,
+      );
+
+      tl.to(
+        "#opening-thumbnail",
+        { opacity: 0, scale: 0.94, duration: 0.5, ease: "power2.inOut" },
+        0,
+      );
+
+      const sceneWindows = [
+        ["#scene-intro", 0, 8.1],
+        ["#scene-model", 8.1, 18],
+        ["#scene-omni", 18, 35.1],
+        ["#scene-workspace", 35.1, 47.7],
+        ["#scene-search", 47.7, 56.7],
+        ["#scene-dev", 56.7, 68.65],
+        ["#scene-web", 68.65, 77.15],
+        ["#scene-ecosystem", 77.15, 85.5],
+        ["#scene-future", 85.5, 90.36],
+        ["#scene-cta", 90.36, 93.66],
+      ];
+
+      for (const [selector, start, end] of sceneWindows) {
+        tl.set(selector, { opacity: 1, visibility: "visible" }, start);
+        tl.set(selector, { opacity: 0, visibility: "hidden" }, end);
+      }
+
+      function fromIf(selector, vars, at) {
+        if (document.querySelector(selector)) {
+          tl.from(selector, vars, at);
+        }
+      }
+
+      function enterScene(id, at) {
+        fromIf(
+          id + " .kicker",
+          { y: -54, opacity: 0, rotateX: 40, duration: 0.42, ease: "back.out(1.7)" },
+          at + 0.12,
+        );
+        fromIf(
+          id + " .timer",
+          { y: -42, opacity: 0, rotateX: -35, duration: 0.38, ease: "power3.out" },
+          at + 0.18,
+        );
+        fromIf(
+          id + " .headline",
+          { y: 82, opacity: 0, scale: 0.94, rotateX: 16, duration: 0.62, ease: "expo.out" },
+          at + 0.24,
+        );
+        fromIf(
+          id + " .subline",
+          { y: 44, opacity: 0, duration: 0.46, ease: "power2.out" },
+          at + 0.48,
+        );
+        fromIf(
+          id + " .caption-card",
+          { y: 84, opacity: 0, scale: 0.96, duration: 0.44, ease: "back.out(1.35)" },
+          at + 0.42,
+        );
+      }
+
+      function transition(id, at) {
+        tl.set(id, { opacity: 1 }, at);
+        tl.fromTo(
+          id + " .band-blue",
+          { x: 0 },
+          { x: 1820, duration: 0.46, ease: "power4.inOut", immediateRender: false },
+          at,
+        );
+        tl.fromTo(
+          id + " .band-pink",
+          { x: 0 },
+          { x: 1920, duration: 0.46, ease: "power4.inOut", immediateRender: false },
+          at + 0.035,
+        );
+        tl.fromTo(
+          id + " .band-orange",
+          { x: 0 },
+          { x: 2020, duration: 0.46, ease: "power4.inOut", immediateRender: false },
+          at + 0.07,
+        );
+        tl.set(id, { opacity: 0 }, at + 0.56);
+      }
+
+      enterScene("#scene-intro", 0);
+      tl.from(
+        "#avatar-intro",
+        {
+          y: 230,
+          rotateX: 18,
+          rotateY: -12,
+          opacity: 0,
+          scale: 0.86,
+          duration: 0.7,
+          ease: "back.out(1.35)",
+        },
+        0.45,
+      );
+      tl.from(
+        "#scene-intro .keynote-panel",
+        { x: -220, y: 90, opacity: 0, rotateY: -32, duration: 0.56, ease: "back.out(1.4)" },
+        0.64,
+      );
+      tl.from(
+        "#scene-intro .chat-stack",
+        { x: 220, y: 110, opacity: 0, rotateY: 32, duration: 0.56, ease: "back.out(1.4)" },
+        0.78,
+      );
+      tl.from(
+        "#scene-intro .agent-chip, #scene-intro .bubble, #scene-intro .action-console",
+        { y: 40, opacity: 0, duration: 0.34, stagger: 0.08, ease: "power3.out" },
+        1.2,
+      );
+      tl.to(
+        "#scene-intro .float-card",
+        {
+          y: -22,
+          rotateY: 5,
+          duration: 1.4,
+          repeat: 4,
+          yoyo: true,
+          ease: "sine.inOut",
+          stagger: 0.12,
+        },
+        2.0,
+      );
+      tl.to(
+        "#avatar-intro",
+        { rotateY: 5, y: -10, duration: 1.25, repeat: 5, yoyo: true, ease: "sine.inOut" },
+        1.4,
+      );
+
+      transition("#tr-model", 7.82);
+      enterScene("#scene-model", 8.1);
+      tl.from(
+        "#avatar-pip-a",
+        {
+          y: 120,
+          x: 80,
+          scale: 0.75,
+          opacity: 0,
+          rotateY: 26,
+          duration: 0.48,
+          ease: "back.out(1.4)",
+        },
+        8.34,
+      );
+      tl.from(
+        "#scene-model .core-card",
+        {
+          z: -640,
+          rotateX: 60,
+          rotateY: -70,
+          opacity: 0,
+          scale: 0.72,
+          duration: 0.72,
+          ease: "expo.out",
+        },
+        8.58,
+      );
+      tl.from(
+        "#scene-model .model-line",
+        { scaleX: 0, opacity: 0, duration: 0.42, stagger: 0.08, ease: "power4.out" },
+        8.94,
+      );
+      tl.from(
+        "#scene-model .module",
+        {
+          y: -260,
+          x: 80,
+          z: -320,
+          rotateY: 82,
+          opacity: 0,
+          duration: 0.54,
+          stagger: 0.1,
+          ease: "back.out(1.7)",
+        },
+        9.18,
+      );
+      tl.to(
+        "#scene-model .module",
+        {
+          y: -18,
+          rotateX: 8,
+          duration: 0.8,
+          stagger: 0.08,
+          repeat: 7,
+          yoyo: true,
+          ease: "sine.inOut",
+        },
+        10.4,
+      );
+      tl.to(
+        "#scene-model .core-card",
+        { rotateY: 10, z: 40, duration: 1.2, repeat: 6, yoyo: true, ease: "sine.inOut" },
+        10.0,
+      );
+
+      transition("#tr-omni", 17.72);
+      enterScene("#scene-omni", 18);
+      tl.from(
+        "#scene-omni .omni-board",
+        { y: 140, rotateX: 22, opacity: 0, scale: 0.92, duration: 0.64, ease: "back.out(1.28)" },
+        18.44,
+      );
+      tl.from(
+        "#scene-omni .input-pill",
+        { x: -180, opacity: 0, rotateY: -44, duration: 0.42, stagger: 0.1, ease: "power4.out" },
+        18.78,
+      );
+      tl.from(
+        "#scene-omni .preview-frame",
+        { scale: 0.74, opacity: 0, rotateZ: -4, duration: 0.46, ease: "back.out(1.6)" },
+        19.2,
+      );
+      tl.from(
+        "#scene-omni .command-pill",
+        { x: 180, opacity: 0, rotateY: 50, duration: 0.42, stagger: 0.13, ease: "back.out(1.5)" },
+        20.0,
+      );
+      tl.from(
+        "#scene-omni .bar",
+        {
+          scaleX: 0,
+          transformOrigin: "left center",
+          duration: 0.44,
+          stagger: 0.1,
+          ease: "power3.out",
+        },
+        20.62,
+      );
+      tl.to(
+        "#scene-omni .input-pill",
+        {
+          x: 42,
+          scale: 0.96,
+          duration: 0.46,
+          repeat: 2,
+          yoyo: true,
+          stagger: 0.18,
+          ease: "power2.inOut",
+        },
+        23.2,
+      );
+      tl.to(
+        "#scene-omni .preview-frame",
+        { rotateY: -8, y: -16, duration: 1.1, repeat: 9, yoyo: true, ease: "sine.inOut" },
+        22.0,
+      );
+      tl.to(
+        "#scene-omni .command-pill",
+        { y: -18, duration: 0.52, repeat: 4, yoyo: true, stagger: 0.2, ease: "sine.inOut" },
+        27.8,
+      );
+
+      transition("#tr-workspace", 34.82);
+      enterScene("#scene-workspace", 35.1);
+      tl.from(
+        "#avatar-workspace",
+        {
+          x: 180,
+          y: 120,
+          opacity: 0,
+          scale: 0.78,
+          rotateY: -34,
+          duration: 0.62,
+          ease: "back.out(1.4)",
+        },
+        35.42,
+      );
+      tl.from(
+        "#scene-workspace .phone",
+        { x: -170, rotateY: -25, opacity: 0, duration: 0.58, ease: "back.out(1.35)" },
+        35.64,
+      );
+      tl.from(
+        "#scene-workspace .brief-card",
+        { y: 56, opacity: 0, scale: 0.94, duration: 0.4, ease: "power3.out" },
+        36.1,
+      );
+      tl.from(
+        "#scene-workspace .task-card",
+        { x: -80, opacity: 0, rotateX: 20, duration: 0.38, stagger: 0.14, ease: "back.out(1.6)" },
+        36.54,
+      );
+      tl.to(
+        "#scene-workspace .task-card",
+        { x: 18, duration: 0.42, repeat: 3, yoyo: true, stagger: 0.18, ease: "power2.inOut" },
+        40.6,
+      );
+      tl.to(
+        "#avatar-workspace",
+        { y: -18, rotateY: 8, duration: 1.3, repeat: 4, yoyo: true, ease: "sine.inOut" },
+        37.2,
+      );
+
+      transition("#tr-search", 47.42);
+      enterScene("#scene-search", 47.7);
+      tl.from(
+        "#avatar-pip-b",
+        {
+          y: 120,
+          x: 80,
+          scale: 0.75,
+          opacity: 0,
+          rotateY: 26,
+          duration: 0.48,
+          ease: "back.out(1.4)",
+        },
+        47.94,
+      );
+      tl.from(
+        "#scene-search .search-panel",
+        { scale: 0.86, opacity: 0, rotateX: 18, duration: 0.56, ease: "back.out(1.35)" },
+        48.18,
+      );
+      tl.from(
+        "#scene-search .search-main",
+        { x: -120, opacity: 0, duration: 0.44, ease: "power4.out" },
+        48.5,
+      );
+      tl.from(
+        "#scene-search .context-card",
+        { y: 120, opacity: 0, rotateX: 40, duration: 0.42, stagger: 0.1, ease: "back.out(1.6)" },
+        49.05,
+      );
+      tl.to(
+        "#scene-search .context-card",
+        {
+          y: -18,
+          rotateY: 7,
+          duration: 0.76,
+          repeat: 4,
+          yoyo: true,
+          stagger: 0.08,
+          ease: "sine.inOut",
+        },
+        50.7,
+      );
+
+      transition("#tr-dev", 56.42);
+      enterScene("#scene-dev", 56.7);
+      tl.from(
+        "#scene-dev .dev-board",
+        { y: 110, rotateX: 18, opacity: 0, scale: 0.92, duration: 0.56, ease: "back.out(1.35)" },
+        57.18,
+      );
+      tl.from(
+        "#scene-dev .agent-lane",
+        { x: -220, opacity: 0, rotateY: -36, duration: 0.5, stagger: 0.16, ease: "back.out(1.5)" },
+        57.56,
+      );
+      tl.from(
+        "#scene-dev .code-line",
+        {
+          scaleX: 0,
+          transformOrigin: "left center",
+          duration: 0.36,
+          stagger: 0.035,
+          ease: "power3.out",
+        },
+        58.12,
+      );
+      tl.from(
+        "#scene-dev .lane-status",
+        { scale: 0.7, opacity: 0, duration: 0.28, stagger: 0.12, ease: "back.out(1.8)" },
+        59.0,
+      );
+      tl.to(
+        "#scene-dev .agent-lane",
+        { x: 26, duration: 0.5, repeat: 5, yoyo: true, stagger: 0.12, ease: "sine.inOut" },
+        61.0,
+      );
+      tl.to(
+        "#scene-dev .code-line",
+        {
+          opacity: 0.45,
+          duration: 0.22,
+          repeat: 12,
+          yoyo: true,
+          stagger: 0.025,
+          ease: "power1.inOut",
+        },
+        60.2,
+      );
+
+      transition("#tr-web", 68.37);
+      enterScene("#scene-web", 68.65);
+      tl.from(
+        "#avatar-web",
+        { y: 220, rotateX: 18, opacity: 0, scale: 0.82, duration: 0.6, ease: "back.out(1.3)" },
+        69.0,
+      );
+      tl.from(
+        "#scene-web .node",
+        {
+          z: -420,
+          y: -140,
+          rotateY: 82,
+          opacity: 0,
+          duration: 0.5,
+          stagger: 0.1,
+          ease: "back.out(1.7)",
+        },
+        69.24,
+      );
+      tl.from(
+        "#scene-web .web-line",
+        { scaleX: 0, opacity: 0, duration: 0.42, stagger: 0.08, ease: "power3.out" },
+        69.84,
+      );
+      tl.from(
+        "#scene-web .glasses",
+        { scale: 0.6, opacity: 0, rotateZ: -8, duration: 0.42, ease: "back.out(1.8)" },
+        70.2,
+      );
+      tl.to(
+        "#scene-web .node",
+        {
+          y: -18,
+          rotateX: 7,
+          duration: 0.72,
+          repeat: 5,
+          yoyo: true,
+          stagger: 0.09,
+          ease: "sine.inOut",
+        },
+        71.2,
+      );
+      tl.to(
+        "#avatar-web",
+        { rotateY: -5, y: -18, duration: 1.1, repeat: 4, yoyo: true, ease: "sine.inOut" },
+        70.9,
+      );
+
+      transition("#tr-ecosystem", 76.87);
+      enterScene("#scene-ecosystem", 77.15);
+      tl.from(
+        "#avatar-pip-c",
+        {
+          y: 120,
+          x: 80,
+          scale: 0.75,
+          opacity: 0,
+          rotateY: 26,
+          duration: 0.48,
+          ease: "back.out(1.4)",
+        },
+        77.38,
+      );
+      tl.from(
+        "#scene-ecosystem .gemini-hub",
+        {
+          z: -760,
+          rotateX: 70,
+          rotateY: -80,
+          opacity: 0,
+          scale: 0.68,
+          duration: 0.72,
+          ease: "expo.out",
+        },
+        77.68,
+      );
+      tl.from(
+        "#scene-ecosystem .eco-line",
+        { scaleX: 0, opacity: 0, duration: 0.42, stagger: 0.07, ease: "power4.out" },
+        78.1,
+      );
+      tl.from(
+        "#scene-ecosystem .capability-pill",
+        { y: -220, opacity: 0, rotateY: 70, duration: 0.46, stagger: 0.08, ease: "back.out(1.65)" },
+        78.36,
+      );
+      tl.to(
+        "#scene-ecosystem .capability-pill",
+        {
+          y: -20,
+          rotateZ: 2,
+          duration: 0.8,
+          repeat: 4,
+          yoyo: true,
+          stagger: 0.07,
+          ease: "sine.inOut",
+        },
+        80.0,
+      );
+      tl.to(
+        "#scene-ecosystem .gemini-hub",
+        { rotateY: 12, scale: 1.03, duration: 1.1, repeat: 4, yoyo: true, ease: "sine.inOut" },
+        79.4,
+      );
+
+      transition("#tr-future", 85.22);
+      enterScene("#scene-future", 85.5);
+      tl.from(
+        "#scene-future .chat-panel",
+        { x: -180, opacity: 0, rotateY: -30, duration: 0.5, ease: "back.out(1.35)" },
+        85.92,
+      );
+      tl.from(
+        "#scene-future .action-panel",
+        { x: 180, opacity: 0, rotateY: 30, duration: 0.5, ease: "back.out(1.35)" },
+        86.08,
+      );
+      tl.from(
+        "#scene-future .chat-bubble",
+        { y: 46, opacity: 0, duration: 0.3, stagger: 0.08, ease: "power3.out" },
+        86.46,
+      );
+      tl.from(
+        "#scene-future .do-item",
+        { y: 66, opacity: 0, scale: 0.92, duration: 0.34, stagger: 0.1, ease: "back.out(1.6)" },
+        86.82,
+      );
+      tl.to(
+        "#scene-future .action-panel",
+        { y: -22, scale: 1.03, duration: 0.7, repeat: 2, yoyo: true, ease: "sine.inOut" },
+        88.2,
+      );
+
+      transition("#tr-cta", 90.07);
+      enterScene("#scene-cta", 90.36);
+      tl.from(
+        "#avatar-cta",
+        { scale: 0.72, y: 180, opacity: 0, rotateX: 24, duration: 0.56, ease: "back.out(1.35)" },
+        90.49,
+      );
+      tl.from(
+        "#scene-cta .cta-pill",
+        { y: 80, opacity: 0, scale: 0.76, duration: 0.34, stagger: 0.09, ease: "back.out(1.7)" },
+        91.12,
+      );
+      tl.to(
+        "#scene-cta .cta-pill",
+        { y: -18, duration: 0.32, repeat: 3, yoyo: true, stagger: 0.08, ease: "power2.inOut" },
+        91.9,
+      );
+      tl.to(
+        "#scene-cta .headline, #scene-cta .kicker, #scene-cta .cta-pill, #avatar-cta",
+        { opacity: 0, duration: 0.44, ease: "power2.in" },
+        93.18,
+      );
+
+      window.__timelines["google-io-2026-update"] = tl;
+    </script>
+  </body>
+</html>

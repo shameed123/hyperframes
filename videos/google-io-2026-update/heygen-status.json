@@ -1,0 +1,17 @@
+{
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/2c981e85efbe47d293f2ed1a359ca593/subtitles_6249d2067e044902ab08dba5a70c9e08.srt?Expires=1779912003&Signature=Jnr7grcXVCTQNi2x~1vgmO2x~9TSHzPYgnyHxdOSILRglO3NVuAMGRH4Ul8~t2D7xJ6rhJjD1jyfZthUAi9VYKhdy7vAL-Zsnm-z9YgAsUkifyby65jsH9HMTDokmzVcH12czSffQF2ntLVxB9Q0HVCZNkW13C-U2J0sUG78BNLenyzyBVfWgqEQcuV4sBH9wbNyEaccfG8EgBuT7ErQfLXVE9VbsLqWMHoMRQysvkcX54d8CdoVxeWCcq4KkoSrJOEVuxEFCRbahUJiH0vSc4La-RqtqqKPbSZErwpyur3zELHejYm7v1Di8u3N8LT4LeY9W86BBt-234jMTi6QTA__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "created_at": 1779306962,
+    "duration": 93.649,
+    "error": null,
+    "gif_url": null,
+    "id": "6249d2067e044902ab08dba5a70c9e08",
+    "status": "completed",
+    "thumbnail_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/2c981e85efbe47d293f2ed1a359ca593/6249d2067e044902ab08dba5a70c9e08.jpeg?Expires=1779912003&Signature=W199fRCcJV~FgUjC-P4O46sHZhpLmzRz4cOy0mlYA3KvG8EKqWArwReTQTh7ihAoj9z9DTX-575V1g5oxvW456-4HZhcc~ewI1b8a9R9vQYUQzOmigZMj5inpKK-V2bpbX6uMVjq8rsttOkwHOnUPW9KBV4R2XG3JM3SZjTxTRXRX65xMOa95GREdJtRH5rw7r0CqmmttoaCFtdymJc6Ir5ShqeU-RxJUYngjsglTJC6Q9Oh0nIrmhaVNQmJxMddUpLCyzmJ2hO1fWHtLlxy~SYbolbpEZNjUjGslgWR~TcvnCHbSjE6rqorFVW4u3E9yY7rsZVNeLZP4mFhAl~vVQ__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/2c981e85efbe47d293f2ed1a359ca593/6249d2067e044902ab08dba5a70c9e08.mp4?Expires=1779911765&Signature=IBDe8C2VHDpQXoSHrzhDd88WynbDKncMa8zJcHBSwhU3e35K7f6Mfzpv0QGmRxwudjQzs2xHPczb0Bsz5w16YXHyDXEehtjbrzkAUTxZc-9-dS~5iQGqIf0Eto8ah1200eDhc0yr7SEvgOkMOwGDm8xHzw13AsKu6ELSO1vMXc3m7iU7DcFB7uosJvZRE9Z00nT4GPWB0KjVrLUHjoXqRyii19rzHL1nGFVMZHNzzUV8bFCPfSbv7oioNAkwR2X4rocCY5LB1uGwtOkWcJTnu600VZCB-f7F6Zh~w4iggLg1ppOhxuf9MY5CYdBroMpFvQ5j02yhYkYt1-gOU~KPaw__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url_caption": "https://files2.heygen.ai/movio/video/6249d2067e044902ab08dba5a70c9e08/5adee2e0be824e0dad579790b5968230/caption.mp4?Expires=1779912003&Signature=kfvBRyUsauc2qY0prmFatNwwmrojxTNg7DT4jWMWKgKLYI~ycq01DC31XKA37uGEcF3qRj0braeAbRBFWwljWt5MIaxSEs758ESB-tBsqAEnXM0~OqC-iYhIr8GyUHxBYsmotJLJY6ZQIxeRc21xaE-3w~HCfLMVTyD93b3sxW2Jt5XYpV5PbZxheRzg80WHEnC29CYXWiU9oNUPp7v2hWjTKOxkMP4l8oGEE0jjijWTo7fMPegeDOoV4Hm~xP6DegVMeEUn~C9m7PgWaMFWyp~Ngc6H8evL~GTznM9RtqS~Hw82ZQYSxO0kDVYTeZleVOUQpmMWzCxtLVU99UzJbQ__&Key-Pair-Id=K38HBHX5LX3X2H"
+  },
+  "message": "Success"
+}
