@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1000, height=700" />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        width: 1000px;
+        height: 700px;
+        margin: 0;
+        overflow: hidden;
+        background: transparent;
+        font-family: Inter, Arial, sans-serif;
+      }
+
+      .card {
+        position: relative;
+        width: 1000px;
+        height: 700px;
+        overflow: hidden;
+        border: 3px solid rgba(255, 255, 255, 0.78);
+        border-radius: 34px;
+        background:
+          linear-gradient(135deg, rgba(0, 104, 255, 0.26), transparent 32%),
+          linear-gradient(315deg, rgba(255, 138, 37, 0.24), transparent 36%), #dcecff;
+        box-shadow:
+          0 54px 90px rgba(0, 50, 130, 0.28),
+          inset 0 0 0 1px rgba(0, 104, 255, 0.16);
+        transform: translateZ(0);
+      }
+
+      .maps {
+        position: absolute;
+        left: -150px;
+        top: -194px;
+        width: 1320px;
+        height: 902px;
+        background-image: url("google-maps-empire-state-3d-raw.png");
+        background-size: 1320px 902px;
+        opacity: 0.82;
+        filter: saturate(1.18) contrast(1.04) brightness(1.07);
+      }
+
+      .maps::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(90deg, rgba(239, 248, 255, 0.18), rgba(255, 255, 255, 0.02)),
+          radial-gradient(circle at 55% 56%, rgba(0, 104, 255, 0.08), transparent 35%),
+          radial-gradient(circle at 70% 66%, rgba(255, 79, 178, 0.1), transparent 30%);
+      }
+
+      .road-glow {
+        position: absolute;
+        height: 26px;
+        border-radius: 999px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(0, 104, 255, 0.92),
+          #ff4fb2,
+          transparent
+        );
+        filter: blur(2px);
+        opacity: 0.88;
+      }
+
+      .road-a {
+        left: -90px;
+        top: 330px;
+        width: 940px;
+        transform: rotate(-23deg);
+      }
+
+      .road-b {
+        right: -130px;
+        top: 505px;
+        width: 760px;
+        transform: rotate(15deg);
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 138, 37, 0.9),
+          #0068ff,
+          transparent
+        );
+      }
+
+      .city {
+        position: absolute;
+        left: 430px;
+        top: 258px;
+        width: 380px;
+        height: 340px;
+        transform: rotate(-7deg);
+        transform-style: preserve-3d;
+      }
+
+      .building {
+        position: absolute;
+        bottom: 0;
+        width: 58px;
+        border-radius: 7px 7px 2px 2px;
+        background:
+          repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.42) 0 8px, transparent 8px 18px),
+          linear-gradient(180deg, #dff3ff, #2d78ff 58%, #12357a);
+        box-shadow:
+          22px 28px 34px rgba(0, 24, 70, 0.26),
+          0 0 26px rgba(0, 104, 255, 0.18);
+        transform-style: preserve-3d;
+      }
+
+      .building::before,
+      .building::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        transform-origin: left top;
+      }
+
+      .building::before {
+        left: 0;
+        width: 58px;
+        height: 26px;
+        border-radius: 7px 7px 0 0;
+        background: linear-gradient(135deg, #ffffff, #b6dcff 58%, #5d97ff);
+        transform: skewX(-42deg) translate(13px, -26px);
+      }
+
+      .building::after {
+        right: -18px;
+        width: 18px;
+        height: 100%;
+        background: linear-gradient(180deg, #1d57d6, #0b2255);
+        transform: skewY(-48deg);
+        opacity: 0.9;
+      }
+
+      .b1 {
+        left: 116px;
+        height: 250px;
+        width: 64px;
+        background:
+          repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.48) 0 7px, transparent 7px 16px),
+          linear-gradient(180deg, #ffffff, #5eb2ff 40%, #103574 100%);
+      }
+
+      .b1::before {
+        width: 64px;
+      }
+
+      .b1::after {
+        height: 100%;
+      }
+
+      .spire {
+        position: absolute;
+        left: 139px;
+        bottom: 246px;
+        width: 18px;
+        height: 80px;
+        border-radius: 999px;
+        background: linear-gradient(180deg, #ffffff, #ff4fb2);
+        box-shadow: 0 0 32px rgba(255, 79, 178, 0.66);
+      }
+
+      .b2 {
+        left: 38px;
+        height: 132px;
+      }
+
+      .b3 {
+        left: 206px;
+        height: 176px;
+        background:
+          repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.38) 0 8px, transparent 8px 18px),
+          linear-gradient(180deg, #ffe1f2, #ff4fb2 52%, #8e1a72);
+      }
+
+      .b4 {
+        left: 274px;
+        height: 110px;
+        background:
+          repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.4) 0 8px, transparent 8px 18px),
+          linear-gradient(180deg, #fff1d7, #ff8a25 52%, #76380b);
+      }
+
+      .pin {
+        position: absolute;
+        left: 674px;
+        top: 190px;
+        width: 86px;
+        height: 86px;
+        border-radius: 50% 50% 50% 12px;
+        background: #ff4fb2;
+        box-shadow:
+          0 22px 36px rgba(255, 79, 178, 0.38),
+          0 0 44px rgba(255, 79, 178, 0.32);
+        transform: rotate(-45deg);
+      }
+
+      .pin::after {
+        content: "";
+        position: absolute;
+        left: 26px;
+        top: 26px;
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        background: #ffffff;
+      }
+
+      .label {
+        position: absolute;
+        left: 590px;
+        top: 116px;
+        padding: 15px 20px;
+        border: 1px solid rgba(0, 104, 255, 0.17);
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.9);
+        color: #071426;
+        font-size: 26px;
+        font-weight: 900;
+        line-height: 1.04;
+        box-shadow: 0 18px 46px rgba(0, 40, 100, 0.18);
+      }
+
+      .label span {
+        display: block;
+        margin-top: 5px;
+        color: #0068ff;
+        font-size: 18px;
+        font-weight: 800;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+
+      .source {
+        position: absolute;
+        left: 30px;
+        bottom: 24px;
+        padding: 10px 14px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.84);
+        color: #233653;
+        font-size: 18px;
+        font-weight: 800;
+        box-shadow: 0 12px 30px rgba(0, 40, 100, 0.14);
+      }
+    </style>
+  </head>
+  <body>
+    <main class="card">
+      <div class="maps"></div>
+      <div class="road-glow road-a"></div>
+      <div class="road-glow road-b"></div>
+      <div class="label">Empire State<br />Building <span>Maps landmark</span></div>
+      <div class="pin"></div>
+      <div class="city">
+        <div class="building b2"></div>
+        <div class="building b1"></div>
+        <div class="spire"></div>
+        <div class="building b3"></div>
+        <div class="building b4"></div>
+      </div>
+      <div class="source">Google Maps snapshot + AI world model</div>
+    </main>
+  </body>
+</html>
