@@ -148,3 +148,44 @@ videos/<slug>/assets/thumbnail/<slug>-thumbnail.png
 
 Do not reference generated images from the global Codex cache in project HTML.
 
+## Bland Graph-Paper B-Roll
+
+Cause: using abstract grids or floating graph-paper panels as the primary visual
+for a story that is really about a website, map, place, or product page.
+
+Fix:
+
+- Capture the real source website, product UI, article, map, or landmark.
+- For mobile-first videos, show the source in a large phone frame and scroll it
+  quickly enough to feel active.
+- For map/place stories, use a real map or satellite capture. If live 3D map
+  capture is unavailable, build a project-bound map-card asset from the capture
+  with stylized 3D buildings, pins, labels, and route lines.
+- Keep graph/grid textures as background support only.
+
+## Website B-Roll Too Small Or Too Slow
+
+Cause: treating source footage like decoration instead of evidence.
+
+Fix:
+
+- Make the phone/source card large enough to dominate the scene.
+- Use 8-12 second scrolls for long mobile pages and 3-6 second pans for short
+  pages.
+- Snapshot the exact B-roll beats and check them at phone-viewing size.
+- If the user says the scroll is boring, increase speed and enlarge the source
+  window before adding more overlays.
+
+## Live Website Artifacts In Captures
+
+Watch for cookie banners, sign-in dialogs, newsletter modals, loading spinners,
+blank maps, and browser UI that distracts from the story.
+
+Fix:
+
+- Dismiss overlays before capture.
+- Wait for fonts/images/canvas tiles to load.
+- Crop or recapture if browser chrome, side panels, or modals dominate.
+- If a live capture is brittle, create a local HTML card that uses the captured
+  source image plus controlled overlays, then screenshot that card into
+  `assets/motion/`.

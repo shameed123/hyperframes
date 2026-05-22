@@ -1,6 +1,6 @@
 ---
 name: heygen-hyperframes-short-news-video
-description: Use when creating future short-form news or update videos in this repo with HeyGen Avatar III, root .env credentials, SRT-based timing, HyperFrames motion graphics, avatar picture-in-picture overlays, generated thumbnails, Studio preview, and final renders. Includes the gotchas from the Google I/O 2026 video such as white side stripes, video shadow loss in renders, rounded avatar corners, thumbnail intro overlays, PowerShell npx.cmd usage, and light Studio launch.
+description: Use when creating future short-form news or update videos in this repo with HeyGen Avatar III, root .env credentials, SRT-based timing, source-website B-roll capture, mobile website scroll footage, HyperFrames motion graphics, avatar picture-in-picture overlays, generated thumbnails, Studio preview, and final renders. Includes the gotchas from the Google I/O 2026 and Google Genie/Street View videos such as white side stripes, video shadow loss in renders, rounded avatar corners, thumbnail intro overlays, bland graph-paper B-roll, PowerShell npx.cmd usage, and light Studio launch.
 ---
 
 # HeyGen HyperFrames Short News Video
@@ -15,6 +15,9 @@ Read these references as needed:
 - `references/workflow.md`: end-to-end production sequence and folder layout.
 - `references/ai-news-discovery.md`: first-step research workflow for finding,
   verifying, and selecting the latest AI news before writing the script.
+- `references/website-broll.md`: capture source websites, mobile scroll
+  footage, maps/landmark visuals, and project-bound B-roll assets before
+  building motion graphics.
 - `references/hyperframes-patterns.md`: composition structure, timing, scene gates, thumbnail overlay, avatar layouts, and CSS snippets.
 - `references/gotchas.md`: fixes for the exact issues encountered, including side stripes, missing render shadows, rounded corners, duplicate media warnings, and PowerShell quirks.
 - `references/studio-render.md`: light Studio commands, validation, snapshots, and render variants.
@@ -27,26 +30,33 @@ Read these references as needed:
    cross-check with reputable reporting, and choose the strongest story before
    writing the script.
 2. Create `videos/<slug>/` with `assets/avatar`, `assets/captions`,
-   `assets/motion`, `assets/thumbnail`, `renders`, and `snapshots`.
+   `assets/motion`, `assets/motion/broll`, `assets/motion/mobile`,
+   `assets/motion/maps`, `assets/thumbnail`, `renders`, and `snapshots`.
 3. Use root `.env` only. Do not create a per-video `.env` or `.env.example`.
 4. Generate the HeyGen Avatar III video via HeyGen v2, using root values:
    `HEYGEN_API_KEY`, `HEYGEN_AVATAR_ID`, `HEYGEN_VOICE_ID`,
    `HEYGEN_VOICE_SPEED`.
 5. Download the avatar MP4 to `assets/avatar/` and SRT to `assets/captions/`.
-6. Build `index.html` as a 1080x1920 HyperFrames composition.
-7. Use the avatar MP4 as a separate `<audio>` track plus muted `<video>` clips.
-8. Time scenes from the SRT. Gate each scene with timeline `set()` calls so
+6. Capture B-roll from the relevant source website(s) before building the
+   video. Prefer mobile source-page scroll footage for news articles and
+   product/blog pages. Save all captures locally; never depend on network
+   loading during render.
+7. Build `index.html` as a 1080x1920 HyperFrames composition.
+8. Use the avatar MP4 as a separate `<audio>` track plus muted `<video>` clips.
+9. Time scenes from the SRT. Gate each scene with timeline `set()` calls so
    only the active scene is visible.
-9. Put the avatar in PIP or feature layouts, using cropped frames to remove
+10. Put the avatar in PIP or feature layouts, using cropped frames to remove
    white side stripes.
-10. Add render-stable avatar shadows with `filter: drop-shadow(...)`, not only
+11. Add render-stable avatar shadows with `filter: drop-shadow(...)`, not only
    `box-shadow`.
-11. Round avatar corners with per-placement `border-radius` values.
-12. Generate and save a 9:16 thumbnail asset, then optionally overlay it at the
+12. Round avatar corners with per-placement `border-radius` values.
+13. Generate and save a 9:16 thumbnail asset, then optionally overlay it at the
     beginning for `0.5s` with a fade/zoom-out.
-13. Run `oxfmt`, `hyperframes lint`, `hyperframes validate --no-contrast`, and
-    targeted `hyperframes snapshot` checks before handing back.
-14. Provide YouTube upload metadata: catchy title, SEO description, hashtags,
+14. Run `oxfmt`, `hyperframes lint`, `hyperframes validate --no-contrast`, and
+    targeted `hyperframes snapshot` checks before handing back. Always inspect
+    frames where website B-roll appears for size, scroll speed, load/cookie
+    artifacts, and overlap with avatar/captions.
+15. Provide YouTube upload metadata: catchy title, SEO description, hashtags,
     upload tags, and a recommended upload time in the target audience timezone.
 
 ## Mandatory Local Conventions

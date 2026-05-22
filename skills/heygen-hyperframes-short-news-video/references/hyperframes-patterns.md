@@ -223,3 +223,60 @@ tl.to(
 Start at full opacity. Do not animate in if the user wants the first frame to
 be the full thumbnail.
 
+## Website B-Roll Placement
+
+When a story has a source article, product page, map, or demo, use captured
+website footage as a primary visual layer. Source B-roll should be large,
+legible, and scene-specific.
+
+For article/blog source footage, use a full-page mobile screenshot inside a
+large phone frame and animate the page itself:
+
+```html
+<div
+  class="phone"
+  style="left: 126px; top: 512px; width: 820px; height: 1376px; transform: rotate(2.5deg)"
+>
+  <div class="phone-screen">
+    <img
+      id="source-mobile-page"
+      class="phone-page"
+      src="assets/motion/mobile/source-mobile-full.png"
+      alt="Source website mobile page"
+    />
+  </div>
+  <div class="scroll-indicator"><div class="scroll-thumb"></div></div>
+</div>
+```
+
+```js
+tl.to("#source-mobile-page", { y: -4700, duration: 8.4, ease: "power2.inOut" }, 22.7);
+```
+
+For recorded source footage, use a muted video clip and keep it project-bound:
+
+```html
+<video
+  id="source-scroll-video"
+  class="clip broll-video"
+  data-start="22.7"
+  data-duration="8.4"
+  data-track-index="6"
+  src="assets/motion/broll/source-scroll.mp4"
+  muted
+  playsinline
+></video>
+```
+
+For map, Street View, or real-world grounding stories, use a real map/satellite
+capture or a local map-card asset derived from that capture. Avoid generic grid
+or graph-paper panels unless they are only a subtle background texture.
+
+Use fast, readable source motion:
+
+- Long mobile article page: 8-12 second scroll.
+- Short page or hero-only source: 3-6 second pan/scale.
+- Map/landmark card: slow `x`/`y` drift plus slight rotation, not a full spin.
+
+Snapshot every source B-roll scene and check that captions/avatar windows do not
+cover the page headline, landmark, or product UI.

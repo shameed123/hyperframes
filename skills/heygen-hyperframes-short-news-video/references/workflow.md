@@ -32,6 +32,9 @@ videos/<slug>/
     captions/
       heygen-captions.srt
     motion/
+      broll/
+      maps/
+      mobile/
     thumbnail/
       <thumbnail>.png
   renders/
@@ -101,6 +104,24 @@ The Google I/O visual direction was light-theme, high-energy tech editorial:
 white/soft-silver base with vivid blue, pink, and orange accents, glassmorphism
 cards, 3D depth, flying UI modules, and active camera-like motion.
 
+## Source Website B-Roll
+
+For news videos based on a specific announcement, product page, research page,
+map, or demo, capture the relevant website as B-roll before finalizing the
+composition.
+
+Default approach:
+
+- Use a mobile viewport for Shorts/Reels/TikTok.
+- Save source-page hero and full-page screenshots under `assets/motion/mobile/`.
+- Animate the full-page PNG inside a large phone frame for fast scroll footage.
+- For maps, places, or Street View stories, use real map/satellite/landmark
+  captures or a project-bound map card built from those captures. Do not use
+  plain graph-paper panels as the main world/place visual.
+- Use recorded website video only when real page motion or interactions matter.
+
+See `website-broll.md` for capture recipes and quality gates.
+
 ## Final Handoff
 
 Always report:
@@ -110,4 +131,3 @@ Always report:
 - Studio URL.
 - Validation results.
 - Render command or rendered output path.
-
