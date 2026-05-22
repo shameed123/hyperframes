@@ -14,6 +14,7 @@ const scriptPath = path.join(videoDir, "heygen-input.txt");
 const statusPath = path.join(videoDir, "heygen-status.json");
 const metadataPath = path.join(videoDir, "heygen-metadata.json");
 const requestPath = path.join(videoDir, "heygen-request-summary.json");
+const metaPath = path.join(videoDir, "meta.json");
 const mp4Path = path.join(videoDir, "assets", "avatar", "heygen-avatar-16x9.mp4");
 const srtPath = path.join(videoDir, "assets", "captions", "heygen-captions.srt");
 
@@ -109,6 +110,7 @@ if (missing.length > 0) {
 }
 
 const script = (await readFile(scriptPath, "utf8")).trim();
+const meta = existsSync(metaPath) ? JSON.parse(await readFile(metaPath, "utf8")) : {};
 const speed = Number.parseFloat(env.HEYGEN_VOICE_SPEED || "0.8");
 const apiKey = env.HEYGEN_API_KEY;
 const headers = {
@@ -126,7 +128,7 @@ if (existsSync(metadataPath)) {
 
 if (!videoId) {
   const payload = {
-    title: "Google I/O 2026 Update",
+    title: typeof meta.name === "string" ? meta.name : slug,
     caption: true,
     test: false,
     dimension: {

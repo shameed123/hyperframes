@@ -1,0 +1,15 @@
+Google just gave Project Genie a real-world anchor: Street View.
+
+Until now, Genie was already wild: type a prompt, and it could generate an interactive world you can move through.
+
+But at Google I/O 2026, Google said Genie can now start from Street View imagery. In plain English: pick a real place, and the model can build a playable, AI-generated version with a creative twist.
+
+That matters because this is not just video generation. It is closer to an AI simulator. You are not only watching pixels; you are exploring a space, changing perspective, and testing what might happen next.
+
+Google says the feature is rolling out gradually to eligible Google AI Ultra subscribers, and it points to bigger use cases: games, virtual production, education, robotics, and self-driving car training.
+
+The catch is important: these worlds are generated, not perfect copies of reality. So think less "teleport anywhere exactly," and more "turn real places into explorable simulations."
+
+Still, the direction is huge. AI is moving from making images, to making videos, to making worlds you can step inside.
+
+Follow for more fast AI news.

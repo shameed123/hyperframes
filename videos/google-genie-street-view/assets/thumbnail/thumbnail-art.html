@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        margin: 0;
+        overflow: hidden;
+        background: #ecf6ff;
+        font-family: Inter, Helvetica, Arial, sans-serif;
+      }
+
+      .thumb {
+        position: relative;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 22% 14%, rgba(0, 117, 255, 0.34), transparent 34%),
+          radial-gradient(circle at 88% 12%, rgba(255, 92, 184, 0.24), transparent 26%),
+          radial-gradient(circle at 70% 82%, rgba(255, 142, 43, 0.26), transparent 28%),
+          linear-gradient(145deg, #f9fdff 0%, #dff0ff 45%, #ffffff 100%);
+      }
+
+      .thumb::before {
+        content: "";
+        position: absolute;
+        inset: -80px;
+        background:
+          linear-gradient(90deg, rgba(0, 96, 255, 0.12) 1px, transparent 1px),
+          linear-gradient(0deg, rgba(0, 96, 255, 0.1) 1px, transparent 1px);
+        background-size: 72px 72px;
+        transform: rotate(-8deg) scale(1.12);
+      }
+
+      .speed-line {
+        position: absolute;
+        height: 18px;
+        border-radius: 999px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(0, 96, 255, 0.8),
+          rgba(255, 80, 180, 0.78),
+          transparent
+        );
+        filter: blur(1px);
+        opacity: 0.78;
+      }
+
+      .line-a {
+        left: -170px;
+        top: 310px;
+        width: 760px;
+        transform: rotate(-16deg);
+      }
+
+      .line-b {
+        right: -210px;
+        top: 870px;
+        width: 820px;
+        transform: rotate(14deg);
+      }
+
+      .phone {
+        position: absolute;
+        left: 265px;
+        top: 610px;
+        width: 610px;
+        height: 1030px;
+        border: 22px solid #0d1b3d;
+        border-radius: 78px;
+        background: #ffffff;
+        box-shadow:
+          0 66px 130px rgba(12, 43, 112, 0.33),
+          0 0 0 8px rgba(255, 255, 255, 0.74),
+          0 0 110px rgba(0, 107, 255, 0.34);
+        transform: rotate(6deg);
+        overflow: hidden;
+      }
+
+      .phone::before {
+        content: "";
+        position: absolute;
+        left: 208px;
+        top: 16px;
+        z-index: 5;
+        width: 150px;
+        height: 34px;
+        border-radius: 999px;
+        background: #101827;
+      }
+
+      .page {
+        position: absolute;
+        inset: 0;
+        background-image: url("../motion/mobile/google-genie-blog-mobile-hero.png");
+        background-size: cover;
+        background-position: top center;
+      }
+
+      .portal {
+        position: absolute;
+        left: 68px;
+        top: 860px;
+        width: 940px;
+        height: 610px;
+        overflow: hidden;
+        border: 3px solid rgba(0, 104, 255, 0.2);
+        border-radius: 28px;
+        background:
+          linear-gradient(90deg, rgba(0, 104, 255, 0.2) 2px, transparent 2px),
+          linear-gradient(0deg, rgba(0, 104, 255, 0.14) 2px, transparent 2px),
+          radial-gradient(circle at 24% 22%, rgba(0, 104, 255, 0.64), transparent 36%),
+          radial-gradient(circle at 76% 74%, rgba(255, 138, 37, 0.44), transparent 30%),
+          radial-gradient(circle at 62% 22%, rgba(255, 79, 178, 0.42), transparent 28%),
+          rgba(255, 255, 255, 0.72);
+        background-size:
+          54px 54px,
+          54px 54px,
+          100% 100%,
+          100% 100%,
+          100% 100%,
+          100% 100%;
+        clip-path: polygon(10% 9%, 100% 0%, 90% 88%, 0% 100%);
+        filter: drop-shadow(0 44px 72px rgba(0, 96, 255, 0.32));
+        opacity: 0.95;
+      }
+
+      .portal::before {
+        content: "";
+        position: absolute;
+        left: -20%;
+        top: 45%;
+        width: 140%;
+        height: 32px;
+        background: linear-gradient(90deg, transparent, #0068ff, #ff4fb2, #ff8a25, transparent);
+        filter: blur(2px);
+        transform: rotate(-18deg);
+      }
+
+      .portal::after {
+        content: "";
+        position: absolute;
+        left: 11%;
+        top: 18%;
+        width: 74%;
+        height: 58%;
+        border-radius: 18px;
+        background:
+          radial-gradient(circle at 28% 40%, #ff4fb2 0 10px, transparent 11px),
+          radial-gradient(circle at 64% 56%, #0068ff 0 12px, transparent 13px),
+          radial-gradient(circle at 50% 74%, #ff8a25 0 9px, transparent 10px),
+          linear-gradient(90deg, rgba(0, 105, 255, 0.16) 2px, transparent 2px),
+          linear-gradient(0deg, rgba(0, 105, 255, 0.14) 2px, transparent 2px),
+          rgba(255, 255, 255, 0.78);
+        background-size:
+          100% 100%,
+          100% 100%,
+          100% 100%,
+          44px 44px,
+          44px 44px,
+          100% 100%;
+        box-shadow: inset 0 0 0 2px rgba(0, 104, 255, 0.16);
+        transform: rotateX(62deg) rotateZ(-13deg);
+      }
+
+      .pin {
+        position: absolute;
+        left: 705px;
+        top: 970px;
+        width: 112px;
+        height: 112px;
+        border-radius: 50% 50% 50% 14px;
+        background: #ff4fb2;
+        box-shadow: 0 24px 52px rgba(255, 79, 178, 0.36);
+        transform: rotate(-45deg);
+      }
+
+      .pin::after {
+        content: "";
+        position: absolute;
+        left: 34px;
+        top: 34px;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: #ffffff;
+      }
+
+      .headline {
+        position: absolute;
+        left: 58px;
+        top: 78px;
+        z-index: 8;
+        width: 960px;
+        color: #071426;
+        font-family: "Arial Black", Impact, sans-serif;
+        font-size: 108px;
+        line-height: 0.92;
+        letter-spacing: 0;
+        text-transform: uppercase;
+        text-shadow: 0 10px 28px rgba(255, 255, 255, 0.78);
+      }
+
+      .headline span {
+        display: block;
+        color: #0068ff;
+        font-size: 126px;
+      }
+
+      .badge {
+        position: absolute;
+        left: 64px;
+        bottom: 142px;
+        z-index: 9;
+        padding: 23px 30px;
+        border: 2px solid rgba(0, 96, 255, 0.18);
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.86);
+        color: #0057e8;
+        font-family: "IBM Plex Mono", Consolas, monospace;
+        font-size: 36px;
+        font-weight: 900;
+        box-shadow: 0 28px 70px rgba(0, 70, 180, 0.18);
+      }
+
+      .burst {
+        position: absolute;
+        right: 40px;
+        bottom: 218px;
+        z-index: 9;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 268px;
+        height: 176px;
+        border: 2px solid rgba(255, 255, 255, 0.76);
+        border-radius: 22px;
+        background:
+          linear-gradient(135deg, rgba(255, 255, 255, 0.22), transparent 48%),
+          linear-gradient(135deg, #0068ff 0%, #ff4fb2 58%, #ff8a25 100%);
+        clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
+        color: #ffffff;
+        font-family: "Arial Black", Impact, sans-serif;
+        font-size: 44px;
+        line-height: 0.88;
+        text-align: center;
+        text-shadow: 0 8px 24px rgba(8, 24, 54, 0.35);
+        transform: rotate(-7deg);
+        filter: drop-shadow(0 28px 52px rgba(255, 95, 42, 0.28));
+      }
+
+      .burst::before {
+        content: "AI\A SIM";
+        white-space: pre;
+      }
+
+      .burst::after {
+        content: "";
+        position: absolute;
+        inset: 24px 32px;
+        background:
+          linear-gradient(90deg, rgba(255, 255, 255, 0.34) 2px, transparent 2px),
+          linear-gradient(0deg, rgba(255, 255, 255, 0.24) 2px, transparent 2px);
+        background-size: 34px 34px;
+        opacity: 0.5;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="thumb">
+      <div class="speed-line line-a"></div>
+      <div class="speed-line line-b"></div>
+      <div class="portal"></div>
+      <div class="phone"><div class="page"></div></div>
+      <div class="pin"></div>
+      <h1 class="headline">Street View <span>AI Worlds</span></h1>
+      <div class="badge">GOOGLE GENIE</div>
+      <div class="burst"></div>
+    </main>
+  </body>
+</html>

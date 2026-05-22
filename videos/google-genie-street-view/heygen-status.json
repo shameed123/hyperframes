@@ -1,0 +1,17 @@
+{
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/2c981e85efbe47d293f2ed1a359ca593/subtitles_892bd25889334430b81425dc72c1b426.srt?Expires=1779933343&Signature=CPRJeaazRGTDWqzIuq7tzFfLOOwqB5584Z8aacGS0fadmA3VwEm43Dgf~RONrfVsjPbXZV6KL5jX2En-bIuWxSJ~ksfWxG-nj7mwDcfQ155XTq79uleWG8mlklfflKdy~-Xp32HKHtwky2DM1ohT8s7K16GROcs9GWUMeHj2iRl~xZAWBJvKPkqHsDZNhYXcqdXUkKZq55VYEtTjZAmpwJRwCTxLMFmeg3scwiFdnk6Ie9~-DjM5rNesAVfX4-i-eHG16MGKFWl1hYYUNVHNqv8EJDkn1Vz8OR6i6JUAz0jtSk1lG-lx25IJ7-J1U4ZWWrkYTx1fkGCTmnKKX6fnYA__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "created_at": 1779328404,
+    "duration": 65.1494,
+    "error": null,
+    "gif_url": "https://resource2.heygen.ai/video/892bd25889334430b81425dc72c1b426/gif.gif",
+    "id": "892bd25889334430b81425dc72c1b426",
+    "status": "completed",
+    "thumbnail_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/2c981e85efbe47d293f2ed1a359ca593/892bd25889334430b81425dc72c1b426.jpeg?Expires=1779933343&Signature=q4kzbITPT~lMhf9TLFGJf8xhrZW874bs0oY4h811HpLhcfYol6RLE~4hV5YpFuMDKHrUTyS0XWCRuSpjhM5h70NmTPmKNtNg-81qJBnjy8IoVW7O9oJkG2xKnbQW-e~GuyjW0pfF8W1RvPzneCEZWkyv22eCJEZSHnNV28KOhGMN0klgbo7yBISgb0kV3RGBN66PH5QGKrBcfC4G91uWhPWo9GKdgcWoC6--OQQCgYm2iMzxEqPr4zQGCW0GguFZV1jHVu8maxG07Wh0vAQCf3rjuXxOcu7vdsuN5vuLKickRGe26rRrHEanoaTR8K~JT20KQRXJ5uje92t874r7FQ__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/2c981e85efbe47d293f2ed1a359ca593/892bd25889334430b81425dc72c1b426.mp4?Expires=1779933343&Signature=TxFAXo-RjxANqumMbqmdYX1CF8Dk1SysSue0~O2stHB2fX~BE52k3w3WES-0ZOObDjl-rmMcAXYkC3oSPhxVPEBGosiQVeDKvyv7NLSWWUw7FNSMnnoUdlxTm5Nk6rugvcfZbKriQjIZGXH7P4P2XhMAUTxmRShXCnUuHuvkqRDpJ~zaXonsTDNb2tS0YHQFIexzUYJsqmy7IqXSFHgGH5k~5YJ59m5Yc5ApRsm5YgNHWURuQhYGjWRmdaS5MnjdOGMt380xlyrdzjS35Swf0-kcHrrcywyXXL2i0m3M6-olZsgUa3pz5coqwt8fXQ3Dhzdj26G-CTRWBqzJj0BOog__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url_caption": "https://files2.heygen.ai/movio/video/892bd25889334430b81425dc72c1b426/8a72e6d5861c4607820cc552834b4383/caption.mp4?Expires=1779933343&Signature=PJjJjuMolviz9aD~r~p6rNUb-ihvxgbzkqalYyyq4RzHVqriCpxAwaXBVidjbPttChbALBPZmmij4L0EAtCRhhWf7RxS5OGlo5CDKs8HiEjjOf4m08O6CVzdgWkY610u6FOCkDcpBVljgJ9-csuN1rGwO3Y4ypuKF7gCQVpdRG4Zqq9~ohV5BBOLX7~Rh9pQYtyTr0RhDaynQd3LhNhMmRaCgqhkOBSQILb3ugsgLt3fOh6zVgp9CM0GfwvwzHCpOcTjBJ~ZxFcJxGudvikVqMwmotxLK~Ey0e2W0qnwuEKM0NMuBGlhTGeU4tyviZ6y4sIKESYvPvWEBRLszh4kVQ__&Key-Pair-Id=K38HBHX5LX3X2H"
+  },
+  "message": "Success"
+}

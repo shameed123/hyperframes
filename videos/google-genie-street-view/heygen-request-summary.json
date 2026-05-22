@@ -1,0 +1,14 @@
+{
+  "endpoint": "POST https://api.heygen.com/v2/video/generate",
+  "title": "Google Genie + Street View",
+  "caption": true,
+  "dimension": {
+    "width": 1280,
+    "height": 720
+  },
+  "avatarStyle": "normal",
+  "voiceType": "text",
+  "voiceSpeed": 1.1,
+  "inputTextPath": "videos/google-genie-street-view/heygen-input.txt",
+  "submittedAt": "2026-05-21T01:53:28.153Z"
+}

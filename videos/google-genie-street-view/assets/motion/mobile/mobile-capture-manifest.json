@@ -1,0 +1,23 @@
+{
+  "capturedAt": "2026-05-21T19:53:26.031Z",
+  "captures": [
+    {
+      "url": "https://blog.google/innovation-and-ai/models-and-research/google-deepmind/project-genie-expands/",
+      "fullFile": "google-genie-blog-mobile-full.png",
+      "heroFile": "google-genie-blog-mobile-hero.png",
+      "scrollHeight": 5088,
+      "viewportWidth": 430,
+      "viewportHeight": 932,
+      "title": "Simulate real-world places with Project Genie and Street View"
+    },
+    {
+      "url": "https://deepmind.google/models/genie/",
+      "fullFile": "deepmind-genie-model-mobile-full.png",
+      "heroFile": "deepmind-genie-model-mobile-hero.png",
+      "scrollHeight": 14643,
+      "viewportWidth": 430,
+      "viewportHeight": 932,
+      "title": "Genie 3 — Google DeepMind"
+    }
+  ]
+}

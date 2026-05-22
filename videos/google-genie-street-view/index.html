@@ -1,0 +1,971 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #eef7ff;
+        color: #071426;
+        font-family: Inter, Helvetica, Arial, sans-serif;
+      }
+
+      #root {
+        position: relative;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 18% 10%, rgba(0, 104, 255, 0.32), transparent 30%),
+          radial-gradient(circle at 92% 18%, rgba(255, 75, 180, 0.2), transparent 25%),
+          radial-gradient(circle at 72% 88%, rgba(255, 138, 37, 0.22), transparent 32%),
+          linear-gradient(150deg, #fafdff 0%, #ddebff 52%, #fff7f0 100%);
+        perspective: 1800px;
+      }
+
+      #root::before {
+        content: "";
+        position: absolute;
+        inset: -160px;
+        background:
+          linear-gradient(90deg, rgba(0, 95, 255, 0.12) 1px, transparent 1px),
+          linear-gradient(0deg, rgba(0, 95, 255, 0.1) 1px, transparent 1px);
+        background-size: 84px 84px;
+        transform: rotate(-9deg) scale(1.12);
+      }
+
+      .clip,
+      .scene,
+      .layer {
+        position: absolute;
+      }
+
+      .scene {
+        inset: 0;
+        z-index: 5;
+        overflow: hidden;
+        opacity: 0;
+        visibility: hidden;
+        transform-style: preserve-3d;
+      }
+
+      .scene-content {
+        position: relative;
+        z-index: 5;
+        width: 100%;
+        height: 100%;
+        padding: 88px 62px 132px;
+      }
+
+      .beam {
+        position: absolute;
+        height: 18px;
+        border-radius: 999px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(0, 93, 255, 0.84),
+          rgba(255, 76, 184, 0.78),
+          transparent
+        );
+        filter: blur(1px);
+        opacity: 0.7;
+        transform-origin: center;
+      }
+
+      .beam-a {
+        left: -220px;
+        top: 280px;
+        width: 780px;
+        transform: rotate(-16deg);
+      }
+
+      .beam-b {
+        right: -250px;
+        top: 880px;
+        width: 880px;
+        transform: rotate(12deg);
+      }
+
+      .beam-c {
+        left: -160px;
+        bottom: 260px;
+        width: 680px;
+        transform: rotate(18deg);
+      }
+
+      .kicker,
+      .source-pill,
+      .mini-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        border: 1px solid rgba(0, 92, 255, 0.16);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.86);
+        box-shadow: 0 22px 58px rgba(0, 68, 180, 0.12);
+        backdrop-filter: blur(18px) saturate(1.24);
+      }
+
+      .kicker {
+        padding: 13px 16px;
+        color: #005eea;
+        font-family: "IBM Plex Mono", Consolas, monospace;
+        font-size: 22px;
+        font-weight: 900;
+        text-transform: uppercase;
+      }
+
+      .headline {
+        margin-top: 26px;
+        max-width: 960px;
+        color: #071426;
+        font-family: "Arial Black", Impact, Helvetica, sans-serif;
+        font-size: 86px;
+        font-weight: 900;
+        line-height: 0.94;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+
+      .headline.big {
+        font-size: 106px;
+      }
+
+      .headline.medium {
+        font-size: 76px;
+      }
+
+      .subline {
+        margin-top: 22px;
+        max-width: 830px;
+        color: #30435f;
+        font-size: 36px;
+        font-weight: 760;
+        line-height: 1.14;
+      }
+
+      .blue {
+        color: #0068ff;
+      }
+
+      .pink {
+        color: #ff4fb2;
+      }
+
+      .orange {
+        color: #ff7a1a;
+      }
+
+      .glass {
+        border: 1px solid rgba(0, 92, 255, 0.13);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.8);
+        box-shadow:
+          0 34px 90px rgba(0, 60, 150, 0.15),
+          inset 0 0 0 1px rgba(255, 255, 255, 0.44);
+        backdrop-filter: blur(22px) saturate(1.24);
+      }
+
+      .thumbnail-overlay {
+        inset: 0;
+        z-index: 80;
+        overflow: hidden;
+        background: #edf7ff;
+      }
+
+      .thumbnail-overlay::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: url("assets/thumbnail/google-genie-street-view-thumbnail-v3.png");
+        background-size: cover;
+        background-position: center;
+        filter: blur(30px) saturate(1.16);
+        transform: scale(1.12);
+        opacity: 0.44;
+      }
+
+      .thumb-hero {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: drop-shadow(0 42px 90px rgba(0, 55, 140, 0.24));
+      }
+
+      .world-ring {
+        position: absolute;
+        width: 700px;
+        height: 700px;
+        overflow: hidden;
+        border: 2px solid rgba(0, 104, 255, 0.18);
+        border-radius: 26px;
+        background:
+          linear-gradient(90deg, rgba(0, 104, 255, 0.18) 2px, transparent 2px),
+          linear-gradient(0deg, rgba(0, 104, 255, 0.14) 2px, transparent 2px),
+          radial-gradient(circle at 30% 25%, rgba(255, 79, 178, 0.28), transparent 34%),
+          radial-gradient(circle at 75% 78%, rgba(255, 138, 37, 0.22), transparent 32%),
+          rgba(255, 255, 255, 0.76);
+        background-size:
+          52px 52px,
+          52px 52px,
+          100% 100%,
+          100% 100%,
+          100% 100%;
+        clip-path: polygon(11% 10%, 100% 0%, 88% 88%, 0% 100%);
+        filter: drop-shadow(0 42px 82px rgba(0, 93, 255, 0.24));
+        transform-style: preserve-3d;
+      }
+
+      .world-ring::before {
+        content: "";
+        position: absolute;
+        left: -20%;
+        top: 42%;
+        width: 140%;
+        height: 26px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(0, 104, 255, 0.7),
+          rgba(255, 79, 178, 0.62),
+          transparent
+        );
+        filter: blur(2px);
+        transform: rotate(-18deg);
+      }
+
+      .world-ring::after {
+        content: "";
+        position: absolute;
+        left: 10%;
+        top: 18%;
+        width: 74%;
+        height: 58%;
+        background:
+          radial-gradient(circle at 28% 40%, #ff4fb2 0 9px, transparent 10px),
+          radial-gradient(circle at 66% 56%, #0068ff 0 10px, transparent 11px),
+          radial-gradient(circle at 50% 72%, #ff8a25 0 8px, transparent 9px),
+          linear-gradient(90deg, rgba(0, 104, 255, 0.16) 1px, transparent 1px),
+          linear-gradient(0deg, rgba(0, 104, 255, 0.14) 1px, transparent 1px);
+        background-size:
+          100% 100%,
+          100% 100%,
+          100% 100%,
+          36px 36px,
+          36px 36px;
+        transform: rotateX(60deg) rotateZ(-14deg);
+      }
+
+      .map-pin {
+        position: absolute;
+        width: 92px;
+        height: 92px;
+        border-radius: 50% 50% 50% 10px;
+        background: #ff4fb2;
+        box-shadow: 0 24px 54px rgba(255, 79, 178, 0.32);
+        transform: rotate(-45deg);
+      }
+
+      .map-pin::after {
+        content: "";
+        position: absolute;
+        left: 28px;
+        top: 28px;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: #ffffff;
+      }
+
+      .prompt-card {
+        position: absolute;
+        left: 66px;
+        right: 66px;
+        bottom: 670px;
+        min-height: 154px;
+        padding: 28px 30px;
+        color: #0a1b32;
+        font-family: "IBM Plex Mono", Consolas, monospace;
+        font-size: 30px;
+        font-weight: 900;
+        line-height: 1.18;
+      }
+
+      .phone {
+        position: absolute;
+        overflow: hidden;
+        border: 20px solid #0c1832;
+        border-radius: 74px;
+        background: #ffffff;
+        box-shadow:
+          0 54px 130px rgba(0, 49, 130, 0.28),
+          0 0 0 8px rgba(255, 255, 255, 0.7),
+          0 0 92px rgba(0, 104, 255, 0.24);
+        transform-style: preserve-3d;
+      }
+
+      .phone::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 16px;
+        z-index: 6;
+        width: 158px;
+        height: 34px;
+        border-radius: 999px;
+        background: #0c1832;
+        transform: translateX(-50%);
+      }
+
+      .phone-screen {
+        position: absolute;
+        inset: 54px 16px 16px;
+        overflow: hidden;
+        border-radius: 46px;
+        background: #ffffff;
+      }
+
+      .phone-page {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: auto;
+        will-change: transform;
+      }
+
+      .phone-label {
+        position: absolute;
+        z-index: 8;
+        left: 52px;
+        bottom: 46px;
+        padding: 12px 15px;
+        color: #005eea;
+        font-family: "IBM Plex Mono", Consolas, monospace;
+        font-size: 20px;
+        font-weight: 900;
+        text-transform: uppercase;
+      }
+
+      .scroll-indicator {
+        position: absolute;
+        z-index: 9;
+        right: 34px;
+        top: 190px;
+        width: 12px;
+        height: 260px;
+        border-radius: 999px;
+        background: rgba(0, 98, 255, 0.12);
+      }
+
+      .scroll-thumb {
+        content: "";
+        position: absolute;
+        left: -4px;
+        top: 0;
+        width: 20px;
+        height: 72px;
+        border-radius: 999px;
+        background: linear-gradient(#0068ff, #ff4fb2);
+        box-shadow: 0 0 24px rgba(0, 104, 255, 0.34);
+      }
+
+      .source-pill {
+        position: absolute;
+        z-index: 12;
+        left: 54px;
+        bottom: 54px;
+        padding: 11px 15px;
+        color: #274564;
+        font-family: "IBM Plex Mono", Consolas, monospace;
+        font-size: 18px;
+        font-weight: 900;
+        text-transform: uppercase;
+      }
+
+      .ticker {
+        position: absolute;
+        left: 60px;
+        right: 60px;
+        top: 500px;
+        display: flex;
+        gap: 14px;
+      }
+
+      .ticker .mini-chip {
+        padding: 14px 16px;
+        color: #005eea;
+        font-family: "IBM Plex Mono", Consolas, monospace;
+        font-size: 21px;
+        font-weight: 900;
+        white-space: nowrap;
+      }
+
+      .progression {
+        position: absolute;
+        left: 74px;
+        top: 570px;
+        display: grid;
+        width: 932px;
+        gap: 18px;
+      }
+
+      .progress-card {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 188px;
+        padding: 30px 34px;
+        border-left: 12px solid #0068ff;
+      }
+
+      .progress-card:nth-child(2) {
+        border-left-color: #ff4fb2;
+      }
+
+      .progress-card:nth-child(3) {
+        border-left-color: #ff8a25;
+      }
+
+      .progress-card strong {
+        font-family: "Arial Black", Impact, sans-serif;
+        font-size: 70px;
+        letter-spacing: 0;
+      }
+
+      .progress-card span {
+        color: #536b85;
+        font-family: "IBM Plex Mono", Consolas, monospace;
+        font-size: 28px;
+        font-weight: 900;
+      }
+
+      .use-grid {
+        position: absolute;
+        left: 62px;
+        top: 612px;
+        display: grid;
+        width: 956px;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+      }
+
+      .use-card {
+        min-height: 232px;
+        padding: 26px;
+        overflow: hidden;
+        border-top: 10px solid #0068ff;
+      }
+
+      .use-card:nth-child(2) {
+        border-top-color: #ff4fb2;
+      }
+
+      .use-card:nth-child(3) {
+        border-top-color: #ff8a25;
+      }
+
+      .use-card:nth-child(4) {
+        border-top-color: #1a73e8;
+      }
+
+      .use-card h3 {
+        color: #071426;
+        font-family: "Arial Black", Impact, sans-serif;
+        font-size: 48px;
+        line-height: 0.95;
+        letter-spacing: 0;
+      }
+
+      .use-card p {
+        margin-top: 16px;
+        color: #435b78;
+        font-size: 27px;
+        line-height: 1.1;
+        font-weight: 760;
+      }
+
+      .reality-split {
+        position: absolute;
+        left: 62px;
+        top: 590px;
+        display: grid;
+        width: 956px;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+      }
+
+      .split-card {
+        height: 710px;
+        overflow: hidden;
+      }
+
+      .split-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .stamp {
+        position: absolute;
+        left: 124px;
+        top: 1138px;
+        padding: 17px 24px;
+        border: 5px solid #ff4fb2;
+        border-radius: 8px;
+        color: #d0187c;
+        font-family: "Arial Black", Impact, sans-serif;
+        font-size: 54px;
+        background: rgba(255, 255, 255, 0.86);
+        box-shadow: 0 24px 50px rgba(255, 79, 178, 0.18);
+        transform: rotate(-7deg);
+      }
+
+      .caption {
+        left: 70px;
+        right: 70px;
+        bottom: 72px;
+        z-index: 34;
+        min-height: 116px;
+        padding: 24px 30px;
+        border-radius: 8px;
+        background: linear-gradient(100deg, rgba(6, 19, 43, 0.93), rgba(8, 38, 86, 0.92));
+        color: #ffffff;
+        font-family: "Arial Black", Impact, Helvetica, sans-serif;
+        font-size: 44px;
+        line-height: 1.04;
+        text-align: center;
+        letter-spacing: 0;
+        box-shadow:
+          0 34px 74px rgba(0, 34, 86, 0.34),
+          0 0 46px rgba(0, 104, 255, 0.22);
+        opacity: 0;
+      }
+
+      .caption-copy {
+        position: absolute;
+        inset: 18px 26px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+      }
+
+      .avatar-shot,
+      video.avatar-shot {
+        position: absolute;
+        z-index: 28;
+        overflow: hidden;
+        object-fit: cover;
+        object-position: center center;
+        background: #ffffff;
+        border-radius: 24px;
+        box-shadow:
+          0 38px 92px rgba(0, 31, 82, 0.46),
+          0 0 54px rgba(0, 104, 255, 0.24);
+        filter: drop-shadow(0 32px 44px rgba(0, 31, 82, 0.42))
+          drop-shadow(0 0 38px rgba(0, 104, 255, 0.22));
+      }
+
+      .avatar-feature {
+        left: 238px;
+        top: 1300px;
+        width: 604px;
+        height: 416px;
+      }
+
+      .avatar-pip {
+        right: 42px;
+        bottom: 218px;
+        width: 314px;
+        height: 360px;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="google-genie-street-view"
+      data-start="0"
+      data-duration="65.16"
+      data-width="1080"
+      data-height="1920"
+    >
+      <audio
+        id="narration"
+        class="clip"
+        data-start="0"
+        data-duration="65.16"
+        data-track-index="1"
+        data-volume="1"
+        src="assets/avatar/heygen-avatar-16x9.mp4"
+      ></audio>
+
+      <div class="layer beam beam-a"></div>
+      <div class="layer beam beam-b"></div>
+      <div class="layer beam beam-c"></div>
+
+      <div
+        id="opening-thumbnail"
+        class="clip thumbnail-overlay"
+        data-start="0"
+        data-duration="0.5"
+        data-track-index="40"
+      >
+        <img
+          class="thumb-hero"
+          src="assets/thumbnail/google-genie-street-view-thumbnail-v3.png"
+          alt="Google Genie thumbnail"
+        />
+      </div>
+
+      <section id="scene-intro" class="scene">
+        <div class="scene-content">
+          <div class="kicker">AI NEWS / GOOGLE DEEPMIND</div>
+          <h1 class="headline big">GENIE JUST GOT A <span class="blue">REAL-WORLD</span> ANCHOR</h1>
+          <p class="subline">Street View becomes the launch point for explorable AI worlds.</p>
+          <div class="world-ring" style="left: 194px; top: 635px"></div>
+          <div class="map-pin" style="left: 662px; top: 918px"></div>
+          <div class="prompt-card glass">
+            Prompt: choose a real place. Rebuild it as a generated world.
+          </div>
+        </div>
+      </section>
+
+      <section id="scene-world-model" class="scene">
+        <div class="scene-content">
+          <div class="kicker">WORLD MODEL</div>
+          <h2 class="headline medium">A PAGE BECOMES A PLACE YOU CAN MOVE THROUGH</h2>
+          <div class="ticker">
+            <div class="mini-chip">TEXT PROMPT</div>
+            <div class="mini-chip">REAL-TIME WORLD</div>
+            <div class="mini-chip">INTERACTIVE CAMERA</div>
+          </div>
+          <div
+            class="phone"
+            style="left: 158px; top: 528px; width: 764px; height: 1326px; transform: rotate(-3deg)"
+          >
+            <div class="phone-screen">
+              <img
+                id="deepmind-mobile-page"
+                class="phone-page"
+                src="assets/motion/mobile/deepmind-genie-model-mobile-full.png"
+                alt="Google DeepMind mobile page"
+              />
+            </div>
+            <div class="scroll-indicator"><div class="scroll-thumb"></div></div>
+            <div class="phone-label glass">Fast mobile source scroll</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene-street-view" class="scene">
+        <div class="scene-content">
+          <div class="kicker">STREET VIEW GROUNDING</div>
+          <h2 class="headline medium">REAL PLACES BECOME <span class="blue">AI WORLDS</span></h2>
+          <div
+            class="phone"
+            style="left: 126px; top: 512px; width: 820px; height: 1376px; transform: rotate(2.5deg)"
+          >
+            <div class="phone-screen">
+              <img
+                id="google-mobile-page"
+                class="phone-page"
+                src="assets/motion/mobile/google-genie-blog-mobile-full.png"
+                alt="Google blog mobile page"
+              />
+            </div>
+            <div class="scroll-indicator"><div class="scroll-thumb"></div></div>
+            <div class="phone-label glass">Google source page</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene-simulator" class="scene">
+        <div class="scene-content">
+          <div class="kicker">THE LEAP</div>
+          <h2 class="headline">FROM <span class="orange">WATCHING</span> TO EXPLORING</h2>
+          <p class="subline">
+            The visual shift: pixels turn into spaces, and spaces start behaving like simulations.
+          </p>
+          <div class="progression">
+            <div class="progress-card glass"><strong>VIDEO</strong><span>watch pixels</span></div>
+            <div class="progress-card glass"><strong>WORLD</strong><span>move inside</span></div>
+            <div class="progress-card glass">
+              <strong>SIM</strong><span>test what happens</span>
+            </div>
+          </div>
+          <div
+            class="world-ring"
+            style="right: -240px; bottom: -120px; width: 560px; height: 560px"
+          ></div>
+        </div>
+      </section>
+
+      <section id="scene-use-cases" class="scene">
+        <div class="scene-content">
+          <div class="kicker">WHY IT MATTERS</div>
+          <h2 class="headline medium">THE USE CASES GET BIG FAST</h2>
+          <div class="use-grid">
+            <div class="use-card glass">
+              <h3>Games</h3>
+              <p>Prototype playable worlds from places and prompts.</p>
+            </div>
+            <div class="use-card glass">
+              <h3>Film</h3>
+              <p>Previsualize locations, shots, and alternate worlds.</p>
+            </div>
+            <div class="use-card glass">
+              <h3>Education</h3>
+              <p>Turn real places into guided interactive lessons.</p>
+            </div>
+            <div class="use-card glass">
+              <h3>Robotics</h3>
+              <p>Train agents inside rare generated environments.</p>
+            </div>
+          </div>
+          <div
+            class="world-ring"
+            style="left: 250px; top: 1160px; width: 560px; height: 560px"
+          ></div>
+        </div>
+      </section>
+
+      <section id="scene-caveat" class="scene">
+        <div class="scene-content">
+          <div class="kicker">IMPORTANT CAVEAT</div>
+          <h2 class="headline medium">GENERATED DOES NOT MEAN EXACT</h2>
+          <div class="reality-split">
+            <div class="split-card glass">
+              <img src="assets/motion/mobile/google-genie-blog-mobile-hero.png" />
+            </div>
+            <div class="split-card glass">
+              <img src="assets/motion/broll/deepmind-genie-model-06.png" />
+            </div>
+          </div>
+          <div class="stamp">NOT A PERFECT COPY</div>
+        </div>
+      </section>
+
+      <section id="scene-outro" class="scene">
+        <div class="scene-content">
+          <div class="kicker">THE BIG DIRECTION</div>
+          <h2 class="headline">IMAGES TO VIDEOS TO <span class="blue">WORLDS</span></h2>
+          <div class="progression">
+            <div class="progress-card glass"><strong>01</strong><span>AI images</span></div>
+            <div class="progress-card glass"><strong>02</strong><span>AI video</span></div>
+            <div class="progress-card glass"><strong>03</strong><span>AI worlds</span></div>
+          </div>
+          <div
+            class="world-ring"
+            style="left: 412px; top: 1110px; width: 520px; height: 520px"
+          ></div>
+        </div>
+      </section>
+
+      <video
+        id="avatar-feature"
+        class="clip avatar-shot avatar-feature"
+        data-start="0.5"
+        data-duration="9.3"
+        data-media-start="0.5"
+        data-track-index="8"
+        src="assets/avatar/heygen-avatar-16x9.mp4"
+        muted
+        playsinline
+      ></video>
+      <video
+        id="avatar-pip"
+        class="clip avatar-shot avatar-pip"
+        data-start="9.8"
+        data-duration="55.36"
+        data-media-start="9.8"
+        data-track-index="8"
+        src="assets/avatar/heygen-avatar-16x9.mp4"
+        muted
+        playsinline
+      ></video>
+
+      <div
+        id="caption"
+        class="clip caption"
+        data-start="0.5"
+        data-duration="64.66"
+        data-track-index="30"
+      >
+        <div id="cap-0" class="caption-copy">GOOGLE JUST GAVE GENIE STREET VIEW</div>
+        <div id="cap-1" class="caption-copy">TYPE A PROMPT. EXPLORE A WORLD.</div>
+        <div id="cap-2" class="caption-copy">NOW REAL PLACES CAN ANCHOR IT</div>
+        <div id="cap-3" class="caption-copy">THIS IS CLOSER TO A SIMULATOR</div>
+        <div id="cap-4" class="caption-copy">GAMES, FILM, EDUCATION, ROBOTICS</div>
+        <div id="cap-5" class="caption-copy">GENERATED, NOT A PERFECT COPY</div>
+        <div id="cap-6" class="caption-copy">AI IS MOVING INTO WORLDS</div>
+        <div id="cap-7" class="caption-copy">FOLLOW FOR FAST AI NEWS</div>
+      </div>
+    </div>
+
+    <script>
+      const tl = gsap.timeline({ paused: true });
+
+      const sceneWindows = [
+        ["#scene-intro", 0, 9.8],
+        ["#scene-world-model", 9.8, 22.1],
+        ["#scene-street-view", 22.1, 33.9],
+        ["#scene-simulator", 33.9, 39.9],
+        ["#scene-use-cases", 39.9, 44.9],
+        ["#scene-caveat", 44.9, 56],
+        ["#scene-outro", 56, 65.16],
+      ];
+
+      for (const [selector, start, end] of sceneWindows) {
+        tl.set(selector, { opacity: 1, visibility: "visible" }, start);
+        tl.set(selector, { opacity: 0, visibility: "hidden" }, end);
+      }
+
+      tl.to(
+        "#opening-thumbnail",
+        { opacity: 0, scale: 0.94, duration: 0.5, ease: "power2.inOut" },
+        0,
+      );
+      tl.set("#opening-thumbnail", { opacity: 0 }, 0.5);
+      tl.to(".beam-a", { x: 560, duration: 9, repeat: 7, ease: "none" }, 0);
+      tl.to(".beam-b", { x: -620, duration: 8, repeat: 8, ease: "none" }, 0.4);
+      tl.to(".beam-c", { x: 540, duration: 10, repeat: 6, ease: "none" }, 1);
+      tl.fromTo(
+        ".world-ring",
+        { y: 18, rotateZ: -5, scale: 0.94 },
+        {
+          y: -18,
+          rotateZ: 5,
+          scale: 1.02,
+          duration: 3.2,
+          repeat: 19,
+          yoyo: true,
+          ease: "sine.inOut",
+          stagger: 0.2,
+        },
+        0.6,
+      );
+      tl.fromTo(
+        ".map-pin",
+        { y: -40, scale: 0.5, opacity: 0 },
+        { y: 0, scale: 1, opacity: 1, duration: 0.54, ease: "back.out(1.7)" },
+        0.8,
+      );
+      tl.fromTo(
+        ".prompt-card",
+        { y: 90, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.62, ease: "power3.out" },
+        2.05,
+      );
+      tl.fromTo(
+        ".phone",
+        { y: 140, rotateY: -10, opacity: 0 },
+        { y: 0, rotateY: 0, opacity: 1, duration: 0.64, stagger: 0.08, ease: "power3.out" },
+        9.9,
+      );
+      tl.to("#deepmind-mobile-page", { y: -6800, duration: 10.3, ease: "power2.inOut" }, 10.8);
+      tl.to("#google-mobile-page", { y: -4700, duration: 8.4, ease: "power2.inOut" }, 22.7);
+      tl.to(".scroll-thumb", { y: 180, duration: 1, ease: "none", stagger: 12 }, 10.8);
+      tl.fromTo(
+        ".ticker .mini-chip",
+        { x: 80, opacity: 0 },
+        { x: 0, opacity: 1, duration: 0.42, stagger: 0.08, ease: "power3.out" },
+        10.25,
+      );
+      tl.fromTo(
+        "#scene-simulator .progress-card",
+        { x: -90, opacity: 0 },
+        { x: 0, opacity: 1, duration: 0.52, stagger: 0.12, ease: "power3.out" },
+        34.8,
+      );
+      tl.fromTo(
+        ".use-card",
+        { y: 90, opacity: 0, rotateZ: -2 },
+        { y: 0, opacity: 1, rotateZ: 0, duration: 0.5, stagger: 0.08, ease: "back.out(1.5)" },
+        40.1,
+      );
+      tl.fromTo(
+        ".split-card",
+        { scale: 0.9, opacity: 0, rotateZ: -2 },
+        { scale: 1, opacity: 1, rotateZ: 0, duration: 0.58, stagger: 0.1, ease: "power3.out" },
+        45.25,
+      );
+      tl.fromTo(
+        ".stamp",
+        { scale: 1.5, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 0.34, ease: "back.out(1.5)" },
+        47.6,
+      );
+      tl.fromTo(
+        "#scene-outro .progress-card",
+        { x: -90, opacity: 0 },
+        { x: 0, opacity: 1, duration: 0.52, stagger: 0.12, ease: "power3.out" },
+        56.35,
+      );
+      tl.fromTo(
+        "#caption",
+        { y: 36, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.28, ease: "power2.out" },
+        0.65,
+      );
+
+      const captionWindows = [
+        ["#cap-0", 0.8],
+        ["#cap-1", 3.6],
+        ["#cap-2", 9.9],
+        ["#cap-3", 22.1],
+        ["#cap-4", 39.9],
+        ["#cap-5", 44.8],
+        ["#cap-6", 56.0],
+        ["#cap-7", 62.9],
+      ];
+
+      const captionSelectors = captionWindows.map(([selector]) => selector).join(",");
+      for (const [selector, time] of captionWindows) {
+        tl.set(captionSelectors, { opacity: 0 }, time);
+        tl.set(selector, { opacity: 1 }, time);
+      }
+
+      tl.to(
+        "#avatar-feature",
+        { y: -14, rotateY: 5, duration: 1.35, repeat: 6, yoyo: true, ease: "sine.inOut" },
+        0.8,
+      );
+      tl.to(
+        "#avatar-feature",
+        { x: 14, duration: 2.4, repeat: 3, yoyo: true, ease: "sine.inOut" },
+        1.1,
+      );
+      tl.to(
+        "#avatar-pip",
+        { y: -16, rotateY: 4, duration: 1.55, repeat: 34, yoyo: true, ease: "sine.inOut" },
+        9.8,
+      );
+      tl.to(
+        "#avatar-pip",
+        { x: -18, duration: 2.8, repeat: 20, yoyo: true, ease: "sine.inOut" },
+        10.2,
+      );
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines.main = tl;
+      window.__timelines["google-genie-street-view"] = tl;
+    </script>
+  </body>
+</html>

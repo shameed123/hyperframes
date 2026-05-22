@@ -1,0 +1,17 @@
+{
+  "id": "google-genie-street-view",
+  "name": "Google Genie + Street View",
+  "createdAt": "2026-05-21T00:00:00.000Z",
+  "format": "vertical-short",
+  "aspectRatio": "9:16",
+  "targetDurationSeconds": 90,
+  "status": "rendered",
+  "revision": "mobile-broll-v2",
+  "thumbnail": "assets/thumbnail/google-genie-street-view-thumbnail-v2.png",
+  "sources": [
+    "https://blog.google/innovation-and-ai/models-and-research/google-deepmind/project-genie-expands/",
+    "https://deepmind.google/models/genie/",
+    "https://techcrunch.com/2026/05/19/googles-genie-world-model-can-now-simulate-real-streets-with-street-view/",
+    "https://thenextweb.com/news/google-deepmind-genie-street-view-world-model-simulation"
+  ]
+}
