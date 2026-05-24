@@ -1,0 +1,14 @@
+{
+  "endpoint": "POST https://api.heygen.com/v2/video/generate",
+  "title": "AI Terms Explained Without Jargon",
+  "caption": true,
+  "dimension": {
+    "width": 1280,
+    "height": 720
+  },
+  "avatarStyle": "normal",
+  "voiceType": "text",
+  "voiceSpeed": 1.1,
+  "inputTextPath": "videos/ai-terms-explained-without-jargon/heygen-input.txt",
+  "submittedAt": "2026-05-23T00:24:46.728Z"
+}

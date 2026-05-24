@@ -1,0 +1,27 @@
+AI words sound complicated. They're mostly just normal ideas wearing a lab coat.
+
+AI means software that can do tasks we usually associate with people, like writing, seeing, sorting, or deciding.
+
+A model is the engine. It has learned patterns from tons of examples.
+
+An L L M, or large language model, is a model that predicts words really well. That's why it can chat.
+
+A prompt is your instruction. Better prompt, better answer. Like giving directions to a very fast intern.
+
+Tokens are tiny chunks of text. Not always full words. The AI reads and writes in tokens.
+
+The context window is the AI's short-term memory. If it gets full, older stuff falls out.
+
+Training data is what helped teach the model. Inference is when it uses what it learned to answer you.
+
+A hallucination is when AI sounds confident but gets the facts wrong. Basically: fluent nonsense.
+
+Embeddings turn meaning into numbers, so AI can find ideas that are similar, not just exact words.
+
+RAG means retrieval augmented generation. The AI checks outside sources before answering, like open-book test mode.
+
+An agent is AI that can take steps: search, click, write, check, and keep going toward a goal.
+
+That's the cheat sheet. AI is less magic when the words stop being weird.
+
+If you like AI explanation videos like this, like, subscribe, and follow for more.

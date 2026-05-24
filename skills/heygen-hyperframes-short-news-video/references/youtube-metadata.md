@@ -5,8 +5,9 @@ the final handoff.
 
 ## Required Fields
 
-- **Title**: catchy, clear, 45-70 characters when possible. Put the core topic
-  and hook early.
+- **Title**: catchy, clear, click-worthy, and SEO-readable, 45-70 characters
+  when possible. Put the core topic and hook early, and prefer a curiosity or
+  utility promise that makes the target viewer want to click.
 - **Description**: 2-4 short paragraphs. Use primary SEO keywords naturally in
   sentences; do not dump tags into the prose.
 - **Hashtags**: 3-8 visible hashtags. Put the three most important first.
@@ -28,6 +29,20 @@ video generation
 
 Do not overstuff the description. Use one primary phrase in the first sentence,
 then related phrases later.
+
+For educational AI explainer Shorts, weave these naturally when relevant:
+
+```text
+AI terms explained, AI glossary, artificial intelligence, AI for beginners,
+plain English AI, no jargon, LLM, large language model, prompt, tokens,
+context window, training data, inference, hallucination, embeddings, RAG,
+retrieval augmented generation, AI agent, AI tutorial, AI explained,
+YouTube Shorts
+```
+
+For description copy, include the terms actually discussed in the video at
+least once, but keep the prose readable. Do not paste a raw keyword list into
+the public description.
 
 ## Hashtags
 

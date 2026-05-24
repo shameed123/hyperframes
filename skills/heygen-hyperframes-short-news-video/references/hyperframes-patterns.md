@@ -158,9 +158,13 @@ rounded corners.
 
 ## Opening Thumbnail Overlay
 
-Generate a project-bound 9:16 image and save it under `assets/thumbnail/`.
+Write `videos/<slug>/thumbnail-prompt.md` first, using the exact headline and
+secondary text that should be baked into the image. Then generate a
+project-bound 9:16 image and save it under `assets/thumbnail/`.
 Use only one `<img>` element to avoid duplicate media discovery warnings. If
 you need a blurred fill, prefer CSS `background-image` on a pseudo-element.
+When the user asks to put the thumbnail at the front of the video, use this
+half-second overlay pattern and keep the existing SRT-based timestamps in place.
 
 ```css
 .thumbnail-overlay {
@@ -222,6 +226,62 @@ tl.to(
 
 Start at full opacity. Do not animate in if the user wants the first frame to
 be the full thumbnail.
+
+## Reusable SFX Clips
+
+Use deterministic `<audio>` clips for motion-graphics SFX. Do not trigger
+sounds from JavaScript. Keep the shared source pack in `videos/_shared/sfx`,
+copy it into each project as `assets/sfx`, and reference the project-local
+files from HTML.
+
+Copy command:
+
+```powershell
+New-Item -ItemType Directory -Force videos\<slug>\assets\sfx | Out-Null
+Copy-Item -Force videos\_shared\sfx\*.wav videos\<slug>\assets\sfx\
+```
+
+Example timed clips:
+
+```html
+<audio
+  id="sfx-scene-whoosh"
+  class="clip"
+  data-start="12.3"
+  data-duration="0.55"
+  data-track-index="40"
+  data-volume="0.4"
+  src="assets/sfx/whoosh-soft.wav"
+></audio>
+
+<audio
+  id="sfx-reveal-ping"
+  class="clip"
+  data-start="12.72"
+  data-duration="0.28"
+  data-track-index="41"
+  data-volume="0.5"
+  src="assets/sfx/ping-soft.wav"
+></audio>
+```
+
+Track convention:
+
+- Track `40`: scene-transition whooshes.
+- Track `41`: ping/chime reveals.
+- Track `42`: pops/stamps/badges.
+- Track `43`: lower pongs/secondary confirms.
+- Track `44+`: clicks or special one-off sounds.
+
+Timing convention:
+
+- Put `whoosh-soft.wav` 30-80ms before a scene start or wipe.
+- Put `ping-soft.wav` 200-600ms after a scene starts, where the key card or
+  term becomes readable.
+- Use `pop-soft.wav` for small objects like tokens, alert stamps, and badges.
+- Use `chime-soft.wav` on the hook and CTA only.
+- Keep all SFX below the avatar narration. Start with `data-volume="0.35"` to
+  `0.6` and review the rendered MP4, not only Studio preview.
 
 ## Website B-Roll Placement
 

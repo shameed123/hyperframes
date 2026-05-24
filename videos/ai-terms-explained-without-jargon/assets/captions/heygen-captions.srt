@@ -1,0 +1,179 @@
+1
+00:00:00,000 --> 00:00:01,730
+AI words sound complicated.
+
+2
+00:00:01,860 --> 00:00:03,970
+They're mostly just normal ideas wearing
+
+3
+00:00:04,020 --> 00:00:04,590
+a lab coat.
+
+4
+00:00:04,780 --> 00:00:07,330
+AI means software that can do tasks we
+
+5
+00:00:07,400 --> 00:00:09,040
+usually associate with people, like
+
+6
+00:00:09,090 --> 00:00:11,300
+writing, seeing, sorting, or deciding.
+
+7
+00:00:11,410 --> 00:00:12,720
+A model is the engine.
+
+8
+00:00:12,820 --> 00:00:14,540
+It has learned patterns from tons of
+
+9
+00:00:14,590 --> 00:00:15,120
+examples.
+
+10
+00:00:15,440 --> 00:00:17,790
+An L L M, or large language model, is a
+
+11
+00:00:17,840 --> 00:00:19,730
+model that predicts words really well.
+
+12
+00:00:20,030 --> 00:00:21,050
+That's why it can chat.
+
+13
+00:00:21,410 --> 00:00:22,840
+A prompt is your instruction.
+
+14
+00:00:22,950 --> 00:00:24,320
+Better prompt, better answer.
+
+15
+00:00:24,440 --> 00:00:26,420
+Like giving directions to a very fast
+
+16
+00:00:26,480 --> 00:00:26,880
+intern.
+
+17
+00:00:26,990 --> 00:00:28,830
+Tokens are tiny chunks of text.
+
+18
+00:00:28,940 --> 00:00:30,170
+Not always full words.
+
+19
+00:00:30,350 --> 00:00:32,380
+The AI reads and writes in tokens.
+
+20
+00:00:32,550 --> 00:00:34,170
+The context window is the AI's
+
+21
+00:00:34,230 --> 00:00:35,200
+short-term memory.
+
+22
+00:00:35,310 --> 00:00:37,490
+If it gets full, older stuff falls out.
+
+23
+00:00:37,710 --> 00:00:39,590
+Training data is what helped teach the
+
+24
+00:00:39,640 --> 00:00:39,970
+model.
+
+25
+00:00:40,220 --> 00:00:41,800
+Inference is when it uses what it
+
+26
+00:00:41,850 --> 00:00:42,670
+learned to answer you.
+
+27
+00:00:42,970 --> 00:00:44,800
+A hallucination is when AI sounds
+
+28
+00:00:44,860 --> 00:00:46,520
+confident but gets the facts wrong.
+
+29
+00:00:46,880 --> 00:00:48,500
+Basically: fluent nonsense.
+
+30
+00:00:48,940 --> 00:00:51,070
+Embeddings turn meaning into numbers, so
+
+31
+00:00:51,140 --> 00:00:53,210
+AI can find ideas that are similar, not
+
+32
+00:00:53,270 --> 00:00:54,180
+just exact words.
+
+33
+00:00:54,470 --> 00:00:56,600
+RAG means retrieval augmented
+
+34
+00:00:56,650 --> 00:00:57,210
+generation.
+
+35
+00:00:57,320 --> 00:00:59,260
+The AI checks outside sources before
+
+36
+00:00:59,300 --> 00:01:01,050
+answering, like open-book test mode.
+
+37
+00:01:01,200 --> 00:01:03,040
+An agent is AI that can take steps:
+
+38
+00:01:03,260 --> 00:01:05,570
+search, click, write, check, and keep
+
+39
+00:01:05,630 --> 00:01:06,530
+going toward a goal.
+
+40
+00:01:06,660 --> 00:01:07,560
+That's the cheat sheet.
+
+41
+00:01:07,620 --> 00:01:09,560
+AI is less magic when the words stop
+
+42
+00:01:09,610 --> 00:01:10,140
+being weird.
+
+43
+00:01:10,240 --> 00:01:12,070
+If you like AI explanation videos like
+
+44
+00:01:12,110 --> 00:01:13,870
+this, like, subscribe, and follow for
+
+45
+00:01:13,930 --> 00:01:14,250
+more.

@@ -31,7 +31,8 @@ Read these references as needed:
    writing the script.
 2. Create `videos/<slug>/` with `assets/avatar`, `assets/captions`,
    `assets/motion`, `assets/motion/broll`, `assets/motion/mobile`,
-   `assets/motion/maps`, `assets/thumbnail`, `renders`, and `snapshots`.
+   `assets/motion/maps`, `assets/sfx`, `assets/thumbnail`, `renders`, and
+   `snapshots`.
 3. Use root `.env` only. Do not create a per-video `.env` or `.env.example`.
 4. Generate the HeyGen Avatar III video via HeyGen v2, using root values:
    `HEYGEN_API_KEY`, `HEYGEN_AVATAR_ID`, `HEYGEN_VOICE_ID`,
@@ -50,13 +51,20 @@ Read these references as needed:
 11. Add render-stable avatar shadows with `filter: drop-shadow(...)`, not only
    `box-shadow`.
 12. Round avatar corners with per-placement `border-radius` values.
-13. Generate and save a 9:16 thumbnail asset, then optionally overlay it at the
-    beginning for `0.5s` with a fade/zoom-out.
-14. Run `oxfmt`, `hyperframes lint`, `hyperframes validate --no-contrast`, and
+13. Copy reusable SFX from `videos/_shared/sfx` into `videos/<slug>/assets/sfx`
+    and add subtle timed audio clips for whooshes, pings, pongs, pops, clicks,
+    and CTA chimes. Keep SFX quiet under the avatar narration.
+14. Write `videos/<slug>/thumbnail-prompt.md` before generating thumbnail art.
+    Include the exact baked-in headline text, secondary text, visual subject,
+    palette, constraints, and avoid list. Then generate or render a
+    project-bound 9:16 thumbnail asset under `assets/thumbnail/`. If the
+    thumbnail should appear in the video, add it as a first-frame overlay clip
+    for `0.5s` with a fade/zoom-out.
+15. Run `oxfmt`, `hyperframes lint`, `hyperframes validate --no-contrast`, and
     targeted `hyperframes snapshot` checks before handing back. Always inspect
     frames where website B-roll appears for size, scroll speed, load/cookie
     artifacts, and overlap with avatar/captions.
-15. Provide YouTube upload metadata: catchy title, SEO description, hashtags,
+16. Provide YouTube upload metadata: catchy title, SEO description, hashtags,
     upload tags, and a recommended upload time in the target audience timezone.
 
 ## Mandatory Local Conventions

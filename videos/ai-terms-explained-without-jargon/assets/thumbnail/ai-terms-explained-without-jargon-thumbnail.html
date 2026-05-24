@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        margin: 0;
+        overflow: hidden;
+        background: #f7fbff;
+        font-family: Inter, Arial, Helvetica, sans-serif;
+      }
+
+      .thumb {
+        position: relative;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background:
+          linear-gradient(90deg, rgba(29, 108, 255, 0.08) 1px, transparent 1px),
+          linear-gradient(0deg, rgba(255, 62, 165, 0.06) 1px, transparent 1px),
+          radial-gradient(circle at 15% 20%, rgba(255, 138, 29, 0.2), transparent 26%),
+          radial-gradient(circle at 88% 32%, rgba(255, 62, 165, 0.18), transparent 24%),
+          linear-gradient(135deg, #f9fcff 0%, #eaf4ff 52%, #fff5ec 100%);
+        background-size:
+          92px 92px,
+          92px 92px,
+          100% 100%,
+          100% 100%,
+          100% 100%;
+        color: #121d32;
+      }
+
+      .slash {
+        position: absolute;
+        width: 1320px;
+        height: 118px;
+        left: -120px;
+        border-radius: 999px;
+        transform: rotate(-15deg);
+        opacity: 0.72;
+      }
+
+      .slash.blue {
+        top: 620px;
+        background: linear-gradient(90deg, transparent, rgba(29, 108, 255, 0.22), transparent);
+      }
+
+      .slash.pink {
+        top: 1180px;
+        transform: rotate(13deg);
+        background: linear-gradient(90deg, transparent, rgba(255, 62, 165, 0.2), transparent);
+      }
+
+      .top-badge {
+        position: absolute;
+        top: 86px;
+        left: 72px;
+        padding: 18px 28px 16px;
+        border: 4px solid rgba(29, 108, 255, 0.22);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.86);
+        color: #0e4dbe;
+        font-size: 34px;
+        font-weight: 950;
+        letter-spacing: 0;
+        box-shadow: 0 18px 48px rgba(29, 108, 255, 0.14);
+      }
+
+      .headline {
+        position: absolute;
+        left: 58px;
+        right: 58px;
+        top: 170px;
+        z-index: 6;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        text-align: left;
+      }
+
+      .headline span {
+        display: block;
+        width: max-content;
+        max-width: 100%;
+        padding: 16px 28px 18px;
+        border-radius: 34px;
+        background: #ffffff;
+        color: #121d32;
+        font-size: 126px;
+        line-height: 0.86;
+        font-weight: 1000;
+        letter-spacing: 0;
+        box-shadow:
+          0 28px 68px rgba(22, 32, 51, 0.18),
+          inset 0 0 0 4px rgba(221, 235, 255, 0.88);
+      }
+
+      .headline .blue {
+        color: #0e4dbe;
+      }
+
+      .headline .pink {
+        color: #b0005c;
+      }
+
+      .no-jargon {
+        position: absolute;
+        top: 552px;
+        left: 74px;
+        z-index: 8;
+        padding: 18px 28px 16px;
+        border-radius: 26px;
+        background: #121d32;
+        color: #ffffff;
+        font-size: 66px;
+        line-height: 0.92;
+        font-weight: 1000;
+        letter-spacing: 0;
+        box-shadow:
+          0 28px 70px rgba(18, 29, 50, 0.32),
+          0 0 0 5px rgba(255, 255, 255, 0.88);
+      }
+
+      .cube-wrap {
+        position: absolute;
+        left: 232px;
+        top: 720px;
+        width: 620px;
+        height: 560px;
+        z-index: 4;
+        filter: drop-shadow(0 48px 78px rgba(29, 108, 255, 0.25));
+      }
+
+      .cube {
+        position: absolute;
+        left: 98px;
+        top: 38px;
+        width: 424px;
+        height: 424px;
+        border-radius: 72px;
+        background:
+          linear-gradient(145deg, rgba(255, 255, 255, 0.78), rgba(233, 242, 255, 0.88)),
+          linear-gradient(135deg, #ffffff, #ddecff);
+        border: 7px solid #ffffff;
+        box-shadow:
+          0 52px 120px rgba(29, 108, 255, 0.26),
+          inset -28px -34px 64px rgba(29, 108, 255, 0.16),
+          inset 22px 22px 48px rgba(255, 255, 255, 0.86);
+        transform: rotate(-7deg);
+      }
+
+      .cube::before,
+      .cube::after {
+        content: "";
+        position: absolute;
+        border-radius: 54px;
+        border: 5px solid rgba(255, 255, 255, 0.76);
+      }
+
+      .cube::before {
+        inset: 30px;
+        background: rgba(255, 255, 255, 0.26);
+      }
+
+      .cube::after {
+        inset: 78px;
+        border-color: rgba(29, 108, 255, 0.22);
+      }
+
+      .ai {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #0e4dbe;
+        font-size: 174px;
+        line-height: 1;
+        font-weight: 1000;
+        letter-spacing: 0;
+        text-shadow: 0 10px 0 rgba(255, 255, 255, 0.9);
+      }
+
+      .spark {
+        position: absolute;
+        border-radius: 999px;
+        background: #ff8a1d;
+        box-shadow: 0 0 0 9px rgba(255, 138, 29, 0.16);
+      }
+
+      .spark.one {
+        width: 34px;
+        height: 34px;
+        left: 50px;
+        top: 86px;
+      }
+
+      .spark.two {
+        width: 48px;
+        height: 48px;
+        right: 22px;
+        top: 230px;
+        background: #ff3ea5;
+        box-shadow: 0 0 0 10px rgba(255, 62, 165, 0.14);
+      }
+
+      .spark.three {
+        width: 28px;
+        height: 28px;
+        left: 80px;
+        bottom: 62px;
+        background: #1d6cff;
+        box-shadow: 0 0 0 9px rgba(29, 108, 255, 0.14);
+      }
+
+      .term-card {
+        position: absolute;
+        z-index: 5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 154px;
+        height: 78px;
+        padding: 0 24px;
+        border: 4px solid #ffffff;
+        border-radius: 26px;
+        background: rgba(255, 255, 255, 0.94);
+        color: #121d32;
+        font-size: 34px;
+        font-weight: 1000;
+        box-shadow: 0 24px 56px rgba(22, 32, 51, 0.18);
+      }
+
+      .llm {
+        left: 58px;
+        top: 684px;
+        color: #0e4dbe;
+        transform: rotate(-10deg);
+      }
+
+      .rag {
+        right: 54px;
+        top: 688px;
+        color: #b0005c;
+        transform: rotate(8deg);
+      }
+
+      .tokens {
+        left: 58px;
+        top: 1198px;
+        color: #974300;
+        transform: rotate(7deg);
+      }
+
+      .prompt {
+        right: 40px;
+        top: 1184px;
+        color: #0e4dbe;
+        transform: rotate(-8deg);
+      }
+
+      .agent {
+        left: 388px;
+        top: 1292px;
+        color: #b0005c;
+        transform: rotate(3deg);
+      }
+
+      .explain-card {
+        position: absolute;
+        left: 74px;
+        right: 74px;
+        bottom: 178px;
+        z-index: 7;
+        min-height: 252px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 34px 52px;
+        border: 5px solid #ffffff;
+        border-radius: 40px;
+        background: rgba(255, 255, 255, 0.92);
+        box-shadow:
+          0 36px 86px rgba(22, 32, 51, 0.2),
+          inset 0 0 0 3px rgba(221, 235, 255, 0.84);
+      }
+
+      .plain-text {
+        color: #121d32;
+        font-size: 72px;
+        line-height: 0.94;
+        font-weight: 1000;
+        text-align: center;
+      }
+
+      .plain-text strong {
+        color: #0e4dbe;
+      }
+
+      .footer-safe {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 120px;
+        background: linear-gradient(0deg, rgba(247, 251, 255, 0.86), transparent);
+      }
+    </style>
+  </head>
+  <body>
+    <main class="thumb" aria-label="AI terms thumbnail">
+      <div class="slash blue"></div>
+      <div class="slash pink"></div>
+      <div class="top-badge">AI GLOSSARY</div>
+
+      <h1 class="headline">
+        <span><b class="blue">AI</b> TERMS</span>
+        <span>MADE <b class="pink">EASY</b></span>
+      </h1>
+
+      <div class="no-jargon">NO JARGON</div>
+
+      <div class="term-card llm">LLM</div>
+      <div class="term-card rag">RAG</div>
+      <div class="term-card tokens">TOKENS</div>
+      <div class="term-card prompt">PROMPT</div>
+      <div class="term-card agent">AGENT</div>
+
+      <section class="cube-wrap">
+        <div class="spark one"></div>
+        <div class="spark two"></div>
+        <div class="spark three"></div>
+        <div class="cube"><div class="ai">AI</div></div>
+      </section>
+
+      <section class="explain-card">
+        <div class="plain-text">Confusing terms,<br /><strong>plain English.</strong></div>
+      </section>
+
+      <div class="footer-safe"></div>
+    </main>
+  </body>
+</html>

@@ -35,12 +35,23 @@
         inset: 0;
       }
 
+      .scene {
+        z-index: 4;
+        overflow: hidden;
+        opacity: 0;
+        visibility: hidden;
+        transform-style: preserve-3d;
+      }
+
       .bg {
         background:
           linear-gradient(90deg, rgba(29, 108, 255, 0.05) 1px, transparent 1px),
           linear-gradient(0deg, rgba(255, 62, 165, 0.04) 1px, transparent 1px),
           linear-gradient(135deg, #f7fbff 0%, #eef6ff 48%, #fff8f2 100%);
-        background-size: 88px 88px, 88px 88px, 100% 100%;
+        background-size:
+          88px 88px,
+          88px 88px,
+          100% 100%;
         overflow: hidden;
       }
 
@@ -53,9 +64,19 @@
         transform: rotate(-18deg);
       }
 
-      .bg-line.line-1 { top: 260px; }
-      .bg-line.line-2 { top: 970px; transform: rotate(15deg); background: linear-gradient(90deg, transparent, rgba(255, 62, 165, 0.22), transparent); }
-      .bg-line.line-3 { top: 1490px; transform: rotate(-9deg); background: linear-gradient(90deg, transparent, rgba(255, 138, 29, 0.26), transparent); }
+      .bg-line.line-1 {
+        top: 260px;
+      }
+      .bg-line.line-2 {
+        top: 970px;
+        transform: rotate(15deg);
+        background: linear-gradient(90deg, transparent, rgba(255, 62, 165, 0.22), transparent);
+      }
+      .bg-line.line-3 {
+        top: 1490px;
+        transform: rotate(-9deg);
+        background: linear-gradient(90deg, transparent, rgba(255, 138, 29, 0.26), transparent);
+      }
 
       .bg-chip {
         position: absolute;
@@ -68,10 +89,24 @@
         transform-style: preserve-3d;
       }
 
-      .chip-a { left: 72px; top: 180px; }
-      .chip-b { right: 86px; top: 420px; border-color: rgba(255, 62, 165, 0.22); }
-      .chip-c { left: 120px; bottom: 350px; border-color: rgba(255, 138, 29, 0.24); }
-      .chip-d { right: 120px; bottom: 150px; }
+      .chip-a {
+        left: 72px;
+        top: 180px;
+      }
+      .chip-b {
+        right: 86px;
+        top: 420px;
+        border-color: rgba(255, 62, 165, 0.22);
+      }
+      .chip-c {
+        left: 120px;
+        bottom: 350px;
+        border-color: rgba(255, 138, 29, 0.24);
+      }
+      .chip-d {
+        right: 120px;
+        bottom: 150px;
+      }
 
       .scene-content {
         position: relative;
@@ -178,9 +213,15 @@
         box-shadow: 0 26px 60px rgba(22, 32, 51, 0.28);
       }
 
-      .accent-pink { color: #b0005c; }
-      .accent-orange { color: #974300; }
-      .accent-blue { color: #0e4dbe; }
+      .accent-pink {
+        color: #b0005c;
+      }
+      .accent-orange {
+        color: #974300;
+      }
+      .accent-blue {
+        color: #0e4dbe;
+      }
 
       .icon-cloud {
         position: relative;
@@ -213,9 +254,18 @@
         font-size: 42px;
       }
 
-      .icon-blue { background: #e9f2ff; color: #0e4dbe; }
-      .icon-pink { background: #fff0f8; color: #b0005c; }
-      .icon-orange { background: #fff3e6; color: #974300; }
+      .icon-blue {
+        background: #e9f2ff;
+        color: #0e4dbe;
+      }
+      .icon-pink {
+        background: #fff0f8;
+        color: #b0005c;
+      }
+      .icon-orange {
+        background: #fff3e6;
+        color: #974300;
+      }
 
       .big-cube {
         width: 360px;
@@ -274,7 +324,12 @@
         position: absolute;
         height: 8px;
         border-radius: 999px;
-        background: linear-gradient(90deg, rgba(29, 108, 255, 0), rgba(29, 108, 255, 0.8), rgba(255, 62, 165, 0.82));
+        background: linear-gradient(
+          90deg,
+          rgba(29, 108, 255, 0),
+          rgba(29, 108, 255, 0.8),
+          rgba(255, 62, 165, 0.82)
+        );
         transform-origin: center left;
       }
 
@@ -310,8 +365,12 @@
         top: 104px;
       }
 
-      .engine::before { left: -50px; }
-      .engine::after { right: -50px; }
+      .engine::before {
+        left: -50px;
+      }
+      .engine::after {
+        right: -50px;
+      }
 
       .pattern-line {
         position: absolute;
@@ -574,6 +633,74 @@
         font-size: 24px;
         font-weight: 850;
       }
+
+      .cta-line {
+        padding: 18px 20px;
+        border-radius: 24px;
+        background: #fff0f8;
+        border: 3px solid rgba(255, 62, 165, 0.28);
+        color: #b0005c;
+        font-size: 36px;
+        line-height: 1.05;
+        font-weight: 950;
+        box-shadow: 0 20px 48px rgba(255, 62, 165, 0.18);
+      }
+
+      .avatar-shot {
+        position: absolute;
+        inset: auto;
+        top: 188px;
+        right: 54px;
+        width: 258px;
+        height: 334px;
+        z-index: 24;
+        object-fit: cover;
+        object-position: center center;
+        overflow: hidden;
+        border-radius: 28px;
+        background: #ffffff;
+        box-shadow:
+          0 38px 92px rgba(21, 22, 31, 0.42),
+          0 0 46px rgba(255, 62, 165, 0.2);
+        filter: drop-shadow(0 32px 46px rgba(21, 22, 31, 0.42))
+          drop-shadow(0 0 34px rgba(29, 108, 255, 0.2));
+        transform-style: preserve-3d;
+        will-change: transform, opacity;
+      }
+
+      .avatar-pip {
+        transform: rotate(1.5deg);
+      }
+
+      .thumbnail-overlay {
+        z-index: 90;
+        overflow: hidden;
+        background: #f7fbff;
+        transform-origin: center;
+        transform-style: preserve-3d;
+        will-change: transform, opacity;
+      }
+
+      .thumbnail-overlay::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: url("assets/thumbnail/ai-terms-explained-without-jargon-thumbnail.png");
+        background-position: center;
+        background-size: cover;
+        filter: blur(30px) saturate(1.08);
+        transform: scale(1.08);
+        opacity: 0.38;
+      }
+
+      .thumb-hero {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: drop-shadow(0 34px 82px rgba(22, 32, 51, 0.18));
+      }
     </style>
   </head>
   <body>
@@ -581,11 +708,18 @@
       id="root"
       data-composition-id="ai-terms-short"
       data-start="0"
-      data-duration="60"
+      data-duration="74.4"
       data-width="1080"
       data-height="1920"
     >
-      <div id="bg" class="clip bg" data-start="0" data-duration="60" data-track-index="0" data-layout-ignore>
+      <div
+        id="bg"
+        class="clip bg"
+        data-start="0"
+        data-duration="74.4"
+        data-track-index="0"
+        data-layout-ignore
+      >
         <div class="bg-line line-1"></div>
         <div class="bg-line line-2"></div>
         <div class="bg-line line-3"></div>
@@ -595,33 +729,369 @@
         <div class="bg-chip chip-d"></div>
       </div>
 
-      <section id="scene-hook" class="clip scene" data-start="0" data-duration="3" data-track-index="1">
+      <div
+        id="opening-thumbnail"
+        class="clip thumbnail-overlay"
+        data-start="0"
+        data-duration="0.5"
+        data-track-index="80"
+        data-layout-ignore
+      >
+        <img
+          class="thumb-hero"
+          src="assets/thumbnail/ai-terms-explained-without-jargon-thumbnail.png"
+          alt="AI Terms Made Easy thumbnail"
+          draggable="false"
+        />
+      </div>
+
+      <audio
+        id="narration"
+        class="clip"
+        data-start="0"
+        data-duration="74.4"
+        data-track-index="30"
+        data-volume="1"
+        src="assets/avatar/heygen-avatar-16x9.mp4"
+      ></audio>
+
+      <video
+        id="avatar-pip"
+        class="clip avatar-shot avatar-pip"
+        data-start="0"
+        data-duration="74.4"
+        data-track-index="31"
+        src="assets/avatar/heygen-avatar-16x9.mp4"
+        muted
+        playsinline
+      ></video>
+
+      <audio
+        id="sfx-open-chime"
+        class="clip"
+        data-start="0.22"
+        data-duration="0.5"
+        data-track-index="44"
+        data-volume="0.55"
+        src="assets/sfx/chime-soft.wav"
+      ></audio>
+      <audio
+        id="sfx-hook-pop"
+        class="clip"
+        data-start="0.34"
+        data-duration="0.14"
+        data-track-index="42"
+        data-volume="0.45"
+        src="assets/sfx/pop-soft.wav"
+      ></audio>
+      <audio
+        id="sfx-whoosh-ai"
+        class="clip"
+        data-start="4.72"
+        data-duration="0.55"
+        data-track-index="40"
+        data-volume="0.42"
+        src="assets/sfx/whoosh-soft.wav"
+      ></audio>
+      <audio
+        id="sfx-ping-ai"
+        class="clip"
+        data-start="5.04"
+        data-duration="0.28"
+        data-track-index="41"
+        data-volume="0.55"
+        src="assets/sfx/ping-soft.wav"
+      ></audio>
+      <audio
+        id="sfx-whoosh-model"
+        class="clip"
+        data-start="11.35"
+        data-duration="0.55"
+        data-track-index="40"
+        data-volume="0.38"
+        src="assets/sfx/whoosh-soft.wav"
+      ></audio>
+      <audio
+        id="sfx-pong-model"
+        class="clip"
+        data-start="11.84"
+        data-duration="0.34"
+        data-track-index="43"
+        data-volume="0.5"
+        src="assets/sfx/pong-soft.wav"
+      ></audio>
+      <audio
+        id="sfx-whoosh-llm"
+        class="clip"
+        data-start="15.38"
+        data-duration="0.55"
+        data-track-index="40"
+        data-volume="0.38"
+        src="assets/sfx/whoosh-soft.wav"
+      ></audio>
+      <audio
+        id="sfx-ping-llm"
+        class="clip"
+        data-start="15.82"
+        data-duration="0.28"
+        data-track-index="41"
+        data-volume="0.52"
+        src="assets/sfx/ping-soft.wav"
+      ></audio>
+      <audio
+        id="sfx-whoosh-prompt"
+        class="clip"
+        data-start="21.35"
+        data-duration="0.55"
+        data-track-index="40"
+        data-volume="0.38"
+        src="assets/sfx/whoosh-soft.wav"
+      ></audio>
+      <audio
+        id="sfx-click-prompt-a"
+        class="clip"
+        data-start="21.98"
+        data-duration="0.06"
+        data-track-index="45"
+        data-volume="0.6"
+        src="assets/sfx/click-soft.wav"
+      ></audio>
+      <audio
+        id="sfx-click-prompt-b"
+        class="clip"
+        data-start="22.58"
+        data-duration="0.06"
+        data-track-index="45"
+        data-volume="0.6"
+        src="assets/sfx/click-soft.wav"
+      ></audio>
+      <audio
+        id="sfx-ping-prompt"
+        class="clip"
+        data-start="23.02"
+        data-duration="0.28"
+        data-track-index="41"
+        data-volume="0.52"
+        src="assets/sfx/ping-soft.wav"
+      ></audio>
+      <audio
+        id="sfx-whoosh-tokens"
+        class="clip"
+        data-start="26.93"
+        data-duration="0.55"
+        data-track-index="40"
+        data-volume="0.38"
+        src="assets/sfx/whoosh-soft.wav"
+      ></audio>
+      <audio
+        id="sfx-pop-tokens"
+        class="clip"
+        data-start="27.34"
+        data-duration="0.14"
+        data-track-index="42"
+        data-volume="0.45"
+        src="assets/sfx/pop-soft.wav"
+      ></audio>
+      <audio
+        id="sfx-whoosh-context"
+        class="clip"
+        data-start="32.49"
+        data-duration="0.55"
+        data-track-index="40"
+        data-volume="0.38"
+        src="assets/sfx/whoosh-soft.wav"
+      ></audio>
+      <audio
+        id="sfx-ping-context"
+        class="clip"
+        data-start="33.1"
+        data-duration="0.28"
+        data-track-index="41"
+        data-volume="0.48"
+        src="assets/sfx/ping-soft.wav"
+      ></audio>
+      <audio
+        id="sfx-whoosh-training"
+        class="clip"
+        data-start="37.65"
+        data-duration="0.55"
+        data-track-index="40"
+        data-volume="0.38"
+        src="assets/sfx/whoosh-soft.wav"
+      ></audio>
+      <audio
+        id="sfx-pong-training"
+        class="clip"
+        data-start="38.18"
+        data-duration="0.34"
+        data-track-index="43"
+        data-volume="0.46"
+        src="assets/sfx/pong-soft.wav"
+      ></audio>
+      <audio
+        id="sfx-whoosh-hallucination"
+        class="clip"
+        data-start="42.91"
+        data-duration="0.55"
+        data-track-index="40"
+        data-volume="0.38"
+        src="assets/sfx/whoosh-soft.wav"
+      ></audio>
+      <audio
+        id="sfx-pop-hallucination"
+        class="clip"
+        data-start="43.64"
+        data-duration="0.14"
+        data-track-index="42"
+        data-volume="0.5"
+        src="assets/sfx/pop-soft.wav"
+      ></audio>
+      <audio
+        id="sfx-whoosh-embeddings"
+        class="clip"
+        data-start="48.88"
+        data-duration="0.55"
+        data-track-index="40"
+        data-volume="0.38"
+        src="assets/sfx/whoosh-soft.wav"
+      ></audio>
+      <audio
+        id="sfx-ping-embeddings"
+        class="clip"
+        data-start="49.52"
+        data-duration="0.28"
+        data-track-index="41"
+        data-volume="0.48"
+        src="assets/sfx/ping-soft.wav"
+      ></audio>
+      <audio
+        id="sfx-whoosh-rag"
+        class="clip"
+        data-start="54.41"
+        data-duration="0.55"
+        data-track-index="40"
+        data-volume="0.38"
+        src="assets/sfx/whoosh-soft.wav"
+      ></audio>
+      <audio
+        id="sfx-pong-rag"
+        class="clip"
+        data-start="54.95"
+        data-duration="0.34"
+        data-track-index="43"
+        data-volume="0.46"
+        src="assets/sfx/pong-soft.wav"
+      ></audio>
+      <audio
+        id="sfx-whoosh-agent"
+        class="clip"
+        data-start="61.14"
+        data-duration="0.55"
+        data-track-index="40"
+        data-volume="0.38"
+        src="assets/sfx/whoosh-soft.wav"
+      ></audio>
+      <audio
+        id="sfx-ping-agent"
+        class="clip"
+        data-start="61.8"
+        data-duration="0.28"
+        data-track-index="41"
+        data-volume="0.48"
+        src="assets/sfx/ping-soft.wav"
+      ></audio>
+      <audio
+        id="sfx-whoosh-cta"
+        class="clip"
+        data-start="66.6"
+        data-duration="0.55"
+        data-track-index="40"
+        data-volume="0.42"
+        src="assets/sfx/whoosh-soft.wav"
+      ></audio>
+      <audio
+        id="sfx-chime-cta"
+        class="clip"
+        data-start="67.18"
+        data-duration="0.5"
+        data-track-index="44"
+        data-volume="0.55"
+        src="assets/sfx/chime-soft.wav"
+      ></audio>
+      <audio
+        id="sfx-ping-final"
+        class="clip"
+        data-start="72.05"
+        data-duration="0.28"
+        data-track-index="41"
+        data-volume="0.45"
+        src="assets/sfx/ping-soft.wav"
+      ></audio>
+
+      <section
+        id="scene-hook"
+        class="clip scene"
+        data-start="0"
+        data-duration="4.77"
+        data-track-index="1"
+      >
         <div class="popup-badge badge-pink">AI TERMS, PLAIN ENGLISH</div>
         <div class="scene-content">
           <div class="kicker">No jargon</div>
           <h1 class="headline">AI words sound complicated.</h1>
           <div class="icon-cloud" data-layout-allow-overflow>
-            <div class="mini-card icon-blue" style="left: 44px; top: 30px; width: 180px; height: 88px; font-size: 38px;">LLM</div>
-            <div class="mini-card icon-pink" style="right: 18px; top: 214px; width: 180px; height: 88px; font-size: 38px;">RAG</div>
-            <div class="mini-card icon-orange" style="right: 50px; top: 56px; width: 240px; height: 88px; font-size: 34px;">TOKENS</div>
+            <div
+              class="mini-card icon-blue"
+              style="left: 44px; top: 30px; width: 180px; height: 88px; font-size: 38px"
+            >
+              LLM
+            </div>
+            <div
+              class="mini-card icon-pink"
+              style="right: 18px; top: 214px; width: 180px; height: 88px; font-size: 38px"
+            >
+              RAG
+            </div>
+            <div
+              class="mini-card icon-orange"
+              style="right: 50px; top: 56px; width: 240px; height: 88px; font-size: 34px"
+            >
+              TOKENS
+            </div>
             <div class="big-cube center-cube">AI</div>
-            <div class="mini-card icon-blue" style="left: 110px; bottom: 26px; width: 230px; height: 88px; font-size: 34px;">AGENTS</div>
-            <div class="mini-card icon-pink" style="right: 110px; bottom: 10px; width: 220px; height: 88px; font-size: 34px;">MODEL</div>
+            <div
+              class="mini-card icon-blue"
+              style="left: 110px; bottom: 26px; width: 230px; height: 88px; font-size: 34px"
+            >
+              AGENTS
+            </div>
+            <div
+              class="mini-card icon-pink"
+              style="right: 110px; bottom: 10px; width: 220px; height: 88px; font-size: 34px"
+            >
+              MODEL
+            </div>
           </div>
         </div>
         <div class="caption">Normal ideas, fancy labels.</div>
       </section>
 
-      <section id="scene-ai" class="clip scene" data-start="3" data-duration="4" data-track-index="1">
+      <section
+        id="scene-ai"
+        class="clip scene"
+        data-start="4.78"
+        data-duration="6.62"
+        data-track-index="1"
+      >
         <div class="popup-badge">AI = software that does smart tasks</div>
         <div class="scene-content">
           <div class="kicker">Term 01</div>
           <div class="icon-cloud" data-layout-allow-overflow>
             <div class="big-cube center-cube">AI</div>
-            <div class="icon-card icon-blue" style="left: 20px; top: 250px;">WRITE</div>
-            <div class="icon-card icon-pink" style="left: 260px; top: 340px;">SEE</div>
-            <div class="icon-card icon-orange" style="right: 250px; top: 340px;">SORT</div>
-            <div class="icon-card icon-blue" style="right: 20px; top: 250px;">DO</div>
+            <div class="icon-card icon-blue" style="left: 20px; top: 250px">WRITE</div>
+            <div class="icon-card icon-pink" style="left: 260px; top: 340px">SEE</div>
+            <div class="icon-card icon-orange" style="right: 250px; top: 340px">SORT</div>
+            <div class="icon-card icon-blue" style="right: 20px; top: 250px">DO</div>
           </div>
           <div class="term-card">
             <div class="term">AI</div>
@@ -631,20 +1101,58 @@
         <div class="caption">Software doing smart tasks.</div>
       </section>
 
-      <section id="scene-model" class="clip scene" data-start="7" data-duration="5" data-track-index="1">
+      <section
+        id="scene-model"
+        class="clip scene"
+        data-start="11.41"
+        data-duration="4.02"
+        data-track-index="1"
+      >
         <div class="popup-badge badge-orange">Model = pattern engine</div>
         <div class="scene-content">
           <div class="kicker">Term 02</div>
           <div class="icon-cloud" data-layout-allow-overflow>
-            <div class="pattern-line" style="left: 216px; top: 86px; width: 52px; transform: rotate(34deg);"></div>
-            <div class="pattern-line" style="left: 678px; top: 136px; width: 64px; transform: rotate(-40deg);"></div>
-            <div class="pattern-line" style="left: 216px; top: 318px; width: 52px; transform: rotate(-34deg);"></div>
-            <div class="pattern-line" style="left: 678px; top: 306px; width: 64px; transform: rotate(32deg);"></div>
+            <div
+              class="pattern-line"
+              style="left: 216px; top: 86px; width: 52px; transform: rotate(34deg)"
+            ></div>
+            <div
+              class="pattern-line"
+              style="left: 678px; top: 136px; width: 64px; transform: rotate(-40deg)"
+            ></div>
+            <div
+              class="pattern-line"
+              style="left: 216px; top: 318px; width: 52px; transform: rotate(-34deg)"
+            ></div>
+            <div
+              class="pattern-line"
+              style="left: 678px; top: 306px; width: 64px; transform: rotate(32deg)"
+            ></div>
             <div class="engine">MODEL</div>
-            <div class="mini-card icon-blue ex" style="left: 30px; top: 0px; width: 190px; height: 96px; font-size: 32px;">TEXT</div>
-            <div class="mini-card icon-pink ex" style="right: 10px; top: 18px; width: 190px; height: 96px; font-size: 32px;">IMAGE</div>
-            <div class="mini-card icon-orange ex" style="left: 30px; bottom: 15px; width: 190px; height: 96px; font-size: 32px;">CHART</div>
-            <div class="mini-card icon-blue ex" style="right: 10px; bottom: 2px; width: 190px; height: 96px; font-size: 32px;">Q + A</div>
+            <div
+              class="mini-card icon-blue ex"
+              style="left: 30px; top: 0px; width: 190px; height: 96px; font-size: 32px"
+            >
+              TEXT
+            </div>
+            <div
+              class="mini-card icon-pink ex"
+              style="right: 10px; top: 18px; width: 190px; height: 96px; font-size: 32px"
+            >
+              IMAGE
+            </div>
+            <div
+              class="mini-card icon-orange ex"
+              style="left: 30px; bottom: 15px; width: 190px; height: 96px; font-size: 32px"
+            >
+              CHART
+            </div>
+            <div
+              class="mini-card icon-blue ex"
+              style="right: 10px; bottom: 2px; width: 190px; height: 96px; font-size: 32px"
+            >
+              Q + A
+            </div>
           </div>
           <div class="term-card">
             <div class="term">Model</div>
@@ -654,17 +1162,23 @@
         <div class="caption">The engine underneath.</div>
       </section>
 
-      <section id="scene-llm" class="clip scene" data-start="12" data-duration="5" data-track-index="1">
+      <section
+        id="scene-llm"
+        class="clip scene"
+        data-start="15.44"
+        data-duration="5.96"
+        data-track-index="1"
+      >
         <div class="popup-badge">LLM = word prediction machine</div>
         <div class="scene-content">
           <div class="kicker">Term 03</div>
           <div class="icon-cloud" data-layout-allow-overflow>
-            <div class="word-tile icon-blue" style="left: 40px; top: 80px;">The</div>
-            <div class="word-tile icon-pink" style="left: 260px; top: 145px;">AI</div>
-            <div class="word-tile icon-orange" style="left: 480px; top: 220px;">can</div>
-            <div class="word-tile icon-blue option" style="left: 690px; top: 100px;">chat</div>
-            <div class="word-tile icon-pink option" style="left: 710px; top: 245px;">write</div>
-            <div class="word-tile icon-orange option" style="left: 650px; top: 390px;">reason</div>
+            <div class="word-tile icon-blue" style="left: 40px; top: 80px">The</div>
+            <div class="word-tile icon-pink" style="left: 260px; top: 145px">AI</div>
+            <div class="word-tile icon-orange" style="left: 480px; top: 220px">can</div>
+            <div class="word-tile icon-blue option" style="left: 690px; top: 100px">chat</div>
+            <div class="word-tile icon-pink option" style="left: 710px; top: 245px">write</div>
+            <div class="word-tile icon-orange option" style="left: 650px; top: 390px">reason</div>
           </div>
           <div class="term-card">
             <div class="term">LLM</div>
@@ -674,14 +1188,20 @@
         <div class="caption">That is why it chats.</div>
       </section>
 
-      <section id="scene-prompt" class="clip scene" data-start="17" data-duration="5" data-track-index="1">
+      <section
+        id="scene-prompt"
+        class="clip scene"
+        data-start="21.41"
+        data-duration="5.57"
+        data-track-index="1"
+      >
         <div class="popup-badge badge-pink">Prompt = your instruction</div>
         <div class="scene-content">
           <div class="kicker">Term 04</div>
-          <div class="prompt-box">
+          <div class="prompt-box" data-layout-allow-overflow>
             <div class="input-line messy">"Explain AI stuff?"</div>
             <div class="answer-card bad-answer">Vague answer...</div>
-            <div class="input-line clean" style="margin-top: 28px;">"Explain AI terms simply."</div>
+            <div class="input-line clean" style="margin-top: 28px">"Explain AI terms simply."</div>
             <div class="answer-card good-answer">Clear answer, useful examples.</div>
           </div>
           <div class="term-card">
@@ -692,38 +1212,55 @@
         <div class="caption">Better prompt, better answer.</div>
       </section>
 
-      <section id="scene-tokens" class="clip scene" data-start="22" data-duration="5" data-track-index="1">
+      <section
+        id="scene-tokens"
+        class="clip scene"
+        data-start="26.99"
+        data-duration="5.55"
+        data-track-index="1"
+      >
         <div class="popup-badge">Tokens = text chunks</div>
         <div class="scene-content">
           <div class="kicker">Term 05</div>
           <div class="icon-cloud" data-layout-allow-overflow>
-            <div class="token icon-blue" style="left: 86px; top: 138px;">AI</div>
-            <div class="token icon-pink" style="left: 248px; top: 138px;">read</div>
-            <div class="token icon-orange" style="left: 410px; top: 138px;">s</div>
-            <div class="token icon-blue" style="left: 572px; top: 138px;">text</div>
-            <div class="token icon-pink" style="left: 734px; top: 138px;">.</div>
-            <div class="trail" style="left: 118px; top: 254px; width: 720px;"></div>
+            <div class="token icon-blue" style="left: 86px; top: 138px">AI</div>
+            <div class="token icon-pink" style="left: 248px; top: 138px">read</div>
+            <div class="token icon-orange" style="left: 410px; top: 138px">s</div>
+            <div class="token icon-blue" style="left: 572px; top: 138px">text</div>
+            <div class="token icon-pink" style="left: 734px; top: 138px">.</div>
+            <div class="trail" style="left: 118px; top: 254px; width: 720px"></div>
           </div>
           <div class="term-card">
             <div class="term">Tokens</div>
-            <div class="definition">Tiny chunks of text. Sometimes whole words, sometimes pieces.</div>
+            <div class="definition">
+              Tiny chunks of text. Sometimes whole words, sometimes pieces.
+            </div>
           </div>
         </div>
         <div class="caption">Tiny chunks of text.</div>
       </section>
 
-      <section id="scene-context" class="clip scene" data-start="27" data-duration="5" data-track-index="1">
+      <section
+        id="scene-context"
+        class="clip scene"
+        data-start="32.55"
+        data-duration="5.15"
+        data-track-index="1"
+      >
         <div class="popup-badge badge-orange">Context window = short-term memory</div>
         <div class="scene-content">
           <div class="kicker">Term 06</div>
           <div class="window">
-            <div class="window-bar"><span class="dot"></span><span class="dot" style="background:#ff8a1d"></span><span class="dot" style="background:#1d6cff"></span></div>
+            <div class="window-bar">
+              <span class="dot"></span><span class="dot" style="background: #ff8a1d"></span
+              ><span class="dot" style="background: #1d6cff"></span>
+            </div>
             <div class="memory-fill"><span></span></div>
-            <div class="token icon-blue mem" style="left: 48px; top: 176px;">start</div>
-            <div class="token icon-pink mem" style="left: 220px; top: 250px;">your</div>
-            <div class="token icon-orange mem" style="left: 392px; top: 176px;">chat</div>
-            <div class="token icon-blue mem" style="left: 564px; top: 250px;">more</div>
-            <div class="token icon-pink mem old" style="left: 736px; top: 176px;">old</div>
+            <div class="token icon-blue mem" style="left: 48px; top: 176px">start</div>
+            <div class="token icon-pink mem" style="left: 220px; top: 250px">your</div>
+            <div class="token icon-orange mem" style="left: 392px; top: 176px">chat</div>
+            <div class="token icon-blue mem" style="left: 564px; top: 250px">more</div>
+            <div class="token icon-pink mem old" style="left: 736px; top: 176px">old</div>
           </div>
           <div class="term-card">
             <div class="term">Context window</div>
@@ -733,7 +1270,13 @@
         <div class="caption">When full, old stuff drops.</div>
       </section>
 
-      <section id="scene-training" class="clip scene" data-start="32" data-duration="5" data-track-index="1">
+      <section
+        id="scene-training"
+        class="clip scene"
+        data-start="37.71"
+        data-duration="5.25"
+        data-track-index="1"
+      >
         <div class="popup-badge">Training = learning / Inference = answering</div>
         <div class="scene-content">
           <div class="kicker">Term 07</div>
@@ -755,16 +1298,34 @@
         <div class="caption">Learning versus answering.</div>
       </section>
 
-      <section id="scene-hallucination" class="clip scene" data-start="37" data-duration="6" data-track-index="1">
+      <section
+        id="scene-hallucination"
+        class="clip scene"
+        data-start="42.97"
+        data-duration="5.96"
+        data-track-index="1"
+      >
         <div class="popup-badge badge-pink">Hallucination = confident mistake</div>
         <div class="scene-content">
           <div class="kicker">Term 08</div>
           <div class="warning-card">
             <div class="warn-symbol">!</div>
             <div class="stamp">CONFIDENT?</div>
-            <h2 class="headline small" style="margin-top: 24px;">Sounds smooth. Gets facts wrong.</h2>
-            <div class="mini-card icon-pink q1" style="right: 160px; bottom: 34px; width: 110px; height: 90px; font-size: 52px;">?</div>
-            <div class="mini-card icon-orange q2" style="right: 34px; bottom: 98px; width: 110px; height: 90px; font-size: 52px;">?</div>
+            <h2 class="headline small" style="margin-top: 24px">
+              Sounds smooth. Gets facts wrong.
+            </h2>
+            <div
+              class="mini-card icon-pink q1"
+              style="right: 160px; bottom: 34px; width: 110px; height: 90px; font-size: 52px"
+            >
+              ?
+            </div>
+            <div
+              class="mini-card icon-orange q2"
+              style="right: 34px; bottom: 98px; width: 110px; height: 90px; font-size: 52px"
+            >
+              ?
+            </div>
           </div>
           <div class="term-card">
             <div class="term">Hallucination</div>
@@ -774,39 +1335,58 @@
         <div class="caption">Fluent nonsense happens.</div>
       </section>
 
-      <section id="scene-embeddings" class="clip scene" data-start="43" data-duration="6" data-track-index="1">
+      <section
+        id="scene-embeddings"
+        class="clip scene"
+        data-start="48.94"
+        data-duration="5.52"
+        data-track-index="1"
+      >
         <div class="popup-badge">Embeddings = meaning as numbers</div>
         <div class="scene-content">
           <div class="kicker">Term 09</div>
           <div class="vector-field">
-            <div class="vector-dot" style="left: 180px; top: 190px;"></div>
-            <div class="vector-dot" style="left: 260px; top: 270px; background:#ff3ea5;"></div>
-            <div class="vector-dot" style="left: 352px; top: 220px;"></div>
-            <div class="vector-dot" style="right: 220px; top: 350px; background:#ff8a1d;"></div>
-            <div class="vector-dot" style="right: 150px; top: 430px; background:#ff8a1d;"></div>
-            <div class="tag" style="left: 118px; top: 120px;">car</div>
-            <div class="tag" style="left: 300px; top: 310px;">vehicle</div>
-            <div class="tag" style="right: 100px; top: 280px;">recipe</div>
-            <div class="tag" style="left: 300px; bottom: 70px;">[0.42, 0.18, 0.91]</div>
+            <div class="vector-dot" style="left: 180px; top: 190px"></div>
+            <div class="vector-dot" style="left: 260px; top: 270px; background: #ff3ea5"></div>
+            <div class="vector-dot" style="left: 352px; top: 220px"></div>
+            <div class="vector-dot" style="right: 220px; top: 350px; background: #ff8a1d"></div>
+            <div class="vector-dot" style="right: 150px; top: 430px; background: #ff8a1d"></div>
+            <div class="tag" style="left: 118px; top: 120px">car</div>
+            <div class="tag" style="left: 300px; top: 310px">vehicle</div>
+            <div class="tag" style="right: 100px; top: 280px">recipe</div>
+            <div class="tag" style="left: 300px; bottom: 70px">[0.42, 0.18, 0.91]</div>
           </div>
           <div class="term-card">
             <div class="term">Embeddings</div>
-            <div class="definition">Meaning turned into numbers, so similar ideas sit near each other.</div>
+            <div class="definition">
+              Meaning turned into numbers, so similar ideas sit near each other.
+            </div>
           </div>
         </div>
         <div class="caption">Similar ideas cluster together.</div>
       </section>
 
-      <section id="scene-rag" class="clip scene" data-start="49" data-duration="5" data-track-index="1">
+      <section
+        id="scene-rag"
+        class="clip scene"
+        data-start="54.47"
+        data-duration="6.72"
+        data-track-index="1"
+      >
         <div class="popup-badge badge-orange">RAG = AI + reference material</div>
         <div class="scene-content">
           <div class="kicker">Term 10</div>
           <div class="icon-cloud" data-layout-allow-overflow>
-            <div class="source-card icon-blue" style="left: 337px; top: 18px; width: 250px;">QUESTION</div>
-            <div class="trail" style="left: 140px; top: 218px; width: 650px; transform: rotate(0deg);"></div>
-            <div class="source-card icon-pink source" style="left: 70px; top: 250px;">DOCS</div>
-            <div class="source-card icon-orange source" style="left: 352px; top: 250px;">WEB</div>
-            <div class="source-card icon-blue source" style="right: 70px; top: 250px;">NOTES</div>
+            <div class="source-card icon-blue" style="left: 337px; top: 18px; width: 250px">
+              QUESTION
+            </div>
+            <div
+              class="trail"
+              style="left: 140px; top: 218px; width: 650px; transform: rotate(0deg)"
+            ></div>
+            <div class="source-card icon-pink source" style="left: 70px; top: 250px">DOCS</div>
+            <div class="source-card icon-orange source" style="left: 352px; top: 250px">WEB</div>
+            <div class="source-card icon-blue source" style="right: 70px; top: 250px">NOTES</div>
           </div>
           <div class="term-card">
             <div class="term">RAG</div>
@@ -816,17 +1396,23 @@
         <div class="caption">Open-book test mode.</div>
       </section>
 
-      <section id="scene-agent" class="clip scene" data-start="54" data-duration="5" data-track-index="1">
+      <section
+        id="scene-agent"
+        class="clip scene"
+        data-start="61.2"
+        data-duration="5.45"
+        data-track-index="1"
+      >
         <div class="popup-badge">Agent = AI that takes actions</div>
         <div class="scene-content">
           <div class="kicker">Term 11</div>
           <div class="action-path" data-layout-allow-overflow>
             <div class="path-line"></div>
-            <div class="action-step icon-blue" style="left: 56px; top: 200px;">GO</div>
-            <div class="action-step icon-pink" style="left: 230px; top: 200px;">FIND</div>
-            <div class="action-step icon-orange" style="left: 404px; top: 200px;">CLICK</div>
-            <div class="action-step icon-blue" style="left: 578px; top: 200px;">WRITE</div>
-            <div class="action-step icon-pink" style="left: 752px; top: 200px;">CHECK</div>
+            <div class="action-step icon-blue" style="left: 56px; top: 200px">GO</div>
+            <div class="action-step icon-pink" style="left: 230px; top: 200px">FIND</div>
+            <div class="action-step icon-orange" style="left: 404px; top: 200px">CLICK</div>
+            <div class="action-step icon-blue" style="left: 578px; top: 200px">WRITE</div>
+            <div class="action-step icon-pink" style="left: 752px; top: 200px">CHECK</div>
           </div>
           <div class="term-card">
             <div class="term">Agent</div>
@@ -836,11 +1422,18 @@
         <div class="caption">Search, click, write, check.</div>
       </section>
 
-      <section id="scene-end" class="clip scene" data-start="58.4" data-duration="1.6" data-track-index="2">
+      <section
+        id="scene-end"
+        class="clip scene"
+        data-start="66.66"
+        data-duration="7.74"
+        data-track-index="2"
+      >
         <div class="scene-content">
           <div class="end-deck">
-            <div class="kicker" style="align-self:center;">Cheat sheet</div>
+            <div class="kicker" style="align-self: center">Cheat sheet</div>
             <div class="end-title">SAVE THIS GLOSSARY</div>
+            <div class="cta-line">LIKE / SUBSCRIBE / FOLLOW</div>
             <div class="term-strip">
               <span class="term-pill">AI</span>
               <span class="term-pill">Model</span>
@@ -863,11 +1456,93 @@
 
       gsap.set(".scene", { transformPerspective: 1400 });
       gsap.set(".term-card", { rotateX: 5, rotateY: -5, transformOrigin: "50% 50%" });
-      gsap.set(".icon-card, .mini-card, .token, .word-tile, .source-card, .action-step, .big-cube, .engine, .end-deck", { transformPerspective: 1000 });
+      gsap.set(
+        ".icon-card, .mini-card, .token, .word-tile, .source-card, .action-step, .big-cube, .engine, .end-deck",
+        { transformPerspective: 1000 },
+      );
 
-      tl.to(".bg", { backgroundPosition: "88px 54px, -88px 64px, 0 0", duration: 60, ease: "none" }, 0);
-      tl.to(".bg-chip", { y: -34, rotateY: 16, rotateX: -8, duration: 7, stagger: 0.6, repeat: 8, yoyo: true, ease: "sine.inOut" }, 0);
-      tl.to(".bg-line", { x: 90, duration: 8, stagger: 0.8, repeat: 7, yoyo: true, ease: "sine.inOut" }, 0);
+      const TOTAL_DURATION = 74.4;
+      const sceneTimes = {
+        hook: { start: 0, end: 4.78 },
+        ai: { start: 4.78, end: 11.41 },
+        model: { start: 11.41, end: 15.44 },
+        llm: { start: 15.44, end: 21.41 },
+        prompt: { start: 21.41, end: 26.99 },
+        tokens: { start: 26.99, end: 32.55 },
+        context: { start: 32.55, end: 37.71 },
+        training: { start: 37.71, end: 42.97 },
+        hallucination: { start: 42.97, end: 48.94 },
+        embeddings: { start: 48.94, end: 54.47 },
+        rag: { start: 54.47, end: 61.2 },
+        agent: { start: 61.2, end: 66.66 },
+        end: { start: 66.66, end: TOTAL_DURATION },
+      };
+      const start = (scene) => sceneTimes[scene].start;
+      const end = (scene) => sceneTimes[scene].end;
+      const gatedScenes = [
+        ["#scene-hook", "hook"],
+        ["#scene-ai", "ai"],
+        ["#scene-model", "model"],
+        ["#scene-llm", "llm"],
+        ["#scene-prompt", "prompt"],
+        ["#scene-tokens", "tokens"],
+        ["#scene-context", "context"],
+        ["#scene-training", "training"],
+        ["#scene-hallucination", "hallucination"],
+        ["#scene-embeddings", "embeddings"],
+        ["#scene-rag", "rag"],
+        ["#scene-agent", "agent"],
+        ["#scene-end", "end"],
+      ];
+
+      for (const [selector, scene] of gatedScenes) {
+        tl.set(selector, { opacity: 1, visibility: "visible" }, start(scene));
+        tl.set(selector, { opacity: 0, visibility: "hidden" }, end(scene));
+      }
+
+      tl.to(
+        ".bg",
+        {
+          backgroundPosition: "88px 54px, -88px 64px, 0 0",
+          duration: TOTAL_DURATION,
+          ease: "none",
+        },
+        0,
+      );
+      tl.to(
+        "#opening-thumbnail",
+        { opacity: 0, scale: 0.96, duration: 0.5, ease: "power2.inOut" },
+        0,
+      );
+      tl.to(
+        ".bg-chip",
+        {
+          y: -34,
+          rotateY: 16,
+          rotateX: -8,
+          duration: 7,
+          stagger: 0.6,
+          repeat: 10,
+          yoyo: true,
+          ease: "sine.inOut",
+        },
+        0,
+      );
+      tl.to(
+        ".bg-line",
+        { x: 90, duration: 8, stagger: 0.8, repeat: 9, yoyo: true, ease: "sine.inOut" },
+        0,
+      );
+      tl.from(
+        "#avatar-pip",
+        { y: -34, opacity: 0, scale: 0.9, rotateZ: -2.5, duration: 0.6, ease: "back.out(1.4)" },
+        0.2,
+      );
+      tl.to(
+        "#avatar-pip",
+        { y: -12, rotateZ: -0.6, duration: 3.8, repeat: 18, yoyo: true, ease: "sine.inOut" },
+        0.95,
+      );
 
       function has(selector) {
         return document.querySelector(selector) !== null;
@@ -886,101 +1561,431 @@
       }
 
       function sceneIn(id, at) {
-        fromIf(id + " .kicker", { y: -42, opacity: 0, duration: 0.38, ease: "back.out(1.8)" }, at + 0.05);
-        fromIf(id + " .headline", { y: 70, opacity: 0, scale: 0.96, duration: 0.48, ease: "power4.out" }, at + 0.12);
-        fromIf(id + " .term-card", { y: 110, rotateX: 22, rotateY: -18, opacity: 0, scale: 0.9, duration: 0.62, ease: "back.out(1.35)" }, at + 0.22);
-        fromIf(id + " .popup-badge", { y: -80, opacity: 0, scale: 0.86, rotateX: 24, duration: 0.48, ease: "back.out(1.7)" }, at + 0.1);
-        fromIf(id + " .caption", { y: 80, opacity: 0, duration: 0.42, ease: "power3.out" }, at + 0.28);
+        fromIf(
+          id + " .kicker",
+          { y: -42, opacity: 0, duration: 0.38, ease: "back.out(1.8)" },
+          at + 0.05,
+        );
+        fromIf(
+          id + " .headline",
+          { y: 70, opacity: 0, scale: 0.96, duration: 0.48, ease: "power4.out" },
+          at + 0.12,
+        );
+        fromIf(
+          id + " .term-card",
+          {
+            y: 110,
+            rotateX: 22,
+            rotateY: -18,
+            opacity: 0,
+            scale: 0.9,
+            duration: 0.62,
+            ease: "back.out(1.35)",
+          },
+          at + 0.22,
+        );
+        fromIf(
+          id + " .popup-badge",
+          { y: -80, opacity: 0, scale: 0.86, rotateX: 24, duration: 0.48, ease: "back.out(1.7)" },
+          at + 0.1,
+        );
+        fromIf(
+          id + " .caption",
+          { y: 80, opacity: 0, duration: 0.42, ease: "power3.out" },
+          at + 0.28,
+        );
       }
 
       function sceneOut(id, at) {
-        toIf(id + " .term-card", { x: -120, rotateY: 20, opacity: 0, duration: 0.34, ease: "power3.in" }, at - 0.34);
-        toIf(id + " .popup-badge", { y: -70, opacity: 0, duration: 0.28, ease: "power3.in" }, at - 0.3);
+        toIf(
+          id + " .term-card",
+          { x: -120, rotateY: 20, opacity: 0, duration: 0.34, ease: "power3.in" },
+          at - 0.34,
+        );
+        toIf(
+          id + " .popup-badge",
+          { y: -70, opacity: 0, duration: 0.28, ease: "power3.in" },
+          at - 0.3,
+        );
         toIf(id + " .caption", { y: 55, opacity: 0, duration: 0.24, ease: "power2.in" }, at - 0.24);
       }
 
-      sceneIn("#scene-hook", 0);
-      tl.from("#scene-hook .mini-card", { y: -420, x: 120, rotateZ: 24, rotateY: 80, opacity: 0, duration: 0.72, stagger: 0.05, ease: "back.out(1.8)" }, 0.08);
-      tl.from("#scene-hook .big-cube", { z: -600, rotateX: 80, rotateY: -70, opacity: 0, duration: 0.72, ease: "expo.out" }, 0.35);
-      tl.to("#scene-hook .mini-card", { y: 0, rotateZ: "-=4", duration: 1.5, stagger: 0.04, ease: "sine.inOut" }, 1.0);
-      sceneOut("#scene-hook", 3);
+      sceneIn("#scene-hook", start("hook"));
+      tl.from(
+        "#scene-hook .mini-card",
+        {
+          y: -420,
+          x: 120,
+          rotateZ: 24,
+          rotateY: 80,
+          opacity: 0,
+          duration: 0.72,
+          stagger: 0.05,
+          ease: "back.out(1.8)",
+        },
+        start("hook") + 0.08,
+      );
+      tl.from(
+        "#scene-hook .big-cube",
+        { z: -600, rotateX: 80, rotateY: -70, opacity: 0, duration: 0.72, ease: "expo.out" },
+        start("hook") + 0.35,
+      );
+      tl.to(
+        "#scene-hook .mini-card",
+        { y: 0, rotateZ: "-=4", duration: 1.5, stagger: 0.04, ease: "sine.inOut" },
+        start("hook") + 1.0,
+      );
+      sceneOut("#scene-hook", end("hook"));
 
-      sceneIn("#scene-ai", 3);
-      tl.from("#scene-ai .big-cube", { y: -520, rotateX: 75, scale: 0.6, opacity: 0, duration: 0.62, ease: "bounce.out" }, 3.05);
-      tl.from("#scene-ai .icon-card", { x: 0, y: -80, z: -260, rotateY: -90, opacity: 0, duration: 0.52, stagger: 0.08, ease: "back.out(1.8)" }, 3.45);
-      tl.to("#scene-ai .icon-card", { y: -18, rotateZ: 3, duration: 0.9, stagger: 0.04, yoyo: true, repeat: 2, ease: "sine.inOut" }, 4.0);
-      sceneOut("#scene-ai", 7);
+      sceneIn("#scene-ai", start("ai"));
+      tl.from(
+        "#scene-ai .big-cube",
+        { y: -520, rotateX: 75, scale: 0.6, opacity: 0, duration: 0.62, ease: "bounce.out" },
+        start("ai") + 0.05,
+      );
+      tl.from(
+        "#scene-ai .icon-card",
+        {
+          x: 0,
+          y: -80,
+          z: -260,
+          rotateY: -90,
+          opacity: 0,
+          duration: 0.52,
+          stagger: 0.08,
+          ease: "back.out(1.8)",
+        },
+        start("ai") + 0.45,
+      );
+      tl.to(
+        "#scene-ai .icon-card",
+        {
+          y: -18,
+          rotateZ: 3,
+          duration: 0.9,
+          stagger: 0.04,
+          yoyo: true,
+          repeat: 2,
+          ease: "sine.inOut",
+        },
+        start("ai") + 1.0,
+      );
+      sceneOut("#scene-ai", end("ai"));
 
-      sceneIn("#scene-model", 7);
-      tl.from("#scene-model .engine", { scale: 0.4, rotateY: -120, opacity: 0, duration: 0.64, ease: "back.out(1.5)" }, 7.1);
-      tl.from("#scene-model .ex", { x: -420, y: 150, rotateZ: -14, opacity: 0, duration: 0.5, stagger: 0.08, ease: "power4.out" }, 7.3);
-      tl.from("#scene-model .pattern-line", { scaleX: 0, opacity: 0, duration: 0.42, stagger: 0.08, ease: "power3.out" }, 7.76);
-      tl.to("#scene-model .engine", { rotateY: 8, duration: 1.2, repeat: 2, yoyo: true, ease: "sine.inOut" }, 8.1);
-      sceneOut("#scene-model", 12);
+      sceneIn("#scene-model", start("model"));
+      tl.from(
+        "#scene-model .engine",
+        { scale: 0.4, rotateY: -120, opacity: 0, duration: 0.64, ease: "back.out(1.5)" },
+        start("model") + 0.1,
+      );
+      tl.from(
+        "#scene-model .ex",
+        {
+          x: -420,
+          y: 150,
+          rotateZ: -14,
+          opacity: 0,
+          duration: 0.5,
+          stagger: 0.08,
+          ease: "power4.out",
+        },
+        start("model") + 0.3,
+      );
+      tl.from(
+        "#scene-model .pattern-line",
+        { scaleX: 0, opacity: 0, duration: 0.42, stagger: 0.08, ease: "power3.out" },
+        start("model") + 0.76,
+      );
+      tl.to(
+        "#scene-model .engine",
+        { rotateY: 8, duration: 1.2, repeat: 1, yoyo: true, ease: "sine.inOut" },
+        start("model") + 1.1,
+      );
+      sceneOut("#scene-model", end("model"));
 
-      sceneIn("#scene-llm", 12);
-      tl.from("#scene-llm .word-tile", { y: -220, rotateX: 80, opacity: 0, duration: 0.42, stagger: 0.09, ease: "back.out(1.6)" }, 12.12);
-      tl.to("#scene-llm .option", { scale: 1.16, y: -18, duration: 0.24, stagger: 0.14, yoyo: true, repeat: 1, ease: "power2.inOut" }, 13.2);
-      tl.to("#scene-llm .word-tile", { x: 20, rotateY: 10, duration: 1.2, stagger: 0.05, yoyo: true, repeat: 2, ease: "sine.inOut" }, 14.0);
-      sceneOut("#scene-llm", 17);
+      sceneIn("#scene-llm", start("llm"));
+      tl.from(
+        "#scene-llm .word-tile",
+        { y: -220, rotateX: 80, opacity: 0, duration: 0.42, stagger: 0.09, ease: "back.out(1.6)" },
+        start("llm") + 0.12,
+      );
+      tl.to(
+        "#scene-llm .option",
+        {
+          scale: 1.16,
+          y: -18,
+          duration: 0.24,
+          stagger: 0.14,
+          yoyo: true,
+          repeat: 1,
+          ease: "power2.inOut",
+        },
+        start("llm") + 1.2,
+      );
+      tl.to(
+        "#scene-llm .word-tile",
+        {
+          x: 20,
+          rotateY: 10,
+          duration: 1.2,
+          stagger: 0.05,
+          yoyo: true,
+          repeat: 2,
+          ease: "sine.inOut",
+        },
+        start("llm") + 2.0,
+      );
+      sceneOut("#scene-llm", end("llm"));
 
-      sceneIn("#scene-prompt", 17);
-      tl.from("#scene-prompt .prompt-box", { y: 90, rotateX: 18, opacity: 0, duration: 0.54, ease: "back.out(1.4)" }, 17.1);
-      tl.from("#scene-prompt .messy, #scene-prompt .bad-answer", { x: -80, opacity: 0, duration: 0.35, stagger: 0.12, ease: "power3.out" }, 17.45);
-      tl.from("#scene-prompt .clean, #scene-prompt .good-answer", { x: 100, opacity: 0, scale: 0.96, duration: 0.4, stagger: 0.12, ease: "back.out(1.5)" }, 18.25);
-      tl.to("#scene-prompt .good-answer", { scale: 1.04, duration: 0.28, yoyo: true, repeat: 1, ease: "power2.inOut" }, 19.0);
-      sceneOut("#scene-prompt", 22);
+      sceneIn("#scene-prompt", start("prompt"));
+      tl.from(
+        "#scene-prompt .prompt-box",
+        { y: 90, rotateX: 18, opacity: 0, duration: 0.54, ease: "back.out(1.4)" },
+        start("prompt") + 0.1,
+      );
+      tl.from(
+        "#scene-prompt .messy, #scene-prompt .bad-answer",
+        { x: -80, opacity: 0, duration: 0.35, stagger: 0.12, ease: "power3.out" },
+        start("prompt") + 0.45,
+      );
+      tl.from(
+        "#scene-prompt .clean, #scene-prompt .good-answer",
+        { x: 100, opacity: 0, scale: 0.96, duration: 0.4, stagger: 0.12, ease: "back.out(1.5)" },
+        start("prompt") + 1.25,
+      );
+      tl.to(
+        "#scene-prompt .good-answer",
+        { scale: 1.04, duration: 0.28, yoyo: true, repeat: 1, ease: "power2.inOut" },
+        start("prompt") + 2.0,
+      );
+      sceneOut("#scene-prompt", end("prompt"));
 
-      sceneIn("#scene-tokens", 22);
-      tl.from("#scene-tokens .token", { y: -260, x: 90, rotateZ: 30, rotateY: 90, opacity: 0, duration: 0.48, stagger: 0.07, ease: "back.out(1.8)" }, 22.15);
-      tl.from("#scene-tokens .trail", { scaleX: 0, opacity: 0, duration: 0.38, ease: "power4.out" }, 22.8);
-      tl.to("#scene-tokens .token", { y: 28, scale: 0.92, duration: 0.5, stagger: 0.04, yoyo: true, repeat: 1, ease: "sine.inOut" }, 23.25);
-      tl.to("#scene-tokens .token", { y: "+=14", duration: 0.6, stagger: 0.03, repeat: 2, yoyo: true, ease: "sine.inOut" }, 24.45);
-      sceneOut("#scene-tokens", 27);
+      sceneIn("#scene-tokens", start("tokens"));
+      tl.from(
+        "#scene-tokens .token",
+        {
+          y: -260,
+          x: 90,
+          rotateZ: 30,
+          rotateY: 90,
+          opacity: 0,
+          duration: 0.48,
+          stagger: 0.07,
+          ease: "back.out(1.8)",
+        },
+        start("tokens") + 0.15,
+      );
+      tl.from(
+        "#scene-tokens .trail",
+        { scaleX: 0, opacity: 0, duration: 0.38, ease: "power4.out" },
+        start("tokens") + 0.8,
+      );
+      tl.to(
+        "#scene-tokens .token",
+        {
+          y: 28,
+          scale: 0.92,
+          duration: 0.5,
+          stagger: 0.04,
+          yoyo: true,
+          repeat: 1,
+          ease: "sine.inOut",
+        },
+        start("tokens") + 1.25,
+      );
+      tl.to(
+        "#scene-tokens .token",
+        { y: "+=14", duration: 0.6, stagger: 0.03, repeat: 2, yoyo: true, ease: "sine.inOut" },
+        start("tokens") + 2.45,
+      );
+      sceneOut("#scene-tokens", end("tokens"));
 
-      sceneIn("#scene-context", 27);
-      tl.from("#scene-context .window", { scale: 0.82, rotateX: 20, opacity: 0, duration: 0.55, ease: "back.out(1.4)" }, 27.1);
-      tl.from("#scene-context .mem", { y: -160, opacity: 0, rotateY: 70, duration: 0.44, stagger: 0.08, ease: "back.out(1.7)" }, 27.52);
-      tl.to("#scene-context .window", { rotateY: -4, duration: 0.9, yoyo: true, repeat: 2, ease: "sine.inOut" }, 28.2);
-      sceneOut("#scene-context", 32);
+      sceneIn("#scene-context", start("context"));
+      tl.from(
+        "#scene-context .window",
+        { scale: 0.82, rotateX: 20, opacity: 0, duration: 0.55, ease: "back.out(1.4)" },
+        start("context") + 0.1,
+      );
+      tl.from(
+        "#scene-context .mem",
+        { y: -160, opacity: 0, rotateY: 70, duration: 0.44, stagger: 0.08, ease: "back.out(1.7)" },
+        start("context") + 0.52,
+      );
+      tl.to(
+        "#scene-context .window",
+        { rotateY: -4, duration: 0.9, yoyo: true, repeat: 2, ease: "sine.inOut" },
+        start("context") + 1.2,
+      );
+      sceneOut("#scene-context", end("context"));
 
-      sceneIn("#scene-training", 32);
-      tl.from("#scene-training .learn", { x: -180, rotateY: -25, opacity: 0, duration: 0.52, ease: "back.out(1.4)" }, 32.16);
-      tl.from("#scene-training .answer", { x: 180, rotateY: 25, opacity: 0, duration: 0.52, ease: "back.out(1.4)" }, 32.28);
-      tl.to("#scene-training .panel-icon", { y: -16, scale: 1.05, duration: 0.42, stagger: 0.18, yoyo: true, repeat: 2, ease: "power2.inOut" }, 33.1);
-      sceneOut("#scene-training", 37);
+      sceneIn("#scene-training", start("training"));
+      tl.from(
+        "#scene-training .learn",
+        { x: -180, rotateY: -25, opacity: 0, duration: 0.52, ease: "back.out(1.4)" },
+        start("training") + 0.16,
+      );
+      tl.from(
+        "#scene-training .answer",
+        { x: 180, rotateY: 25, opacity: 0, duration: 0.52, ease: "back.out(1.4)" },
+        start("training") + 0.28,
+      );
+      tl.to(
+        "#scene-training .panel-icon",
+        {
+          y: -16,
+          scale: 1.05,
+          duration: 0.42,
+          stagger: 0.18,
+          yoyo: true,
+          repeat: 2,
+          ease: "power2.inOut",
+        },
+        start("training") + 1.1,
+      );
+      sceneOut("#scene-training", end("training"));
 
-      sceneIn("#scene-hallucination", 37);
-      tl.from("#scene-hallucination .warning-card", { y: 110, rotateX: 20, opacity: 0, duration: 0.5, ease: "back.out(1.4)" }, 37.12);
-      tl.from("#scene-hallucination .warn-symbol", { scale: 0.1, rotateZ: -35, opacity: 0, duration: 0.5, ease: "back.out(2)" }, 37.35);
-      tl.from("#scene-hallucination .stamp", { scale: 2.2, rotateZ: -20, opacity: 0, duration: 0.28, ease: "power4.out" }, 38.05);
-      tl.from("#scene-hallucination .q1, #scene-hallucination .q2", { y: 90, scale: 0, opacity: 0, duration: 0.4, stagger: 0.12, ease: "back.out(1.8)" }, 38.45);
-      tl.to("#scene-hallucination .warning-card", { x: -10, duration: 0.08, repeat: 8, yoyo: true, ease: "steps(2)" }, 39.1);
-      sceneOut("#scene-hallucination", 43);
+      sceneIn("#scene-hallucination", start("hallucination"));
+      tl.from(
+        "#scene-hallucination .warning-card",
+        { y: 110, rotateX: 20, opacity: 0, duration: 0.5, ease: "back.out(1.4)" },
+        start("hallucination") + 0.12,
+      );
+      tl.from(
+        "#scene-hallucination .warn-symbol",
+        { scale: 0.1, rotateZ: -35, opacity: 0, duration: 0.5, ease: "back.out(2)" },
+        start("hallucination") + 0.35,
+      );
+      tl.from(
+        "#scene-hallucination .stamp",
+        { scale: 2.2, rotateZ: -20, opacity: 0, duration: 0.28, ease: "power4.out" },
+        start("hallucination") + 1.05,
+      );
+      tl.from(
+        "#scene-hallucination .q1, #scene-hallucination .q2",
+        { y: 90, scale: 0, opacity: 0, duration: 0.4, stagger: 0.12, ease: "back.out(1.8)" },
+        start("hallucination") + 1.45,
+      );
+      tl.to(
+        "#scene-hallucination .warning-card",
+        { x: -10, duration: 0.08, repeat: 8, yoyo: true, ease: "steps(2)" },
+        start("hallucination") + 2.1,
+      );
+      sceneOut("#scene-hallucination", end("hallucination"));
 
-      sceneIn("#scene-embeddings", 43);
-      tl.from("#scene-embeddings .vector-field", { scale: 0.84, rotateX: 18, opacity: 0, duration: 0.55, ease: "back.out(1.4)" }, 43.1);
-      tl.from("#scene-embeddings .vector-dot", { scale: 0, opacity: 0, duration: 0.38, stagger: 0.06, ease: "back.out(1.8)" }, 43.5);
-      tl.from("#scene-embeddings .tag", { y: 40, opacity: 0, duration: 0.36, stagger: 0.09, ease: "power3.out" }, 43.9);
-      tl.to("#scene-embeddings .vector-dot", { x: 22, y: -18, duration: 0.7, stagger: 0.05, yoyo: true, repeat: 3, ease: "sine.inOut" }, 44.5);
-      sceneOut("#scene-embeddings", 49);
+      sceneIn("#scene-embeddings", start("embeddings"));
+      tl.from(
+        "#scene-embeddings .vector-field",
+        { scale: 0.84, rotateX: 18, opacity: 0, duration: 0.55, ease: "back.out(1.4)" },
+        start("embeddings") + 0.1,
+      );
+      tl.from(
+        "#scene-embeddings .vector-dot",
+        { scale: 0, opacity: 0, duration: 0.38, stagger: 0.06, ease: "back.out(1.8)" },
+        start("embeddings") + 0.5,
+      );
+      tl.from(
+        "#scene-embeddings .tag",
+        { y: 40, opacity: 0, duration: 0.36, stagger: 0.09, ease: "power3.out" },
+        start("embeddings") + 0.9,
+      );
+      tl.to(
+        "#scene-embeddings .vector-dot",
+        { x: 22, y: -18, duration: 0.7, stagger: 0.05, yoyo: true, repeat: 3, ease: "sine.inOut" },
+        start("embeddings") + 1.5,
+      );
+      sceneOut("#scene-embeddings", end("embeddings"));
 
-      sceneIn("#scene-rag", 49);
-      tl.from("#scene-rag .source-card", { y: -260, rotateX: 80, opacity: 0, duration: 0.48, stagger: 0.08, ease: "back.out(1.6)" }, 49.16);
-      tl.from("#scene-rag .trail", { scaleX: 0, opacity: 0, duration: 0.38, ease: "power4.out" }, 49.74);
-      tl.to("#scene-rag .source", { y: -60, scale: 0.95, duration: 0.62, stagger: 0.08, yoyo: true, repeat: 2, ease: "sine.inOut" }, 50.3);
-      tl.to("#scene-rag .source-card, #scene-rag .trail, #scene-rag .term-card, #scene-rag .popup-badge, #scene-rag .caption", { y: 80, opacity: 0, duration: 0.34, stagger: 0.03, ease: "power3.in" }, 53.62);
-      tl.set("#scene-rag .source-card, #scene-rag .trail, #scene-rag .term-card, #scene-rag .popup-badge, #scene-rag .caption", { opacity: 0 }, 54.0);
+      sceneIn("#scene-rag", start("rag"));
+      tl.from(
+        "#scene-rag .source-card",
+        { y: -260, rotateX: 80, opacity: 0, duration: 0.48, stagger: 0.08, ease: "back.out(1.6)" },
+        start("rag") + 0.16,
+      );
+      tl.from(
+        "#scene-rag .trail",
+        { scaleX: 0, opacity: 0, duration: 0.38, ease: "power4.out" },
+        start("rag") + 0.74,
+      );
+      tl.to(
+        "#scene-rag .source",
+        {
+          y: -60,
+          scale: 0.95,
+          duration: 0.62,
+          stagger: 0.08,
+          yoyo: true,
+          repeat: 3,
+          ease: "sine.inOut",
+        },
+        start("rag") + 1.3,
+      );
+      sceneOut("#scene-rag", end("rag"));
 
-      sceneIn("#scene-agent", 54);
-      tl.from("#scene-agent .path-line", { scaleX: 0, opacity: 0, transformOrigin: "left center", duration: 0.5, ease: "power4.out" }, 54.12);
-      tl.from("#scene-agent .action-step", { y: -210, rotateY: 90, opacity: 0, duration: 0.42, stagger: 0.1, ease: "back.out(1.7)" }, 54.34);
-      tl.to("#scene-agent .action-step", { y: -20, scale: 1.08, duration: 0.26, stagger: 0.1, yoyo: true, repeat: 1, ease: "power2.inOut" }, 55.2);
-      sceneOut("#scene-agent", 59);
+      sceneIn("#scene-agent", start("agent"));
+      tl.from(
+        "#scene-agent .path-line",
+        {
+          scaleX: 0,
+          opacity: 0,
+          transformOrigin: "left center",
+          duration: 0.5,
+          ease: "power4.out",
+        },
+        start("agent") + 0.12,
+      );
+      tl.from(
+        "#scene-agent .action-step",
+        { y: -210, rotateY: 90, opacity: 0, duration: 0.42, stagger: 0.1, ease: "back.out(1.7)" },
+        start("agent") + 0.34,
+      );
+      tl.to(
+        "#scene-agent .action-step",
+        {
+          y: -20,
+          scale: 1.08,
+          duration: 0.26,
+          stagger: 0.1,
+          yoyo: true,
+          repeat: 1,
+          ease: "power2.inOut",
+        },
+        start("agent") + 1.2,
+      );
+      sceneOut("#scene-agent", end("agent"));
 
-      tl.from("#scene-end .end-deck", { y: 180, rotateX: 22, rotateY: -20, scale: 0.74, opacity: 0, duration: 0.44, ease: "back.out(1.4)" }, 58.42);
-      tl.from("#scene-end .term-pill", { y: 50, opacity: 0, scale: 0.7, duration: 0.18, stagger: 0.025, ease: "back.out(1.6)" }, 58.74);
-      tl.from("#scene-end .caption", { y: 60, opacity: 0, duration: 0.24, ease: "power3.out" }, 58.82);
+      tl.from(
+        "#scene-end .end-deck",
+        {
+          y: 180,
+          rotateX: 22,
+          rotateY: -20,
+          scale: 0.74,
+          opacity: 0,
+          duration: 0.44,
+          ease: "back.out(1.4)",
+        },
+        start("end") + 0.1,
+      );
+      tl.from(
+        "#scene-end .cta-line",
+        { y: 34, opacity: 0, scale: 0.88, duration: 0.3, ease: "back.out(1.5)" },
+        start("end") + 0.36,
+      );
+      tl.from(
+        "#scene-end .term-pill",
+        { y: 50, opacity: 0, scale: 0.7, duration: 0.18, stagger: 0.025, ease: "back.out(1.6)" },
+        start("end") + 0.58,
+      );
+      tl.from(
+        "#scene-end .caption",
+        { y: 60, opacity: 0, duration: 0.24, ease: "power3.out" },
+        start("end") + 0.66,
+      );
+      tl.to(
+        "#scene-end .cta-line",
+        { scale: 1.04, duration: 0.34, yoyo: true, repeat: 3, ease: "power2.inOut" },
+        start("end") + 4.1,
+      );
 
       window.__timelines["ai-terms-short"] = tl;
     </script>
