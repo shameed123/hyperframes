@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LLM Simple Flow</title>
+  <link href="./css2" rel="stylesheet">
+  <link rel="stylesheet" href="./theme.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      font-family: 'Space Grotesk', sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="slide-container" data-screen-label="19 LLM simple flow"
+    style="position:relative;width:1920px;height:1080px;overflow:hidden;background:var(--bg);">
+    <div data-object="true" data-object-type="textbox" class="pure-ai-copyright-top" style="position:absolute;left:1480px;top:16px;width:345px;height:24px;z-index:31;text-align:center;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:13px;line-height:1.2;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);">Copyright 2026</div>
+<img data-object="true" data-object-type="image" class="pure-ai-logo" src="./purelogo-name-transparent.png" alt="Pure AI Solutions logo" style="position:absolute;left:1470px;top:23px;width:345px;height:auto;z-index:30;display:block;">
+    <div data-object="true" data-object-type="textbox" class="pure-ai-copyright-bottom" style="position:absolute;left:1485px;top:80px;width:345px;height:24px;z-index:31;text-align:center;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:13px;line-height:1.2;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);">All rights reserved</div>
+
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:-180px;top:520px;width:820px;height:820px;border-radius:50%;background:radial-gradient(circle at 50% 50%, #DBEAFE 0%, rgba(219,234,254,0) 65%);z-index:1;">
+    </div>
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:1280px;top:-220px;width:820px;height:820px;border-radius:50%;background:radial-gradient(circle at 50% 50%, #FCE7F3 0%, rgba(252,231,243,0) 64%);z-index:1;">
+    </div>
+
+    <div data-object="true" data-object-type="textbox" style="position:absolute;left:140px;top:50px;width:1300px;height:58px;z-index:10;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:40px;letter-spacing:0.08em;color:var(--blue);text-transform:uppercase;">18 &mdash; The basic LLM loop</div>
+<div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:140px;top:160px;width:1640px;height:150px;z-index:10;">
+      <div
+        style="font-family:&#39;Instrument Serif&#39;,serif;font-size:112px;line-height:0.98;letter-spacing:-0.015em;color:var(--muted);">
+        A Model turns <span style="font-style:italic;color:var(--blue);">input</span> into <span
+          style="font-style:italic;color:var(--orange);">output</span>.
+      </div>
+    </div>
+
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:180px;top:500px;width:360px;height:180px;border-radius:28px;background:white;border:1.5px solid var(--line);box-shadow:var(--shadow-md);z-index:5;">
+    </div>
+    <div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:220px;top:538px;width:280px;height:112px;z-index:10;text-align:center;">
+      <div
+        style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:15px;letter-spacing:0.18em;text-transform:uppercase;color:var(--blue-2);">
+        Input</div>
+      <div style="font-family:&#39;Instrument Serif&#39;,serif;font-size:54px;line-height:1.0;color:var(--ink);margin-top:14px;">
+        Prompt</div>
+      <div style="font-size:22px;line-height:1.35;color:var(--ink-2);margin-top:14px;">words, image, audio</div>
+    </div>
+
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:760px;top:440px;width:400px;height:300px;border-radius:34px;background:var(--blue-soft);border:2px solid var(--blue);box-shadow:var(--shadow-lg);z-index:5;">
+    </div>
+    <div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:760px;top:440px;width:400px;height:300px;z-index:10;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:var(--ink);">
+      <div
+        style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:15px;letter-spacing:0.2em;text-transform:uppercase;color:var(--blue-2);">
+        Some</div>
+      <div style="font-family:&#39;Instrument Serif&#39;,serif;font-size:96px;line-height:0.95;margin-top:16px;">
+        Model</div>
+      <div style="font-size:22px;line-height:1.35;color:var(--ink-2);margin-top:18px;">predicts the next useful</br>tokens (say words/pixels)</div>
+    </div>
+
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:1380px;top:500px;width:360px;height:180px;border-radius:28px;background:var(--orange);box-shadow:var(--shadow-md);z-index:5;">
+    </div>
+    <div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:1420px;top:538px;width:280px;height:112px;z-index:10;text-align:center;color:white;">
+      <div
+        style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:15px;letter-spacing:0.18em;text-transform:uppercase;opacity:0.9;">
+        Output</div>
+      <div style="font-family:&#39;Instrument Serif&#39;,serif;font-size:54px;line-height:1.0;margin-top:14px;">Answer</div>
+    </div>
+
+    <svg data-object="true" data-object-type="shape" viewBox="0 0 1920 1080"
+      style="position:absolute;left:0;top:0;width:1920px;height:1080px;z-index:4;overflow:visible;">
+      <defs>
+        <marker id="arrowSimple" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+          <path d="M0,0 L12,6 L0,12 Z" fill="#3A4A63"></path>
+        </marker>
+      </defs>
+      <path d="M540 590 L740 590" stroke="#3A4A63" stroke-width="4" fill="none" marker-end="url(#arrowSimple)"></path>
+      <path d="M1160 590 L1360 590" stroke="#3A4A63" stroke-width="4" fill="none" marker-end="url(#arrowSimple)"></path>
+    </svg>
+
+    <div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:340px;top:795px;width:1240px;height:48px;z-index:10;text-align:center;font-size:24px;line-height:1.35;color:var(--ink-2);">
+      At its simplest: send text in, the model processes it, and generated text comes back.
+    </div>
+  </div>
+  <script src="./slide-inner.js.download"></script>
+</body>
+
+</html>

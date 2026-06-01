@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Agent and MCP Server</title>
+  <link href="./css2" rel="stylesheet">
+  <link rel="stylesheet" href="./theme.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      font-family: 'Space Grotesk', sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+    }
+  </style>
+  <style id="slide-selected-style">
+    [data-slide-selected]::before {
+      content: '';
+      position: absolute;
+      top: -4px;
+      left: -4px;
+      width: 100%;
+      height: 100%;
+      box-sizing: content-box;
+      padding: 4px;
+      border-radius: 0px;
+      outline: 2px solid #0f7fff !important;
+      z-index: 10000;
+      pointer-events: none;
+    }
+
+    [data-slide-selected] {
+      position: relative;
+      outline: none;
+      cursor: default;
+    }
+
+    img[data-slide-selected],
+    img[data-slide-hover-selected],
+    [data-slide-hover-selected],
+    [item-slide-click-selected],
+    [item-slide-selected] {
+      border: 2px solid #0f7fff !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="slide-container" data-screen-label="28 Agent MCP server"
+    style="position:relative;width:1920px;height:1080px;overflow:hidden;background:var(--bg);">
+    <div data-object="true" data-object-type="textbox" class="pure-ai-copyright-top" style="position:absolute;left:1480px;top:16px;width:345px;height:24px;z-index:31;text-align:center;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:13px;line-height:1.2;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);">Copyright 2026</div>
+<img data-object="true" data-object-type="image" class="pure-ai-logo" src="./purelogo-name-transparent.png" alt="Pure AI Solutions logo" style="position:absolute;left:1470px;top:23px;width:345px;height:auto;z-index:30;display:block;">
+    <div data-object="true" data-object-type="textbox" class="pure-ai-copyright-bottom" style="position:absolute;left:1485px;top:80px;width:345px;height:24px;z-index:31;text-align:center;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:13px;line-height:1.2;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);">All rights reserved</div>
+
+    <!-- Soft backdrop -->
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:-120px;top:-180px;width:760px;height:760px;border-radius:50%;background:radial-gradient(circle at 50% 50%, #FFEDD5 0%, rgba(255,237,213,0) 65%);z-index:1;">
+    </div>
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:1180px;top:560px;width:900px;height:900px;border-radius:50%;background:radial-gradient(circle at 50% 50%, #DBEAFE 0%, rgba(219,234,254,0) 62%);z-index:1;">
+    </div>
+
+    <div data-object="true" data-object-type="textbox" style="position:absolute;left:140px;top:50px;width:1300px;height:58px;z-index:10;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:40px;letter-spacing:0.08em;color:var(--blue);text-transform:uppercase;">27 &mdash; MCP in the agent loop</div>
+<div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:140px;top:160px;width:1640px;height:180px;z-index:10;">
+      <div
+        style="font-family:&#39;Instrument Serif&#39;,serif;font-size:100px;line-height:0.98;letter-spacing:-0.015em;color:var(--muted);">
+        With MCP, the <span style="font-style:italic;color:var(--orange);">agent</span> talks to a server,<br>
+        and the server talks to the <span style="font-style:italic;color:var(--blue);">service</span>.
+      </div>
+    </div>
+
+    <div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:140px;top:370px;width:1140px;height:74px;z-index:10;font-size:24px;line-height:1.4;color:var(--ink-2);">
+      The agent stays focused on the task. MCP standardizes the connection: one server exposes a consistent interface while handling the details of a specific app, file system, database, or API.
+    </div>
+
+    <!-- Main diagram surface -->
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:140px;top:470px;width:1260px;height:560px;border-radius:28px;background:white;border:1.5px solid var(--line);box-shadow:var(--shadow-sm);z-index:5;">
+    </div>
+
+    <!-- Input -->
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:180px;top:600px;width:210px;height:104px;border-radius:22px;background:var(--bg-alt);border:1.5px solid var(--line);z-index:7;">
+    </div>
+    <div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:205px;top:622px;width:160px;height:60px;z-index:10;text-align:center;">
+      <div style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);">input</div>
+      <div style="font-size:20px;font-weight:600;color:var(--ink);margin-top:6px;">User task</div>
+    </div>
+
+    <!-- Input arrow to agent -->
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:390px;top:651px;width:112px;height:2.5px;background:var(--ink-2);z-index:7;">
+    </div>
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:492px;top:640px;width:0;height:0;border-left:18px solid var(--ink-2);border-top:12px solid transparent;border-bottom:12px solid transparent;z-index:7;">
+    </div>
+
+    <!-- Agent block -->
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:520px;top:540px;width:270px;height:224px;border-radius:28px;background:var(--orange-soft);border:1.5px solid var(--orange);box-shadow:var(--shadow-md);z-index:8;">
+    </div>
+    <div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:550px;top:578px;width:200px;height:146px;z-index:10;text-align:center;">
+      <div style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:13px;letter-spacing:0.18em;text-transform:uppercase;color:var(--orange-2);">coordinator</div>
+      <div style="font-family:&#39;Instrument Serif&#39;,serif;font-size:58px;line-height:1.0;color:var(--ink);margin-top:8px;">Agent</div>
+      <div style="font-size:19px;line-height:1.35;color:var(--ink-2);margin-top:12px;">plans, requests, observes</div>
+    </div>
+
+    <!-- Agent to finished output -->
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:780px;top:651px;width:232px;height:2.5px;background:var(--ink-2);z-index:7;">
+    </div>
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:1012px;top:640px;width:0;height:0;border-left:18px solid var(--ink-2);border-top:12px solid transparent;border-bottom:12px solid transparent;z-index:8;">
+    </div>
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:1030px;top:592px;width:280px;height:120px;border-radius:24px;background:var(--orange);box-shadow:var(--shadow-sm);z-index:8;">
+    </div>
+    <div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:1060px;top:619px;width:220px;height:70px;z-index:10;text-align:center;color:white;">
+      <div style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;opacity:0.9;">output</div>
+      <div style="font-size:22px;font-weight:600;margin-top:8px;">Finished answer</div>
+    </div>
+
+    <!-- Agent to MCP over internet -->
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:622px;top:764px;width:2.5px;height:66px;background:var(--blue-2);z-index:7;">
+    </div>
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:613px;top:830px;width:0;height:0;border-top:18px solid var(--blue-2);border-left:11px solid transparent;border-right:11px solid transparent;z-index:8;">
+    </div>
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:706px;top:782px;width:2.5px;height:66px;background:rgba(30,64,175,0.5);z-index:7;">
+    </div>
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:697px;top:764px;width:0;height:0;border-bottom:18px solid rgba(30,64,175,0.5);border-left:11px solid transparent;border-right:11px solid transparent;z-index:8;">
+    </div>
+    <svg data-object="true" data-object-type="shape" style="position:absolute;left:620px;top:778px;width:92px;height:58px;z-index:9;" viewBox="0 0 92 58" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M27.8 48H67c11.4 0 20.5-7.2 20.5-16.8C87.5 21.9 79.4 15 69.4 15c-2.7 0-5.2 0.5-7.5 1.5C58.3 7.8 49.5 2.8 39.5 4.6C30.9 6.2 24.4 13.5 23.6 22.2C22.2 21.7 20.7 21.5 19.1 21.5C10.6 21.5 4 27.3 4 34.7C4 42.4 11.4 48 27.8 48Z" style="fill:white;stroke:var(--blue);stroke-width:1.5;" />
+    </svg>
+    <div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:640px;top:832px;width:66px;height:16px;z-index:10;text-align:center;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue-2);">
+      internet</div>
+
+    <!-- MCP server block -->
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:520px;top:850px;width:260px;height:150px;border-radius:26px;background:var(--blue-soft);border:1.5px solid var(--blue);box-shadow:var(--shadow-md);z-index:8;">
+    </div>
+    <div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:550px;top:875px;width:200px;height:106px;z-index:10;text-align:center;">
+      <div style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--blue-2);">standard adapter</div>
+      <div style="font-family:&#39;Instrument Serif&#39;,serif;font-size:41px;line-height:0.95;color:var(--ink);margin-top:5px;">MCP Server</div>
+      <div style="font-size:14px;line-height:1.15;color:var(--ink-2);margin-top:6px;">translates the request</div>
+    </div>
+
+    <!-- MCP to service -->
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:780px;top:900px;width:80px;height:2.5px;background:var(--blue-2);z-index:7;">
+    </div>
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:844px;top:890px;width:0;height:0;border-left:16px solid var(--blue-2);border-top:10px solid transparent;border-bottom:10px solid transparent;z-index:8;">
+    </div>
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:796px;top:940px;width:64px;height:2.5px;background:rgba(30,64,175,0.5);z-index:7;">
+    </div>
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:780px;top:930px;width:0;height:0;border-right:16px solid rgba(30,64,175,0.5);border-top:10px solid transparent;border-bottom:10px solid transparent;z-index:8;">
+    </div>
+
+    <!-- Service block -->
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:860px;top:850px;width:250px;height:150px;border-radius:26px;background:var(--bg-alt);border:1.5px solid var(--line);box-shadow:var(--shadow-sm);z-index:8;">
+    </div>
+    <div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:890px;top:875px;width:190px;height:92px;z-index:10;text-align:center;">
+      <div style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);">external system</div>
+      <div style="font-family:&#39;Instrument Serif&#39;,serif;font-size:45px;line-height:0.95;color:var(--ink);margin-top:6px;">Service</div>
+      <div style="font-size:16px;line-height:1.25;color:var(--ink-2);margin-top:8px;">files, apps, APIs, data</div>
+    </div>
+
+    <!-- Side notes -->
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:1450px;top:470px;width:350px;height:470px;border-radius:28px;background:var(--bg-alt);border:1.5px solid var(--line);z-index:5;">
+    </div>
+    <div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:1484px;top:510px;width:285px;height:380px;z-index:10;">
+      <div style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:13px;letter-spacing:0.18em;text-transform:uppercase;color:var(--orange-2);">What changed</div>
+      <div style="font-size:21px;line-height:1.55;color:var(--ink-2);margin-top:22px;">The agent does not need a different integration pattern for every outside system.</div>
+      <div style="font-size:21px;line-height:1.55;color:var(--ink-2);margin-top:20px;">It sends a standard MCP request across the network. The MCP server handles the service-specific details.</div>
+      <div style="font-family:&#39;Instrument Serif&#39;,serif;font-size:32px;line-height:1.1;color:var(--ink);margin-top:28px;">MCP makes development easier.</div>
+    </div>
+
+  </div>
+  <script defer="" src="./v833ccba57c9e4d2798f2e76cebdd09a11778172276447"
+    integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ=="
+    data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;4edd5f8ec12a48cfa682ab8261b80a79&quot;,&quot;server_timing&quot;:{&quot;name&quot;:{&quot;cfCacheStatus&quot;:true,&quot;cfEdge&quot;:true,&quot;cfExtPri&quot;:true,&quot;cfL4&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfSpeedBrain&quot;:true},&quot;location_startswith&quot;:null}}"
+    crossorigin="anonymous"></script>
+
+  <script src="./slide-inner.js.download"></script>
+</body>
+
+</html>

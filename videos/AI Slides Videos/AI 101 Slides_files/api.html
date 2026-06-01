@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>What Is an API?</title>
+  <link href="./css2" rel="stylesheet">
+  <link rel="stylesheet" href="./theme.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      font-family: 'Space Grotesk', sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="slide-container" data-screen-label="29 API"
+    style="position:relative;width:1920px;height:1080px;overflow:hidden;background:var(--bg);">
+    <div data-object="true" data-object-type="textbox" class="pure-ai-copyright-top" style="position:absolute;left:1480px;top:16px;width:345px;height:24px;z-index:31;text-align:center;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:13px;line-height:1.2;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);">Copyright 2026</div>
+<img data-object="true" data-object-type="image" class="pure-ai-logo" src="./purelogo-name-transparent.png" alt="Pure AI Solutions logo" style="position:absolute;left:1470px;top:23px;width:345px;height:auto;z-index:30;display:block;">
+    <div data-object="true" data-object-type="textbox" class="pure-ai-copyright-bottom" style="position:absolute;left:1485px;top:80px;width:345px;height:24px;z-index:31;text-align:center;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:13px;line-height:1.2;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);">All rights reserved</div>
+
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:-180px;top:540px;width:820px;height:820px;border-radius:50%;background:radial-gradient(circle at 50% 50%, #DBEAFE 0%, rgba(219,234,254,0) 65%);z-index:1;">
+    </div>
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:1280px;top:-220px;width:850px;height:850px;border-radius:50%;background:radial-gradient(circle at 50% 50%, #FFEDD5 0%, rgba(255,237,213,0) 64%);z-index:1;">
+    </div>
+
+    <div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:140px;top:50px;width:1300px;height:58px;z-index:10;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:40px;letter-spacing:0.08em;color:var(--blue);text-transform:uppercase;">
+      28 &mdash; APIs connect apps to models
+    </div>
+<div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:140px;top:160px;width:1640px;height:150px;z-index:10;">
+      <div
+        style="font-family:&#39;Instrument Serif&#39;,serif;font-size:95px;line-height:0.98;letter-spacing:-0.015em;color:var(--muted);">
+        An API is a <span style="font-style:italic;color:var(--orange);">controlled doorway</span> to a service.
+      </div>
+    </div>
+    <div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:140px;top:304px;width:1420px;height:48px;z-index:10;font-size:24px;line-height:1.35;color:var(--ink-2);">
+      Instead of opening a website by hand, software sends a structured request across the internet and gets a structured response back.
+    </div>
+
+    <!-- Diagram surface -->
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:100px;top:420px;width:1720px;height:520px;border-radius:30px;background:white;border:1.5px solid var(--line);box-shadow:var(--shadow-md);z-index:4;">
+    </div>
+
+    <!-- Left callers -->
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:160px;top:500px;width:270px;height:120px;border-radius:24px;background:var(--blue-soft);border:1.5px solid var(--blue);z-index:6;">
+    </div>
+    <div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:190px;top:516px;width:210px;height:88px;z-index:10;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+      <div
+        style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:16px;letter-spacing:0.16em;text-transform:uppercase;color:var(--blue-2);">
+        App</div>
+      <div style="font-family:&#39;Instrument Serif&#39;,serif;font-size:38px;line-height:1;color:var(--ink);margin-top:6px;">Chat assistant</div>
+    </div>
+
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:160px;top:720px;width:270px;height:120px;border-radius:24px;background:var(--pink-soft);border:1.5px solid var(--pink);z-index:6;">
+    </div>
+    <div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:190px;top:736px;width:210px;height:88px;z-index:10;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+      <div
+        style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:16px;letter-spacing:0.16em;text-transform:uppercase;color:var(--pink-2);">
+        App</div>
+      <div style="font-family:&#39;Instrument Serif&#39;,serif;font-size:38px;line-height:1;color:var(--ink);margin-top:6px;">Any agent</div>
+    </div>
+
+    <!-- Internet cloud -->
+    <svg data-object="true" data-object-type="shape" viewBox="0 0 420 260"
+      style="position:absolute;left:625px;top:550px;width:420px;height:260px;z-index:6;overflow:visible;">
+      <path d="M118 202 C66 202 34 170 34 130 C34 94 58 66 96 58 C112 24 149 10 187 27 C212 8 252 16 274 45 C320 45 356 80 356 124 C392 133 410 160 404 188 C398 222 365 238 326 232 L122 232 C118 232 116 232 112 232 Z"
+        fill="#DBEAFE" stroke="#2563EB" stroke-width="4"></path>
+    </svg>
+    <div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:690px;top:636px;width:290px;height:92px;z-index:10;text-align:center;">
+      <div
+        style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:17px;letter-spacing:0.18em;text-transform:uppercase;color:var(--blue-2);">
+        Internet</div>
+      <div style="font-family:&#39;Instrument Serif&#39;,serif;font-size:58px;line-height:1;color:var(--ink);margin-top:8px;">Cloud</div>
+    </div>
+
+    <!-- Provider container and LLM -->
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:1290px;top:500px;width:420px;height:340px;border-radius:30px;background:var(--bg-alt);border:1.5px solid var(--line);box-shadow:var(--shadow-sm);z-index:5;">
+    </div>
+    <div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:1330px;top:524px;width:340px;height:42px;z-index:10;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:22px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);">
+      Provider
+    </div>
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:1370px;top:610px;width:345px;height:150px;border-radius:26px;background:var(--orange-soft);border:2px solid var(--orange);box-shadow:var(--shadow-md);z-index:6;">
+    </div>
+    <div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:1370px;top:610px;width:345px;height:150px;z-index:10;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;">
+      <div
+        style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:16px;letter-spacing:0.16em;text-transform:uppercase;color:var(--orange-2);">
+        Model service</div>
+      <div style="font-family:&#39;Instrument Serif&#39;,serif;font-size:64px;line-height:1;color:var(--ink);margin-top:6px;">LLM</div>
+    </div>
+
+    <!-- Arrows -->
+    <svg data-object="true" data-object-type="shape" viewBox="0 0 1920 1080"
+      style="position:absolute;left:0;top:0;width:1920px;height:1080px;z-index:7;overflow:visible;">
+      <defs>
+        <marker id="arrowApi" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+          <path d="M0,0 L12,6 L0,12 Z" fill="#3A4A63"></path>
+        </marker>
+        <marker id="arrowApiStart" markerWidth="12" markerHeight="12" refX="2" refY="6" orient="auto" markerUnits="strokeWidth">
+          <path d="M12,0 L0,6 L12,12 Z" fill="#3A4A63"></path>
+        </marker>
+      </defs>
+      <path d="M430 560 L625 638" stroke="#3A4A63" stroke-width="4" fill="none" marker-start="url(#arrowApiStart)" marker-end="url(#arrowApi)"></path>
+      <path d="M430 780 L625 715" stroke="#3A4A63" stroke-width="4" fill="none" marker-start="url(#arrowApiStart)" marker-end="url(#arrowApi)"></path>
+      <path d="M1045 680 L1270 680" stroke="#3A4A63" stroke-width="5" fill="none" marker-start="url(#arrowApiStart)" marker-end="url(#arrowApi)"></path>
+    </svg>
+
+    <div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:1092px;top:584px;width:120px;height:38px;z-index:10;text-align:center;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:16px;letter-spacing:0.16em;text-transform:uppercase;color:var(--orange-2);background:var(--orange-soft);border:1.5px solid var(--orange);border-radius:12px;padding-top:18px;">
+      API
+    </div>
+
+    <div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:260px;top:890px;width:1400px;height:34px;z-index:10;text-align:center;font-size:22px;line-height:1.35;color:var(--ink-2);">
+      The API is the agreed format for asking the provider's LLM to do work.
+    </div>
+  </div>
+  <script src="./slide-inner.js.download"></script>
+</body>
+
+</html>

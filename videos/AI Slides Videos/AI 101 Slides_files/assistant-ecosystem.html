@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<!-- saved from url=(0172)https://www.genspark.ai/api/slides_git/projects/cfa091c2-0a05-46fe-91a3-e3b5f1dcebea/decks/ai-101/slides/assistant-ecosystem.html?v=6099584b3ea5450fc572b26576c577d910a78a17 -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Assistants &amp; Models</title>
+<link href="./css2" rel="stylesheet">
+<link rel="stylesheet" href="./theme.css">
+<style>body{margin:0;padding:0;overflow:hidden;font-family:'Space Grotesk',sans-serif;color:var(--ink);background:var(--bg);}</style>
+<style id="slide-selected-style">
+  [data-slide-selected]::before
+  /* [data-slide-hover-selected]::before */ {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    width: 100%;
+    height: 100%;
+    box-sizing: content-box;
+    padding: 4px;
+    border-radius: 0px;
+    outline: 2px solid #0f7fff !important;
+    z-index: 10000;
+    pointer-events: none;
+  }
+
+ /* [data-slide-hover-selected], */
+  [data-slide-selected] {
+    position: relative;
+    outline: none;
+    cursor: default;
+  }
+
+  img[data-slide-selected],
+  img[data-slide-hover-selected],
+  [data-slide-hover-selected],
+  [item-slide-click-selected],
+  [item-slide-selected] {
+    border: 2px solid #0f7fff !important;
+  }
+
+
+</style></head>
+<body>
+<div class="slide-container" data-screen-label="34 Assistant ecosystem" style="position:relative;width:1920px;height:1080px;overflow:hidden;background:var(--bg);">
+    <div data-object="true" data-object-type="textbox" class="pure-ai-copyright-top" style="position:absolute;left:1480px;top:16px;width:345px;height:24px;z-index:31;text-align:center;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:13px;line-height:1.2;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);">Copyright 2026</div>
+<img data-object="true" data-object-type="image" class="pure-ai-logo" src="./purelogo-name-transparent.png" alt="Pure AI Solutions logo" style="position:absolute;left:1470px;top:23px;width:345px;height:auto;z-index:30;display:block;">
+    <div data-object="true" data-object-type="textbox" class="pure-ai-copyright-bottom" style="position:absolute;left:1485px;top:80px;width:345px;height:24px;z-index:31;text-align:center;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:13px;line-height:1.2;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);">All rights reserved</div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:140px;top:50px;width:1300px;height:58px;z-index:10;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:40px;letter-spacing:0.08em;color:var(--blue);text-transform:uppercase;">33 &mdash; The big assistants &amp; their engines</div>
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:140px;top:160px;width:1640px;height:80px;z-index:10;">
+    <div style="font-family:&#39;Instrument Serif&#39;,serif;font-size:90px;line-height:1.0;letter-spacing:-0.015em;color:var(--muted);">Who runs the LLM <em style="color:var(--blue);">behind the chat?</em></div>
+  </div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:140px;top:260px;width:1640px;height:46px;z-index:10;font-size:22px;color:var(--ink-2);">A snapshot — these change every few months. Always check the app's own "About" page.</div>
+
+  <!-- 4 cards as rows -->
+  <!-- ChatGPT -->
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:140px;top:340px;width:820px;height:320px;border-radius:24px;background:white;border:1.5px solid var(--line);box-shadow:var(--shadow-sm);z-index:5;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:180px;top:370px;width:740px;height:260px;z-index:10;">
+    <div style="display:flex;align-items:center;gap:14px;">
+      <span style="display:inline-flex;width:56px;height:56px;border-radius:14px;background:#10A37F;color:var(--ink);align-items:center;justify-content:center;font-family:&#39;Instrument Serif&#39;,serif;font-size:30px;font-weight:600;">∞</span>
+      <div>
+        <div style="font-family:&#39;Instrument Serif&#39;,serif;font-size:36px;color:var(--ink);line-height:1;">ChatGPT</div>
+        <div style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:13px;color:var(--muted);letter-spacing:0.1em;">openai.com · made by OpenAI</div>
+      </div>
+    </div>
+    <div style="margin-top:16px;font-size:20px;line-height:1.5;color:var(--ink-2);">Powered by the <strong>GPT</strong> family. The current default is GPT‑5, with reasoning variants for harder tasks.</div>
+    <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap;">
+      <span style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:14px;background:var(--blue-soft);color:var(--blue-2);padding:6px 12px;border-radius:8px;">GPT‑5</span>
+      <span style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:14px;background:var(--blue-soft);color:var(--blue-2);padding:6px 12px;border-radius:8px;">GPT‑5 Thinking</span>
+      <span style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:14px;background:var(--blue-soft);color:var(--blue-2);padding:6px 12px;border-radius:8px;">o‑series reasoning</span>
+    </div>
+  </div>
+
+  <!-- Gemini -->
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:980px;top:340px;width:820px;height:320px;border-radius:24px;background:white;border:1.5px solid var(--line);box-shadow:var(--shadow-sm);z-index:5;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:1020px;top:370px;width:740px;height:260px;z-index:10;">
+    <div style="display:flex;align-items:center;gap:14px;">
+      <span style="display:inline-flex;width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,#4285F4,#9B72CB,#D96570);color:var(--ink);align-items:center;justify-content:center;font-family:&#39;Instrument Serif&#39;,serif;font-size:30px;font-weight:600;">G</span>
+      <div>
+        <div style="font-family:&#39;Instrument Serif&#39;,serif;font-size:36px;color:var(--ink);line-height:1;">Gemini</div>
+        <div style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:13px;color:var(--muted);letter-spacing:0.1em;">gemini.google.com · made by Google DeepMind</div>
+      </div>
+    </div>
+    <div style="margin-top:16px;font-size:20px;line-height:1.5;color:var(--ink-2);">Powered by the <strong>Gemini</strong> model family. Deeply integrated into Android, Workspace, Search.</div>
+    <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap;">
+      <span style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:14px;background:var(--pink-soft);color:var(--pink-2);padding:6px 12px;border-radius:8px;">Gemini 3 Pro</span>
+      <span style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:14px;background:var(--pink-soft);color:var(--pink-2);padding:6px 12px;border-radius:8px;">Gemini 3 Flash</span>
+      <span style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:14px;background:var(--pink-soft);color:var(--pink-2);padding:6px 12px;border-radius:8px;">long context</span>
+    </div>
+  </div>
+
+  <!-- Claude -->
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:140px;top:680px;width:820px;height:320px;border-radius:24px;background:white;border:1.5px solid var(--line);box-shadow:var(--shadow-sm);z-index:5;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:180px;top:710px;width:740px;height:260px;z-index:10;">
+    <div style="display:flex;align-items:center;gap:14px;">
+      <span style="display:inline-flex;width:56px;height:56px;border-radius:14px;background:#D97757;color:var(--ink);align-items:center;justify-content:center;font-family:&#39;Instrument Serif&#39;,serif;font-size:30px;font-weight:600;">C</span>
+      <div>
+        <div style="font-family:&#39;Instrument Serif&#39;,serif;font-size:36px;color:var(--ink);line-height:1;">Claude</div>
+        <div style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:13px;color:var(--muted);letter-spacing:0.1em;">claude.ai · made by Anthropic</div>
+      </div>
+    </div>
+    <div style="margin-top:16px;font-size:20px;line-height:1.5;color:var(--ink-2);">Powered by the <strong>Claude</strong> family — Haiku (fast), Sonnet (balanced), Opus (deepest). A favorite for writing and coding.</div>
+    <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap;">
+      <span style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:14px;background:var(--orange-soft);color:var(--orange-2);padding:6px 12px;border-radius:8px;">Claude Opus 4.6</span>
+      <span style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:14px;background:var(--orange-soft);color:var(--orange-2);padding:6px 12px;border-radius:8px;">Sonnet 4.6</span>
+      <span style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:14px;background:var(--orange-soft);color:var(--orange-2);padding:6px 12px;border-radius:8px;">Haiku</span>
+    </div>
+  </div>
+
+  <!-- Copilot + Meta AI -->
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:980px;top:680px;width:820px;height:320px;border-radius:24px;background:var(--orange-soft);border:1.5px solid var(--line);z-index:5;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:1020px;top:710px;width:740px;height:260px;z-index:10;">
+    <div style="display:flex;align-items:center;gap:14px;">
+      <span style="display:inline-flex;width:56px;height:56px;border-radius:14px;background:#0078D4;color:var(--ink);align-items:center;justify-content:center;font-family:&#39;Instrument Serif&#39;,serif;font-size:30px;font-weight:600;">⌬</span>
+      <div>
+        <div style="font-family:&#39;Instrument Serif&#39;,serif;font-size:36px;color:var(--ink);line-height:1;">Microsoft Copilot &nbsp;·&nbsp; Meta AI</div>
+        <div style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:13px;color:#9CA8BD;letter-spacing:0.1em;">in Windows, Office · in WhatsApp, Instagram</div>
+      </div>
+    </div>
+    <div style="margin-top:16px;font-size:20px;line-height:1.5;color:var(--ink-2);"><strong style="color:var(--ink);">Copilot</strong> mostly runs OpenAI's GPT models, sometimes Anthropic's Claude. <strong style="color:var(--ink);">Meta AI</strong> runs Meta's own open <strong>Llama</strong> models.</div>
+    <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap;">
+      <span style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:14px;background:white;color:var(--orange);padding:6px 12px;border-radius:8px;">GPT‑5</span>
+      <span style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:14px;background:white;color:var(--orange);padding:6px 12px;border-radius:8px;">Claude (Copilot)</span>
+      <span style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:14px;background:white;color:var(--orange);padding:6px 12px;border-radius:8px;">Llama 4</span>
+    </div>
+  </div>
+
+  <!-- caveat strip -->
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:140px;top:1030px;width:1640px;height:32px;z-index:10;text-align:center;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:14px;color:var(--muted);letter-spacing:0.04em;">
+    ⚠ Snapshot, mid‑2026. Model names, defaults and partnerships shift every few months — these are illustrative, not contractual.
+  </div>
+
+</div>
+<script defer="" src="./v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;4edd5f8ec12a48cfa682ab8261b80a79&quot;,&quot;server_timing&quot;:{&quot;name&quot;:{&quot;cfCacheStatus&quot;:true,&quot;cfEdge&quot;:true,&quot;cfExtPri&quot;:true,&quot;cfL4&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfSpeedBrain&quot;:true},&quot;location_startswith&quot;:null}}" crossorigin="anonymous"></script>
+
+
+<script src="./slide-inner.js.download"></script></body></html>

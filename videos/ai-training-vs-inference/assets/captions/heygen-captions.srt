@@ -1,0 +1,207 @@
+1
+00:00:00,000 --> 00:00:02,040
+An AI model has two very different
+
+2
+00:00:02,100 --> 00:00:04,330
+lives: training and inference.
+
+3
+00:00:04,600 --> 00:00:06,190
+Training is like going to school.
+
+4
+00:00:06,540 --> 00:00:08,300
+Before the product ships, the model
+
+5
+00:00:08,360 --> 00:00:10,610
+practices with enormous amounts of data.
+
+6
+00:00:10,970 --> 00:00:13,280
+Imagine showing it a photo labeled cat.
+
+7
+00:00:13,660 --> 00:00:15,000
+The model guesses dog.
+
+8
+00:00:15,240 --> 00:00:16,930
+Measure how wrong that guess was.
+
+9
+00:00:17,030 --> 00:00:18,560
+That error is called the loss.
+
+10
+00:00:18,710 --> 00:00:20,510
+Then nudge the model's internal weights
+
+11
+00:00:20,600 --> 00:00:22,390
+so the next guess moves a little closer
+
+12
+00:00:22,450 --> 00:00:22,880
+to cat.
+
+13
+00:00:22,980 --> 00:00:24,680
+Those weights are just numbers inside
+
+14
+00:00:24,710 --> 00:00:25,050
+the model.
+
+15
+00:00:25,130 --> 00:00:26,840
+As the numbers change, the model gets
+
+16
+00:00:26,890 --> 00:00:28,900
+slightly better at recognizing patterns
+
+17
+00:00:28,940 --> 00:00:30,370
+and making useful predictions.
+
+18
+00:00:30,480 --> 00:00:32,330
+Repeat that loop billions of times,
+
+19
+00:00:32,390 --> 00:00:34,540
+across text, images, or other examples.
+
+20
+00:00:34,660 --> 00:00:36,070
+That is training: expensive,
+
+21
+00:00:36,130 --> 00:00:37,910
+compute-heavy, and done in advance.
+
+22
+00:00:37,990 --> 00:00:39,660
+It can take weeks or months and cost
+
+23
+00:00:39,730 --> 00:00:41,030
+millions of dollars in compute.
+
+24
+00:00:41,080 --> 00:00:42,740
+Inference happens after graduation.
+
+25
+00:00:42,850 --> 00:00:44,470
+Every time you press send, the trained
+
+26
+00:00:44,510 --> 00:00:46,390
+model uses what it learned to generate
+
+27
+00:00:46,430 --> 00:00:47,880
+an answer, token by token.
+
+28
+00:00:47,980 --> 00:00:49,390
+This is a very different phase.
+
+29
+00:00:49,470 --> 00:00:51,460
+Inference usually takes seconds and can
+
+30
+00:00:51,510 --> 00:00:53,010
+cost a fraction of a cent.
+
+31
+00:00:53,160 --> 00:00:54,940
+Instead of changing the model's weights,
+
+32
+00:00:55,140 --> 00:00:56,900
+your prompt and conversation history
+
+33
+00:00:57,000 --> 00:00:58,970
+give the model context for the answer it
+
+34
+00:00:59,000 --> 00:01:00,060
+should produce right now.
+
+35
+00:01:00,230 --> 00:01:02,240
+That leads to one important detail: the
+
+36
+00:01:02,300 --> 00:01:04,520
+base model is not retraining during your
+
+37
+00:01:04,560 --> 00:01:05,220
+conversation.
+
+38
+00:01:05,460 --> 00:01:07,440
+It can use earlier messages in the chat,
+
+39
+00:01:07,560 --> 00:01:09,060
+but its learned weights are not
+
+40
+00:01:09,110 --> 00:01:11,110
+rewritten every time you ask a question.
+
+41
+00:01:11,270 --> 00:01:12,280
+Training is learning.
+
+42
+00:01:12,490 --> 00:01:14,330
+Inference is using what was learned.
+
+43
+00:01:14,690 --> 00:01:16,340
+Want to understand AI without the
+
+44
+00:01:16,390 --> 00:01:16,770
+jargon?
+
+45
+00:01:16,960 --> 00:01:18,600
+I created a complete course that
+
+46
+00:01:18,650 --> 00:01:20,550
+explains the essential terms with simple
+
+47
+00:01:20,600 --> 00:01:21,100
+examples.
+
+48
+00:01:21,400 --> 00:01:23,390
+Check the description, bio, or pinned
+
+49
+00:01:23,450 --> 00:01:24,610
+comment to start learning.
+
+50
+00:01:24,860 --> 00:01:26,800
+If you like AI explanation videos like
+
+51
+00:01:26,830 --> 00:01:29,140
+this, subscribe, follow and like for
+
+52
+00:01:29,190 --> 00:01:29,410
+more.

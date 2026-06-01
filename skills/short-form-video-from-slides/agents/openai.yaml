@@ -1,0 +1,4 @@
+interface:
+  display_name: "Short Form Video from Slides"
+  short_description: "Build polished avatar-led shorts from slides"
+  default_prompt: "Use $short-form-video-from-slides to create a polished 9:16 avatar-led short from selected horizontal slides, including captions, sound effects, CTA, SEO-ready YouTube metadata, validation, and final render."

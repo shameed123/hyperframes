@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<!-- saved from url=(0161)https://www.genspark.ai/api/slides_git/projects/cfa091c2-0a05-46fe-91a3-e3b5f1dcebea/decks/ai-101/slides/training.html?v=6099584b3ea5450fc572b26576c577d910a78a17 -->
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <title>Training</title>
+  <link href="./css2" rel="stylesheet">
+  <link rel="stylesheet" href="./theme.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      font-family: 'Space Grotesk', sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+    }
+  </style>
+  <style id="slide-selected-style">
+    [data-slide-selected]::before
+
+    /* [data-slide-hover-selected]::before */
+      {
+      content: '';
+      position: absolute;
+      top: -4px;
+      left: -4px;
+      width: 100%;
+      height: 100%;
+      box-sizing: content-box;
+      padding: 4px;
+      border-radius: 0px;
+      outline: 2px solid #0f7fff !important;
+      z-index: 10000;
+      pointer-events: none;
+    }
+
+    /* [data-slide-hover-selected], */
+    [data-slide-selected] {
+      position: relative;
+      outline: none;
+      cursor: default;
+    }
+
+    img[data-slide-selected],
+    img[data-slide-hover-selected],
+    [data-slide-hover-selected],
+    [item-slide-click-selected],
+    [item-slide-selected] {
+      border: 2px solid #0f7fff !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="slide-container" data-screen-label="11 Training"
+    style="position:relative;width:1920px;height:1080px;overflow:hidden;background:var(--bg);">
+    <div data-object="true" data-object-type="textbox" class="pure-ai-copyright-top" style="position:absolute;left:1480px;top:16px;width:345px;height:24px;z-index:31;text-align:center;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:13px;line-height:1.2;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);">Copyright 2026</div>
+<img data-object="true" data-object-type="image" class="pure-ai-logo" src="./purelogo-name-transparent.png" alt="Pure AI Solutions logo" style="position:absolute;left:1470px;top:23px;width:345px;height:auto;z-index:30;display:block;">
+    <div data-object="true" data-object-type="textbox" class="pure-ai-copyright-bottom" style="position:absolute;left:1485px;top:80px;width:345px;height:24px;z-index:31;text-align:center;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:13px;line-height:1.2;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);">All rights reserved</div>
+
+    <div data-object="true" data-object-type="textbox" style="position:absolute;left:140px;top:50px;width:1300px;height:58px;z-index:10;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:40px;letter-spacing:0.08em;color:var(--blue);text-transform:uppercase;">10 — 1 of 2 Phases: Training</div>
+<div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:140px;top:160px;width:1640px;height:190px;z-index:10;">
+      <div
+        style="font-family:&#39;Instrument Serif&#39;,serif;font-size:100px;line-height:0.94;letter-spacing:-0.015em;color:var(--muted);">
+        <span style="font-style:italic;color:var(--pink);">Training</span> is practice with feedback.</div>
+    </div>
+    <div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:140px;top:370px;width:1640px;height:56px;z-index:10;font-size:26px;color:var(--ink-2);">
+      Done once, in advance. Expensive. Months of compute. Billions of examples.</div>
+
+    <!-- Loop diagram: data → guess → check → adjust -->
+    <!-- Center label -->
+    <div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:760px;top:650px;width:400px;height:80px;z-index:10;text-align:center;font-family:&#39;Instrument Serif&#39;,serif;font-size:48px;line-height:1;color:var(--ink);">
+      Machine <span style="font-style:italic;color:var(--orange);">Learning</span></div>
+
+    <!-- 4 boxes in a circle layout around center -->
+    <!-- Box 1: Show data (top-left) -->
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:200px;top:460px;width:380px;height:160px;border-radius:24px;background:var(--blue-soft);z-index:5;">
+    </div>
+    <div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:230px;top:480px;width:320px;height:120px;z-index:10;">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <span
+          style="display:inline-flex;width:40px;height:40px;border-radius:50%;background:var(--blue);color:white;align-items:center;justify-content:center;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:16px;font-weight:600;">1</span>
+        <span
+          style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:var(--blue-2);">Show
+          example</span>
+      </div>
+      <div style="font-size:22px;line-height:1.4;color:var(--ink);margin-top:10px;">"Here is a photo. The correct label
+        is <strong>cat</strong>."</div>
+    </div>
+
+    <!-- Box 2: Guess (top-right) -->
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:1340px;top:460px;width:380px;height:160px;border-radius:24px;background:var(--pink-soft);z-index:5;">
+    </div>
+    <div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:1370px;top:480px;width:320px;height:120px;z-index:10;">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <span
+          style="display:inline-flex;width:40px;height:40px;border-radius:50%;background:var(--pink);color:white;align-items:center;justify-content:center;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:16px;font-weight:600;">2</span>
+        <span
+          style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:var(--pink-2);">Model
+          guesses</span>
+      </div>
+      <div style="font-size:22px;line-height:1.4;color:var(--ink);margin-top:10px;">"I think it's a
+        <strong>dog</strong>." (Wrong — for now.)</div>
+    </div>
+
+    <!-- Box 3: Measure error (bottom-right) -->
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:1340px;top:760px;width:380px;height:160px;border-radius:24px;background:var(--orange-soft);z-index:5;">
+    </div>
+    <div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:1370px;top:780px;width:320px;height:120px;z-index:10;">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <span
+          style="display:inline-flex;width:40px;height:40px;border-radius:50%;background:var(--orange);color:white;align-items:center;justify-content:center;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:16px;font-weight:600;">3</span>
+        <span
+          style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:var(--orange-2);">Measure
+          error</span>
+      </div>
+      <div style="font-size:22px;line-height:1.4;color:var(--ink);margin-top:10px;">"You were off by <strong>this
+          much</strong>." (the "loss")</div>
+    </div>
+
+    <!-- Box 4: Adjust weights (bottom-left) -->
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:200px;top:760px;width:380px;height:160px;border-radius:24px;background:var(--orange-soft);z-index:5;">
+    </div>
+    <div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:230px;top:780px;width:320px;height:120px;z-index:10;">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <span
+          style="display:inline-flex;width:40px;height:40px;border-radius:50%;background:var(--orange);color:white;align-items:center;justify-content:center;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:16px;font-weight:600;">4</span>
+        <span
+          style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:var(--orange);">Nudge
+          weights</span>
+      </div>
+      <div style="font-size:22px;line-height:1.4;color:var(--ink);margin-top:10px;">Tiny adjustments so next time the
+        guess leans toward "cat".</div>
+    </div>
+
+    <!-- Arrows between boxes (simple) -->
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:600px;top:530px;width:720px;height:2px;background:var(--ink-2);opacity:0.35;z-index:4;">
+    </div>
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:1305px;top:519px;width:0;height:0;border-left:18px solid var(--ink-2);border-top:12px solid transparent;border-bottom:12px solid transparent;opacity:0.6;z-index:4;">
+    </div>
+
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:1525px;top:620px;width:2px;height:140px;background:var(--ink-2);opacity:0.35;z-index:4;">
+    </div>
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:1514px;top:745px;width:0;height:0;border-top:18px solid var(--ink-2);border-left:12px solid transparent;border-right:12px solid transparent;opacity:0.6;z-index:4;">
+    </div>
+
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:600px;top:830px;width:720px;height:2px;background:var(--ink-2);opacity:0.35;z-index:4;">
+    </div>
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:600px;top:819px;width:0;height:0;border-right:18px solid var(--ink-2);border-top:12px solid transparent;border-bottom:12px solid transparent;opacity:0.6;z-index:4;">
+    </div>
+
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:385px;top:620px;width:2px;height:140px;background:var(--ink-2);opacity:0.35;z-index:4;">
+    </div>
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:374px;top:610px;width:0;height:0;border-bottom:18px solid var(--ink-2);border-left:12px solid transparent;border-right:12px solid transparent;opacity:0.6;z-index:4;">
+    </div>
+
+    <!-- Bottom note -->
+    <div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:140px;top:990px;width:1640px;height:48px;z-index:10;font-family:&#39;Instrument Serif&#39;,serif;font-style:italic;font-size:32px;color:var(--ink-2);text-align:center;">
+      Repeat this loop billions of times. That's training.
+    </div>
+
+  </div>
+  <script defer="" src="./v833ccba57c9e4d2798f2e76cebdd09a11778172276447"
+    integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ=="
+    data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;4edd5f8ec12a48cfa682ab8261b80a79&quot;,&quot;server_timing&quot;:{&quot;name&quot;:{&quot;cfCacheStatus&quot;:true,&quot;cfEdge&quot;:true,&quot;cfExtPri&quot;:true,&quot;cfL4&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfSpeedBrain&quot;:true},&quot;location_startswith&quot;:null}}"
+    crossorigin="anonymous"></script>
+
+
+  <script src="./slide-inner.js.download"></script>
+</body>
+
+</html>

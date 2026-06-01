@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<!-- saved from url=(0170)https://www.genspark.ai/api/slides_git/projects/cfa091c2-0a05-46fe-91a3-e3b5f1dcebea/decks/ai-101/slides/artificial-neuron.html?v=6099584b3ea5450fc572b26576c577d910a78a17 -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>One Artificial Neuron</title>
+<link href="./css2" rel="stylesheet">
+<link rel="stylesheet" href="./theme.css">
+<style>body{margin:0;padding:0;overflow:hidden;font-family:'Space Grotesk',sans-serif;color:var(--ink);background:var(--bg);}</style>
+<style id="slide-selected-style">
+  [data-slide-selected]::before
+  /* [data-slide-hover-selected]::before */ {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    width: 100%;
+    height: 100%;
+    box-sizing: content-box;
+    padding: 4px;
+    border-radius: 0px;
+    outline: 2px solid #0f7fff !important;
+    z-index: 10000;
+    pointer-events: none;
+  }
+
+ /* [data-slide-hover-selected], */
+  [data-slide-selected] {
+    position: relative;
+    outline: none;
+    cursor: default;
+  }
+
+  img[data-slide-selected],
+  img[data-slide-hover-selected],
+  [data-slide-hover-selected],
+  [item-slide-click-selected],
+  [item-slide-selected] {
+    border: 2px solid #0f7fff !important;
+  }
+
+
+</style></head>
+<body>
+<div class="slide-container" data-screen-label="09 Artificial neuron" style="position:relative;width:1920px;height:1080px;overflow:hidden;background:var(--bg);">
+    <div data-object="true" data-object-type="textbox" class="pure-ai-copyright-top" style="position:absolute;left:1480px;top:16px;width:345px;height:24px;z-index:31;text-align:center;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:13px;line-height:1.2;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);">Copyright 2026</div>
+<img data-object="true" data-object-type="image" class="pure-ai-logo" src="./purelogo-name-transparent.png" alt="Pure AI Solutions logo" style="position:absolute;left:1470px;top:23px;width:345px;height:auto;z-index:30;display:block;">
+    <div data-object="true" data-object-type="textbox" class="pure-ai-copyright-bottom" style="position:absolute;left:1485px;top:80px;width:345px;height:24px;z-index:31;text-align:center;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:13px;line-height:1.2;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);">All rights reserved</div>
+
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:140px;top:50px;width:1300px;height:58px;z-index:10;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:40px;letter-spacing:0.08em;color:var(--blue);text-transform:uppercase;">8 — Zoom in: one artificial neuron</div>
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:140px;top:160px;width:1640px;height:160px;z-index:10;">
+    <div style="font-family:&#39;Instrument Serif&#39;,serif;font-size:124px;line-height:0.98;letter-spacing:-0.015em;color:var(--muted);">An artificial neuron is <span style="font-style:italic;color:var(--blue);">a tiny weighted vote</span>.</div>
+  </div>
+
+  <!-- Diagram: inputs → neuron → output -->
+  <!-- Inputs labels -->
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:180px;top:495px;width:240px;height:48px;z-index:10;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:24px;color:var(--ink-2);">input x₁</div>
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:380px;top:480px;width:80px;height:60px;border-radius:14px;background:var(--blue-soft);border:1.5px solid var(--blue);z-index:5;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:380px;top:480px;width:80px;height:60px;z-index:10;display:flex;align-items:center;justify-content:center;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:26px;font-weight:600;color:var(--blue-2);">0.8</div>
+
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:180px;top:595px;width:240px;height:48px;z-index:10;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:24px;color:var(--ink-2);">input x₂</div>
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:380px;top:580px;width:80px;height:60px;border-radius:14px;background:var(--blue-soft);border:1.5px solid var(--blue);z-index:5;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:380px;top:580px;width:80px;height:60px;z-index:10;display:flex;align-items:center;justify-content:center;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:26px;font-weight:600;color:var(--blue-2);">0.1</div>
+
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:180px;top:690px;width:240px;height:48px;z-index:10;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:24px;color:var(--ink-2);">input x₃</div>
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:380px;top:680px;width:80px;height:60px;border-radius:14px;background:var(--blue-soft);border:1.5px solid var(--blue);z-index:5;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:380px;top:680px;width:80px;height:60px;z-index:10;display:flex;align-items:center;justify-content:center;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:26px;font-weight:600;color:var(--blue-2);">0.6</div>
+
+  <!-- weights labels on lines -->
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:500px;top:480px;width:160px;height:30px;z-index:10;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:24px;color:var(--pink);">× w₁ (2.0)</div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:500px;top:575px;width:160px;height:30px;z-index:10;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:24px;color:var(--pink);">× w₂ (-1.5)</div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:500px;top:700px;width:160px;height:30px;z-index:10;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:24px;color:var(--pink);">× w₃ (0.5)</div>
+
+  <!-- connecting lines (using rotated divs) -->
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:460px;top:510px;width:340px;height:2px;background:var(--ink-2);transform:rotate(13deg);transform-origin:0 0;z-index:4;"></div>
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:460px;top:610px;width:330px;height:2px;background:var(--ink-2);transform:rotate(0deg);transform-origin:0 0;z-index:4;"></div>
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:460px;top:710px;width:340px;height:2px;background:var(--ink-2);transform:rotate(-13deg);transform-origin:0 0;z-index:4;"></div>
+
+  <!-- The neuron sum circle -->
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:780px;top:520px;width:220px;height:220px;border-radius:50%;background:var(--orange-soft);border:1.5px solid var(--line);box-shadow:var(--shadow-md);z-index:5;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:780px;top:520px;width:220px;height:220px;z-index:10;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--ink);">
+    <div style="font-family:&#39;Instrument Serif&#39;,serif;font-size:72px;line-height:1;">Σ</div>
+    <div style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:var(--orange);margin-top:4px;">weighted sum</div>
+  </div>
+
+  <!-- Activation step -->
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:1000px;top:625px;width:64px;height:2px;background:var(--ink-2);z-index:4;"></div>
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:1052px;top:614px;width:0;height:0;border-left:18px solid var(--ink-2);border-top:12px solid transparent;border-bottom:12px solid transparent;z-index:4;"></div>
+
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:1080px;top:560px;width:150px;height:140px;border-radius:22px;background:var(--pink-soft);border:1.5px solid var(--pink);box-shadow:var(--shadow-sm);z-index:5;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:1080px;top:560px;width:150px;height:140px;z-index:10;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--ink);text-align:center;">
+    <div style="font-family:&#39;Instrument Serif&#39;,serif;font-size:56px;line-height:0.95;">f(x)</div>
+    <div style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--pink-2);margin-top:8px;">activation</div>
+  </div>
+
+  <!-- Output arrow -->
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:1230px;top:625px;width:62px;height:2px;background:var(--ink-2);z-index:4;"></div>
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:1280px;top:614px;width:0;height:0;border-left:18px solid var(--ink-2);border-top:12px solid transparent;border-bottom:12px solid transparent;z-index:4;"></div>
+
+  <!-- Output value -->
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:1305px;top:580px;width:185px;height:96px;border-radius:18px;background:var(--orange);box-shadow:var(--shadow-sm);z-index:5;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:1305px;top:580px;width:185px;height:96px;z-index:10;display:flex;flex-direction:column;align-items:center;justify-content:center;color:white;">
+    <div style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;opacity:0.9;">output</div>
+    <div style="font-family:&#39;Instrument Serif&#39;,serif;font-size:54px;line-height:1;margin-top:2px;">0.9</div>
+  </div>
+
+  <!-- Explanation card -->
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:1520px;top:420px;width:280px;height:520px;border-radius:24px;background:var(--pink-soft);z-index:1;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:1550px;top:450px;width:220px;height:460px;z-index:10;">
+    <div style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:var(--pink-2);">In words</div>
+    <div style="font-family:&#39;Instrument Serif&#39;,serif;font-size:38px;line-height:1.1;margin-top:10px;color:var(--ink);">Multiply, add, activate.</div>
+    <div style="font-size:18px;line-height:1.55;color:var(--ink-2);margin-top:18px;">Each input is multiplied by its weight, the results are added, then an activation function turns that sum into the final output.</div>
+    <div style="font-size:18px;line-height:1.55;color:var(--ink-2);margin-top:14px;"><strong>Training</strong> is just adjusting those weights until the right answer comes out.</div>
+  </div>
+
+  <!-- Bottom takeaway -->
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:140px;top:980px;width:1320px;height:60px;z-index:10;font-family:&#39;Instrument Serif&#39;,serif;font-style:italic;font-size:32px;line-height:1.3;color:var(--ink-2);">
+    Stack <span style="color:var(--blue);">millions of these</span> in layers and you get a neural network.
+  </div>
+
+</div>
+<script defer="" src="./v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;4edd5f8ec12a48cfa682ab8261b80a79&quot;,&quot;server_timing&quot;:{&quot;name&quot;:{&quot;cfCacheStatus&quot;:true,&quot;cfEdge&quot;:true,&quot;cfExtPri&quot;:true,&quot;cfL4&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfSpeedBrain&quot;:true},&quot;location_startswith&quot;:null}}" crossorigin="anonymous"></script>
+
+
+<script src="./slide-inner.js.download"></script></body></html>

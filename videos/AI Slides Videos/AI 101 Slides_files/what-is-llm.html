@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<!-- saved from url=(0164)https://www.genspark.ai/api/slides_git/projects/cfa091c2-0a05-46fe-91a3-e3b5f1dcebea/decks/ai-101/slides/what-is-llm.html?v=6099584b3ea5450fc572b26576c577d910a78a17 -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>What is an LLM</title>
+<link href="./css2" rel="stylesheet">
+<link rel="stylesheet" href="./theme.css">
+<style>body{margin:0;padding:0;overflow:hidden;font-family:'Space Grotesk',sans-serif;color:var(--ink);background:var(--bg);}</style>
+<style id="slide-selected-style">
+  [data-slide-selected]::before
+  /* [data-slide-hover-selected]::before */ {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    width: 100%;
+    height: 100%;
+    box-sizing: content-box;
+    padding: 4px;
+    border-radius: 0px;
+    outline: 2px solid #0f7fff !important;
+    z-index: 10000;
+    pointer-events: none;
+  }
+
+ /* [data-slide-hover-selected], */
+  [data-slide-selected] {
+    position: relative;
+    outline: none;
+    cursor: default;
+  }
+
+  img[data-slide-selected],
+  img[data-slide-hover-selected],
+  [data-slide-hover-selected],
+  [item-slide-click-selected],
+  [item-slide-selected] {
+    border: 2px solid #0f7fff !important;
+  }
+
+
+</style></head>
+<body>
+<div class="slide-container" data-screen-label="14 What is an LLM" style="position:relative;width:1920px;height:1080px;overflow:hidden;background:var(--bg);">
+    <div data-object="true" data-object-type="textbox" class="pure-ai-copyright-top" style="position:absolute;left:1480px;top:16px;width:345px;height:24px;z-index:31;text-align:center;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:13px;line-height:1.2;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);">Copyright 2026</div>
+<img data-object="true" data-object-type="image" class="pure-ai-logo" src="./purelogo-name-transparent.png" alt="Pure AI Solutions logo" style="position:absolute;left:1470px;top:23px;width:345px;height:auto;z-index:30;display:block;">
+    <div data-object="true" data-object-type="textbox" class="pure-ai-copyright-bottom" style="position:absolute;left:1485px;top:80px;width:345px;height:24px;z-index:31;text-align:center;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:13px;line-height:1.2;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);">All rights reserved</div>
+
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:140px;top:50px;width:1300px;height:58px;z-index:10;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:40px;letter-spacing:0.08em;color:var(--pink-2);text-transform:uppercase;">13 — The big idea</div>
+<!-- Background accent -->
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:1100px;top:-100px;width:900px;height:900px;border-radius:50%;background:radial-gradient(circle at 50% 50%, #FCE7F3 0%, rgba(252,231,243,0) 65%);z-index:1;"></div>
+
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:140px;top:170px;width:1640px;height:300px;z-index:10;">
+    <div style="font-family:&#39;Instrument Serif&#39;,serif;font-size:172px;line-height:0.95;letter-spacing:-0.02em;color:var(--muted);">
+      An LLM is a<br>
+      <span style="font-style:italic;color:var(--pink);">word‑predictor</span><br>
+      at gigantic scale.
+    </div>
+  </div>
+
+  <!-- Live example: predict the next word -->
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:140px;top:720px;width:1080px;height:280px;border-radius:28px;background:white;border:1.5px solid var(--line);box-shadow:var(--shadow-md);z-index:5;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:180px;top:750px;width:1000px;height:220px;z-index:10;">
+    <div style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:14px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);">How it works (no, really)</div>
+    <div style="font-family:&#39;Instrument Serif&#39;,serif;font-size:42px;line-height:1.1;color:var(--ink);margin-top:8px;">Given some text, guess the most likely <em>next</em> word.</div>
+    <div style="display:flex;gap:8px;align-items:center;margin-top:20px;flex-wrap:wrap;">
+      <span style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:24px;color:var(--ink);background:var(--bg-alt);padding:8px 14px;border-radius:8px;">The</span>
+      <span style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:24px;color:var(--ink);background:var(--bg-alt);padding:8px 14px;border-radius:8px;">cat</span>
+      <span style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:24px;color:var(--ink);background:var(--bg-alt);padding:8px 14px;border-radius:8px;">sat</span>
+      <span style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:24px;color:var(--ink);background:var(--bg-alt);padding:8px 14px;border-radius:8px;">on</span>
+      <span style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:24px;color:var(--ink);background:var(--bg-alt);padding:8px 14px;border-radius:8px;">the</span>
+      <span style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:24px;color:white;background:var(--pink);padding:8px 14px;border-radius:8px;font-weight:600;">mat ✨</span>
+      <span style="font-size:22px;color:var(--muted);margin-left:8px;">← predicted</span>
+    </div>
+  </div>
+
+  <!-- Right side: why it matters -->
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:1260px;top:520px;width:540px;height:480px;border-radius:28px;background:var(--blue-soft);border:1.5px solid var(--line);z-index:5;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:1300px;top:560px;width:460px;height:400px;z-index:10;">
+    <div style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:14px;letter-spacing:0.16em;text-transform:uppercase;color:var(--orange);">Why it feels like magic</div>
+    <div style="font-family:&#39;Instrument Serif&#39;,serif;font-size:48px;line-height:1.05;color:var(--ink);margin-top:10px;">To predict words<br>well, the model<br>must <em style="color:var(--pink);">understand</em><br>the world<br>the words describe.</div>
+    <div style="font-size:20px;line-height:1.5;color:#043d86;margin-top:18px;">Code, recipes, legal arguments — they're all just sequences of words to predict.</div>
+  </div>
+
+</div>
+<script defer="" src="./v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;4edd5f8ec12a48cfa682ab8261b80a79&quot;,&quot;server_timing&quot;:{&quot;name&quot;:{&quot;cfCacheStatus&quot;:true,&quot;cfEdge&quot;:true,&quot;cfExtPri&quot;:true,&quot;cfL4&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfSpeedBrain&quot;:true},&quot;location_startswith&quot;:null}}" crossorigin="anonymous"></script>
+
+
+<script src="./slide-inner.js.download"></script></body></html>

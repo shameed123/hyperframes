@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Coding Agents</title>
+  <link href="./css2" rel="stylesheet">
+  <link rel="stylesheet" href="./theme.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      font-family: 'Space Grotesk', sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+    }
+  </style>
+  <style id="slide-selected-style">
+    [data-slide-selected]::before {
+      content: '';
+      position: absolute;
+      top: -4px;
+      left: -4px;
+      width: 100%;
+      height: 100%;
+      box-sizing: content-box;
+      padding: 4px;
+      border-radius: 0px;
+      outline: 2px solid #0f7fff !important;
+      z-index: 10000;
+      pointer-events: none;
+    }
+
+    [data-slide-selected] {
+      position: relative;
+      outline: none;
+      cursor: default;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="slide-container" data-screen-label="25 Coding agents"
+    style="position:relative;width:1920px;height:1080px;overflow:hidden;background:var(--bg);">
+    <div data-object="true" data-object-type="textbox" class="pure-ai-copyright-top" style="position:absolute;left:1480px;top:16px;width:345px;height:24px;z-index:31;text-align:center;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:13px;line-height:1.2;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);">Copyright 2026</div>
+<img data-object="true" data-object-type="image" class="pure-ai-logo" src="./purelogo-name-transparent.png" alt="Pure AI Solutions logo" style="position:absolute;left:1470px;top:23px;width:345px;height:auto;z-index:30;display:block;">
+    <div data-object="true" data-object-type="textbox" class="pure-ai-copyright-bottom" style="position:absolute;left:1485px;top:80px;width:345px;height:24px;z-index:31;text-align:center;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:13px;line-height:1.2;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);">All rights reserved</div>
+
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:-140px;top:-180px;width:760px;height:760px;border-radius:50%;background:radial-gradient(circle at 50% 50%, #DBEAFE 0%, rgba(219,234,254,0) 65%);z-index:1;">
+    </div>
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:1280px;top:600px;width:860px;height:860px;border-radius:50%;background:radial-gradient(circle at 50% 50%, #FCE7F3 0%, rgba(252,231,243,0) 62%);z-index:1;">
+    </div>
+
+    <div data-object="true" data-object-type="textbox" style="position:absolute;left:140px;top:50px;width:1300px;height:58px;z-index:10;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:40px;letter-spacing:0.08em;color:var(--blue);text-transform:uppercase;">24 &mdash; Coding agents</div>
+<div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:140px;top:160px;width:1640px;height:160px;z-index:10;">
+      <div
+        style="font-family:&#39;Instrument Serif&#39;,serif;font-size:104px;line-height:0.98;letter-spacing:-0.015em;color:var(--muted);">
+        Coding agents sit on a <span style="font-style:italic;color:var(--orange);">spectrum</span>.
+      </div>
+    </div>
+    <div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:140px;top:312px;width:1500px;height:58px;z-index:10;font-size:24px;line-height:1.35;color:var(--ink-2);">
+      Some hide most of the code and give you a running app. Others live right inside your source code, terminal, pull requests, and tests.
+    </div>
+
+    <!-- High-level builders -->
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:140px;top:410px;width:790px;height:520px;border-radius:28px;background:white;border:1.5px solid var(--line);box-shadow:var(--shadow-md);z-index:5;">
+    </div>
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:140px;top:410px;width:790px;height:88px;border-radius:28px 28px 0 0;background:var(--blue-soft);z-index:6;">
+    </div>
+    <div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:180px;top:438px;width:710px;height:54px;z-index:10;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:24px;letter-spacing:0.18em;text-transform:uppercase;color:var(--blue-2);">
+      High-level app builders</div>
+    <div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:180px;top:535px;width:710px;height:350px;z-index:10;">
+      <div style="font-family:&#39;Instrument Serif&#39;,serif;font-size:58px;line-height:1.02;color:var(--ink);">
+        Describe the product. Get a working app.
+      </div>
+      <div style="font-size:22px;line-height:1.45;color:var(--ink-2);margin-top:20px;">
+        Better for non-engineers, founders, internal tools, and quick prototypes. The platform often chooses the stack, generates the code, and handles deployment.
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:24px;">
+        <span style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:15px;color:var(--blue-2);background:var(--blue-soft);border-radius:12px;padding:10px 14px;">database</span>
+        <span style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:15px;color:var(--blue-2);background:var(--blue-soft);border-radius:12px;padding:10px 14px;">auth</span>
+        <span style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:15px;color:var(--blue-2);background:var(--blue-soft);border-radius:12px;padding:10px 14px;">hosting</span>
+        <span style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:15px;color:var(--blue-2);background:var(--blue-soft);border-radius:12px;padding:10px 14px;">payments</span>
+        <span style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:15px;color:var(--blue-2);background:var(--blue-soft);border-radius:12px;padding:10px 14px;">integrations</span>
+      </div>
+      <div style="font-size:19px;line-height:1.35;color:var(--muted);margin-top:24px;">
+        Examples: Lovable, Bolt.new, v0, Replit Agent, Firebase Studio, Base44.
+      </div>
+    </div>
+
+    <!-- Source-level agents -->
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:990px;top:410px;width:790px;height:520px;border-radius:28px;background:white;border:1.5px solid var(--line);box-shadow:var(--shadow-md);z-index:5;">
+    </div>
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:990px;top:410px;width:790px;height:88px;border-radius:28px 28px 0 0;background:var(--pink-soft);z-index:6;">
+    </div>
+    <div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:1030px;top:438px;width:710px;height:54px;z-index:10;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:24px;letter-spacing:0.18em;text-transform:uppercase;color:var(--pink-2);">
+      Source-level coding agents</div>
+    <div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:1030px;top:535px;width:710px;height:350px;z-index:10;">
+      <div style="font-family:&#39;Instrument Serif&#39;,serif;font-size:58px;line-height:1.02;color:var(--ink);">
+        Work in the repo you already own.
+      </div>
+      <div style="font-size:22px;line-height:1.45;color:var(--ink-2);margin-top:20px;">
+        Better for engineers and teams maintaining real codebases. The agent reads files, proposes diffs, runs commands/tests, and works through pull requests.
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:24px;">
+        <span style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:15px;color:var(--pink-2);background:var(--pink-soft);border-radius:12px;padding:10px 14px;">repo context</span>
+        <span style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:15px;color:var(--pink-2);background:var(--pink-soft);border-radius:12px;padding:10px 14px;">diffs</span>
+        <span style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:15px;color:var(--pink-2);background:var(--pink-soft);border-radius:12px;padding:10px 14px;">terminal</span>
+        <span style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:15px;color:var(--pink-2);background:var(--pink-soft);border-radius:12px;padding:10px 14px;">tests</span>
+        <span style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:15px;color:var(--pink-2);background:var(--pink-soft);border-radius:12px;padding:10px 14px;">pull requests</span>
+      </div>
+      <div style="font-size:19px;line-height:1.35;color:var(--muted);margin-top:24px;">
+        Examples: Claude Code, Codex, Antigravit, Cursor, Windsurf, GitHub Copilot, Devin, Junie, Cline.
+      </div>
+    </div>
+
+    <div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:140px;top:970px;width:1640px;height:40px;z-index:10;text-align:center;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:15px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);">
+      Same loop underneath: plan &rarr; edit &rarr; run &rarr; observe &rarr; repair.
+    </div>
+  </div>
+  <script src="./slide-inner.js.download"></script>
+</body>
+
+</html>

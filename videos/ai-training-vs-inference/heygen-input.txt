@@ -1,0 +1,21 @@
+An AI model has two very different lives: training and inference.
+
+Training is like going to school. Before the product ships, the model practices with enormous amounts of data.
+
+Imagine showing it a photo labeled cat. The model guesses dog. Measure how wrong that guess was. That error is called the loss. Then nudge the model's internal weights so the next guess moves a little closer to cat.
+
+Those weights are just numbers inside the model. As the numbers change, the model gets slightly better at recognizing patterns and making useful predictions.
+
+Repeat that loop billions of times, across text, images, or other examples. That is training: expensive, compute-heavy, and done in advance. It can take weeks or months and cost millions of dollars in compute.
+
+Inference happens after graduation. Every time you press send, the trained model uses what it learned to generate an answer, token by token.
+
+This is a very different phase. Inference usually takes seconds and can cost a fraction of a cent. Instead of changing the model's weights, your prompt and conversation history give the model context for the answer it should produce right now.
+
+That leads to one important detail: the base model is not retraining during your conversation. It can use earlier messages in the chat, but its learned weights are not rewritten every time you ask a question.
+
+Training is learning. Inference is using what was learned.
+
+Want to understand AI without the jargon? I created a complete course that explains the essential terms with simple examples. Check the description, bio, or pinned comment to start learning.
+
+If you like AI explanation videos like this, subscribe, follow and like for more.

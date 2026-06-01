@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<!-- saved from url=(0167)https://www.genspark.ai/api/slides_git/projects/cfa091c2-0a05-46fe-91a3-e3b5f1dcebea/decks/ai-101/slides/tokens-context.html?v=6099584b3ea5450fc572b26576c577d910a78a17 -->
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <title>Tokens and context</title>
+  <link href="./css2" rel="stylesheet">
+  <link rel="stylesheet" href="./theme.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      font-family: 'Space Grotesk', sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+    }
+  </style>
+  <style id="slide-selected-style">
+    [data-slide-selected]::before
+
+    /* [data-slide-hover-selected]::before */
+      {
+      content: '';
+      position: absolute;
+      top: -4px;
+      left: -4px;
+      width: 100%;
+      height: 100%;
+      box-sizing: content-box;
+      padding: 4px;
+      border-radius: 0px;
+      outline: 2px solid #0f7fff !important;
+      z-index: 10000;
+      pointer-events: none;
+    }
+
+    /* [data-slide-hover-selected], */
+    [data-slide-selected] {
+      position: relative;
+      outline: none;
+      cursor: default;
+    }
+
+    img[data-slide-selected],
+    img[data-slide-hover-selected],
+    [data-slide-hover-selected],
+    [item-slide-click-selected],
+    [item-slide-selected] {
+      border: 2px solid #0f7fff !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="slide-container" data-screen-label="15 Tokens and context"
+    style="position:relative;width:1920px;height:1080px;overflow:hidden;background:var(--bg);">
+    <div data-object="true" data-object-type="textbox" class="pure-ai-copyright-top" style="position:absolute;left:1480px;top:16px;width:345px;height:24px;z-index:31;text-align:center;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:13px;line-height:1.2;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);">Copyright 2026</div>
+<img data-object="true" data-object-type="image" class="pure-ai-logo" src="./purelogo-name-transparent.png" alt="Pure AI Solutions logo" style="position:absolute;left:1470px;top:23px;width:345px;height:auto;z-index:30;display:block;">
+    <div data-object="true" data-object-type="textbox" class="pure-ai-copyright-bottom" style="position:absolute;left:1485px;top:80px;width:345px;height:24px;z-index:31;text-align:center;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:13px;line-height:1.2;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);">All rights reserved</div>
+
+    <div data-object="true" data-object-type="textbox" style="position:absolute;left:140px;top:50px;width:1300px;height:58px;z-index:10;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:40px;letter-spacing:0.08em;color:var(--blue);text-transform:uppercase;">14 — Tokens &amp; context window</div>
+<div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:140px;top:160px;width:1640px;height:140px;z-index:10;">
+      <div
+        style="font-family:&#39;Instrument Serif&#39;,serif;font-size:124px;line-height:0.98;letter-spacing:-0.015em;color:var(--muted);">
+        Models read in <span style="font-style:italic;color:var(--pink);">tokens</span>, not letters.</div>
+    </div>
+
+    <!-- Tokens demo -->
+    <div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:140px;top:340px;width:800px;height:32px;z-index:10;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:14px;letter-spacing:0.18em;text-transform:uppercase;color:var(--blue);">
+      The sentence:</div>
+    <div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:140px;top:380px;width:1640px;height:80px;z-index:10;font-family:&#39;Instrument Serif&#39;,serif;font-size:54px;line-height:1.1;color:var(--ink);">
+      "Artificial intelligence is wonderful."</div>
+
+    <div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:140px;top:500px;width:800px;height:32px;z-index:10;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:14px;letter-spacing:0.18em;text-transform:uppercase;color:var(--pink);">
+      Becomes 7 tokens:</div>
+
+    <!-- token chips -->
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:140px;top:550px;width:1640px;height:84px;z-index:5;"></div>
+    <div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:140px;top:550px;width:1640px;height:84px;z-index:10;display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+      <span
+        style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:22px;color:var(--ink);background:var(--blue-soft);padding:14px 20px;border-radius:12px;">Artificial</span>
+      <span
+        style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:22px;color:var(--ink);background:var(--pink-soft);padding:14px 20px;border-radius:12px;">&nbsp;intelligence</span>
+      <span
+        style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:22px;color:var(--ink);background:var(--blue-soft);padding:14px 20px;border-radius:12px;">&nbsp;is</span>
+      <span
+        style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:22px;color:var(--ink);background:var(--orange-soft);padding:14px 20px;border-radius:12px;">&nbsp;wonder</span>
+      <span
+        style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:22px;color:var(--ink);background:var(--orange-soft);padding:14px 20px;border-radius:12px;">ful</span>
+      <span
+        style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:22px;color:var(--ink);background:var(--blue-soft);padding:14px 20px;border-radius:12px;">.</span>
+    </div>
+    <div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:140px;top:650px;width:1640px;height:36px;z-index:10;font-size:20px;color:var(--muted);">
+      ≈ A token is roughly ¾ of an English word. Spaces and punctuation count.</div>
+
+    <!-- Context window card -->
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:140px;top:740px;width:820px;height:260px;border-radius:24px;background:var(--orange-soft);border:1.5px solid var(--line);z-index:5;">
+    </div>
+    <div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:180px;top:770px;width:740px;height:200px;z-index:10;">
+      <div
+        style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:var(--orange);">
+        Context window</div>
+      <div
+        style="font-family:&#39;Instrument Serif&#39;,serif;font-size:44px;line-height:1.05;color:var(--ink);margin-top:6px;">
+        The model's short‑term memory.</div>
+      <div style="font-size:20px;line-height:1.55;color:#1c79f3;margin-top:14px;">It can only "see" so many tokens at
+        once — typically 128k to 2M. Once you exceed it, the oldest tokens scroll out of view and are forgotten.</div>
+    </div>
+
+    <!-- Practical scale card -->
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:980px;top:740px;width:820px;height:260px;border-radius:24px;background:white;border:1.5px solid var(--line);box-shadow:var(--shadow-sm);z-index:5;">
+    </div>
+    <div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:1020px;top:770px;width:740px;height:200px;z-index:10;">
+      <div
+        style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:var(--blue-2);">
+        How much is that?</div>
+      <div
+        style="font-family:&#39;Instrument Serif&#39;,serif;font-size:44px;line-height:1.05;color:var(--ink);margin-top:6px;">
+        Roughly speaking…</div>
+      <div
+        style="margin-top:14px;display:flex;flex-direction:column;gap:6px;font-size:20px;line-height:1.5;color:var(--ink-2);">
+        <div><strong>1k tokens</strong> ≈ one page of a book</div>
+        <div><strong>128k tokens</strong> ≈ a 300‑page novel</div>
+        <div><strong>2M tokens</strong> ≈ a small library wing</div>
+      </div>
+    </div>
+
+  </div>
+  <script defer="" src="./v833ccba57c9e4d2798f2e76cebdd09a11778172276447"
+    integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ=="
+    data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;4edd5f8ec12a48cfa682ab8261b80a79&quot;,&quot;server_timing&quot;:{&quot;name&quot;:{&quot;cfCacheStatus&quot;:true,&quot;cfEdge&quot;:true,&quot;cfExtPri&quot;:true,&quot;cfL4&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfSpeedBrain&quot;:true},&quot;location_startswith&quot;:null}}"
+    crossorigin="anonymous"></script>
+
+
+  <script src="./slide-inner.js.download"></script>
+</body>
+
+</html>

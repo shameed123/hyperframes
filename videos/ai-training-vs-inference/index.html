@@ -1,0 +1,916 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #fbf8f3;
+        color: #2f3744;
+        font-family: "JetBrains Mono", monospace;
+      }
+
+      #root {
+        position: relative;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #fbf8f3;
+      }
+
+      .clip,
+      .layer {
+        position: absolute;
+      }
+
+      .slide-bg,
+      .slide-layer {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+      }
+
+      .slide-bg {
+        z-index: 1;
+      }
+
+      .ai-tech-bg {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        overflow: hidden;
+        pointer-events: none;
+      }
+
+      .ai-tech-network {
+        width: 100%;
+        height: 100%;
+        opacity: 0.84;
+      }
+
+      .tech-grid {
+        opacity: 0.42;
+        will-change: transform;
+      }
+
+      .tech-cluster {
+        opacity: 0.78;
+        will-change: transform;
+      }
+
+      .tech-trace {
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 4;
+      }
+
+      .tech-trace.blue {
+        stroke: rgba(37, 99, 235, 0.34);
+      }
+
+      .tech-trace.pink {
+        stroke: rgba(236, 72, 153, 0.34);
+      }
+
+      .tech-trace.orange {
+        stroke: rgba(249, 115, 22, 0.34);
+      }
+
+      .tech-node {
+        stroke: rgba(255, 255, 255, 0.94);
+        stroke-width: 6;
+      }
+
+      .tech-chip {
+        opacity: 0.74;
+        filter: drop-shadow(0 24px 34px rgba(37, 99, 235, 0.12));
+        will-change: transform;
+      }
+
+      .tech-pulse {
+        opacity: 0.36;
+        transform-box: fill-box;
+        transform-origin: center;
+        will-change: transform, opacity;
+      }
+
+      .slide-bg::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(180deg, rgba(251, 248, 243, 0.4), rgba(251, 248, 243, 0.82)),
+          radial-gradient(circle at 22% 12%, rgba(236, 72, 153, 0.1), rgba(236, 72, 153, 0) 32%),
+          radial-gradient(circle at 84% 78%, rgba(37, 99, 235, 0.11), rgba(37, 99, 235, 0) 34%);
+      }
+
+      .slide-layer {
+        z-index: 5;
+      }
+
+      .slide-canvas {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        border: 2px solid rgba(255, 255, 255, 0.8);
+        border-radius: 26px;
+        background: #fbf8f3;
+        box-shadow:
+          0 42px 110px rgba(47, 55, 68, 0.22),
+          0 0 0 1px rgba(47, 55, 68, 0.05);
+        transform-origin: 0 0;
+        will-change: transform;
+      }
+
+      .slide-canvas img {
+        display: block;
+        width: 1920px;
+        height: 1080px;
+      }
+
+      #inference-layer {
+        opacity: 0;
+      }
+
+      .topbar {
+        position: absolute;
+        left: 48px;
+        right: 48px;
+        top: 44px;
+        z-index: 30;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .phase-pill,
+      .lesson-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 18px;
+        border: 1px solid rgba(37, 99, 235, 0.18);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.84);
+        color: #1e40af;
+        font-size: 20px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        box-shadow: 0 18px 46px rgba(47, 55, 68, 0.12);
+        backdrop-filter: blur(18px) saturate(1.16);
+      }
+
+      .phase-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #ec4899;
+      }
+
+      .lesson-pill {
+        border-color: rgba(249, 115, 22, 0.2);
+        color: #a63b0a;
+        font-size: 17px;
+      }
+
+      .hook {
+        position: absolute;
+        left: 52px;
+        right: 52px;
+        top: 180px;
+        z-index: 32;
+        padding: 34px 36px 30px;
+        border: 1px solid rgba(255, 255, 255, 0.78);
+        border-radius: 30px;
+        background: rgba(255, 255, 255, 0.88);
+        box-shadow: 0 28px 76px rgba(47, 55, 68, 0.16);
+        backdrop-filter: blur(22px) saturate(1.18);
+      }
+
+      .hook-kicker {
+        color: #2563eb;
+        font-size: 21px;
+        font-weight: 800;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .hook h1 {
+        margin-top: 14px;
+        color: #2f3744;
+        font-family: serif;
+        font-size: 88px;
+        font-weight: 400;
+        line-height: 0.92;
+        letter-spacing: -0.035em;
+      }
+
+      .hook h1 em {
+        color: #db2777;
+        font-weight: 400;
+      }
+
+      .focus-box {
+        position: absolute;
+        left: 118px;
+        top: 410px;
+        z-index: 20;
+        width: 760px;
+        height: 308px;
+        border: 7px solid rgba(249, 115, 22, 0.94);
+        border-radius: 32px;
+        background: rgba(249, 115, 22, 0.1);
+        box-shadow:
+          0 0 0 10px rgba(255, 255, 255, 0.76),
+          0 24px 70px rgba(249, 115, 22, 0.2);
+        opacity: 0;
+      }
+
+      .focus-label {
+        position: absolute;
+        left: 18px;
+        top: -62px;
+        padding: 12px 16px;
+        border-radius: 999px;
+        background: #c2410c;
+        color: #ffffff;
+        font-size: 21px;
+        font-weight: 900;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        opacity: 0;
+      }
+
+      .marker-line {
+        position: absolute;
+        left: 92px;
+        top: 1550px;
+        z-index: 21;
+        width: 750px;
+        height: 16px;
+        border-radius: 999px;
+        background: rgba(249, 115, 22, 0.46);
+        box-shadow: 0 8px 24px rgba(249, 115, 22, 0.24);
+        opacity: 0;
+        transform: scaleX(0);
+        transform-origin: left center;
+      }
+
+      .cursor {
+        position: absolute;
+        left: 760px;
+        top: 660px;
+        z-index: 24;
+        width: 62px;
+        height: 74px;
+        opacity: 0;
+        filter: drop-shadow(0 12px 18px rgba(47, 55, 68, 0.28));
+        will-change: transform;
+      }
+
+      .cursor svg {
+        width: 100%;
+        height: 100%;
+      }
+
+      .avatar-frame {
+        position: absolute;
+        right: 44px;
+        bottom: 70px;
+        z-index: 42;
+        width: 330px;
+        height: 388px;
+        overflow: hidden;
+        border-radius: 28px;
+        background: #ffffff;
+        box-shadow:
+          0 38px 92px rgba(47, 55, 68, 0.36),
+          0 0 50px rgba(37, 99, 235, 0.18);
+        transform-origin: right bottom;
+        transform-style: preserve-3d;
+        will-change: transform;
+      }
+
+      .avatar-frame video {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 580px;
+        height: 388px;
+        object-fit: cover;
+        transform: translate(-50%, -50%) scale(1.14);
+        will-change: transform;
+      }
+
+      .avatar-label {
+        position: absolute;
+        right: 62px;
+        bottom: 478px;
+        z-index: 43;
+        padding: 11px 14px;
+        border-radius: 999px;
+        background: rgba(47, 55, 68, 0.9);
+        color: #ffffff;
+        font-size: 16px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .caption-stage {
+        position: absolute;
+        left: 82px;
+        right: 82px;
+        bottom: 520px;
+        z-index: 45;
+        min-height: 96px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+      }
+
+      .caption-group {
+        position: absolute;
+        inset: 10px 0;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+        color: #ffffff;
+        font-size: 34px;
+        font-weight: 800;
+        line-height: 1.08;
+        text-align: center;
+        text-transform: uppercase;
+        -webkit-text-stroke: 2px rgba(47, 55, 68, 0.92);
+        paint-order: stroke fill;
+        text-shadow:
+          0 3px 2px rgba(15, 23, 42, 0.4),
+          0 8px 22px rgba(15, 23, 42, 0.26);
+        opacity: 0;
+      }
+
+      .caption-word {
+        display: inline-flex;
+        padding: 4px 4px;
+        border-radius: 8px;
+        opacity: 0;
+      }
+
+      .caption-word.active {
+        padding: 4px 7px;
+        background: rgba(37, 99, 235, 0.24);
+        color: #3b82f6;
+        -webkit-text-stroke: 0 transparent;
+        text-shadow: none;
+        box-shadow: 0 5px 14px rgba(37, 99, 235, 0.1);
+      }
+
+      .thumbnail-card {
+        position: absolute;
+        inset: 0;
+        z-index: 80;
+        display: block;
+        overflow: hidden;
+        background: #06111f;
+      }
+
+      .thumbnail-card::before,
+      .thumbnail-card::after {
+        display: none;
+      }
+
+      .thumbnail-card img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .thumbnail-kicker,
+      .thumbnail-badge,
+      .thumbnail-title,
+      .thumbnail-copy {
+        position: relative;
+        z-index: 1;
+      }
+
+      .thumbnail-kicker {
+        color: #2563eb;
+        font-size: 30px;
+        font-weight: 900;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      .thumbnail-title {
+        margin-top: 26px;
+        color: #1e293b;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 154px;
+        font-weight: 900;
+        line-height: 0.86;
+        letter-spacing: -0.09em;
+        text-transform: uppercase;
+      }
+
+      .thumbnail-title span {
+        display: block;
+        color: #ec4899;
+        font-family: serif;
+        font-size: 178px;
+        font-style: italic;
+        font-weight: 700;
+        letter-spacing: -0.1em;
+      }
+
+      .thumbnail-copy {
+        max-width: 880px;
+        margin-top: 42px;
+        color: #334155;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 42px;
+        font-weight: 800;
+        line-height: 1.08;
+      }
+
+      .thumbnail-badge {
+        align-self: flex-start;
+        margin-top: 48px;
+        padding: 18px 24px;
+        border-radius: 999px;
+        background: #c2410c;
+        color: #ffffff;
+        font-size: 25px;
+        font-weight: 900;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        box-shadow: 0 18px 42px rgba(249, 115, 22, 0.26);
+      }
+
+      .course-card {
+        position: absolute;
+        left: 64px;
+        right: 64px;
+        top: 226px;
+        z-index: 50;
+        min-height: 1040px;
+        padding: 62px 54px;
+        border: 1px solid rgba(255, 255, 255, 0.88);
+        border-radius: 38px;
+        background:
+          radial-gradient(circle at 88% 15%, rgba(37, 99, 235, 0.16), rgba(37, 99, 235, 0) 35%),
+          radial-gradient(circle at 12% 84%, rgba(236, 72, 153, 0.16), rgba(236, 72, 153, 0) 38%),
+          rgba(255, 255, 255, 0.94);
+        box-shadow: 0 42px 110px rgba(47, 55, 68, 0.2);
+        opacity: 0;
+        transform: translateY(80px);
+      }
+
+      .course-kicker {
+        color: #2563eb;
+        font-size: 22px;
+        font-weight: 900;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      .course-card h2 {
+        margin-top: 24px;
+        color: #2f3744;
+        font-family: serif;
+        font-size: 104px;
+        font-weight: 400;
+        line-height: 0.92;
+        letter-spacing: -0.04em;
+      }
+
+      .course-card h2 em {
+        color: #ec4899;
+        font-weight: 400;
+      }
+
+      .course-card p {
+        margin-top: 34px;
+        max-width: 820px;
+        color: #3a4a63;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 36px;
+        font-weight: 700;
+        line-height: 1.2;
+      }
+
+      .course-list {
+        display: grid;
+        gap: 18px;
+        margin-top: 42px;
+      }
+
+      .course-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 18px;
+        padding: 21px 24px;
+        border-radius: 22px;
+        background: rgba(219, 234, 254, 0.74);
+        color: #1e40af;
+        font-size: 25px;
+        font-weight: 900;
+        line-height: 1.18;
+      }
+
+      .course-check {
+        display: inline-flex;
+        flex: 0 0 auto;
+        width: 42px;
+        height: 42px;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: #1e40af;
+        color: #ffffff;
+        visibility: hidden;
+      }
+
+      .cta-route {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin-top: 48px;
+      }
+
+      .route-pill {
+        padding: 16px 18px;
+        border-radius: 999px;
+        background: #f97316;
+        color: #ffffff;
+        font-size: 22px;
+        font-weight: 900;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .course-arrow {
+        position: absolute;
+        right: 100px;
+        bottom: 96px;
+        color: #ec4899;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 148px;
+        font-weight: 900;
+        line-height: 1;
+        transform: rotate(90deg);
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="ai-training-vs-inference"
+      data-start="0"
+      data-duration="89.642"
+      data-width="1080"
+      data-height="1920"
+    >
+      <audio
+        id="narration"
+        class="clip"
+        data-start="0"
+        data-duration="89.642"
+        data-track-index="1"
+        data-volume="1"
+        src="assets/avatar/heygen-avatar-16x9.mp4"
+      ></audio>
+      <audio id="sfx-thumbnail-whoosh" class="clip" data-start="0.46" data-duration="0.55" data-track-index="20" data-volume="0.28" src="assets/sfx/whoosh-soft.wav"></audio>
+      <audio id="sfx-training-settle" class="clip" data-start="4.6" data-duration="0.55" data-track-index="21" data-volume="0.32" src="assets/sfx/whoosh-soft.wav"></audio>
+      <audio id="sfx-training-marker" class="clip" data-start="5.4" data-duration="0.14" data-track-index="22" data-volume="0.28" src="assets/sfx/pop-soft.wav"></audio>
+      <audio id="sfx-show-example" class="clip" data-start="10.97" data-duration="0.28" data-track-index="23" data-volume="0.3" src="assets/sfx/ping-soft.wav"></audio>
+      <audio id="sfx-model-guess" class="clip" data-start="13.66" data-duration="0.06" data-track-index="24" data-volume="0.26" src="assets/sfx/click-soft.wav"></audio>
+      <audio id="sfx-measure-loss" class="clip" data-start="15.24" data-duration="0.06" data-track-index="25" data-volume="0.26" src="assets/sfx/click-soft.wav"></audio>
+      <audio id="sfx-nudge-weights" class="clip" data-start="18.71" data-duration="0.14" data-track-index="26" data-volume="0.28" src="assets/sfx/pop-soft.wav"></audio>
+      <audio id="sfx-training-overview" class="clip" data-start="30.48" data-duration="0.55" data-track-index="27" data-volume="0.32" src="assets/sfx/whoosh-soft.wav"></audio>
+      <audio id="sfx-inference-transition" class="clip" data-start="41.08" data-duration="0.55" data-track-index="28" data-volume="0.36" src="assets/sfx/whoosh-soft.wav"></audio>
+      <audio id="sfx-using-knowledge" class="clip" data-start="44.52" data-duration="0.34" data-track-index="29" data-volume="0.3" src="assets/sfx/pong-soft.wav"></audio>
+      <audio id="sfx-inference-speed" class="clip" data-start="49.54" data-duration="0.06" data-track-index="30" data-volume="0.26" src="assets/sfx/click-soft.wav"></audio>
+      <audio id="sfx-context-pan" class="clip" data-start="53.16" data-duration="0.55" data-track-index="31" data-volume="0.3" src="assets/sfx/whoosh-soft.wav"></audio>
+      <audio id="sfx-inference-overview" class="clip" data-start="60.23" data-duration="0.55" data-track-index="32" data-volume="0.32" src="assets/sfx/whoosh-soft.wav"></audio>
+      <audio id="sfx-course-chime" class="clip" data-start="74.69" data-duration="0.5" data-track-index="33" data-volume="0.36" src="assets/sfx/chime-soft.wav"></audio>
+      <audio id="sfx-route-pop" class="clip" data-start="81.4" data-duration="0.14" data-track-index="34" data-volume="0.28" src="assets/sfx/pop-soft.wav"></audio>
+
+      <div class="slide-bg"></div>
+      <div class="ai-tech-bg" data-layout-ignore aria-hidden="true">
+        <svg class="ai-tech-network" viewBox="0 0 1080 1920" preserveAspectRatio="none">
+          <defs>
+            <pattern id="tech-grid-pattern" width="74" height="74" patternUnits="userSpaceOnUse">
+              <path d="M 74 0 L 0 0 0 74" fill="none" stroke="rgba(37, 99, 235, 0.18)" stroke-width="2" />
+              <circle cx="0" cy="0" r="4" fill="rgba(236, 72, 153, 0.34)" />
+            </pattern>
+            <linearGradient id="chip-gradient" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0%" stop-color="rgba(219, 234, 254, 0.92)" />
+              <stop offset="100%" stop-color="rgba(251, 207, 232, 0.86)" />
+            </linearGradient>
+          </defs>
+
+          <rect class="tech-grid" x="-60" y="900" width="1200" height="1080" fill="url(#tech-grid-pattern)" />
+
+          <g class="tech-cluster tech-cluster-a">
+            <path class="tech-trace blue" d="M-40 1180 H140 V1086 H290 V1230 H430" />
+            <path class="tech-trace pink" d="M40 1500 H236 V1394 H388 V1560 H548" />
+            <path class="tech-trace orange" d="M-16 1722 H136 V1634 H308 V1780 H468" />
+            <circle class="tech-node" cx="140" cy="1086" r="16" fill="#93c5fd" />
+            <circle class="tech-node" cx="290" cy="1230" r="13" fill="#f9a8d4" />
+            <circle class="tech-node" cx="236" cy="1394" r="18" fill="#fed7aa" />
+            <circle class="tech-node" cx="388" cy="1560" r="14" fill="#93c5fd" />
+            <circle class="tech-node" cx="136" cy="1634" r="13" fill="#f9a8d4" />
+            <circle class="tech-node" cx="308" cy="1780" r="17" fill="#fed7aa" />
+          </g>
+
+          <g class="tech-cluster tech-cluster-b">
+            <path class="tech-trace pink" d="M1120 1120 H930 V1250 H796 V1148 H660" />
+            <path class="tech-trace blue" d="M1080 1464 H926 V1368 H770 V1518 H612" />
+            <path class="tech-trace orange" d="M1126 1760 H972 V1660 H842 V1810 H690" />
+            <circle class="tech-node" cx="930" cy="1250" r="17" fill="#f9a8d4" />
+            <circle class="tech-node" cx="796" cy="1148" r="13" fill="#fed7aa" />
+            <circle class="tech-node" cx="926" cy="1368" r="14" fill="#93c5fd" />
+            <circle class="tech-node" cx="770" cy="1518" r="18" fill="#f9a8d4" />
+            <circle class="tech-node" cx="972" cy="1660" r="13" fill="#fed7aa" />
+            <circle class="tech-node" cx="842" cy="1810" r="16" fill="#93c5fd" />
+          </g>
+
+          <g class="tech-chip">
+            <rect x="414" y="1320" width="252" height="252" rx="42" fill="url(#chip-gradient)" stroke="rgba(37, 99, 235, 0.34)" stroke-width="6" />
+            <rect x="460" y="1366" width="160" height="160" rx="28" fill="rgba(255, 255, 255, 0.68)" stroke="rgba(236, 72, 153, 0.28)" stroke-width="5" />
+            <circle cx="540" cy="1446" r="38" fill="rgba(37, 99, 235, 0.2)" stroke="rgba(37, 99, 235, 0.46)" stroke-width="6" />
+            <path d="M518 1446 H562 M540 1424 V1468" stroke="rgba(30, 64, 175, 0.72)" stroke-linecap="round" stroke-width="8" />
+            <path d="M452 1290 V1320 M500 1290 V1320 M548 1290 V1320 M596 1290 V1320 M628 1290 V1320 M452 1572 V1602 M500 1572 V1602 M548 1572 V1602 M596 1572 V1602 M628 1572 V1602 M384 1358 H414 M384 1404 H414 M384 1450 H414 M384 1496 H414 M666 1358 H696 M666 1404 H696 M666 1450 H696 M666 1496 H696" stroke="rgba(249, 115, 22, 0.4)" stroke-linecap="round" stroke-width="8" />
+          </g>
+
+          <g class="tech-pulse tech-pulse-a">
+            <circle cx="140" cy="1086" r="46" fill="none" stroke="rgba(37, 99, 235, 0.5)" stroke-width="6" />
+          </g>
+          <g class="tech-pulse tech-pulse-b">
+            <circle cx="770" cy="1518" r="52" fill="none" stroke="rgba(236, 72, 153, 0.46)" stroke-width="6" />
+          </g>
+          <g class="tech-pulse tech-pulse-c">
+            <circle cx="540" cy="1446" r="78" fill="none" stroke="rgba(249, 115, 22, 0.36)" stroke-width="7" />
+          </g>
+        </svg>
+      </div>
+
+      <div id="training-layer" class="slide-layer" data-layout-allow-overflow>
+        <div id="training-canvas" class="slide-canvas">
+          <img src="assets/slides/training.png" alt="Training slide" />
+        </div>
+      </div>
+
+      <div id="inference-layer" class="slide-layer" data-layout-allow-overflow>
+        <div id="inference-canvas" class="slide-canvas">
+          <img src="assets/slides/inference.png" alt="Inference slide" />
+        </div>
+      </div>
+
+      <div class="topbar">
+        <div class="phase-pill"><span class="phase-dot"></span><span id="phase-copy">Training</span></div>
+        <div class="lesson-pill">AI 101 / Two Phases</div>
+      </div>
+
+      <div id="hook" class="hook">
+        <div class="hook-kicker">The simplest AI mental model</div>
+        <h1>An AI model has <em>two lives.</em></h1>
+      </div>
+
+      <div id="focus-box" class="focus-box">
+        <div id="focus-label" class="focus-label">Show example</div>
+      </div>
+      <div id="marker-line" class="marker-line"></div>
+      <div id="cursor" class="cursor">
+        <svg viewBox="0 0 64 78" aria-hidden="true">
+          <path
+            d="M6 4 L56 45 L34 48 L47 69 L34 76 L21 53 L7 69 Z"
+            fill="#2563EB"
+            stroke="#FFFFFF"
+            stroke-width="6"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </div>
+
+      <div class="avatar-label">AI Instructor</div>
+      <div class="avatar-frame" data-layout-allow-overflow>
+        <video
+          id="avatar-video"
+          class="clip"
+          data-start="0"
+          data-duration="89.642"
+          data-track-index="8"
+          src="assets/avatar/heygen-avatar-16x9-seekable.mp4"
+          muted
+          playsinline
+        ></video>
+      </div>
+
+      <div id="caption-stage" class="caption-stage"></div>
+
+      <section id="thumbnail-card" class="thumbnail-card">
+        <img src="assets/thumbnails/ai-training-vs-inference-generated.png" alt="AI training versus inference" />
+      </section>
+
+      <section id="course-card" class="course-card">
+        <div class="course-kicker">Free AI terminology course</div>
+        <h2>Understand AI <em>without the jargon.</em></h2>
+        <p>Learn the essential concepts through clear, practical examples.</p>
+        <div class="course-list">
+          <div class="course-item"><span class="course-check">✓</span> Core AI terms explained simply</div>
+          <div class="course-item"><span class="course-check">✓</span> Training, inference, tokens, prompts, AI agents, APIs, ChatGPT, coding agents, and more</div>
+          <div class="course-item"><span class="course-check">✓</span> A complete beginner-friendly walkthrough</div>
+        </div>
+        <div class="cta-route">
+          <span class="route-pill">Description</span>
+          <span class="route-pill">Bio</span>
+          <span class="route-pill">Pinned comment</span>
+        </div>
+        <div class="course-arrow">➜</div>
+      </section>
+    </div>
+
+    <script src="assets/captions/captions.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+
+      var CAPTION_GROUPS = window.CAPTION_GROUPS || [];
+      var tl = gsap.timeline({ paused: true });
+
+      function addCaptionGroups(groups) {
+        var stage = document.getElementById("caption-stage");
+
+        groups.forEach(function (group, groupIndex) {
+          var groupEl = document.createElement("div");
+          groupEl.id = "caption-group-" + groupIndex;
+          groupEl.className = "caption-group";
+
+          group.words.forEach(function (word, wordIndex) {
+            var wordEl = document.createElement("span");
+            wordEl.id = "caption-word-" + groupIndex + "-" + wordIndex;
+            wordEl.className = "caption-word";
+            wordEl.textContent = word.text;
+            groupEl.appendChild(wordEl);
+          });
+
+          stage.appendChild(groupEl);
+
+          var wordSelector = "#caption-group-" + groupIndex + " .caption-word";
+          tl.set("#caption-group-" + groupIndex, { opacity: 1 }, group.start);
+          tl.set(wordSelector, { opacity: 1 }, group.start);
+          tl.set("#caption-group-" + groupIndex, { opacity: 0 }, group.end);
+          tl.set(wordSelector, { opacity: 0 }, group.end);
+
+          group.words.forEach(function (word, wordIndex) {
+            var wordId = "#caption-word-" + groupIndex + "-" + wordIndex;
+            tl.set(wordId, { attr: { class: "caption-word active" } }, word.start);
+            tl.set(wordId, { attr: { class: "caption-word" } }, word.end);
+          });
+
+          tl.set(wordSelector, { opacity: 0 }, group.end + 0.001);
+        });
+      }
+
+      addCaptionGroups(CAPTION_GROUPS);
+
+      tl.set("#training-canvas", { x: 0, y: 0, scale: 1.78 }, 0);
+      tl.set("#inference-layer", { x: 1080, opacity: 0 }, 0);
+      tl.set("#inference-canvas", { x: 12, y: 324, scale: 0.55 }, 0);
+      tl.set(".avatar-frame", { transformPerspective: 900, transformOrigin: "right bottom" }, 0);
+      tl.set("#avatar-video", { y: 0 }, 0);
+      tl.set("#caption-stage", { opacity: 1 }, 0.56);
+      tl.to("#thumbnail-card", { opacity: 0, duration: 0.12, ease: "power1.out" }, 0.46);
+      tl.set("#thumbnail-card *", { opacity: 0 }, 0.58);
+      tl.set("#thumbnail-card *", { display: "none" }, 0.58);
+      tl.set("#thumbnail-card", { display: "none" }, 0.58);
+      tl.to("#training-canvas", { x: -2338, duration: 4.16, ease: "power1.inOut" }, 0.18);
+      tl.from("#hook", { y: -62, opacity: 0, duration: 0.72, ease: "power3.out" }, 0.18);
+      tl.from(".topbar", { y: -40, opacity: 0, duration: 0.52, ease: "expo.out" }, 0.28);
+      tl.from(".avatar-frame", { x: 66, opacity: 0, scale: 0.92, duration: 0.68, ease: "power2.out" }, 0.34);
+      tl.from(".avatar-label", { x: 34, opacity: 0, duration: 0.44, ease: "back.out(1.4)" }, 0.62);
+      tl.to("#hook", { opacity: 0, y: -40, duration: 0.34, ease: "power2.in" }, 4.46);
+      tl.set("#hook *", { opacity: 0 }, 4.82);
+      tl.set("#hook *", { display: "none" }, 4.82);
+
+      tl.to("#training-canvas", { x: 12, y: 248, scale: 0.55, duration: 1.25, ease: "power2.inOut" }, 4.6);
+      tl.to(".avatar-frame", { width: 560, height: 330, scale: 1, duration: 0.76, ease: "power2.inOut" }, 4.92);
+      tl.to("#avatar-video", { y: 24, duration: 0.76, ease: "power2.inOut" }, 4.92);
+      tl.to(".avatar-label", { bottom: 420, duration: 0.76, ease: "power2.inOut" }, 4.92);
+      tl.fromTo("#marker-line", { opacity: 0, scaleX: 0, x: 0, y: -1128, width: 750 }, { opacity: 1, scaleX: 1, x: 0, y: -1128, width: 750, duration: 0.62, ease: "power2.out" }, 5.4);
+      tl.to("#marker-line", { opacity: 0, duration: 0.22, ease: "power1.in" }, 10.58);
+
+      tl.set("#focus-box", { opacity: 1, x: 0, y: 0, width: 760, height: 308 }, 10.97);
+      tl.to(".avatar-frame", { width: 330, height: 388, scale: 1, duration: 0.58, ease: "power2.inOut" }, 10.78);
+      tl.to("#avatar-video", { y: 0, duration: 0.58, ease: "power2.inOut" }, 10.78);
+      tl.to(".avatar-label", { bottom: 478, duration: 0.58, ease: "power2.inOut" }, 10.78);
+      tl.set("#focus-label", { textContent: "Show example", opacity: 1 }, 10.97);
+      tl.fromTo("#cursor", { opacity: 0, x: 122, y: -148 }, { opacity: 1, x: 0, y: 0, duration: 0.48, ease: "back.out(1.5)" }, 11.04);
+      tl.to("#training-canvas", { x: -126, y: -368, scale: 1.7, duration: 1.08, ease: "power3.inOut" }, 10.97);
+      tl.to("#focus-box", { x: 0, y: 0, duration: 0.44, ease: "power2.out" }, 11.64);
+
+      tl.to("#training-canvas", { x: -2060, y: -368, scale: 1.7, duration: 0.74, ease: "power3.inOut" }, 13.66);
+      tl.to("#cursor", { x: 62, y: -12, duration: 0.52, ease: "power2.inOut" }, 13.74);
+      tl.set("#focus-label", { textContent: "Model guesses" }, 13.78);
+
+      tl.to("#training-canvas", { x: -2060, y: -900, scale: 1.7, duration: 0.7, ease: "power3.inOut" }, 15.24);
+      tl.to("#cursor", { x: 22, y: 42, duration: 0.48, ease: "power2.inOut" }, 15.3);
+      tl.set("#focus-label", { textContent: "Measure loss" }, 15.38);
+
+      tl.to("#training-canvas", { x: -126, y: -900, scale: 1.7, duration: 0.78, ease: "power3.inOut" }, 18.71);
+      tl.to("#cursor", { x: -18, y: 58, duration: 0.56, ease: "power2.inOut" }, 18.78);
+      tl.set("#focus-label", { textContent: "Nudge weights" }, 18.86);
+
+      tl.set("#focus-label", { textContent: "Weights = numbers" }, 23.08);
+      tl.to("#training-canvas", { x: 12, y: 316, scale: 0.55, duration: 1.42, ease: "power3.inOut" }, 30.48);
+      tl.to(".avatar-frame", { width: 560, height: 330, scale: 1, duration: 0.74, ease: "power2.inOut" }, 30.66);
+      tl.to("#avatar-video", { y: 24, duration: 0.74, ease: "power2.inOut" }, 30.66);
+      tl.to(".avatar-label", { bottom: 420, duration: 0.74, ease: "power2.inOut" }, 30.66);
+      tl.to("#focus-box", { opacity: 0, duration: 0.34, ease: "power1.in" }, 30.62);
+      tl.to("#focus-label", { opacity: 0, duration: 0.24, ease: "power1.in" }, 30.62);
+      tl.to("#cursor", { opacity: 0, duration: 0.28, ease: "power1.in" }, 30.68);
+      tl.fromTo("#marker-line", { opacity: 0, scaleX: 0, x: 0, y: -1066, width: 750 }, { opacity: 1, scaleX: 1, x: 0, y: -1066, width: 750, duration: 0.64, ease: "power2.out" }, 31.3);
+      tl.to("#marker-line", { opacity: 0, duration: 0.24, ease: "power1.in" }, 40.72);
+
+      tl.set("#phase-copy", { textContent: "Inference" }, 41.08);
+      tl.to(".phase-dot", { backgroundColor: "#2563EB", duration: 0.3, ease: "power1.out" }, 41.08);
+      tl.to("#training-layer", { x: -1080, opacity: 0, duration: 0.72, ease: "power3.inOut" }, 41.08);
+      tl.to("#inference-layer", { x: 0, opacity: 1, duration: 0.72, ease: "power3.inOut" }, 41.08);
+      tl.to("#inference-canvas", { x: 12, y: 250, scale: 0.55, duration: 1.0, ease: "power2.inOut" }, 41.8);
+      tl.to(".avatar-frame", { width: 540, height: 330, scale: 1, duration: 0.64, ease: "power2.inOut" }, 41.8);
+      tl.to("#avatar-video", { y: 24, duration: 0.64, ease: "power2.inOut" }, 41.8);
+      tl.to(".avatar-label", { bottom: 420, duration: 0.64, ease: "power2.inOut" }, 41.8);
+
+      tl.set("#focus-box", { opacity: 1, x: 0, y: -210, width: 840, height: 650 }, 44.52);
+      tl.to(".avatar-frame", { width: 330, height: 388, scale: 1, duration: 0.58, ease: "power2.inOut" }, 44.34);
+      tl.to("#avatar-video", { y: 0, duration: 0.58, ease: "power2.inOut" }, 44.34);
+      tl.to(".avatar-label", { bottom: 478, duration: 0.58, ease: "power2.inOut" }, 44.34);
+      tl.set("#focus-label", { textContent: "Using knowledge", opacity: 1 }, 44.52);
+      tl.fromTo("#cursor", { opacity: 0, x: 96, y: -56 }, { opacity: 1, x: 28, y: 42, duration: 0.58, ease: "back.out(1.5)" }, 44.6);
+      tl.to("#inference-canvas", { x: -1010, y: -306, scale: 1.12, duration: 1.08, ease: "power3.inOut" }, 44.52);
+
+      tl.set("#focus-label", { textContent: "Inference speed" }, 49.54);
+      tl.to("#cursor", { x: 32, y: 124, duration: 0.62, ease: "power2.inOut" }, 49.56);
+
+      tl.to("#inference-canvas", { x: -64, y: -304, scale: 1.12, duration: 1.02, ease: "power3.inOut" }, 53.16);
+      tl.set("#focus-label", { textContent: "Training vs context" }, 53.3);
+      tl.to("#cursor", { x: -12, y: 104, duration: 0.58, ease: "power2.inOut" }, 53.24);
+
+      tl.to("#inference-canvas", { x: 12, y: 310, scale: 0.55, duration: 1.3, ease: "power3.inOut" }, 60.23);
+      tl.to(".avatar-frame", { width: 560, height: 330, scale: 1, duration: 0.74, ease: "power2.inOut" }, 60.42);
+      tl.to("#avatar-video", { y: 24, duration: 0.74, ease: "power2.inOut" }, 60.42);
+      tl.to(".avatar-label", { bottom: 420, duration: 0.74, ease: "power2.inOut" }, 60.42);
+      tl.to("#focus-box", { opacity: 0, duration: 0.3, ease: "power1.in" }, 60.36);
+      tl.to("#focus-label", { opacity: 0, duration: 0.24, ease: "power1.in" }, 60.36);
+      tl.to("#cursor", { opacity: 0, duration: 0.28, ease: "power1.in" }, 60.36);
+      tl.fromTo("#marker-line", { opacity: 0, scaleX: 0, x: -28, y: -1080, width: 760 }, { opacity: 1, scaleX: 1, x: -28, y: -1080, width: 760, duration: 0.66, ease: "power2.out" }, 61.4);
+      tl.to("#marker-line", { opacity: 0, duration: 0.24, ease: "power1.in" }, 73.92);
+
+      tl.fromTo("#course-card", { opacity: 0, y: 80 }, { opacity: 1, y: 0, duration: 0.72, ease: "power3.out" }, 74.69);
+      tl.to(".avatar-frame", { width: 960, height: 450, scale: 1, duration: 0.72, ease: "power2.inOut" }, 74.62);
+      tl.to("#avatar-video", { y: 34, scale: 1.68, duration: 0.72, ease: "power2.inOut" }, 74.62);
+      tl.to(".avatar-label", { bottom: 510, duration: 0.72, ease: "power2.inOut" }, 74.62);
+      tl.to("#caption-stage", { bottom: 554, duration: 0.72, ease: "power2.inOut" }, 74.62);
+      tl.set("#course-card .course-check", { visibility: "visible" }, 74.69);
+      tl.from(".course-kicker", { x: -42, opacity: 0, duration: 0.5, ease: "expo.out" }, 74.94);
+      tl.from("#course-card h2", { y: 48, opacity: 0, duration: 0.72, ease: "power3.out" }, 75.08);
+      tl.from("#course-card p", { y: 34, opacity: 0, duration: 0.54, ease: "power2.out" }, 75.36);
+      tl.from("#course-card .course-item", { x: -56, opacity: 0, duration: 0.42, stagger: 0.12, ease: "back.out(1.3)" }, 76.0);
+      tl.from("#course-card .route-pill", { y: 26, opacity: 0, duration: 0.38, stagger: 0.12, ease: "power2.out" }, 81.4);
+      tl.from(".course-arrow", { y: -36, opacity: 0, scale: 0.8, duration: 0.5, ease: "back.out(1.5)" }, 81.8);
+
+      tl.to(".avatar-frame", { y: -10, duration: 2.1, repeat: 42, yoyo: true, ease: "sine.inOut" }, 1.0);
+      tl.to(".avatar-label", { y: -10, duration: 2.1, repeat: 42, yoyo: true, ease: "sine.inOut" }, 1.0);
+      tl.fromTo(".avatar-frame", { rotationY: -2.4 }, { rotationY: 2.4, duration: 3.8, repeat: 22, yoyo: true, ease: "sine.inOut" }, 1.0);
+      tl.to(".tech-grid", { y: -44, duration: 7.8, repeat: 11, yoyo: true, ease: "sine.inOut" }, 0);
+      tl.to(".tech-cluster-a", { x: 36, y: -48, duration: 6.8, repeat: 13, yoyo: true, ease: "sine.inOut" }, 0);
+      tl.to(".tech-cluster-b", { x: -42, y: 38, duration: 7.4, repeat: 12, yoyo: true, ease: "sine.inOut" }, 0);
+      tl.to(".tech-chip", { y: -34, rotation: 2.4, duration: 5.8, repeat: 15, yoyo: true, ease: "sine.inOut", transformOrigin: "center center" }, 0);
+      tl.fromTo(".tech-pulse-a", { opacity: 0.18, scale: 0.78 }, { opacity: 0.58, scale: 1.16, duration: 2.4, repeat: 36, yoyo: true, ease: "sine.inOut" }, 0);
+      tl.fromTo(".tech-pulse-b", { opacity: 0.14, scale: 0.8 }, { opacity: 0.54, scale: 1.18, duration: 2.8, repeat: 31, yoyo: true, ease: "sine.inOut" }, 0.6);
+      tl.fromTo(".tech-pulse-c", { opacity: 0.12, scale: 0.84 }, { opacity: 0.48, scale: 1.2, duration: 3.2, repeat: 27, yoyo: true, ease: "sine.inOut" }, 0.3);
+
+      window.__timelines["ai-training-vs-inference"] = tl;
+    </script>
+  </body>
+</html>

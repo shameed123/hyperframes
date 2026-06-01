@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Agent Uses LLM and Tools</title>
+  <link href="./css2" rel="stylesheet">
+  <link rel="stylesheet" href="./theme.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      font-family: 'Space Grotesk', sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+    }
+  </style>
+  <style id="slide-selected-style">
+    [data-slide-selected]::before {
+      content: '';
+      position: absolute;
+      top: -4px;
+      left: -4px;
+      width: 100%;
+      height: 100%;
+      box-sizing: content-box;
+      padding: 4px;
+      border-radius: 0px;
+      outline: 2px solid #0f7fff !important;
+      z-index: 10000;
+      pointer-events: none;
+    }
+
+    [data-slide-selected] {
+      position: relative;
+      outline: none;
+      cursor: default;
+    }
+
+    img[data-slide-selected],
+    img[data-slide-hover-selected],
+    [data-slide-hover-selected],
+    [item-slide-click-selected],
+    [item-slide-selected] {
+      border: 2px solid #0f7fff !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="slide-container" data-screen-label="23 Agent loop"
+    style="position:relative;width:1920px;height:1080px;overflow:hidden;background:var(--bg);">
+    <div data-object="true" data-object-type="textbox" class="pure-ai-copyright-top" style="position:absolute;left:1480px;top:16px;width:345px;height:24px;z-index:31;text-align:center;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:13px;line-height:1.2;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);">Copyright 2026</div>
+<img data-object="true" data-object-type="image" class="pure-ai-logo" src="./purelogo-name-transparent.png" alt="Pure AI Solutions logo" style="position:absolute;left:1470px;top:23px;width:345px;height:auto;z-index:30;display:block;">
+    <div data-object="true" data-object-type="textbox" class="pure-ai-copyright-bottom" style="position:absolute;left:1485px;top:80px;width:345px;height:24px;z-index:31;text-align:center;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:13px;line-height:1.2;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);">All rights reserved</div>
+
+    <!-- Soft backdrop -->
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:-120px;top:-180px;width:760px;height:760px;border-radius:50%;background:radial-gradient(circle at 50% 50%, #FFEDD5 0%, rgba(255,237,213,0) 65%);z-index:1;">
+    </div>
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:1180px;top:560px;width:900px;height:900px;border-radius:50%;background:radial-gradient(circle at 50% 50%, #DBEAFE 0%, rgba(219,234,254,0) 62%);z-index:1;">
+    </div>
+
+    <div data-object="true" data-object-type="textbox" style="position:absolute;left:140px;top:50px;width:1300px;height:58px;z-index:10;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:40px;letter-spacing:0.08em;color:var(--blue);text-transform:uppercase;">22 &mdash; How an agent works</div>
+<div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:140px;top:160px;width:1640px;height:180px;z-index:10;">
+      <div
+        style="font-family:&#39;Instrument Serif&#39;,serif;font-size:100px;line-height:0.98;letter-spacing:-0.015em;color:var(--muted);">
+        An agent uses an <span style="font-style:italic;color:var(--blue);">LLM</span> to decide,<br>
+        then uses <span style="font-style:italic;color:var(--pink);">tools</span> to act.
+      </div>
+    </div>
+
+    <div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:140px;top:350px;width:1060px;height:74px;z-index:10;font-size:24px;line-height:1.4;color:var(--ink-2);">
+      The agent is the coordinator. It reads the request, asks the model what to do next, calls tools when it needs real-world action, observes the result, and repeats until it can produce the final answer.
+    </div>
+
+    <!-- Main diagram surface -->
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:140px;top:470px;width:1260px;height:560px;border-radius:28px;background:white;border:1.5px solid var(--line);box-shadow:var(--shadow-sm);z-index:5;">
+    </div>
+
+    <!-- Input -->
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:180px;top:650px;width:210px;height:104px;border-radius:22px;background:var(--bg-alt);border:1.5px solid var(--line);z-index:7;">
+    </div>
+    <div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:205px;top:672px;width:160px;height:60px;z-index:10;text-align:center;">
+      <div style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);">input</div>
+      <div style="font-size:20px;font-weight:600;color:var(--ink);margin-top:6px;">User task</div>
+    </div>
+
+    <!-- Input arrow to agent -->
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:390px;top:701px;width:112px;height:2.5px;background:var(--ink-2);z-index:7;">
+    </div>
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:492px;top:690px;width:0;height:0;border-left:18px solid var(--ink-2);border-top:12px solid transparent;border-bottom:12px solid transparent;z-index:7;">
+    </div>
+
+    <!-- Agent block -->
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:520px;top:590px;width:260px;height:224px;border-radius:28px;background:var(--orange-soft);border:1.5px solid var(--orange);box-shadow:var(--shadow-md);z-index:8;">
+    </div>
+    <div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:550px;top:645px;width:200px;height:146px;z-index:10;text-align:center;">
+      <div style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:13px;letter-spacing:0.18em;text-transform:uppercase;color:var(--orange-2);">coordinator</div>
+      <div style="font-family:&#39;Instrument Serif&#39;,serif;font-size:58px;line-height:1.0;color:var(--ink);margin-top:8px;">Agent</div>
+      <div style="font-size:19px;line-height:1.35;color:var(--ink-2);margin-top:12px;">plans, checks, repeats</div>
+    </div>
+
+    <!-- LLM block -->
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:930px;top:552px;width:170px;height:96px;border-radius:22px;background:var(--blue-soft);border:1.5px solid var(--blue);z-index:7;">
+    </div>
+    <div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:948px;top:573px;width:134px;height:58px;z-index:10;text-align:center;">
+      <div style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:var(--blue-2);">reasoning</div>
+      <div style="font-family:&#39;Instrument Serif&#39;,serif;font-size:38px;line-height:1.0;color:var(--ink);margin-top:4px;">LLM</div>
+    </div>
+
+    <!-- Tools block -->
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:565px;top:855px;width:170px;height:96px;border-radius:22px;background:var(--pink-soft);border:1.5px solid var(--pink);z-index:7;">
+    </div>
+    <div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:583px;top:876px;width:134px;height:58px;z-index:10;text-align:center;">
+      <div style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:var(--pink-2);">action</div>
+      <div style="font-family:&#39;Instrument Serif&#39;,serif;font-size:38px;line-height:1.0;color:var(--ink);margin-top:4px;">Tools</div>
+    </div>
+
+    <!-- Tools to cloud services -->
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:735px;top:879px;width:270px;height:2.5px;background:var(--blue-2);z-index:6;">
+    </div>
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:989px;top:869px;width:0;height:0;border-left:16px solid var(--blue-2);border-top:10px solid transparent;border-bottom:10px solid transparent;z-index:7;">
+    </div>
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:735px;top:909px;width:270px;height:2.5px;background:rgba(30,64,175,0.5);z-index:6;">
+    </div>
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:733px;top:899px;width:0;height:0;border-right:16px solid rgba(30,64,175,0.5);border-top:10px solid transparent;border-bottom:10px solid transparent;z-index:7;">
+    </div>
+    <svg data-object="true" data-object-type="shape" style="position:absolute;left:824px;top:860px;width:108px;height:68px;z-index:9;" viewBox="0 0 92 58" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M27.8 48H67c11.4 0 20.5-7.2 20.5-16.8C87.5 21.9 79.4 15 69.4 15c-2.7 0-5.2 0.5-7.5 1.5C58.3 7.8 49.5 2.8 39.5 4.6C30.9 6.2 24.4 13.5 23.6 22.2C22.2 21.7 20.7 21.5 19.1 21.5C10.6 21.5 4 27.3 4 34.7C4 42.4 11.4 48 27.8 48Z" style="fill:white;stroke:var(--blue);stroke-width:1.5;" />
+    </svg>
+    <div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:842px;top:916px;width:72px;height:16px;z-index:10;text-align:center;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue-2);">
+      internet</div>
+
+    <!-- Services block -->
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:1005px;top:857px;width:150px;height:92px;border-radius:22px;background:var(--blue-soft);border:1.5px solid var(--blue);z-index:7;">
+    </div>
+    <div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:1018px;top:877px;width:124px;height:52px;z-index:10;text-align:center;">
+      <div style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--blue-2);">external</div>
+      <div style="font-family:&#39;Instrument Serif&#39;,serif;font-size:31px;line-height:1.0;color:var(--ink);margin-top:5px;">Services</div>
+    </div>
+
+    <!-- Agent to LLM and back -->
+    <svg data-object="true" data-object-type="shape" style="position:absolute;left:780px;top:596px;width:150px;height:44px;z-index:7;overflow:visible;pointer-events:none;" viewBox="0 0 150 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <marker id="arrow-agent-llm" markerWidth="16" markerHeight="16" refX="15" refY="8" orient="auto" markerUnits="userSpaceOnUse">
+          <path d="M0 0 L16 8 L0 16 Z" style="fill:var(--blue-2);" />
+        </marker>
+      </defs>
+      <path d="M0 39 L148 5" style="fill:none;stroke:var(--blue-2);stroke-width:2.5;" marker-end="url(#arrow-agent-llm)" />
+    </svg>
+    <div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:800px;top:560px;width:150px;height:36px;z-index:10;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--blue-2);">
+      ask model</div>
+
+    <svg data-object="true" data-object-type="shape" style="position:absolute;left:790px;top:616px;width:140px;height:40px;z-index:7;overflow:visible;pointer-events:none;" viewBox="0 0 140 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <marker id="arrow-llm-agent" markerWidth="16" markerHeight="16" refX="15" refY="8" orient="auto" markerUnits="userSpaceOnUse">
+          <path d="M0 0 L16 8 L0 16 Z" style="fill:rgba(37,99,235,0.55);" />
+        </marker>
+      </defs>
+      <path d="M140 4 L0 36" style="fill:none;stroke:rgba(37,99,235,0.55);stroke-width:2.5;" marker-end="url(#arrow-llm-agent)" />
+    </svg>
+    <div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:812px;top:646px;width:150px;height:36px;z-index:10;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--blue-2);">
+      plan</div>
+
+    <!-- Agent to tools and back -->
+    <svg data-object="true" data-object-type="shape" style="position:absolute;left:617px;top:815px;width:18px;height:40px;z-index:7;overflow:visible;pointer-events:none;" viewBox="0 0 18 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <marker id="arrow-agent-tools" markerWidth="16" markerHeight="16" refX="15" refY="8" orient="auto" markerUnits="userSpaceOnUse">
+          <path d="M0 0 L16 8 L0 16 Z" style="fill:var(--pink-2);" />
+        </marker>
+      </defs>
+      <path d="M9 0 L9 38" style="fill:none;stroke:var(--pink-2);stroke-width:2.5;" marker-end="url(#arrow-agent-tools)" />
+    </svg>
+    <div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:504px;top:824px;width:98px;height:24px;z-index:10;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--pink-2);">
+      call tool</div>
+
+    <svg data-object="true" data-object-type="shape" style="position:absolute;left:684px;top:815px;width:18px;height:40px;z-index:7;overflow:visible;pointer-events:none;" viewBox="0 0 18 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <marker id="arrow-tools-agent" markerWidth="16" markerHeight="16" refX="15" refY="8" orient="auto" markerUnits="userSpaceOnUse">
+          <path d="M0 0 L16 8 L0 16 Z" style="fill:rgba(190,24,93,0.55);" />
+        </marker>
+      </defs>
+      <path d="M9 40 L9 2" style="fill:none;stroke:rgba(190,24,93,0.55);stroke-width:2.5;" marker-end="url(#arrow-tools-agent)" />
+    </svg>
+    <div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:706px;top:824px;width:80px;height:24px;z-index:10;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--pink-2);">
+      result</div>
+
+    <!-- Output -->
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:780px;top:701px;width:332px;height:2.5px;background:var(--ink-2);z-index:6;">
+    </div>
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:1102px;top:690px;width:0;height:0;border-left:18px solid var(--ink-2);border-top:12px solid transparent;border-bottom:12px solid transparent;z-index:7;">
+    </div>
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:1130px;top:650px;width:230px;height:104px;border-radius:22px;background:var(--orange);box-shadow:var(--shadow-sm);z-index:8;">
+    </div>
+    <div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:1152px;top:672px;width:186px;height:60px;z-index:10;text-align:center;color:white;">
+      <div style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;opacity:0.9;">output</div>
+      <div style="font-size:20px;font-weight:600;margin-top:6px;">Finished answer</div>
+    </div>
+
+    <!-- Side notes -->
+    <div data-object="true" data-object-type="shape"
+      style="position:absolute;left:1450px;top:470px;width:350px;height:470px;border-radius:28px;background:var(--bg-alt);border:1.5px solid var(--line);z-index:5;">
+    </div>
+    <div data-object="true" data-object-type="textbox"
+      style="position:absolute;left:1484px;top:510px;width:285px;height:380px;z-index:10;">
+      <div style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:13px;letter-spacing:0.18em;text-transform:uppercase;color:var(--orange-2);">What is happening</div>
+      <div style="font-size:21px;line-height:1.55;color:var(--ink-2);margin-top:22px;">The LLM supplies judgment: what should happen next?</div>
+      <div style="font-size:21px;line-height:1.55;color:var(--ink-2);margin-top:20px;">Tools reach services on the internet: search, files, APIs, email, calendars, databases.</div>
+      <div style="font-family:&#39;Instrument Serif&#39;,serif;font-size:34px;line-height:1.1;color:var(--ink);margin-top:28px;">The loop turns words into work.</div>
+    </div>
+
+  </div>
+  <script defer="" src="./v833ccba57c9e4d2798f2e76cebdd09a11778172276447"
+    integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ=="
+    data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;4edd5f8ec12a48cfa682ab8261b80a79&quot;,&quot;server_timing&quot;:{&quot;name&quot;:{&quot;cfCacheStatus&quot;:true,&quot;cfEdge&quot;:true,&quot;cfExtPri&quot;:true,&quot;cfL4&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfSpeedBrain&quot;:true},&quot;location_startswith&quot;:null}}"
+    crossorigin="anonymous"></script>
+
+  <script src="./slide-inner.js.download"></script>
+</body>
+
+</html>

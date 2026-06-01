@@ -1,0 +1,12 @@
+{
+  "name": "AI Training vs Inference",
+  "slug": "ai-training-vs-inference",
+  "format": "vertical-short",
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "durationSeconds": 89.642,
+  "encodedDurationSeconds": 89.685333,
+  "status": "rendered",
+  "finalRender": "renders/ai-training-vs-inference-final.mp4"
+}
