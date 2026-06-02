@@ -1,0 +1,4514 @@
+{
+  "source": "resources/vibe-coder.mp3",
+  "language": "en",
+  "language_probability": 1.0,
+  "duration_seconds": 173.329,
+  "words": [
+    {
+      "id": "w0",
+      "text": "I'm",
+      "start": 0.0,
+      "end": 0.16
+    },
+    {
+      "id": "w1",
+      "text": "a",
+      "start": 0.16,
+      "end": 0.22
+    },
+    {
+      "id": "w2",
+      "text": "senior",
+      "start": 0.22,
+      "end": 0.36
+    },
+    {
+      "id": "w3",
+      "text": "software",
+      "start": 0.36,
+      "end": 0.74
+    },
+    {
+      "id": "w4",
+      "text": "engineer.",
+      "start": 0.74,
+      "end": 1.16
+    },
+    {
+      "id": "w5",
+      "text": "I've",
+      "start": 1.74,
+      "end": 1.9
+    },
+    {
+      "id": "w6",
+      "text": "spent",
+      "start": 1.9,
+      "end": 2.04
+    },
+    {
+      "id": "w7",
+      "text": "years",
+      "start": 2.04,
+      "end": 2.24
+    },
+    {
+      "id": "w8",
+      "text": "learning",
+      "start": 2.24,
+      "end": 2.54
+    },
+    {
+      "id": "w9",
+      "text": "databases,",
+      "start": 2.54,
+      "end": 2.94
+    },
+    {
+      "id": "w10",
+      "text": "security,",
+      "start": 3.2,
+      "end": 3.62
+    },
+    {
+      "id": "w11",
+      "text": "testing,",
+      "start": 3.9,
+      "end": 4.22
+    },
+    {
+      "id": "w12",
+      "text": "deployment,",
+      "start": 4.72,
+      "end": 4.72
+    },
+    {
+      "id": "w13",
+      "text": "and",
+      "start": 5.24,
+      "end": 5.38
+    },
+    {
+      "id": "w14",
+      "text": "the",
+      "start": 5.38,
+      "end": 5.48
+    },
+    {
+      "id": "w15",
+      "text": "ancient",
+      "start": 5.48,
+      "end": 5.7
+    },
+    {
+      "id": "w16",
+      "text": "ritual",
+      "start": 5.7,
+      "end": 6.06
+    },
+    {
+      "id": "w17",
+      "text": "of",
+      "start": 6.06,
+      "end": 6.3
+    },
+    {
+      "id": "w18",
+      "text": "staring",
+      "start": 6.3,
+      "end": 6.5
+    },
+    {
+      "id": "w19",
+      "text": "at",
+      "start": 6.5,
+      "end": 6.8
+    },
+    {
+      "id": "w20",
+      "text": "an",
+      "start": 6.8,
+      "end": 6.9
+    },
+    {
+      "id": "w21",
+      "text": "error",
+      "start": 6.9,
+      "end": 7.1
+    },
+    {
+      "id": "w22",
+      "text": "message",
+      "start": 7.1,
+      "end": 7.44
+    },
+    {
+      "id": "w23",
+      "text": "until",
+      "start": 7.44,
+      "end": 7.78
+    },
+    {
+      "id": "w24",
+      "text": "it",
+      "start": 7.78,
+      "end": 7.9
+    },
+    {
+      "id": "w25",
+      "text": "feels",
+      "start": 7.9,
+      "end": 8.06
+    },
+    {
+      "id": "w26",
+      "text": "guilty.",
+      "start": 8.06,
+      "end": 8.44
+    },
+    {
+      "id": "w27",
+      "text": "But",
+      "start": 9.1,
+      "end": 9.12
+    },
+    {
+      "id": "w28",
+      "text": "last",
+      "start": 9.12,
+      "end": 9.26
+    },
+    {
+      "id": "w29",
+      "text": "Tuesday,",
+      "start": 9.26,
+      "end": 9.58
+    },
+    {
+      "id": "w30",
+      "text": "a",
+      "start": 9.98,
+      "end": 10.0
+    },
+    {
+      "id": "w31",
+      "text": "guy",
+      "start": 10.0,
+      "end": 10.18
+    },
+    {
+      "id": "w32",
+      "text": "in",
+      "start": 10.18,
+      "end": 10.3
+    },
+    {
+      "id": "w33",
+      "text": "a",
+      "start": 10.3,
+      "end": 10.38
+    },
+    {
+      "id": "w34",
+      "text": "hoodie",
+      "start": 10.38,
+      "end": 10.58
+    },
+    {
+      "id": "w35",
+      "text": "opened",
+      "start": 10.58,
+      "end": 10.86
+    },
+    {
+      "id": "w36",
+      "text": "his",
+      "start": 10.86,
+      "end": 11.02
+    },
+    {
+      "id": "w37",
+      "text": "laptop",
+      "start": 11.02,
+      "end": 11.24
+    },
+    {
+      "id": "w38",
+      "text": "and",
+      "start": 11.24,
+      "end": 11.6
+    },
+    {
+      "id": "w39",
+      "text": "said,",
+      "start": 11.6,
+      "end": 11.82
+    },
+    {
+      "id": "w40",
+      "text": "today,",
+      "start": 12.44,
+      "end": 12.6
+    },
+    {
+      "id": "w41",
+      "text": "I'm",
+      "start": 12.92,
+      "end": 13.06
+    },
+    {
+      "id": "w42",
+      "text": "building",
+      "start": 13.06,
+      "end": 13.2
+    },
+    {
+      "id": "w43",
+      "text": "a",
+      "start": 13.2,
+      "end": 13.34
+    },
+    {
+      "id": "w44",
+      "text": "billion",
+      "start": 13.34,
+      "end": 13.48
+    },
+    {
+      "id": "w45",
+      "text": "-dollar",
+      "start": 13.48,
+      "end": 13.8
+    },
+    {
+      "id": "w46",
+      "text": "SaaS",
+      "start": 13.8,
+      "end": 14.12
+    },
+    {
+      "id": "w47",
+      "text": "app",
+      "start": 14.12,
+      "end": 14.32
+    },
+    {
+      "id": "w48",
+      "text": "using",
+      "start": 14.32,
+      "end": 14.58
+    },
+    {
+      "id": "w49",
+      "text": "AI.",
+      "start": 14.58,
+      "end": 14.82
+    },
+    {
+      "id": "w50",
+      "text": "I",
+      "start": 15.3,
+      "end": 15.36
+    },
+    {
+      "id": "w51",
+      "text": "said,",
+      "start": 15.36,
+      "end": 15.52
+    },
+    {
+      "id": "w52",
+      "text": "cool,",
+      "start": 15.66,
+      "end": 15.72
+    },
+    {
+      "id": "w53",
+      "text": "what",
+      "start": 15.96,
+      "end": 16.06
+    },
+    {
+      "id": "w54",
+      "text": "does",
+      "start": 16.06,
+      "end": 16.16
+    },
+    {
+      "id": "w55",
+      "text": "it",
+      "start": 16.16,
+      "end": 16.26
+    },
+    {
+      "id": "w56",
+      "text": "do?",
+      "start": 16.26,
+      "end": 16.42
+    },
+    {
+      "id": "w57",
+      "text": "He",
+      "start": 16.86,
+      "end": 16.98
+    },
+    {
+      "id": "w58",
+      "text": "said,",
+      "start": 16.98,
+      "end": 17.18
+    },
+    {
+      "id": "w59",
+      "text": "it",
+      "start": 17.34,
+      "end": 17.42
+    },
+    {
+      "id": "w60",
+      "text": "disrupts.",
+      "start": 17.42,
+      "end": 17.96
+    },
+    {
+      "id": "w61",
+      "text": "I",
+      "start": 18.18,
+      "end": 18.4
+    },
+    {
+      "id": "w62",
+      "text": "said,",
+      "start": 18.4,
+      "end": 18.58
+    },
+    {
+      "id": "w63",
+      "text": "disrupts",
+      "start": 18.74,
+      "end": 19.08
+    },
+    {
+      "id": "w64",
+      "text": "what?",
+      "start": 19.08,
+      "end": 19.26
+    },
+    {
+      "id": "w65",
+      "text": "He",
+      "start": 19.74,
+      "end": 19.82
+    },
+    {
+      "id": "w66",
+      "text": "said,",
+      "start": 19.82,
+      "end": 20.0
+    },
+    {
+      "id": "w67",
+      "text": "the",
+      "start": 20.14,
+      "end": 20.22
+    },
+    {
+      "id": "w68",
+      "text": "market.",
+      "start": 20.22,
+      "end": 20.48
+    },
+    {
+      "id": "w69",
+      "text": "I",
+      "start": 20.84,
+      "end": 20.9
+    },
+    {
+      "id": "w70",
+      "text": "said,",
+      "start": 20.9,
+      "end": 21.08
+    },
+    {
+      "id": "w71",
+      "text": "which",
+      "start": 21.24,
+      "end": 21.32
+    },
+    {
+      "id": "w72",
+      "text": "market?",
+      "start": 21.32,
+      "end": 21.6
+    },
+    {
+      "id": "w73",
+      "text": "He",
+      "start": 22.22,
+      "end": 22.26
+    },
+    {
+      "id": "w74",
+      "text": "paused,",
+      "start": 22.26,
+      "end": 22.44
+    },
+    {
+      "id": "w75",
+      "text": "then",
+      "start": 22.88,
+      "end": 23.02
+    },
+    {
+      "id": "w76",
+      "text": "said,",
+      "start": 23.02,
+      "end": 23.28
+    },
+    {
+      "id": "w77",
+      "text": "yes.",
+      "start": 23.42,
+      "end": 23.6
+    },
+    {
+      "id": "w78",
+      "text": "That's",
+      "start": 24.32,
+      "end": 24.64
+    },
+    {
+      "id": "w79",
+      "text": "when",
+      "start": 24.64,
+      "end": 24.72
+    },
+    {
+      "id": "w80",
+      "text": "I",
+      "start": 24.72,
+      "end": 24.84
+    },
+    {
+      "id": "w81",
+      "text": "knew",
+      "start": 24.84,
+      "end": 24.96
+    },
+    {
+      "id": "w82",
+      "text": "we",
+      "start": 24.96,
+      "end": 25.1
+    },
+    {
+      "id": "w83",
+      "text": "had",
+      "start": 25.1,
+      "end": 25.2
+    },
+    {
+      "id": "w84",
+      "text": "entered",
+      "start": 25.2,
+      "end": 25.36
+    },
+    {
+      "id": "w85",
+      "text": "the",
+      "start": 25.36,
+      "end": 25.5
+    },
+    {
+      "id": "w86",
+      "text": "consultant",
+      "start": 25.5,
+      "end": 25.74
+    },
+    {
+      "id": "w87",
+      "text": "dimension.",
+      "start": 25.74,
+      "end": 26.04
+    },
+    {
+      "id": "w88",
+      "text": "He",
+      "start": 26.5,
+      "end": 26.7
+    },
+    {
+      "id": "w89",
+      "text": "called",
+      "start": 26.7,
+      "end": 26.82
+    },
+    {
+      "id": "w90",
+      "text": "his",
+      "start": 26.82,
+      "end": 26.98
+    },
+    {
+      "id": "w91",
+      "text": "method",
+      "start": 26.98,
+      "end": 27.26
+    },
+    {
+      "id": "w92",
+      "text": "vibe",
+      "start": 27.26,
+      "end": 27.44
+    },
+    {
+      "id": "w93",
+      "text": "coding.",
+      "start": 27.44,
+      "end": 27.72
+    },
+    {
+      "id": "w94",
+      "text": "Vibe",
+      "start": 28.14,
+      "end": 28.56
+    },
+    {
+      "id": "w95",
+      "text": "coding",
+      "start": 28.56,
+      "end": 28.7
+    },
+    {
+      "id": "w96",
+      "text": "is",
+      "start": 28.7,
+      "end": 28.98
+    },
+    {
+      "id": "w97",
+      "text": "when",
+      "start": 28.98,
+      "end": 29.08
+    },
+    {
+      "id": "w98",
+      "text": "you",
+      "start": 29.08,
+      "end": 29.2
+    },
+    {
+      "id": "w99",
+      "text": "describe",
+      "start": 29.2,
+      "end": 29.38
+    },
+    {
+      "id": "w100",
+      "text": "the",
+      "start": 29.38,
+      "end": 29.64
+    },
+    {
+      "id": "w101",
+      "text": "emotional",
+      "start": 29.64,
+      "end": 29.86
+    },
+    {
+      "id": "w102",
+      "text": "atmosphere",
+      "start": 29.86,
+      "end": 30.34
+    },
+    {
+      "id": "w103",
+      "text": "of",
+      "start": 30.34,
+      "end": 30.6
+    },
+    {
+      "id": "w104",
+      "text": "software",
+      "start": 30.6,
+      "end": 30.8
+    },
+    {
+      "id": "w105",
+      "text": "to",
+      "start": 30.8,
+      "end": 31.16
+    },
+    {
+      "id": "w106",
+      "text": "AI",
+      "start": 31.16,
+      "end": 31.36
+    },
+    {
+      "id": "w107",
+      "text": "and",
+      "start": 31.36,
+      "end": 32.02
+    },
+    {
+      "id": "w108",
+      "text": "hope",
+      "start": 32.02,
+      "end": 32.14
+    },
+    {
+      "id": "w109",
+      "text": "capitalism",
+      "start": 32.14,
+      "end": 32.56
+    },
+    {
+      "id": "w110",
+      "text": "fills",
+      "start": 32.56,
+      "end": 32.96
+    },
+    {
+      "id": "w111",
+      "text": "in",
+      "start": 32.96,
+      "end": 33.18
+    },
+    {
+      "id": "w112",
+      "text": "the",
+      "start": 33.18,
+      "end": 33.24
+    },
+    {
+      "id": "w113",
+      "text": "blanks.",
+      "start": 33.24,
+      "end": 33.64
+    },
+    {
+      "id": "w114",
+      "text": "He",
+      "start": 34.06,
+      "end": 34.12
+    },
+    {
+      "id": "w115",
+      "text": "typed,",
+      "start": 34.12,
+      "end": 34.32
+    },
+    {
+      "id": "w116",
+      "text": "build",
+      "start": 34.72,
+      "end": 34.88
+    },
+    {
+      "id": "w117",
+      "text": "me",
+      "start": 34.88,
+      "end": 35.04
+    },
+    {
+      "id": "w118",
+      "text": "a",
+      "start": 35.04,
+      "end": 35.14
+    },
+    {
+      "id": "w119",
+      "text": "SaaS",
+      "start": 35.14,
+      "end": 35.48
+    },
+    {
+      "id": "w120",
+      "text": "app",
+      "start": 35.48,
+      "end": 35.64
+    },
+    {
+      "id": "w121",
+      "text": "like",
+      "start": 35.64,
+      "end": 35.84
+    },
+    {
+      "id": "w122",
+      "text": "Uber,",
+      "start": 35.84,
+      "end": 36.06
+    },
+    {
+      "id": "w123",
+      "text": "Airbnb,",
+      "start": 36.34,
+      "end": 36.56
+    },
+    {
+      "id": "w124",
+      "text": "Shopify,",
+      "start": 36.92,
+      "end": 37.22
+    },
+    {
+      "id": "w125",
+      "text": "Netflix,",
+      "start": 37.22,
+      "end": 37.56
+    },
+    {
+      "id": "w126",
+      "text": "and",
+      "start": 37.86,
+      "end": 37.9
+    },
+    {
+      "id": "w127",
+      "text": "chat",
+      "start": 37.9,
+      "end": 38.06
+    },
+    {
+      "id": "w128",
+      "text": "GPT.",
+      "start": 38.06,
+      "end": 38.4
+    },
+    {
+      "id": "w129",
+      "text": "But",
+      "start": 38.94,
+      "end": 39.08
+    },
+    {
+      "id": "w130",
+      "text": "for",
+      "start": 39.08,
+      "end": 39.18
+    },
+    {
+      "id": "w131",
+      "text": "dentists,",
+      "start": 39.18,
+      "end": 39.58
+    },
+    {
+      "id": "w132",
+      "text": "add",
+      "start": 39.86,
+      "end": 40.1
+    },
+    {
+      "id": "w133",
+      "text": "dark",
+      "start": 40.1,
+      "end": 40.3
+    },
+    {
+      "id": "w134",
+      "text": "mode.",
+      "start": 40.3,
+      "end": 40.56
+    },
+    {
+      "id": "w135",
+      "text": "The",
+      "start": 41.46,
+      "end": 41.56
+    },
+    {
+      "id": "w136",
+      "text": "AI",
+      "start": 41.56,
+      "end": 41.7
+    },
+    {
+      "id": "w137",
+      "text": "replied,",
+      "start": 41.7,
+      "end": 42.0
+    },
+    {
+      "id": "w138",
+      "text": "sure,",
+      "start": 42.78,
+      "end": 42.98
+    },
+    {
+      "id": "w139",
+      "text": "here's",
+      "start": 43.3,
+      "end": 43.48
+    },
+    {
+      "id": "w140",
+      "text": "a",
+      "start": 43.48,
+      "end": 43.54
+    },
+    {
+      "id": "w141",
+      "text": "login",
+      "start": 43.54,
+      "end": 43.7
+    },
+    {
+      "id": "w142",
+      "text": "page.",
+      "start": 43.7,
+      "end": 44.06
+    },
+    {
+      "id": "w143",
+      "text": "He",
+      "start": 44.94,
+      "end": 45.0
+    },
+    {
+      "id": "w144",
+      "text": "leaned",
+      "start": 45.0,
+      "end": 45.14
+    },
+    {
+      "id": "w145",
+      "text": "back",
+      "start": 45.14,
+      "end": 45.38
+    },
+    {
+      "id": "w146",
+      "text": "like",
+      "start": 45.38,
+      "end": 45.56
+    },
+    {
+      "id": "w147",
+      "text": "he",
+      "start": 45.56,
+      "end": 45.68
+    },
+    {
+      "id": "w148",
+      "text": "had",
+      "start": 45.68,
+      "end": 45.76
+    },
+    {
+      "id": "w149",
+      "text": "discovered",
+      "start": 45.76,
+      "end": 45.98
+    },
+    {
+      "id": "w150",
+      "text": "fire.",
+      "start": 45.98,
+      "end": 46.38
+    },
+    {
+      "id": "w151",
+      "text": "We're",
+      "start": 47.1,
+      "end": 47.24
+    },
+    {
+      "id": "w152",
+      "text": "basically",
+      "start": 47.24,
+      "end": 47.4
+    },
+    {
+      "id": "w153",
+      "text": "funded.",
+      "start": 47.4,
+      "end": 47.84
+    },
+    {
+      "id": "w154",
+      "text": "I",
+      "start": 48.82,
+      "end": 48.9
+    },
+    {
+      "id": "w155",
+      "text": "looked",
+      "start": 48.9,
+      "end": 48.98
+    },
+    {
+      "id": "w156",
+      "text": "at",
+      "start": 48.98,
+      "end": 49.1
+    },
+    {
+      "id": "w157",
+      "text": "the",
+      "start": 49.1,
+      "end": 49.18
+    },
+    {
+      "id": "w158",
+      "text": "screen,",
+      "start": 49.18,
+      "end": 49.4
+    },
+    {
+      "id": "w159",
+      "text": "username",
+      "start": 50.0,
+      "end": 50.26
+    },
+    {
+      "id": "w160",
+      "text": "field,",
+      "start": 50.26,
+      "end": 50.68
+    },
+    {
+      "id": "w161",
+      "text": "password",
+      "start": 51.08,
+      "end": 51.26
+    },
+    {
+      "id": "w162",
+      "text": "field,",
+      "start": 51.26,
+      "end": 51.62
+    },
+    {
+      "id": "w163",
+      "text": "blue",
+      "start": 52.04,
+      "end": 52.04
+    },
+    {
+      "id": "w164",
+      "text": "button.",
+      "start": 52.04,
+      "end": 52.24
+    },
+    {
+      "id": "w165",
+      "text": "That",
+      "start": 52.66,
+      "end": 52.76
+    },
+    {
+      "id": "w166",
+      "text": "was",
+      "start": 52.76,
+      "end": 52.84
+    },
+    {
+      "id": "w167",
+      "text": "the",
+      "start": 52.84,
+      "end": 52.94
+    },
+    {
+      "id": "w168",
+      "text": "whole",
+      "start": 52.94,
+      "end": 53.06
+    },
+    {
+      "id": "w169",
+      "text": "company.",
+      "start": 53.06,
+      "end": 53.36
+    },
+    {
+      "id": "w170",
+      "text": "I",
+      "start": 53.98,
+      "end": 54.34
+    },
+    {
+      "id": "w171",
+      "text": "said,",
+      "start": 54.34,
+      "end": 54.52
+    },
+    {
+      "id": "w172",
+      "text": "that's",
+      "start": 54.7,
+      "end": 54.82
+    },
+    {
+      "id": "w173",
+      "text": "not",
+      "start": 54.82,
+      "end": 54.92
+    },
+    {
+      "id": "w174",
+      "text": "a",
+      "start": 54.92,
+      "end": 55.02
+    },
+    {
+      "id": "w175",
+      "text": "SaaS",
+      "start": 55.02,
+      "end": 55.34
+    },
+    {
+      "id": "w176",
+      "text": "app.",
+      "start": 55.34,
+      "end": 55.54
+    },
+    {
+      "id": "w177",
+      "text": "That's",
+      "start": 55.7,
+      "end": 55.8
+    },
+    {
+      "id": "w178",
+      "text": "a",
+      "start": 55.8,
+      "end": 55.86
+    },
+    {
+      "id": "w179",
+      "text": "form",
+      "start": 55.86,
+      "end": 56.02
+    },
+    {
+      "id": "w180",
+      "text": "with",
+      "start": 56.02,
+      "end": 56.2
+    },
+    {
+      "id": "w181",
+      "text": "anxiety.",
+      "start": 56.2,
+      "end": 56.44
+    },
+    {
+      "id": "w182",
+      "text": "Then",
+      "start": 56.9,
+      "end": 57.3
+    },
+    {
+      "id": "w183",
+      "text": "the",
+      "start": 57.3,
+      "end": 57.38
+    },
+    {
+      "id": "w184",
+      "text": "app",
+      "start": 57.38,
+      "end": 57.58
+    },
+    {
+      "id": "w185",
+      "text": "broke.",
+      "start": 57.58,
+      "end": 57.8
+    },
+    {
+      "id": "w186",
+      "text": "The",
+      "start": 58.0,
+      "end": 58.02
+    },
+    {
+      "id": "w187",
+      "text": "screen",
+      "start": 58.02,
+      "end": 58.16
+    },
+    {
+      "id": "w188",
+      "text": "said,",
+      "start": 58.16,
+      "end": 58.44
+    },
+    {
+      "id": "w189",
+      "text": "cannot",
+      "start": 58.86,
+      "end": 58.92
+    },
+    {
+      "id": "w190",
+      "text": "read",
+      "start": 58.92,
+      "end": 59.14
+    },
+    {
+      "id": "w191",
+      "text": "properties",
+      "start": 59.14,
+      "end": 59.48
+    },
+    {
+      "id": "w192",
+      "text": "of",
+      "start": 59.48,
+      "end": 59.68
+    },
+    {
+      "id": "w193",
+      "text": "undefined.",
+      "start": 59.68,
+      "end": 60.06
+    },
+    {
+      "id": "w194",
+      "text": "I",
+      "start": 60.66,
+      "end": 60.7
+    },
+    {
+      "id": "w195",
+      "text": "said,",
+      "start": 60.7,
+      "end": 60.88
+    },
+    {
+      "id": "w196",
+      "text": "that's",
+      "start": 61.36,
+      "end": 61.52
+    },
+    {
+      "id": "w197",
+      "text": "JavaScript",
+      "start": 61.52,
+      "end": 61.78
+    },
+    {
+      "id": "w198",
+      "text": "saying,",
+      "start": 61.78,
+      "end": 62.26
+    },
+    {
+      "id": "w199",
+      "text": "I",
+      "start": 62.5,
+      "end": 62.52
+    },
+    {
+      "id": "w200",
+      "text": "have",
+      "start": 62.52,
+      "end": 62.68
+    },
+    {
+      "id": "w201",
+      "text": "no",
+      "start": 62.68,
+      "end": 62.8
+    },
+    {
+      "id": "w202",
+      "text": "father.",
+      "start": 62.8,
+      "end": 63.04
+    },
+    {
+      "id": "w203",
+      "text": "He",
+      "start": 63.58,
+      "end": 63.62
+    },
+    {
+      "id": "w204",
+      "text": "typed,",
+      "start": 63.62,
+      "end": 63.78
+    },
+    {
+      "id": "w205",
+      "text": "fix",
+      "start": 64.2,
+      "end": 64.4
+    },
+    {
+      "id": "w206",
+      "text": "this",
+      "start": 64.4,
+      "end": 64.58
+    },
+    {
+      "id": "w207",
+      "text": "error.",
+      "start": 64.58,
+      "end": 64.84
+    },
+    {
+      "id": "w208",
+      "text": "Do",
+      "start": 65.14,
+      "end": 65.18
+    },
+    {
+      "id": "w209",
+      "text": "not",
+      "start": 65.18,
+      "end": 65.32
+    },
+    {
+      "id": "w210",
+      "text": "change",
+      "start": 65.32,
+      "end": 65.5
+    },
+    {
+      "id": "w211",
+      "text": "anything.",
+      "start": 65.5,
+      "end": 65.76
+    },
+    {
+      "id": "w212",
+      "text": "The",
+      "start": 66.34,
+      "end": 66.46
+    },
+    {
+      "id": "w213",
+      "text": "AI",
+      "start": 66.46,
+      "end": 66.64
+    },
+    {
+      "id": "w214",
+      "text": "responded,",
+      "start": 66.64,
+      "end": 67.06
+    },
+    {
+      "id": "w215",
+      "text": "I",
+      "start": 67.58,
+      "end": 67.78
+    },
+    {
+      "id": "w216",
+      "text": "have",
+      "start": 67.78,
+      "end": 67.9
+    },
+    {
+      "id": "w217",
+      "text": "rewritten",
+      "start": 67.9,
+      "end": 68.1
+    },
+    {
+      "id": "w218",
+      "text": "your",
+      "start": 68.1,
+      "end": 68.42
+    },
+    {
+      "id": "w219",
+      "text": "entire",
+      "start": 68.42,
+      "end": 68.64
+    },
+    {
+      "id": "w220",
+      "text": "app",
+      "start": 68.64,
+      "end": 69.0
+    },
+    {
+      "id": "w221",
+      "text": "structure.",
+      "start": 69.0,
+      "end": 69.38
+    },
+    {
+      "id": "w222",
+      "text": "It",
+      "start": 69.96,
+      "end": 70.12
+    },
+    {
+      "id": "w223",
+      "text": "deleted",
+      "start": 70.12,
+      "end": 70.36
+    },
+    {
+      "id": "w224",
+      "text": "authentication.",
+      "start": 70.36,
+      "end": 70.84
+    },
+    {
+      "id": "w225",
+      "text": "He",
+      "start": 71.62,
+      "end": 71.7
+    },
+    {
+      "id": "w226",
+      "text": "said,",
+      "start": 71.7,
+      "end": 71.96
+    },
+    {
+      "id": "w227",
+      "text": "security",
+      "start": 72.32,
+      "end": 72.62
+    },
+    {
+      "id": "w228",
+      "text": "through",
+      "start": 72.62,
+      "end": 72.94
+    },
+    {
+      "id": "w229",
+      "text": "absence.",
+      "start": 72.94,
+      "end": 73.18
+    },
+    {
+      "id": "w230",
+      "text": "I",
+      "start": 73.92,
+      "end": 73.98
+    },
+    {
+      "id": "w231",
+      "text": "said,",
+      "start": 73.98,
+      "end": 74.2
+    },
+    {
+      "id": "w232",
+      "text": "that",
+      "start": 74.38,
+      "end": 74.46
+    },
+    {
+      "id": "w233",
+      "text": "is",
+      "start": 74.46,
+      "end": 74.56
+    },
+    {
+      "id": "w234",
+      "text": "not",
+      "start": 74.56,
+      "end": 74.66
+    },
+    {
+      "id": "w235",
+      "text": "security.",
+      "start": 74.66,
+      "end": 74.92
+    },
+    {
+      "id": "w236",
+      "text": "That",
+      "start": 75.16,
+      "end": 75.18
+    },
+    {
+      "id": "w237",
+      "text": "is",
+      "start": 75.18,
+      "end": 75.3
+    },
+    {
+      "id": "w238",
+      "text": "a",
+      "start": 75.3,
+      "end": 75.32
+    },
+    {
+      "id": "w239",
+      "text": "missing",
+      "start": 75.32,
+      "end": 75.48
+    },
+    {
+      "id": "w240",
+      "text": "door.",
+      "start": 75.48,
+      "end": 75.72
+    },
+    {
+      "id": "w241",
+      "text": "Then",
+      "start": 76.54,
+      "end": 76.68
+    },
+    {
+      "id": "w242",
+      "text": "I",
+      "start": 76.68,
+      "end": 76.78
+    },
+    {
+      "id": "w243",
+      "text": "asked,",
+      "start": 76.78,
+      "end": 77.02
+    },
+    {
+      "id": "w244",
+      "text": "where",
+      "start": 77.34,
+      "end": 77.54
+    },
+    {
+      "id": "w245",
+      "text": "are",
+      "start": 77.54,
+      "end": 77.64
+    },
+    {
+      "id": "w246",
+      "text": "you",
+      "start": 77.64,
+      "end": 77.7
+    },
+    {
+      "id": "w247",
+      "text": "storing",
+      "start": 77.7,
+      "end": 77.92
+    },
+    {
+      "id": "w248",
+      "text": "user",
+      "start": 77.92,
+      "end": 78.14
+    },
+    {
+      "id": "w249",
+      "text": "data?",
+      "start": 78.14,
+      "end": 78.4
+    },
+    {
+      "id": "w250",
+      "text": "He",
+      "start": 79.1,
+      "end": 79.12
+    },
+    {
+      "id": "w251",
+      "text": "said,",
+      "start": 79.12,
+      "end": 79.32
+    },
+    {
+      "id": "w252",
+      "text": "local",
+      "start": 79.5,
+      "end": 79.64
+    },
+    {
+      "id": "w253",
+      "text": "storage.",
+      "start": 79.64,
+      "end": 79.92
+    },
+    {
+      "id": "w254",
+      "text": "I",
+      "start": 80.58,
+      "end": 80.66
+    },
+    {
+      "id": "w255",
+      "text": "said,",
+      "start": 80.66,
+      "end": 80.84
+    },
+    {
+      "id": "w256",
+      "text": "for",
+      "start": 80.98,
+      "end": 81.08
+    },
+    {
+      "id": "w257",
+      "text": "a",
+      "start": 81.08,
+      "end": 81.16
+    },
+    {
+      "id": "w258",
+      "text": "SaaS",
+      "start": 81.16,
+      "end": 81.46
+    },
+    {
+      "id": "w259",
+      "text": "app,",
+      "start": 81.46,
+      "end": 81.74
+    },
+    {
+      "id": "w260",
+      "text": "he",
+      "start": 82.02,
+      "end": 82.2
+    },
+    {
+      "id": "w261",
+      "text": "said,",
+      "start": 82.2,
+      "end": 82.4
+    },
+    {
+      "id": "w262",
+      "text": "it's",
+      "start": 82.56,
+      "end": 82.66
+    },
+    {
+      "id": "w263",
+      "text": "lightweight.",
+      "start": 82.66,
+      "end": 82.84
+    },
+    {
+      "id": "w264",
+      "text": "I",
+      "start": 83.28,
+      "end": 83.32
+    },
+    {
+      "id": "w265",
+      "text": "said,",
+      "start": 83.32,
+      "end": 83.52
+    },
+    {
+      "id": "w266",
+      "text": "so",
+      "start": 83.64,
+      "end": 83.66
+    },
+    {
+      "id": "w267",
+      "text": "if",
+      "start": 83.66,
+      "end": 84.4
+    },
+    {
+      "id": "w268",
+      "text": "the",
+      "start": 84.4,
+      "end": 84.5
+    },
+    {
+      "id": "w269",
+      "text": "user",
+      "start": 84.5,
+      "end": 84.72
+    },
+    {
+      "id": "w270",
+      "text": "clears",
+      "start": 84.72,
+      "end": 84.94
+    },
+    {
+      "id": "w271",
+      "text": "their",
+      "start": 84.94,
+      "end": 85.1
+    },
+    {
+      "id": "w272",
+      "text": "browser",
+      "start": 85.1,
+      "end": 85.3
+    },
+    {
+      "id": "w273",
+      "text": "cache,",
+      "start": 85.3,
+      "end": 85.64
+    },
+    {
+      "id": "w274",
+      "text": "their",
+      "start": 85.64,
+      "end": 86.18
+    },
+    {
+      "id": "w275",
+      "text": "entire",
+      "start": 86.18,
+      "end": 86.36
+    },
+    {
+      "id": "w276",
+      "text": "business",
+      "start": 86.36,
+      "end": 86.66
+    },
+    {
+      "id": "w277",
+      "text": "disappears.",
+      "start": 86.66,
+      "end": 87.1
+    },
+    {
+      "id": "w278",
+      "text": "He",
+      "start": 87.76,
+      "end": 87.82
+    },
+    {
+      "id": "w279",
+      "text": "said,",
+      "start": 87.82,
+      "end": 88.04
+    },
+    {
+      "id": "w280",
+      "text": "built",
+      "start": 88.18,
+      "end": 88.32
+    },
+    {
+      "id": "w281",
+      "text": "in",
+      "start": 88.32,
+      "end": 88.46
+    },
+    {
+      "id": "w282",
+      "text": "privacy.",
+      "start": 88.46,
+      "end": 88.66
+    },
+    {
+      "id": "w283",
+      "text": "That's",
+      "start": 89.36,
+      "end": 89.56
+    },
+    {
+      "id": "w284",
+      "text": "not",
+      "start": 89.56,
+      "end": 89.64
+    },
+    {
+      "id": "w285",
+      "text": "privacy.",
+      "start": 89.64,
+      "end": 89.92
+    },
+    {
+      "id": "w286",
+      "text": "That's",
+      "start": 90.48,
+      "end": 90.7
+    },
+    {
+      "id": "w287",
+      "text": "a",
+      "start": 90.7,
+      "end": 90.74
+    },
+    {
+      "id": "w288",
+      "text": "magic",
+      "start": 90.74,
+      "end": 90.9
+    },
+    {
+      "id": "w289",
+      "text": "trick",
+      "start": 90.9,
+      "end": 91.16
+    },
+    {
+      "id": "w290",
+      "text": "with",
+      "start": 91.16,
+      "end": 91.32
+    },
+    {
+      "id": "w291",
+      "text": "lawsuits.",
+      "start": 91.32,
+      "end": 91.52
+    },
+    {
+      "id": "w292",
+      "text": "Then",
+      "start": 92.32,
+      "end": 92.4
+    },
+    {
+      "id": "w293",
+      "text": "came",
+      "start": 92.4,
+      "end": 92.54
+    },
+    {
+      "id": "w294",
+      "text": "security.",
+      "start": 92.54,
+      "end": 92.88
+    },
+    {
+      "id": "w295",
+      "text": "He",
+      "start": 93.52,
+      "end": 93.58
+    },
+    {
+      "id": "w296",
+      "text": "asked",
+      "start": 93.58,
+      "end": 93.78
+    },
+    {
+      "id": "w297",
+      "text": "AI",
+      "start": 93.78,
+      "end": 94.04
+    },
+    {
+      "id": "w298",
+      "text": "to",
+      "start": 94.04,
+      "end": 94.32
+    },
+    {
+      "id": "w299",
+      "text": "make",
+      "start": 94.32,
+      "end": 94.44
+    },
+    {
+      "id": "w300",
+      "text": "it",
+      "start": 94.44,
+      "end": 94.54
+    },
+    {
+      "id": "w301",
+      "text": "secure.",
+      "start": 94.54,
+      "end": 94.78
+    },
+    {
+      "id": "w302",
+      "text": "The",
+      "start": 95.36,
+      "end": 95.48
+    },
+    {
+      "id": "w303",
+      "text": "AI",
+      "start": 95.48,
+      "end": 95.66
+    },
+    {
+      "id": "w304",
+      "text": "added",
+      "start": 95.66,
+      "end": 96.16
+    },
+    {
+      "id": "w305",
+      "text": "a",
+      "start": 96.16,
+      "end": 96.28
+    },
+    {
+      "id": "w306",
+      "text": "giant",
+      "start": 96.28,
+      "end": 96.54
+    },
+    {
+      "id": "w307",
+      "text": "lock",
+      "start": 96.54,
+      "end": 96.76
+    },
+    {
+      "id": "w308",
+      "text": "emoji",
+      "start": 96.76,
+      "end": 97.04
+    },
+    {
+      "id": "w309",
+      "text": "to",
+      "start": 97.04,
+      "end": 97.42
+    },
+    {
+      "id": "w310",
+      "text": "the",
+      "start": 97.42,
+      "end": 97.52
+    },
+    {
+      "id": "w311",
+      "text": "header.",
+      "start": 97.52,
+      "end": 97.72
+    },
+    {
+      "id": "w312",
+      "text": "He",
+      "start": 98.12,
+      "end": 98.24
+    },
+    {
+      "id": "w313",
+      "text": "said,",
+      "start": 98.24,
+      "end": 98.48
+    },
+    {
+      "id": "w314",
+      "text": "enterprise",
+      "start": 98.8,
+      "end": 99.1
+    },
+    {
+      "id": "w315",
+      "text": "grade.",
+      "start": 99.1,
+      "end": 99.5
+    },
+    {
+      "id": "w316",
+      "text": "I",
+      "start": 99.98,
+      "end": 100.06
+    },
+    {
+      "id": "w317",
+      "text": "said,",
+      "start": 100.06,
+      "end": 100.24
+    },
+    {
+      "id": "w318",
+      "text": "that",
+      "start": 100.44,
+      "end": 100.48
+    },
+    {
+      "id": "w319",
+      "text": "is",
+      "start": 100.48,
+      "end": 100.58
+    },
+    {
+      "id": "w320",
+      "text": "punctuation",
+      "start": 100.58,
+      "end": 100.92
+    },
+    {
+      "id": "w321",
+      "text": "with",
+      "start": 100.92,
+      "end": 101.26
+    },
+    {
+      "id": "w322",
+      "text": "confidence.",
+      "start": 101.26,
+      "end": 101.54
+    },
+    {
+      "id": "w323",
+      "text": "Then",
+      "start": 102.2,
+      "end": 102.4
+    },
+    {
+      "id": "w324",
+      "text": "came",
+      "start": 102.4,
+      "end": 102.58
+    },
+    {
+      "id": "w325",
+      "text": "the",
+      "start": 102.58,
+      "end": 102.76
+    },
+    {
+      "id": "w326",
+      "text": "investor",
+      "start": 102.76,
+      "end": 103.04
+    },
+    {
+      "id": "w327",
+      "text": "demo,",
+      "start": 103.04,
+      "end": 103.34
+    },
+    {
+      "id": "w328",
+      "text": "bold",
+      "start": 103.82,
+      "end": 104.08
+    },
+    {
+      "id": "w329",
+      "text": "choice.",
+      "start": 104.08,
+      "end": 104.34
+    },
+    {
+      "id": "w330",
+      "text": "The",
+      "start": 104.92,
+      "end": 105.04
+    },
+    {
+      "id": "w331",
+      "text": "app",
+      "start": 105.04,
+      "end": 105.16
+    },
+    {
+      "id": "w332",
+      "text": "had",
+      "start": 105.16,
+      "end": 105.34
+    },
+    {
+      "id": "w333",
+      "text": "no",
+      "start": 105.34,
+      "end": 105.52
+    },
+    {
+      "id": "w334",
+      "text": "login,",
+      "start": 105.52,
+      "end": 105.82
+    },
+    {
+      "id": "w335",
+      "text": "no",
+      "start": 106.12,
+      "end": 106.28
+    },
+    {
+      "id": "w336",
+      "text": "database,",
+      "start": 106.28,
+      "end": 106.56
+    },
+    {
+      "id": "w337",
+      "text": "no",
+      "start": 106.94,
+      "end": 107.04
+    },
+    {
+      "id": "w338",
+      "text": "working",
+      "start": 107.04,
+      "end": 107.3
+    },
+    {
+      "id": "w339",
+      "text": "dashboard",
+      "start": 107.3,
+      "end": 107.62
+    },
+    {
+      "id": "w340",
+      "text": "and",
+      "start": 107.62,
+      "end": 108.3
+    },
+    {
+      "id": "w341",
+      "text": "security",
+      "start": 108.3,
+      "end": 108.56
+    },
+    {
+      "id": "w342",
+      "text": "provided",
+      "start": 108.56,
+      "end": 108.96
+    },
+    {
+      "id": "w343",
+      "text": "by",
+      "start": 108.96,
+      "end": 109.34
+    },
+    {
+      "id": "w344",
+      "text": "an",
+      "start": 109.34,
+      "end": 109.42
+    },
+    {
+      "id": "w345",
+      "text": "emoji.",
+      "start": 109.42,
+      "end": 109.64
+    },
+    {
+      "id": "w346",
+      "text": "The",
+      "start": 110.22,
+      "end": 110.28
+    },
+    {
+      "id": "w347",
+      "text": "investor",
+      "start": 110.28,
+      "end": 110.52
+    },
+    {
+      "id": "w348",
+      "text": "asked,",
+      "start": 110.52,
+      "end": 110.82
+    },
+    {
+      "id": "w349",
+      "text": "yo,",
+      "start": 111.0,
+      "end": 111.06
+    },
+    {
+      "id": "w350",
+      "text": "what",
+      "start": 111.2,
+      "end": 111.3
+    },
+    {
+      "id": "w351",
+      "text": "problem",
+      "start": 111.3,
+      "end": 111.54
+    },
+    {
+      "id": "w352",
+      "text": "does",
+      "start": 111.54,
+      "end": 111.66
+    },
+    {
+      "id": "w353",
+      "text": "this",
+      "start": 111.66,
+      "end": 111.78
+    },
+    {
+      "id": "w354",
+      "text": "solve?",
+      "start": 111.78,
+      "end": 112.06
+    },
+    {
+      "id": "w355",
+      "text": "And",
+      "start": 112.48,
+      "end": 112.52
+    },
+    {
+      "id": "w356",
+      "text": "the",
+      "start": 112.52,
+      "end": 112.62
+    },
+    {
+      "id": "w357",
+      "text": "vibe",
+      "start": 112.62,
+      "end": 112.74
+    },
+    {
+      "id": "w358",
+      "text": "coder",
+      "start": 112.74,
+      "end": 113.0
+    },
+    {
+      "id": "w359",
+      "text": "said,",
+      "start": 113.0,
+      "end": 113.26
+    },
+    {
+      "id": "w360",
+      "text": "yo,",
+      "start": 113.38,
+      "end": 113.44
+    },
+    {
+      "id": "w361",
+      "text": "it",
+      "start": 113.7,
+      "end": 113.72
+    },
+    {
+      "id": "w362",
+      "text": "uses",
+      "start": 113.72,
+      "end": 113.94
+    },
+    {
+      "id": "w363",
+      "text": "AI.",
+      "start": 113.94,
+      "end": 114.3
+    },
+    {
+      "id": "w364",
+      "text": "The",
+      "start": 114.8,
+      "end": 115.0
+    },
+    {
+      "id": "w365",
+      "text": "investor",
+      "start": 115.0,
+      "end": 115.2
+    },
+    {
+      "id": "w366",
+      "text": "said,",
+      "start": 115.2,
+      "end": 115.48
+    },
+    {
+      "id": "w367",
+      "text": "okay,",
+      "start": 115.56,
+      "end": 115.82
+    },
+    {
+      "id": "w368",
+      "text": "but",
+      "start": 115.88,
+      "end": 116.0
+    },
+    {
+      "id": "w369",
+      "text": "what",
+      "start": 116.0,
+      "end": 116.12
+    },
+    {
+      "id": "w370",
+      "text": "problem?",
+      "start": 116.12,
+      "end": 116.48
+    },
+    {
+      "id": "w371",
+      "text": "He",
+      "start": 116.7,
+      "end": 116.72
+    },
+    {
+      "id": "w372",
+      "text": "said,",
+      "start": 116.72,
+      "end": 117.24
+    },
+    {
+      "id": "w373",
+      "text": "yo,",
+      "start": 117.28,
+      "end": 117.4
+    },
+    {
+      "id": "w374",
+      "text": "the",
+      "start": 117.52,
+      "end": 117.62
+    },
+    {
+      "id": "w375",
+      "text": "problem",
+      "start": 117.62,
+      "end": 117.92
+    },
+    {
+      "id": "w376",
+      "text": "of",
+      "start": 117.92,
+      "end": 118.08
+    },
+    {
+      "id": "w377",
+      "text": "not",
+      "start": 118.08,
+      "end": 118.24
+    },
+    {
+      "id": "w378",
+      "text": "using",
+      "start": 118.24,
+      "end": 118.54
+    },
+    {
+      "id": "w379",
+      "text": "AI.",
+      "start": 118.54,
+      "end": 118.8
+    },
+    {
+      "id": "w380",
+      "text": "The",
+      "start": 119.44,
+      "end": 119.54
+    },
+    {
+      "id": "w381",
+      "text": "investor",
+      "start": 119.54,
+      "end": 119.76
+    },
+    {
+      "id": "w382",
+      "text": "clicked,",
+      "start": 119.76,
+      "end": 119.98
+    },
+    {
+      "id": "w383",
+      "text": "get",
+      "start": 119.98,
+      "end": 120.2
+    },
+    {
+      "id": "w384",
+      "text": "started.",
+      "start": 120.2,
+      "end": 120.58
+    },
+    {
+      "id": "w385",
+      "text": "Immediately",
+      "start": 120.9,
+      "end": 121.16
+    },
+    {
+      "id": "w386",
+      "text": "his",
+      "start": 121.16,
+      "end": 121.42
+    },
+    {
+      "id": "w387",
+      "text": "phone",
+      "start": 121.42,
+      "end": 121.6
+    },
+    {
+      "id": "w388",
+      "text": "buzzed.",
+      "start": 121.6,
+      "end": 121.98
+    },
+    {
+      "id": "w389",
+      "text": "Why",
+      "start": 122.28,
+      "end": 122.46
+    },
+    {
+      "id": "w390",
+      "text": "did",
+      "start": 122.46,
+      "end": 122.54
+    },
+    {
+      "id": "w391",
+      "text": "it",
+      "start": 122.54,
+      "end": 122.62
+    },
+    {
+      "id": "w392",
+      "text": "charge",
+      "start": 122.62,
+      "end": 122.76
+    },
+    {
+      "id": "w393",
+      "text": "my",
+      "start": 122.76,
+      "end": 122.92
+    },
+    {
+      "id": "w394",
+      "text": "card",
+      "start": 122.92,
+      "end": 123.06
+    },
+    {
+      "id": "w395",
+      "text": "$4",
+      "start": 123.06,
+      "end": 123.24
+    },
+    {
+      "id": "w396",
+      "text": ",000?",
+      "start": 123.24,
+      "end": 123.48
+    },
+    {
+      "id": "w397",
+      "text": "I",
+      "start": 124.18,
+      "end": 124.42
+    },
+    {
+      "id": "w398",
+      "text": "said,",
+      "start": 124.42,
+      "end": 124.58
+    },
+    {
+      "id": "w399",
+      "text": "why",
+      "start": 124.66,
+      "end": 124.84
+    },
+    {
+      "id": "w400",
+      "text": "is",
+      "start": 124.84,
+      "end": 125.02
+    },
+    {
+      "id": "w401",
+      "text": "billing",
+      "start": 125.02,
+      "end": 125.16
+    },
+    {
+      "id": "w402",
+      "text": "before",
+      "start": 125.16,
+      "end": 125.52
+    },
+    {
+      "id": "w403",
+      "text": "onboarding?",
+      "start": 125.52,
+      "end": 126.06
+    },
+    {
+      "id": "w404",
+      "text": "The",
+      "start": 126.58,
+      "end": 126.76
+    },
+    {
+      "id": "w405",
+      "text": "vibe",
+      "start": 126.76,
+      "end": 126.88
+    },
+    {
+      "id": "w406",
+      "text": "coder",
+      "start": 126.88,
+      "end": 127.18
+    },
+    {
+      "id": "w407",
+      "text": "said,",
+      "start": 127.18,
+      "end": 127.42
+    },
+    {
+      "id": "w408",
+      "text": "revenue",
+      "start": 127.54,
+      "end": 127.84
+    },
+    {
+      "id": "w409",
+      "text": "should",
+      "start": 127.84,
+      "end": 128.12
+    },
+    {
+      "id": "w410",
+      "text": "come",
+      "start": 128.12,
+      "end": 128.3
+    },
+    {
+      "id": "w411",
+      "text": "before",
+      "start": 128.3,
+      "end": 128.54
+    },
+    {
+      "id": "w412",
+      "text": "confusion.",
+      "start": 128.54,
+      "end": 128.96
+    },
+    {
+      "id": "w413",
+      "text": "I",
+      "start": 129.58,
+      "end": 129.66
+    },
+    {
+      "id": "w414",
+      "text": "asked,",
+      "start": 129.66,
+      "end": 129.86
+    },
+    {
+      "id": "w415",
+      "text": "where's",
+      "start": 130.02,
+      "end": 130.22
+    },
+    {
+      "id": "w416",
+      "text": "the",
+      "start": 130.22,
+      "end": 130.3
+    },
+    {
+      "id": "w417",
+      "text": "refund",
+      "start": 130.3,
+      "end": 130.46
+    },
+    {
+      "id": "w418",
+      "text": "button?",
+      "start": 130.46,
+      "end": 130.92
+    },
+    {
+      "id": "w419",
+      "text": "He",
+      "start": 131.36,
+      "end": 131.48
+    },
+    {
+      "id": "w420",
+      "text": "said,",
+      "start": 131.48,
+      "end": 131.68
+    },
+    {
+      "id": "w421",
+      "text": "we",
+      "start": 131.72,
+      "end": 131.92
+    },
+    {
+      "id": "w422",
+      "text": "removed",
+      "start": 131.92,
+      "end": 132.18
+    },
+    {
+      "id": "w423",
+      "text": "it",
+      "start": 132.18,
+      "end": 132.42
+    },
+    {
+      "id": "w424",
+      "text": "to",
+      "start": 132.42,
+      "end": 132.52
+    },
+    {
+      "id": "w425",
+      "text": "improve",
+      "start": 132.52,
+      "end": 132.72
+    },
+    {
+      "id": "w426",
+      "text": "conversion.",
+      "start": 132.72,
+      "end": 133.04
+    },
+    {
+      "id": "w427",
+      "text": "I",
+      "start": 133.88,
+      "end": 133.9
+    },
+    {
+      "id": "w428",
+      "text": "said,",
+      "start": 133.9,
+      "end": 134.06
+    },
+    {
+      "id": "w429",
+      "text": "conversion",
+      "start": 134.18,
+      "end": 134.54
+    },
+    {
+      "id": "w430",
+      "text": "into",
+      "start": 134.54,
+      "end": 134.82
+    },
+    {
+      "id": "w431",
+      "text": "what,",
+      "start": 134.82,
+      "end": 135.04
+    },
+    {
+      "id": "w432",
+      "text": "a",
+      "start": 135.16,
+      "end": 135.2
+    },
+    {
+      "id": "w433",
+      "text": "defendant?",
+      "start": 135.2,
+      "end": 135.4
+    },
+    {
+      "id": "w434",
+      "text": "Here's",
+      "start": 136.28,
+      "end": 136.6
+    },
+    {
+      "id": "w435",
+      "text": "the",
+      "start": 136.6,
+      "end": 136.68
+    },
+    {
+      "id": "w436",
+      "text": "worst",
+      "start": 136.68,
+      "end": 136.82
+    },
+    {
+      "id": "w437",
+      "text": "part,",
+      "start": 136.82,
+      "end": 137.08
+    },
+    {
+      "id": "w438",
+      "text": "nothing",
+      "start": 137.36,
+      "end": 137.62
+    },
+    {
+      "id": "w439",
+      "text": "worked.",
+      "start": 137.62,
+      "end": 137.92
+    },
+    {
+      "id": "w440",
+      "text": "The",
+      "start": 138.46,
+      "end": 138.48
+    },
+    {
+      "id": "w441",
+      "text": "login",
+      "start": 138.48,
+      "end": 138.74
+    },
+    {
+      "id": "w442",
+      "text": "didn't",
+      "start": 138.74,
+      "end": 138.94
+    },
+    {
+      "id": "w443",
+      "text": "work,",
+      "start": 138.94,
+      "end": 139.14
+    },
+    {
+      "id": "w444",
+      "text": "the",
+      "start": 139.24,
+      "end": 139.32
+    },
+    {
+      "id": "w445",
+      "text": "dashboard",
+      "start": 139.32,
+      "end": 139.6
+    },
+    {
+      "id": "w446",
+      "text": "didn't",
+      "start": 139.6,
+      "end": 139.92
+    },
+    {
+      "id": "w447",
+      "text": "work.",
+      "start": 139.92,
+      "end": 140.06
+    },
+    {
+      "id": "w448",
+      "text": "The",
+      "start": 140.2,
+      "end": 140.24
+    },
+    {
+      "id": "w449",
+      "text": "database",
+      "start": 140.24,
+      "end": 140.46
+    },
+    {
+      "id": "w450",
+      "text": "didn't",
+      "start": 140.46,
+      "end": 140.92
+    },
+    {
+      "id": "w451",
+      "text": "exist.",
+      "start": 140.92,
+      "end": 141.14
+    },
+    {
+      "id": "w452",
+      "text": "But",
+      "start": 141.66,
+      "end": 141.88
+    },
+    {
+      "id": "w453",
+      "text": "billing,",
+      "start": 141.88,
+      "end": 142.16
+    },
+    {
+      "id": "w454",
+      "text": "billing",
+      "start": 142.62,
+      "end": 142.98
+    },
+    {
+      "id": "w455",
+      "text": "worked",
+      "start": 142.98,
+      "end": 143.3
+    },
+    {
+      "id": "w456",
+      "text": "perfectly.",
+      "start": 143.3,
+      "end": 143.56
+    },
+    {
+      "id": "w457",
+      "text": "Accidental",
+      "start": 144.2,
+      "end": 144.64
+    },
+    {
+      "id": "w458",
+      "text": "billing",
+      "start": 144.64,
+      "end": 144.92
+    },
+    {
+      "id": "w459",
+      "text": "is",
+      "start": 144.92,
+      "end": 145.18
+    },
+    {
+      "id": "w460",
+      "text": "apparently",
+      "start": 145.18,
+      "end": 145.44
+    },
+    {
+      "id": "w461",
+      "text": "the",
+      "start": 145.44,
+      "end": 145.62
+    },
+    {
+      "id": "w462",
+      "text": "strongest",
+      "start": 145.62,
+      "end": 145.84
+    },
+    {
+      "id": "w463",
+      "text": "force",
+      "start": 145.84,
+      "end": 146.1
+    },
+    {
+      "id": "w464",
+      "text": "in",
+      "start": 146.1,
+      "end": 146.26
+    },
+    {
+      "id": "w465",
+      "text": "software.",
+      "start": 146.26,
+      "end": 146.46
+    },
+    {
+      "id": "w466",
+      "text": "At",
+      "start": 147.06,
+      "end": 147.24
+    },
+    {
+      "id": "w467",
+      "text": "the",
+      "start": 147.24,
+      "end": 147.32
+    },
+    {
+      "id": "w468",
+      "text": "end",
+      "start": 147.32,
+      "end": 147.42
+    },
+    {
+      "id": "w469",
+      "text": "of",
+      "start": 147.42,
+      "end": 147.5
+    },
+    {
+      "id": "w470",
+      "text": "the",
+      "start": 147.5,
+      "end": 147.58
+    },
+    {
+      "id": "w471",
+      "text": "day,",
+      "start": 147.58,
+      "end": 147.78
+    },
+    {
+      "id": "w472",
+      "text": "I",
+      "start": 147.8,
+      "end": 147.94
+    },
+    {
+      "id": "w473",
+      "text": "told",
+      "start": 147.94,
+      "end": 148.18
+    },
+    {
+      "id": "w474",
+      "text": "him,",
+      "start": 148.18,
+      "end": 148.34
+    },
+    {
+      "id": "w475",
+      "text": "AI",
+      "start": 148.68,
+      "end": 148.86
+    },
+    {
+      "id": "w476",
+      "text": "can",
+      "start": 148.86,
+      "end": 149.14
+    },
+    {
+      "id": "w477",
+      "text": "help",
+      "start": 149.14,
+      "end": 149.28
+    },
+    {
+      "id": "w478",
+      "text": "you",
+      "start": 149.28,
+      "end": 149.42
+    },
+    {
+      "id": "w479",
+      "text": "code",
+      "start": 149.42,
+      "end": 149.56
+    },
+    {
+      "id": "w480",
+      "text": "faster,",
+      "start": 149.56,
+      "end": 149.88
+    },
+    {
+      "id": "w481",
+      "text": "but",
+      "start": 150.52,
+      "end": 150.68
+    },
+    {
+      "id": "w482",
+      "text": "you",
+      "start": 150.68,
+      "end": 150.8
+    },
+    {
+      "id": "w483",
+      "text": "still",
+      "start": 150.8,
+      "end": 150.96
+    },
+    {
+      "id": "w484",
+      "text": "need",
+      "start": 150.96,
+      "end": 151.1
+    },
+    {
+      "id": "w485",
+      "text": "authentication,",
+      "start": 151.1,
+      "end": 151.48
+    },
+    {
+      "id": "w486",
+      "text": "testing,",
+      "start": 152.14,
+      "end": 152.56
+    },
+    {
+      "id": "w487",
+      "text": "database",
+      "start": 153.06,
+      "end": 153.26
+    },
+    {
+      "id": "w488",
+      "text": "rules,",
+      "start": 153.26,
+      "end": 153.7
+    },
+    {
+      "id": "w489",
+      "text": "backups,",
+      "start": 154.18,
+      "end": 154.46
+    },
+    {
+      "id": "w490",
+      "text": "security,",
+      "start": 154.96,
+      "end": 155.26
+    },
+    {
+      "id": "w491",
+      "text": "and",
+      "start": 155.88,
+      "end": 155.98
+    },
+    {
+      "id": "w492",
+      "text": "basic",
+      "start": 155.98,
+      "end": 156.2
+    },
+    {
+      "id": "w493",
+      "text": "human",
+      "start": 156.2,
+      "end": 156.5
+    },
+    {
+      "id": "w494",
+      "text": "fear.",
+      "start": 156.5,
+      "end": 156.76
+    },
+    {
+      "id": "w495",
+      "text": "He",
+      "start": 157.5,
+      "end": 157.76
+    },
+    {
+      "id": "w496",
+      "text": "looked",
+      "start": 157.76,
+      "end": 157.86
+    },
+    {
+      "id": "w497",
+      "text": "thoughtful.",
+      "start": 157.86,
+      "end": 158.1
+    },
+    {
+      "id": "w498",
+      "text": "For",
+      "start": 158.66,
+      "end": 158.76
+    },
+    {
+      "id": "w499",
+      "text": "a",
+      "start": 158.76,
+      "end": 158.8
+    },
+    {
+      "id": "w500",
+      "text": "second,",
+      "start": 158.8,
+      "end": 159.08
+    },
+    {
+      "id": "w501",
+      "text": "I",
+      "start": 159.1,
+      "end": 159.24
+    },
+    {
+      "id": "w502",
+      "text": "thought",
+      "start": 159.24,
+      "end": 159.36
+    },
+    {
+      "id": "w503",
+      "text": "I",
+      "start": 159.36,
+      "end": 159.48
+    },
+    {
+      "id": "w504",
+      "text": "reached",
+      "start": 159.48,
+      "end": 159.6
+    },
+    {
+      "id": "w505",
+      "text": "him.",
+      "start": 159.6,
+      "end": 159.82
+    },
+    {
+      "id": "w506",
+      "text": "Then",
+      "start": 160.28,
+      "end": 160.36
+    },
+    {
+      "id": "w507",
+      "text": "he",
+      "start": 160.36,
+      "end": 160.44
+    },
+    {
+      "id": "w508",
+      "text": "said,",
+      "start": 160.44,
+      "end": 160.64
+    },
+    {
+      "id": "w509",
+      "text": "can",
+      "start": 161.36,
+      "end": 161.48
+    },
+    {
+      "id": "w510",
+      "text": "I",
+      "start": 161.48,
+      "end": 161.58
+    },
+    {
+      "id": "w511",
+      "text": "just",
+      "start": 161.58,
+      "end": 161.68
+    },
+    {
+      "id": "w512",
+      "text": "prompt",
+      "start": 161.68,
+      "end": 161.82
+    },
+    {
+      "id": "w513",
+      "text": "that?",
+      "start": 161.82,
+      "end": 162.06
+    },
+    {
+      "id": "w514",
+      "text": "And",
+      "start": 162.7,
+      "end": 163.14
+    },
+    {
+      "id": "w515",
+      "text": "that",
+      "start": 163.14,
+      "end": 163.26
+    },
+    {
+      "id": "w516",
+      "text": "was",
+      "start": 163.26,
+      "end": 163.38
+    },
+    {
+      "id": "w517",
+      "text": "the",
+      "start": 163.38,
+      "end": 163.5
+    },
+    {
+      "id": "w518",
+      "text": "moment",
+      "start": 163.5,
+      "end": 163.74
+    },
+    {
+      "id": "w519",
+      "text": "a",
+      "start": 163.74,
+      "end": 163.84
+    },
+    {
+      "id": "w520",
+      "text": "small",
+      "start": 163.84,
+      "end": 164.02
+    },
+    {
+      "id": "w521",
+      "text": "part",
+      "start": 164.02,
+      "end": 164.26
+    },
+    {
+      "id": "w522",
+      "text": "of",
+      "start": 164.26,
+      "end": 164.38
+    },
+    {
+      "id": "w523",
+      "text": "me",
+      "start": 164.38,
+      "end": 164.48
+    },
+    {
+      "id": "w524",
+      "text": "logged",
+      "start": 164.48,
+      "end": 164.7
+    },
+    {
+      "id": "w525",
+      "text": "out",
+      "start": 164.7,
+      "end": 164.92
+    },
+    {
+      "id": "w526",
+      "text": "forever.",
+      "start": 164.92,
+      "end": 165.12
+    },
+    {
+      "id": "w527",
+      "text": "AI",
+      "start": 165.68,
+      "end": 165.88
+    },
+    {
+      "id": "w528",
+      "text": "makes",
+      "start": 165.88,
+      "end": 166.3
+    },
+    {
+      "id": "w529",
+      "text": "everyone",
+      "start": 166.3,
+      "end": 166.5
+    },
+    {
+      "id": "w530",
+      "text": "faster,",
+      "start": 166.5,
+      "end": 166.94
+    },
+    {
+      "id": "w531",
+      "text": "including",
+      "start": 167.46,
+      "end": 167.66
+    },
+    {
+      "id": "w532",
+      "text": "people",
+      "start": 167.66,
+      "end": 168.0
+    },
+    {
+      "id": "w533",
+      "text": "running",
+      "start": 168.0,
+      "end": 168.24
+    },
+    {
+      "id": "w534",
+      "text": "in",
+      "start": 168.24,
+      "end": 168.4
+    },
+    {
+      "id": "w535",
+      "text": "the",
+      "start": 168.4,
+      "end": 168.46
+    },
+    {
+      "id": "w536",
+      "text": "wrong",
+      "start": 168.46,
+      "end": 168.58
+    },
+    {
+      "id": "w537",
+      "text": "direction.",
+      "start": 168.58,
+      "end": 169.02
+    },
+    {
+      "id": "w538",
+      "text": "And",
+      "start": 169.6,
+      "end": 169.82
+    },
+    {
+      "id": "w539",
+      "text": "vibe",
+      "start": 169.82,
+      "end": 170.0
+    },
+    {
+      "id": "w540",
+      "text": "coding",
+      "start": 170.0,
+      "end": 170.26
+    },
+    {
+      "id": "w541",
+      "text": "is",
+      "start": 170.26,
+      "end": 170.48
+    },
+    {
+      "id": "w542",
+      "text": "powerful,",
+      "start": 170.48,
+      "end": 170.8
+    },
+    {
+      "id": "w543",
+      "text": "but",
+      "start": 171.34,
+      "end": 171.46
+    },
+    {
+      "id": "w544",
+      "text": "at",
+      "start": 171.46,
+      "end": 171.52
+    },
+    {
+      "id": "w545",
+      "text": "some",
+      "start": 171.52,
+      "end": 171.66
+    },
+    {
+      "id": "w546",
+      "text": "point",
+      "start": 171.66,
+      "end": 171.88
+    },
+    {
+      "id": "w547",
+      "text": "the",
+      "start": 171.88,
+      "end": 172.0
+    },
+    {
+      "id": "w548",
+      "text": "vibes",
+      "start": 172.0,
+      "end": 172.3
+    },
+    {
+      "id": "w549",
+      "text": "need",
+      "start": 172.3,
+      "end": 172.38
+    },
+    {
+      "id": "w550",
+      "text": "a",
+      "start": 172.38,
+      "end": 172.5
+    },
+    {
+      "id": "w551",
+      "text": "database.",
+      "start": 172.5,
+      "end": 172.8
+    }
+  ],
+  "segments": [
+    {
+      "id": "seg0",
+      "text": "I'm a senior software engineer.",
+      "start": 0.0,
+      "end": 1.16,
+      "words": [
+        "w0",
+        "w1",
+        "w2",
+        "w3",
+        "w4"
+      ]
+    },
+    {
+      "id": "seg1",
+      "text": "I've spent years learning databases, security, testing, deployment, and the ancient ritual",
+      "start": 1.74,
+      "end": 6.06,
+      "words": [
+        "w5",
+        "w6",
+        "w7",
+        "w8",
+        "w9",
+        "w10",
+        "w11",
+        "w12",
+        "w13",
+        "w14",
+        "w15",
+        "w16"
+      ]
+    },
+    {
+      "id": "seg2",
+      "text": "of staring at an error message until it feels guilty.",
+      "start": 6.06,
+      "end": 8.44,
+      "words": [
+        "w17",
+        "w18",
+        "w19",
+        "w20",
+        "w21",
+        "w22",
+        "w23",
+        "w24",
+        "w25",
+        "w26"
+      ]
+    },
+    {
+      "id": "seg3",
+      "text": "But last Tuesday, a guy in a hoodie opened his laptop and said, today, I'm building a",
+      "start": 9.1,
+      "end": 13.34,
+      "words": [
+        "w27",
+        "w28",
+        "w29",
+        "w30",
+        "w31",
+        "w32",
+        "w33",
+        "w34",
+        "w35",
+        "w36",
+        "w37",
+        "w38",
+        "w39",
+        "w40",
+        "w41",
+        "w42",
+        "w43"
+      ]
+    },
+    {
+      "id": "seg4",
+      "text": "billion-dollar SaaS app using AI.",
+      "start": 13.34,
+      "end": 14.82,
+      "words": [
+        "w44",
+        "w45",
+        "w46",
+        "w47",
+        "w48",
+        "w49"
+      ]
+    },
+    {
+      "id": "seg5",
+      "text": "I said, cool, what does it do?",
+      "start": 15.3,
+      "end": 16.42,
+      "words": [
+        "w50",
+        "w51",
+        "w52",
+        "w53",
+        "w54",
+        "w55",
+        "w56"
+      ]
+    },
+    {
+      "id": "seg6",
+      "text": "He said, it disrupts.",
+      "start": 16.86,
+      "end": 17.96,
+      "words": [
+        "w57",
+        "w58",
+        "w59",
+        "w60"
+      ]
+    },
+    {
+      "id": "seg7",
+      "text": "I said, disrupts what?",
+      "start": 18.18,
+      "end": 19.26,
+      "words": [
+        "w61",
+        "w62",
+        "w63",
+        "w64"
+      ]
+    },
+    {
+      "id": "seg8",
+      "text": "He said, the market.",
+      "start": 19.74,
+      "end": 20.48,
+      "words": [
+        "w65",
+        "w66",
+        "w67",
+        "w68"
+      ]
+    },
+    {
+      "id": "seg9",
+      "text": "I said, which market?",
+      "start": 20.84,
+      "end": 21.6,
+      "words": [
+        "w69",
+        "w70",
+        "w71",
+        "w72"
+      ]
+    },
+    {
+      "id": "seg10",
+      "text": "He paused, then said, yes.",
+      "start": 22.22,
+      "end": 23.6,
+      "words": [
+        "w73",
+        "w74",
+        "w75",
+        "w76",
+        "w77"
+      ]
+    },
+    {
+      "id": "seg11",
+      "text": "That's when I knew we had entered the consultant dimension.",
+      "start": 24.32,
+      "end": 26.04,
+      "words": [
+        "w78",
+        "w79",
+        "w80",
+        "w81",
+        "w82",
+        "w83",
+        "w84",
+        "w85",
+        "w86",
+        "w87"
+      ]
+    },
+    {
+      "id": "seg12",
+      "text": "He called his method vibe coding.",
+      "start": 26.5,
+      "end": 27.72,
+      "words": [
+        "w88",
+        "w89",
+        "w90",
+        "w91",
+        "w92",
+        "w93"
+      ]
+    },
+    {
+      "id": "seg13",
+      "text": "Vibe coding is when you describe the emotional atmosphere of software to AI and hope capitalism",
+      "start": 28.14,
+      "end": 32.56,
+      "words": [
+        "w94",
+        "w95",
+        "w96",
+        "w97",
+        "w98",
+        "w99",
+        "w100",
+        "w101",
+        "w102",
+        "w103",
+        "w104",
+        "w105",
+        "w106",
+        "w107",
+        "w108",
+        "w109"
+      ]
+    },
+    {
+      "id": "seg14",
+      "text": "fills in the blanks.",
+      "start": 32.56,
+      "end": 33.64,
+      "words": [
+        "w110",
+        "w111",
+        "w112",
+        "w113"
+      ]
+    },
+    {
+      "id": "seg15",
+      "text": "He typed, build me a SaaS app like Uber, Airbnb, Shopify, Netflix, and chat GPT.",
+      "start": 34.06,
+      "end": 38.4,
+      "words": [
+        "w114",
+        "w115",
+        "w116",
+        "w117",
+        "w118",
+        "w119",
+        "w120",
+        "w121",
+        "w122",
+        "w123",
+        "w124",
+        "w125",
+        "w126",
+        "w127",
+        "w128"
+      ]
+    },
+    {
+      "id": "seg16",
+      "text": "But for dentists, add dark mode.",
+      "start": 38.94,
+      "end": 40.56,
+      "words": [
+        "w129",
+        "w130",
+        "w131",
+        "w132",
+        "w133",
+        "w134"
+      ]
+    },
+    {
+      "id": "seg17",
+      "text": "The AI replied, sure, here's a login page.",
+      "start": 41.46,
+      "end": 44.06,
+      "words": [
+        "w135",
+        "w136",
+        "w137",
+        "w138",
+        "w139",
+        "w140",
+        "w141",
+        "w142"
+      ]
+    },
+    {
+      "id": "seg18",
+      "text": "He leaned back like he had discovered fire.",
+      "start": 44.94,
+      "end": 46.38,
+      "words": [
+        "w143",
+        "w144",
+        "w145",
+        "w146",
+        "w147",
+        "w148",
+        "w149",
+        "w150"
+      ]
+    },
+    {
+      "id": "seg19",
+      "text": "We're basically funded.",
+      "start": 47.1,
+      "end": 47.84,
+      "words": [
+        "w151",
+        "w152",
+        "w153"
+      ]
+    },
+    {
+      "id": "seg20",
+      "text": "I looked at the screen, username field, password field, blue button.",
+      "start": 48.82,
+      "end": 52.24,
+      "words": [
+        "w154",
+        "w155",
+        "w156",
+        "w157",
+        "w158",
+        "w159",
+        "w160",
+        "w161",
+        "w162",
+        "w163",
+        "w164"
+      ]
+    },
+    {
+      "id": "seg21",
+      "text": "That was the whole company.",
+      "start": 52.66,
+      "end": 53.36,
+      "words": [
+        "w165",
+        "w166",
+        "w167",
+        "w168",
+        "w169"
+      ]
+    },
+    {
+      "id": "seg22",
+      "text": "I said, that's not a SaaS app.",
+      "start": 53.98,
+      "end": 55.54,
+      "words": [
+        "w170",
+        "w171",
+        "w172",
+        "w173",
+        "w174",
+        "w175",
+        "w176"
+      ]
+    },
+    {
+      "id": "seg23",
+      "text": "That's a form with anxiety.",
+      "start": 55.7,
+      "end": 56.44,
+      "words": [
+        "w177",
+        "w178",
+        "w179",
+        "w180",
+        "w181"
+      ]
+    },
+    {
+      "id": "seg24",
+      "text": "Then the app broke.",
+      "start": 56.9,
+      "end": 57.8,
+      "words": [
+        "w182",
+        "w183",
+        "w184",
+        "w185"
+      ]
+    },
+    {
+      "id": "seg25",
+      "text": "The screen said, cannot read properties of undefined.",
+      "start": 58.0,
+      "end": 60.06,
+      "words": [
+        "w186",
+        "w187",
+        "w188",
+        "w189",
+        "w190",
+        "w191",
+        "w192",
+        "w193"
+      ]
+    },
+    {
+      "id": "seg26",
+      "text": "I said, that's JavaScript saying, I have no father.",
+      "start": 60.66,
+      "end": 63.04,
+      "words": [
+        "w194",
+        "w195",
+        "w196",
+        "w197",
+        "w198",
+        "w199",
+        "w200",
+        "w201",
+        "w202"
+      ]
+    },
+    {
+      "id": "seg27",
+      "text": "He typed, fix this error.",
+      "start": 63.58,
+      "end": 64.84,
+      "words": [
+        "w203",
+        "w204",
+        "w205",
+        "w206",
+        "w207"
+      ]
+    },
+    {
+      "id": "seg28",
+      "text": "Do not change anything.",
+      "start": 65.14,
+      "end": 65.76,
+      "words": [
+        "w208",
+        "w209",
+        "w210",
+        "w211"
+      ]
+    },
+    {
+      "id": "seg29",
+      "text": "The AI responded, I have rewritten your entire app structure.",
+      "start": 66.34,
+      "end": 69.38,
+      "words": [
+        "w212",
+        "w213",
+        "w214",
+        "w215",
+        "w216",
+        "w217",
+        "w218",
+        "w219",
+        "w220",
+        "w221"
+      ]
+    },
+    {
+      "id": "seg30",
+      "text": "It deleted authentication.",
+      "start": 69.96,
+      "end": 70.84,
+      "words": [
+        "w222",
+        "w223",
+        "w224"
+      ]
+    },
+    {
+      "id": "seg31",
+      "text": "He said, security through absence.",
+      "start": 71.62,
+      "end": 73.18,
+      "words": [
+        "w225",
+        "w226",
+        "w227",
+        "w228",
+        "w229"
+      ]
+    },
+    {
+      "id": "seg32",
+      "text": "I said, that is not security.",
+      "start": 73.92,
+      "end": 74.92,
+      "words": [
+        "w230",
+        "w231",
+        "w232",
+        "w233",
+        "w234",
+        "w235"
+      ]
+    },
+    {
+      "id": "seg33",
+      "text": "That is a missing door.",
+      "start": 75.16,
+      "end": 75.72,
+      "words": [
+        "w236",
+        "w237",
+        "w238",
+        "w239",
+        "w240"
+      ]
+    },
+    {
+      "id": "seg34",
+      "text": "Then I asked, where are you storing user data?",
+      "start": 76.54,
+      "end": 78.4,
+      "words": [
+        "w241",
+        "w242",
+        "w243",
+        "w244",
+        "w245",
+        "w246",
+        "w247",
+        "w248",
+        "w249"
+      ]
+    },
+    {
+      "id": "seg35",
+      "text": "He said, local storage.",
+      "start": 79.1,
+      "end": 79.92,
+      "words": [
+        "w250",
+        "w251",
+        "w252",
+        "w253"
+      ]
+    },
+    {
+      "id": "seg36",
+      "text": "I said, for a SaaS app, he said, it's lightweight.",
+      "start": 80.58,
+      "end": 82.84,
+      "words": [
+        "w254",
+        "w255",
+        "w256",
+        "w257",
+        "w258",
+        "w259",
+        "w260",
+        "w261",
+        "w262",
+        "w263"
+      ]
+    },
+    {
+      "id": "seg37",
+      "text": "I said, so if the user clears their browser cache,",
+      "start": 83.28,
+      "end": 85.64,
+      "words": [
+        "w264",
+        "w265",
+        "w266",
+        "w267",
+        "w268",
+        "w269",
+        "w270",
+        "w271",
+        "w272",
+        "w273"
+      ]
+    },
+    {
+      "id": "seg38",
+      "text": "their entire business disappears.",
+      "start": 85.64,
+      "end": 87.1,
+      "words": [
+        "w274",
+        "w275",
+        "w276",
+        "w277"
+      ]
+    },
+    {
+      "id": "seg39",
+      "text": "He said, built in privacy.",
+      "start": 87.76,
+      "end": 88.66,
+      "words": [
+        "w278",
+        "w279",
+        "w280",
+        "w281",
+        "w282"
+      ]
+    },
+    {
+      "id": "seg40",
+      "text": "That's not privacy.",
+      "start": 89.36,
+      "end": 89.92,
+      "words": [
+        "w283",
+        "w284",
+        "w285"
+      ]
+    },
+    {
+      "id": "seg41",
+      "text": "That's a magic trick with lawsuits.",
+      "start": 90.48,
+      "end": 91.52,
+      "words": [
+        "w286",
+        "w287",
+        "w288",
+        "w289",
+        "w290",
+        "w291"
+      ]
+    },
+    {
+      "id": "seg42",
+      "text": "Then came security.",
+      "start": 92.32,
+      "end": 92.88,
+      "words": [
+        "w292",
+        "w293",
+        "w294"
+      ]
+    },
+    {
+      "id": "seg43",
+      "text": "He asked AI to make it secure.",
+      "start": 93.52,
+      "end": 94.78,
+      "words": [
+        "w295",
+        "w296",
+        "w297",
+        "w298",
+        "w299",
+        "w300",
+        "w301"
+      ]
+    },
+    {
+      "id": "seg44",
+      "text": "The AI added a giant lock emoji to the header.",
+      "start": 95.36,
+      "end": 97.72,
+      "words": [
+        "w302",
+        "w303",
+        "w304",
+        "w305",
+        "w306",
+        "w307",
+        "w308",
+        "w309",
+        "w310",
+        "w311"
+      ]
+    },
+    {
+      "id": "seg45",
+      "text": "He said, enterprise grade.",
+      "start": 98.12,
+      "end": 99.5,
+      "words": [
+        "w312",
+        "w313",
+        "w314",
+        "w315"
+      ]
+    },
+    {
+      "id": "seg46",
+      "text": "I said, that is punctuation with confidence.",
+      "start": 99.98,
+      "end": 101.54,
+      "words": [
+        "w316",
+        "w317",
+        "w318",
+        "w319",
+        "w320",
+        "w321",
+        "w322"
+      ]
+    },
+    {
+      "id": "seg47",
+      "text": "Then came the investor demo, bold choice.",
+      "start": 102.2,
+      "end": 104.34,
+      "words": [
+        "w323",
+        "w324",
+        "w325",
+        "w326",
+        "w327",
+        "w328",
+        "w329"
+      ]
+    },
+    {
+      "id": "seg48",
+      "text": "The app had no login, no database, no working dashboard",
+      "start": 104.92,
+      "end": 107.62,
+      "words": [
+        "w330",
+        "w331",
+        "w332",
+        "w333",
+        "w334",
+        "w335",
+        "w336",
+        "w337",
+        "w338",
+        "w339"
+      ]
+    },
+    {
+      "id": "seg49",
+      "text": "and security provided by an emoji.",
+      "start": 107.62,
+      "end": 109.64,
+      "words": [
+        "w340",
+        "w341",
+        "w342",
+        "w343",
+        "w344",
+        "w345"
+      ]
+    },
+    {
+      "id": "seg50",
+      "text": "The investor asked, yo, what problem does this solve?",
+      "start": 110.22,
+      "end": 112.06,
+      "words": [
+        "w346",
+        "w347",
+        "w348",
+        "w349",
+        "w350",
+        "w351",
+        "w352",
+        "w353",
+        "w354"
+      ]
+    },
+    {
+      "id": "seg51",
+      "text": "And the vibe coder said, yo, it uses AI.",
+      "start": 112.48,
+      "end": 114.3,
+      "words": [
+        "w355",
+        "w356",
+        "w357",
+        "w358",
+        "w359",
+        "w360",
+        "w361",
+        "w362",
+        "w363"
+      ]
+    },
+    {
+      "id": "seg52",
+      "text": "The investor said, okay, but what problem?",
+      "start": 114.8,
+      "end": 116.48,
+      "words": [
+        "w364",
+        "w365",
+        "w366",
+        "w367",
+        "w368",
+        "w369",
+        "w370"
+      ]
+    },
+    {
+      "id": "seg53",
+      "text": "He said, yo, the problem of not using AI.",
+      "start": 116.7,
+      "end": 118.8,
+      "words": [
+        "w371",
+        "w372",
+        "w373",
+        "w374",
+        "w375",
+        "w376",
+        "w377",
+        "w378",
+        "w379"
+      ]
+    },
+    {
+      "id": "seg54",
+      "text": "The investor clicked, get started.",
+      "start": 119.44,
+      "end": 120.58,
+      "words": [
+        "w380",
+        "w381",
+        "w382",
+        "w383",
+        "w384"
+      ]
+    },
+    {
+      "id": "seg55",
+      "text": "Immediately his phone buzzed.",
+      "start": 120.9,
+      "end": 121.98,
+      "words": [
+        "w385",
+        "w386",
+        "w387",
+        "w388"
+      ]
+    },
+    {
+      "id": "seg56",
+      "text": "Why did it charge my card $4,000?",
+      "start": 122.28,
+      "end": 123.48,
+      "words": [
+        "w389",
+        "w390",
+        "w391",
+        "w392",
+        "w393",
+        "w394",
+        "w395",
+        "w396"
+      ]
+    },
+    {
+      "id": "seg57",
+      "text": "I said, why is billing before onboarding?",
+      "start": 124.18,
+      "end": 126.06,
+      "words": [
+        "w397",
+        "w398",
+        "w399",
+        "w400",
+        "w401",
+        "w402",
+        "w403"
+      ]
+    },
+    {
+      "id": "seg58",
+      "text": "The vibe coder said, revenue should come before confusion.",
+      "start": 126.58,
+      "end": 128.96,
+      "words": [
+        "w404",
+        "w405",
+        "w406",
+        "w407",
+        "w408",
+        "w409",
+        "w410",
+        "w411",
+        "w412"
+      ]
+    },
+    {
+      "id": "seg59",
+      "text": "I asked, where's the refund button?",
+      "start": 129.58,
+      "end": 130.92,
+      "words": [
+        "w413",
+        "w414",
+        "w415",
+        "w416",
+        "w417",
+        "w418"
+      ]
+    },
+    {
+      "id": "seg60",
+      "text": "He said, we removed it to improve conversion.",
+      "start": 131.36,
+      "end": 133.04,
+      "words": [
+        "w419",
+        "w420",
+        "w421",
+        "w422",
+        "w423",
+        "w424",
+        "w425",
+        "w426"
+      ]
+    },
+    {
+      "id": "seg61",
+      "text": "I said, conversion into what, a defendant?",
+      "start": 133.88,
+      "end": 135.4,
+      "words": [
+        "w427",
+        "w428",
+        "w429",
+        "w430",
+        "w431",
+        "w432",
+        "w433"
+      ]
+    },
+    {
+      "id": "seg62",
+      "text": "Here's the worst part, nothing worked.",
+      "start": 136.28,
+      "end": 137.92,
+      "words": [
+        "w434",
+        "w435",
+        "w436",
+        "w437",
+        "w438",
+        "w439"
+      ]
+    },
+    {
+      "id": "seg63",
+      "text": "The login didn't work, the dashboard didn't work.",
+      "start": 138.46,
+      "end": 140.06,
+      "words": [
+        "w440",
+        "w441",
+        "w442",
+        "w443",
+        "w444",
+        "w445",
+        "w446",
+        "w447"
+      ]
+    },
+    {
+      "id": "seg64",
+      "text": "The database didn't exist.",
+      "start": 140.2,
+      "end": 141.14,
+      "words": [
+        "w448",
+        "w449",
+        "w450",
+        "w451"
+      ]
+    },
+    {
+      "id": "seg65",
+      "text": "But billing, billing worked perfectly.",
+      "start": 141.66,
+      "end": 143.56,
+      "words": [
+        "w452",
+        "w453",
+        "w454",
+        "w455",
+        "w456"
+      ]
+    },
+    {
+      "id": "seg66",
+      "text": "Accidental billing is apparently",
+      "start": 144.2,
+      "end": 145.44,
+      "words": [
+        "w457",
+        "w458",
+        "w459",
+        "w460"
+      ]
+    },
+    {
+      "id": "seg67",
+      "text": "the strongest force in software.",
+      "start": 145.44,
+      "end": 146.46,
+      "words": [
+        "w461",
+        "w462",
+        "w463",
+        "w464",
+        "w465"
+      ]
+    },
+    {
+      "id": "seg68",
+      "text": "At the end of the day, I told him,",
+      "start": 147.06,
+      "end": 148.34,
+      "words": [
+        "w466",
+        "w467",
+        "w468",
+        "w469",
+        "w470",
+        "w471",
+        "w472",
+        "w473",
+        "w474"
+      ]
+    },
+    {
+      "id": "seg69",
+      "text": "AI can help you code faster,",
+      "start": 148.68,
+      "end": 149.88,
+      "words": [
+        "w475",
+        "w476",
+        "w477",
+        "w478",
+        "w479",
+        "w480"
+      ]
+    },
+    {
+      "id": "seg70",
+      "text": "but you still need authentication, testing, database rules,",
+      "start": 150.52,
+      "end": 153.7,
+      "words": [
+        "w481",
+        "w482",
+        "w483",
+        "w484",
+        "w485",
+        "w486",
+        "w487",
+        "w488"
+      ]
+    },
+    {
+      "id": "seg71",
+      "text": "backups, security, and basic human fear.",
+      "start": 154.18,
+      "end": 156.76,
+      "words": [
+        "w489",
+        "w490",
+        "w491",
+        "w492",
+        "w493",
+        "w494"
+      ]
+    },
+    {
+      "id": "seg72",
+      "text": "He looked thoughtful.",
+      "start": 157.5,
+      "end": 158.1,
+      "words": [
+        "w495",
+        "w496",
+        "w497"
+      ]
+    },
+    {
+      "id": "seg73",
+      "text": "For a second, I thought I reached him.",
+      "start": 158.66,
+      "end": 159.82,
+      "words": [
+        "w498",
+        "w499",
+        "w500",
+        "w501",
+        "w502",
+        "w503",
+        "w504",
+        "w505"
+      ]
+    },
+    {
+      "id": "seg74",
+      "text": "Then he said, can I just prompt that?",
+      "start": 160.28,
+      "end": 162.06,
+      "words": [
+        "w506",
+        "w507",
+        "w508",
+        "w509",
+        "w510",
+        "w511",
+        "w512",
+        "w513"
+      ]
+    },
+    {
+      "id": "seg75",
+      "text": "And that was the moment a small part of me logged out forever.",
+      "start": 162.7,
+      "end": 165.12,
+      "words": [
+        "w514",
+        "w515",
+        "w516",
+        "w517",
+        "w518",
+        "w519",
+        "w520",
+        "w521",
+        "w522",
+        "w523",
+        "w524",
+        "w525",
+        "w526"
+      ]
+    },
+    {
+      "id": "seg76",
+      "text": "AI makes everyone faster,",
+      "start": 165.68,
+      "end": 166.94,
+      "words": [
+        "w527",
+        "w528",
+        "w529",
+        "w530"
+      ]
+    },
+    {
+      "id": "seg77",
+      "text": "including people running in the wrong direction.",
+      "start": 167.46,
+      "end": 169.02,
+      "words": [
+        "w531",
+        "w532",
+        "w533",
+        "w534",
+        "w535",
+        "w536",
+        "w537"
+      ]
+    },
+    {
+      "id": "seg78",
+      "text": "And vibe coding is powerful,",
+      "start": 169.6,
+      "end": 170.8,
+      "words": [
+        "w538",
+        "w539",
+        "w540",
+        "w541",
+        "w542"
+      ]
+    },
+    {
+      "id": "seg79",
+      "text": "but at some point the vibes need a database.",
+      "start": 171.34,
+      "end": 172.8,
+      "words": [
+        "w543",
+        "w544",
+        "w545",
+        "w546",
+        "w547",
+        "w548",
+        "w549",
+        "w550",
+        "w551"
+      ]
+    }
+  ]
+}

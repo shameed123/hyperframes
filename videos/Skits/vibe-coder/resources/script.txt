@@ -1,0 +1,193 @@
+I’m a senior software engineer.
+
+I’ve spent years learning databases, security, testing, deployment, and the ancient ritual of staring at an error message until it feels guilty.
+
+But last Tuesday, a guy in a hoodie opened his laptop and said:
+
+“Today, I’m building a billion-dollar SaaS app using AI.”
+
+I said, “Cool. What does it do?”
+
+He said, “It disrupts.”
+
+I said, “Disrupts what?”
+
+He said, “The market.”
+
+I said, “Which market?”
+
+He paused.
+
+Then said, “Yes.”
+
+That’s when I knew we had entered the consultant dimension.
+
+He called his method vibe coding.
+
+Vibe coding is when you describe the emotional atmosphere of software to AI and hope capitalism fills in the blanks.
+
+He typed:
+
+“Build me a SaaS app like Uber, Airbnb, Shopify, Netflix, and ChatGPT… but for dentists. Add dark mode.”
+
+The AI replied:
+
+“Sure. Here is a login page.”
+
+He leaned back like he had discovered fire.
+
+“We’re basically funded.”
+
+I looked at the screen.
+
+Username field. Password field. Blue button.
+
+That was the whole company.
+
+I said:
+
+“That’s not a SaaS app. That’s a form with anxiety.”
+
+Then the app broke.
+
+The screen said:
+
+Cannot read properties of undefined.
+
+I said:
+
+“That’s JavaScript saying, ‘I have no father.’”
+
+He typed:
+
+“Fix this error. Do not change anything.”
+
+The AI responded:
+
+“I have rewritten your entire app structure.”
+
+It deleted authentication.
+
+He said:
+
+“Security through absence.”
+
+I said:
+
+“That is not security. That is a missing door.”
+
+Then I asked, “Where are you storing user data?”
+
+He said:
+
+“Local storage.”
+
+I said, “For a SaaS app?”
+
+He said, “It’s lightweight.”
+
+I said, “So if the user clears their browser cache, their entire business disappears?”
+
+He said:
+
+“Built-in privacy.”
+
+That’s not privacy.
+
+That’s a magic trick with lawsuits.
+
+Then came security.
+
+He asked AI to make it secure.
+
+The AI added a giant lock emoji to the header.
+
+🔒
+
+He said:
+
+“Enterprise-grade.”
+
+I said:
+
+“That is punctuation with confidence.”
+
+Then came the investor demo.
+
+Bold choice.
+
+The app had no login, no database, no working dashboard, and security provided by an emoji.
+
+The investor asked:
+
+“What problem does this solve?”
+
+The vibe coder said:
+
+“It uses AI.”
+
+The investor said, “Okay, but what problem?”
+
+He said:
+
+“The problem of not using AI.”
+
+The investor clicked Get Started.
+
+Immediately, his phone buzzed.
+
+“Why did it charge my card four thousand dollars?”
+
+I said, “Why is billing before onboarding?”
+
+The vibe coder said:
+
+“Revenue should come before confusion.”
+
+I asked, “Where’s the refund button?”
+
+He said:
+
+“We removed it to improve conversion.”
+
+I said:
+
+“Conversion into what? A defendant?”
+
+Here’s the worst part.
+
+Nothing worked.
+
+The login didn’t work.
+
+The dashboard didn’t work.
+
+The database didn’t exist.
+
+But billing?
+
+Billing worked perfectly.
+
+Accidental billing is apparently the strongest force in software.
+
+At the end of the day, I told him:
+
+“AI can help you code faster. But you still need authentication, testing, database rules, backups, security, and basic human fear.”
+
+He looked thoughtful.
+
+For a second, I thought I reached him.
+
+Then he said:
+
+“Can I just prompt that?”
+
+And that was the moment a small part of me logged out forever.
+
+AI makes everyone faster.
+
+Including people running in the wrong direction.
+
+And vibe coding is powerful…
+
+…but at some point, the vibes need a database.

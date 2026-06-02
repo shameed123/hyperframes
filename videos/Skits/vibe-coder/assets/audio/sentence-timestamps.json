@@ -1,0 +1,420 @@
+{
+  "source": "resources/vibe-coder.mp3",
+  "method": "faster-whisper base.en word timestamps grouped by terminal punctuation, with a 12-second cap",
+  "sentences": [
+    {
+      "id": "s0",
+      "text": "I'm a senior software engineer.",
+      "start": 0.0,
+      "end": 1.16
+    },
+    {
+      "id": "s1",
+      "text": "I've spent years learning databases, security, testing, deployment, and the ancient ritual of staring at an error message until it feels guilty.",
+      "start": 1.74,
+      "end": 8.44
+    },
+    {
+      "id": "s2",
+      "text": "But last Tuesday, a guy in a hoodie opened his laptop and said, today, I'm building a billion -dollar SaaS app using AI.",
+      "start": 9.1,
+      "end": 14.82
+    },
+    {
+      "id": "s3",
+      "text": "I said, cool, what does it do?",
+      "start": 15.3,
+      "end": 16.42
+    },
+    {
+      "id": "s4",
+      "text": "He said, it disrupts.",
+      "start": 16.86,
+      "end": 17.96
+    },
+    {
+      "id": "s5",
+      "text": "I said, disrupts what?",
+      "start": 18.18,
+      "end": 19.26
+    },
+    {
+      "id": "s6",
+      "text": "He said, the market.",
+      "start": 19.74,
+      "end": 20.48
+    },
+    {
+      "id": "s7",
+      "text": "I said, which market?",
+      "start": 20.84,
+      "end": 21.6
+    },
+    {
+      "id": "s8",
+      "text": "He paused, then said, yes.",
+      "start": 22.22,
+      "end": 23.6
+    },
+    {
+      "id": "s9",
+      "text": "That's when I knew we had entered the consultant dimension.",
+      "start": 24.32,
+      "end": 26.04
+    },
+    {
+      "id": "s10",
+      "text": "He called his method vibe coding.",
+      "start": 26.5,
+      "end": 27.72
+    },
+    {
+      "id": "s11",
+      "text": "Vibe coding is when you describe the emotional atmosphere of software to AI and hope capitalism fills in the blanks.",
+      "start": 28.14,
+      "end": 33.64
+    },
+    {
+      "id": "s12",
+      "text": "He typed, build me a SaaS app like Uber, Airbnb, Shopify, Netflix, and chat GPT.",
+      "start": 34.06,
+      "end": 38.4
+    },
+    {
+      "id": "s13",
+      "text": "But for dentists, add dark mode.",
+      "start": 38.94,
+      "end": 40.56
+    },
+    {
+      "id": "s14",
+      "text": "The AI replied, sure, here's a login page.",
+      "start": 41.46,
+      "end": 44.06
+    },
+    {
+      "id": "s15",
+      "text": "He leaned back like he had discovered fire.",
+      "start": 44.94,
+      "end": 46.38
+    },
+    {
+      "id": "s16",
+      "text": "We're basically funded.",
+      "start": 47.1,
+      "end": 47.84
+    },
+    {
+      "id": "s17",
+      "text": "I looked at the screen, username field, password field, blue button.",
+      "start": 48.82,
+      "end": 52.24
+    },
+    {
+      "id": "s18",
+      "text": "That was the whole company.",
+      "start": 52.66,
+      "end": 53.36
+    },
+    {
+      "id": "s19",
+      "text": "I said, that's not a SaaS app.",
+      "start": 53.98,
+      "end": 55.54
+    },
+    {
+      "id": "s20",
+      "text": "That's a form with anxiety.",
+      "start": 55.7,
+      "end": 56.44
+    },
+    {
+      "id": "s21",
+      "text": "Then the app broke.",
+      "start": 56.9,
+      "end": 57.8
+    },
+    {
+      "id": "s22",
+      "text": "The screen said, cannot read properties of undefined.",
+      "start": 58.0,
+      "end": 60.06
+    },
+    {
+      "id": "s23",
+      "text": "I said, that's JavaScript saying, I have no father.",
+      "start": 60.66,
+      "end": 63.04
+    },
+    {
+      "id": "s24",
+      "text": "He typed, fix this error.",
+      "start": 63.58,
+      "end": 64.84
+    },
+    {
+      "id": "s25",
+      "text": "Do not change anything.",
+      "start": 65.14,
+      "end": 65.76
+    },
+    {
+      "id": "s26",
+      "text": "The AI responded, I have rewritten your entire app structure.",
+      "start": 66.34,
+      "end": 69.38
+    },
+    {
+      "id": "s27",
+      "text": "It deleted authentication.",
+      "start": 69.96,
+      "end": 70.84
+    },
+    {
+      "id": "s28",
+      "text": "He said, security through absence.",
+      "start": 71.62,
+      "end": 73.18
+    },
+    {
+      "id": "s29",
+      "text": "I said, that is not security.",
+      "start": 73.92,
+      "end": 74.92
+    },
+    {
+      "id": "s30",
+      "text": "That is a missing door.",
+      "start": 75.16,
+      "end": 75.72
+    },
+    {
+      "id": "s31",
+      "text": "Then I asked, where are you storing user data?",
+      "start": 76.54,
+      "end": 78.4
+    },
+    {
+      "id": "s32",
+      "text": "He said, local storage.",
+      "start": 79.1,
+      "end": 79.92
+    },
+    {
+      "id": "s33",
+      "text": "I said, for a SaaS app, he said, it's lightweight.",
+      "start": 80.58,
+      "end": 82.84
+    },
+    {
+      "id": "s34",
+      "text": "I said, so if the user clears their browser cache, their entire business disappears.",
+      "start": 83.28,
+      "end": 87.1
+    },
+    {
+      "id": "s35",
+      "text": "He said, built in privacy.",
+      "start": 87.76,
+      "end": 88.66
+    },
+    {
+      "id": "s36",
+      "text": "That's not privacy.",
+      "start": 89.36,
+      "end": 89.92
+    },
+    {
+      "id": "s37",
+      "text": "That's a magic trick with lawsuits.",
+      "start": 90.48,
+      "end": 91.52
+    },
+    {
+      "id": "s38",
+      "text": "Then came security.",
+      "start": 92.32,
+      "end": 92.88
+    },
+    {
+      "id": "s39",
+      "text": "He asked AI to make it secure.",
+      "start": 93.52,
+      "end": 94.78
+    },
+    {
+      "id": "s40",
+      "text": "The AI added a giant lock emoji to the header.",
+      "start": 95.36,
+      "end": 97.72
+    },
+    {
+      "id": "s41",
+      "text": "He said, enterprise grade.",
+      "start": 98.12,
+      "end": 99.5
+    },
+    {
+      "id": "s42",
+      "text": "I said, that is punctuation with confidence.",
+      "start": 99.98,
+      "end": 101.54
+    },
+    {
+      "id": "s43",
+      "text": "Then came the investor demo, bold choice.",
+      "start": 102.2,
+      "end": 104.34
+    },
+    {
+      "id": "s44",
+      "text": "The app had no login, no database, no working dashboard and security provided by an emoji.",
+      "start": 104.92,
+      "end": 109.64
+    },
+    {
+      "id": "s45",
+      "text": "The investor asked, yo, what problem does this solve?",
+      "start": 110.22,
+      "end": 112.06
+    },
+    {
+      "id": "s46",
+      "text": "And the vibe coder said, yo, it uses AI.",
+      "start": 112.48,
+      "end": 114.3
+    },
+    {
+      "id": "s47",
+      "text": "The investor said, okay, but what problem?",
+      "start": 114.8,
+      "end": 116.48
+    },
+    {
+      "id": "s48",
+      "text": "He said, yo, the problem of not using AI.",
+      "start": 116.7,
+      "end": 118.8
+    },
+    {
+      "id": "s49",
+      "text": "The investor clicked, get started.",
+      "start": 119.44,
+      "end": 120.58
+    },
+    {
+      "id": "s50",
+      "text": "Immediately his phone buzzed.",
+      "start": 120.9,
+      "end": 121.98
+    },
+    {
+      "id": "s51",
+      "text": "Why did it charge my card $4 ,000?",
+      "start": 122.28,
+      "end": 123.48
+    },
+    {
+      "id": "s52",
+      "text": "I said, why is billing before onboarding?",
+      "start": 124.18,
+      "end": 126.06
+    },
+    {
+      "id": "s53",
+      "text": "The vibe coder said, revenue should come before confusion.",
+      "start": 126.58,
+      "end": 128.96
+    },
+    {
+      "id": "s54",
+      "text": "I asked, where's the refund button?",
+      "start": 129.58,
+      "end": 130.92
+    },
+    {
+      "id": "s55",
+      "text": "He said, we removed it to improve conversion.",
+      "start": 131.36,
+      "end": 133.04
+    },
+    {
+      "id": "s56",
+      "text": "I said, conversion into what, a defendant?",
+      "start": 133.88,
+      "end": 135.4
+    },
+    {
+      "id": "s57",
+      "text": "Here's the worst part, nothing worked.",
+      "start": 136.28,
+      "end": 137.92
+    },
+    {
+      "id": "s58",
+      "text": "The login didn't work, the dashboard didn't work.",
+      "start": 138.46,
+      "end": 140.06
+    },
+    {
+      "id": "s59",
+      "text": "The database didn't exist.",
+      "start": 140.2,
+      "end": 141.14
+    },
+    {
+      "id": "s60",
+      "text": "But billing, billing worked perfectly.",
+      "start": 141.66,
+      "end": 143.56
+    },
+    {
+      "id": "s61",
+      "text": "Accidental billing is apparently the strongest force in software.",
+      "start": 144.2,
+      "end": 146.46
+    },
+    {
+      "id": "s62",
+      "text": "At the end of the day, I told him, AI can help you code faster, but you still need authentication, testing, database rules, backups, security, and basic human fear.",
+      "start": 147.06,
+      "end": 156.76
+    },
+    {
+      "id": "s63",
+      "text": "He looked thoughtful.",
+      "start": 157.5,
+      "end": 158.1
+    },
+    {
+      "id": "s64",
+      "text": "For a second, I thought I reached him.",
+      "start": 158.66,
+      "end": 159.82
+    },
+    {
+      "id": "s65",
+      "text": "Then he said, can I just prompt that?",
+      "start": 160.28,
+      "end": 162.06
+    },
+    {
+      "id": "s66",
+      "text": "And that was the moment a small part of me logged out forever.",
+      "start": 162.7,
+      "end": 165.12
+    },
+    {
+      "id": "s67",
+      "text": "AI makes everyone faster, including people running in the wrong direction.",
+      "start": 165.68,
+      "end": 169.02
+    },
+    {
+      "id": "s68",
+      "text": "And vibe coding is powerful, but at some point the vibes need a database.",
+      "start": 169.6,
+      "end": 172.8
+    }
+  ]
+}

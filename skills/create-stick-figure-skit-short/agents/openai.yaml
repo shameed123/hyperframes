@@ -1,0 +1,4 @@
+interface:
+  display_name: "Create Stick-Figure Skit Short"
+  short_description: "Build narrated vertical cartoon skit videos"
+  default_prompt: "Use $create-stick-figure-skit-short to turn my script, narration audio, and sample art into a complete vertical skit video package."
