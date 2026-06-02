@@ -33,8 +33,8 @@ Run these after editing `index.html`:
 
 ```powershell
 node_modules\.bin\oxfmt.CMD videos\google-io-2026-update\index.html
-npx.cmd --no-install hyperframes lint videos\google-io-2026-update
-npx.cmd --no-install hyperframes validate videos\google-io-2026-update --no-contrast
+node scripts\run-hyperframes.mjs lint videos\google-io-2026-update
+node scripts\run-hyperframes.mjs validate videos\google-io-2026-update --no-contrast
 ```
 
 Zero lint errors and zero console errors are required. Existing large/dense
@@ -45,7 +45,7 @@ composition warnings can be acceptable.
 Use snapshots to verify exact problem frames:
 
 ```powershell
-npx.cmd --no-install hyperframes snapshot videos\google-io-2026-update --at 0,0.75,2,62,72 --timeout 20000
+node scripts\run-hyperframes.mjs snapshot videos\google-io-2026-update --at 0,0.75,2,62,72 --timeout 20000
 ```
 
 Useful timestamps from Google I/O:
@@ -64,67 +64,67 @@ Useful timestamps from Google I/O:
 Standard review:
 
 ```powershell
-npx.cmd --no-install hyperframes render videos\google-io-2026-update --quality standard --fps 30 --output videos\google-io-2026-update\renders\google-io-2026-update-standard.mp4
+node scripts\run-hyperframes.mjs render videos\google-io-2026-update --quality standard --fps 30 --output videos\google-io-2026-update\renders\google-io-2026-update-standard.mp4
 ```
 
 Fast draft:
 
 ```powershell
-npx.cmd --no-install hyperframes render videos\google-io-2026-update --quality draft --fps 30 --output videos\google-io-2026-update\renders\google-io-2026-update-draft.mp4
+node scripts\run-hyperframes.mjs render videos\google-io-2026-update --quality draft --fps 30 --output videos\google-io-2026-update\renders\google-io-2026-update-draft.mp4
 ```
 
 Final:
 
 ```powershell
-npx.cmd --no-install hyperframes render videos\google-io-2026-update --quality high --fps 30 --output videos\google-io-2026-update\renders\google-io-2026-update-final.mp4
+node scripts\run-hyperframes.mjs render videos\google-io-2026-update --quality high --fps 30 --output videos\google-io-2026-update\renders\google-io-2026-update-final.mp4
 ```
 
 Final 60fps:
 
 ```powershell
-npx.cmd --no-install hyperframes render videos\google-io-2026-update --quality high --fps 60 --output videos\google-io-2026-update\renders\google-io-2026-update-final-60fps.mp4
+node scripts\run-hyperframes.mjs render videos\google-io-2026-update --quality high --fps 60 --output videos\google-io-2026-update\renders\google-io-2026-update-final-60fps.mp4
 ```
 
 4K portrait master:
 
 ```powershell
-npx.cmd --no-install hyperframes render videos\google-io-2026-update --quality high --fps 30 --resolution portrait-4k --output videos\google-io-2026-update\renders\google-io-2026-update-final-4k.mp4
+node scripts\run-hyperframes.mjs render videos\google-io-2026-update --quality high --fps 30 --resolution portrait-4k --output videos\google-io-2026-update\renders\google-io-2026-update-final-4k.mp4
 ```
 
 High bitrate:
 
 ```powershell
-npx.cmd --no-install hyperframes render videos\google-io-2026-update --quality high --fps 30 --video-bitrate 20M --output videos\google-io-2026-update\renders\google-io-2026-update-final-20mbps.mp4
+node scripts\run-hyperframes.mjs render videos\google-io-2026-update --quality high --fps 30 --video-bitrate 20M --output videos\google-io-2026-update\renders\google-io-2026-update-final-20mbps.mp4
 ```
 
 CRF master:
 
 ```powershell
-npx.cmd --no-install hyperframes render videos\google-io-2026-update --quality high --fps 30 --crf 16 --output videos\google-io-2026-update\renders\google-io-2026-update-final-crf16.mp4
+node scripts\run-hyperframes.mjs render videos\google-io-2026-update --quality high --fps 30 --crf 16 --output videos\google-io-2026-update\renders\google-io-2026-update-final-crf16.mp4
 ```
 
 Workers:
 
 ```powershell
-npx.cmd --no-install hyperframes render videos\google-io-2026-update --quality high --workers auto --output videos\google-io-2026-update\renders\google-io-2026-update-auto-workers.mp4
-npx.cmd --no-install hyperframes render videos\google-io-2026-update --quality high --workers 2 --output videos\google-io-2026-update\renders\google-io-2026-update-workers-2.mp4
-npx.cmd --no-install hyperframes render videos\google-io-2026-update --quality high --workers 6 --output videos\google-io-2026-update\renders\google-io-2026-update-workers-6.mp4
+node scripts\run-hyperframes.mjs render videos\google-io-2026-update --quality high --workers auto --output videos\google-io-2026-update\renders\google-io-2026-update-auto-workers.mp4
+node scripts\run-hyperframes.mjs render videos\google-io-2026-update --quality high --workers 2 --output videos\google-io-2026-update\renders\google-io-2026-update-workers-2.mp4
+node scripts\run-hyperframes.mjs render videos\google-io-2026-update --quality high --workers 6 --output videos\google-io-2026-update\renders\google-io-2026-update-workers-6.mp4
 ```
 
 GPU and Docker:
 
 ```powershell
-npx.cmd --no-install hyperframes render videos\google-io-2026-update --quality high --gpu --output videos\google-io-2026-update\renders\google-io-2026-update-gpu.mp4
-npx.cmd --no-install hyperframes render videos\google-io-2026-update --quality high --browser-gpu --output videos\google-io-2026-update\renders\google-io-2026-update-browser-gpu.mp4
-npx.cmd --no-install hyperframes render videos\google-io-2026-update --quality high --docker --output videos\google-io-2026-update\renders\google-io-2026-update-docker.mp4
+node scripts\run-hyperframes.mjs render videos\google-io-2026-update --quality high --gpu --output videos\google-io-2026-update\renders\google-io-2026-update-gpu.mp4
+node scripts\run-hyperframes.mjs render videos\google-io-2026-update --quality high --browser-gpu --output videos\google-io-2026-update\renders\google-io-2026-update-browser-gpu.mp4
+node scripts\run-hyperframes.mjs render videos\google-io-2026-update --quality high --docker --output videos\google-io-2026-update\renders\google-io-2026-update-docker.mp4
 ```
 
 Other formats:
 
 ```powershell
-npx.cmd --no-install hyperframes render videos\google-io-2026-update --format webm --output videos\google-io-2026-update\renders\google-io-2026-update.webm
-npx.cmd --no-install hyperframes render videos\google-io-2026-update --format mov --output videos\google-io-2026-update\renders\google-io-2026-update.mov
-npx.cmd --no-install hyperframes render videos\google-io-2026-update --format png-sequence --output videos\google-io-2026-update\renders\google-io-2026-update-png-sequence
+node scripts\run-hyperframes.mjs render videos\google-io-2026-update --format webm --output videos\google-io-2026-update\renders\google-io-2026-update.webm
+node scripts\run-hyperframes.mjs render videos\google-io-2026-update --format mov --output videos\google-io-2026-update\renders\google-io-2026-update.mov
+node scripts\run-hyperframes.mjs render videos\google-io-2026-update --format png-sequence --output videos\google-io-2026-update\renders\google-io-2026-update-png-sequence
 ```
 
 ## Render Flag Notes
@@ -140,4 +140,3 @@ npx.cmd --no-install hyperframes render videos\google-io-2026-update --format pn
 - `--video-bitrate` and `--crf` are mutually exclusive.
 - `--strict` fails on lint errors.
 - `--strict-all` also fails on warnings; avoid while large/dense warnings remain.
-

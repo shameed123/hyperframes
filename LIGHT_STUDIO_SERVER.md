@@ -87,19 +87,20 @@ For the Google I/O 2026 video:
 
 ```powershell
 cd C:\Users\sohai\AICoding\hyperframes-studio-light
-npx.cmd --no-install hyperframes lint videos\google-io-2026-update
-npx.cmd --no-install hyperframes validate videos\google-io-2026-update --no-contrast
-npx.cmd --no-install hyperframes render videos\google-io-2026-update --output videos\google-io-2026-update\renders\google-io-2026-update.mp4
+node scripts\run-hyperframes.mjs lint videos\google-io-2026-update
+node scripts\run-hyperframes.mjs validate videos\google-io-2026-update --no-contrast
+node scripts\run-hyperframes.mjs render videos\google-io-2026-update --output videos\google-io-2026-update\renders\google-io-2026-update.mp4
 ```
 
-Use `npx.cmd` in PowerShell so Windows does not block the `npx.ps1` shim.
+Use `node scripts\run-hyperframes.mjs` so commands run this checkout's built
+CLI without relying on a root `node_modules\.bin\hyperframes.CMD` shim.
 
 ### Standard Review Render
 
 Use this for a normal review copy. It balances quality and render time:
 
 ```powershell
-npx.cmd --no-install hyperframes render videos\google-io-2026-update --quality standard --fps 30 --output videos\google-io-2026-update\renders\google-io-2026-update-standard.mp4
+node scripts\run-hyperframes.mjs render videos\google-io-2026-update --quality standard --fps 30 --output videos\google-io-2026-update\renders\google-io-2026-update-standard.mp4
 ```
 
 ### Fast Draft Render
@@ -107,7 +108,7 @@ npx.cmd --no-install hyperframes render videos\google-io-2026-update --quality s
 Use this while iterating on timing, layout, or animation:
 
 ```powershell
-npx.cmd --no-install hyperframes render videos\google-io-2026-update --quality draft --fps 30 --output videos\google-io-2026-update\renders\google-io-2026-update-draft.mp4
+node scripts\run-hyperframes.mjs render videos\google-io-2026-update --quality draft --fps 30 --output videos\google-io-2026-update\renders\google-io-2026-update-draft.mp4
 ```
 
 ### High Quality Final Render
@@ -115,34 +116,34 @@ npx.cmd --no-install hyperframes render videos\google-io-2026-update --quality d
 Use this for the final upload file:
 
 ```powershell
-npx.cmd --no-install hyperframes render videos\google-io-2026-update --quality high --fps 30 --output videos\google-io-2026-update\renders\google-io-2026-update-final.mp4
+node scripts\run-hyperframes.mjs render videos\google-io-2026-update --quality high --fps 30 --output videos\google-io-2026-update\renders\google-io-2026-update-final.mp4
 ```
 
 For a 4K portrait master, keep the same 9:16 aspect ratio and use
 `portrait-4k`:
 
 ```powershell
-npx.cmd --no-install hyperframes render videos\google-io-2026-update --quality high --fps 30 --resolution portrait-4k --output videos\google-io-2026-update\renders\google-io-2026-update-final-4k.mp4
+node scripts\run-hyperframes.mjs render videos\google-io-2026-update --quality high --fps 30 --resolution portrait-4k --output videos\google-io-2026-update\renders\google-io-2026-update-final-4k.mp4
 ```
 
 For extra-smooth motion, render at 60fps. This takes longer and creates a
 larger file:
 
 ```powershell
-npx.cmd --no-install hyperframes render videos\google-io-2026-update --quality high --fps 60 --output videos\google-io-2026-update\renders\google-io-2026-update-final-60fps.mp4
+node scripts\run-hyperframes.mjs render videos\google-io-2026-update --quality high --fps 60 --output videos\google-io-2026-update\renders\google-io-2026-update-final-60fps.mp4
 ```
 
 For a larger but cleaner upload master, set a high video bitrate:
 
 ```powershell
-npx.cmd --no-install hyperframes render videos\google-io-2026-update --quality high --fps 30 --video-bitrate 20M --output videos\google-io-2026-update\renders\google-io-2026-update-final-20mbps.mp4
+node scripts\run-hyperframes.mjs render videos\google-io-2026-update --quality high --fps 30 --video-bitrate 20M --output videos\google-io-2026-update\renders\google-io-2026-update-final-20mbps.mp4
 ```
 
 Use either `--video-bitrate` or `--crf`, not both. Lower CRF usually means a
 higher-quality, larger file:
 
 ```powershell
-npx.cmd --no-install hyperframes render videos\google-io-2026-update --quality high --fps 30 --crf 16 --output videos\google-io-2026-update\renders\google-io-2026-update-final-crf16.mp4
+node scripts\run-hyperframes.mjs render videos\google-io-2026-update --quality high --fps 30 --crf 16 --output videos\google-io-2026-update\renders\google-io-2026-update-final-crf16.mp4
 ```
 
 ### Worker Count
@@ -153,19 +154,19 @@ each worker launches browser work and uses more CPU and memory.
 Auto workers:
 
 ```powershell
-npx.cmd --no-install hyperframes render videos\google-io-2026-update --quality high --workers auto --output videos\google-io-2026-update\renders\google-io-2026-update-auto-workers.mp4
+node scripts\run-hyperframes.mjs render videos\google-io-2026-update --quality high --workers auto --output videos\google-io-2026-update\renders\google-io-2026-update-auto-workers.mp4
 ```
 
 Conservative render for limited memory:
 
 ```powershell
-npx.cmd --no-install hyperframes render videos\google-io-2026-update --quality high --workers 2 --output videos\google-io-2026-update\renders\google-io-2026-update-workers-2.mp4
+node scripts\run-hyperframes.mjs render videos\google-io-2026-update --quality high --workers 2 --output videos\google-io-2026-update\renders\google-io-2026-update-workers-2.mp4
 ```
 
 Faster render on a stronger machine:
 
 ```powershell
-npx.cmd --no-install hyperframes render videos\google-io-2026-update --quality high --workers 6 --output videos\google-io-2026-update\renders\google-io-2026-update-workers-6.mp4
+node scripts\run-hyperframes.mjs render videos\google-io-2026-update --quality high --workers 6 --output videos\google-io-2026-update\renders\google-io-2026-update-workers-6.mp4
 ```
 
 ### GPU Or Docker
@@ -173,19 +174,19 @@ npx.cmd --no-install hyperframes render videos\google-io-2026-update --quality h
 Try GPU encoding if your local setup supports it:
 
 ```powershell
-npx.cmd --no-install hyperframes render videos\google-io-2026-update --quality high --gpu --output videos\google-io-2026-update\renders\google-io-2026-update-gpu.mp4
+node scripts\run-hyperframes.mjs render videos\google-io-2026-update --quality high --gpu --output videos\google-io-2026-update\renders\google-io-2026-update-gpu.mp4
 ```
 
 If a composition uses heavy WebGL or 3D, browser-side GPU capture can also help:
 
 ```powershell
-npx.cmd --no-install hyperframes render videos\google-io-2026-update --quality high --browser-gpu --output videos\google-io-2026-update\renders\google-io-2026-update-browser-gpu.mp4
+node scripts\run-hyperframes.mjs render videos\google-io-2026-update --quality high --browser-gpu --output videos\google-io-2026-update\renders\google-io-2026-update-browser-gpu.mp4
 ```
 
 Use Docker when you need the most reproducible render output across machines:
 
 ```powershell
-npx.cmd --no-install hyperframes render videos\google-io-2026-update --quality high --docker --output videos\google-io-2026-update\renders\google-io-2026-update-docker.mp4
+node scripts\run-hyperframes.mjs render videos\google-io-2026-update --quality high --docker --output videos\google-io-2026-update\renders\google-io-2026-update-docker.mp4
 ```
 
 ### Other Output Formats
@@ -194,21 +195,21 @@ MP4 is the default and is the best choice for YouTube, TikTok, Instagram, and
 general review files.
 
 ```powershell
-npx.cmd --no-install hyperframes render videos\google-io-2026-update --format mp4 --output videos\google-io-2026-update\renders\google-io-2026-update.mp4
+node scripts\run-hyperframes.mjs render videos\google-io-2026-update --format mp4 --output videos\google-io-2026-update\renders\google-io-2026-update.mp4
 ```
 
 Use WebM or MOV when you need transparency support:
 
 ```powershell
-npx.cmd --no-install hyperframes render videos\google-io-2026-update --format webm --output videos\google-io-2026-update\renders\google-io-2026-update.webm
-npx.cmd --no-install hyperframes render videos\google-io-2026-update --format mov --output videos\google-io-2026-update\renders\google-io-2026-update.mov
+node scripts\run-hyperframes.mjs render videos\google-io-2026-update --format webm --output videos\google-io-2026-update\renders\google-io-2026-update.webm
+node scripts\run-hyperframes.mjs render videos\google-io-2026-update --format mov --output videos\google-io-2026-update\renders\google-io-2026-update.mov
 ```
 
 Use a PNG sequence for handoff into After Effects, Nuke, Fusion, or another
 compositor:
 
 ```powershell
-npx.cmd --no-install hyperframes render videos\google-io-2026-update --format png-sequence --output videos\google-io-2026-update\renders\google-io-2026-update-png-sequence
+node scripts\run-hyperframes.mjs render videos\google-io-2026-update --format png-sequence --output videos\google-io-2026-update\renders\google-io-2026-update-png-sequence
 ```
 
 ### Strict Rendering
@@ -219,7 +220,7 @@ large/dense composition, so use `--strict`, not `--strict-all`, unless those
 warnings have been cleaned up.
 
 ```powershell
-npx.cmd --no-install hyperframes render videos\google-io-2026-update --quality high --strict --output videos\google-io-2026-update\renders\google-io-2026-update-strict.mp4
+node scripts\run-hyperframes.mjs render videos\google-io-2026-update --quality high --strict --output videos\google-io-2026-update\renders\google-io-2026-update-strict.mp4
 ```
 
 ### Generic Render Template
@@ -228,28 +229,28 @@ For any HyperFrames project:
 
 ```powershell
 cd C:\Users\sohai\AICoding\hyperframes-studio-light
-npx.cmd --no-install hyperframes lint "C:\path\to\hyperframes-project"
-npx.cmd --no-install hyperframes validate "C:\path\to\hyperframes-project" --no-contrast
-npx.cmd --no-install hyperframes render "C:\path\to\hyperframes-project" --quality standard --fps 30 --workers auto --output "C:\path\to\output.mp4"
+node scripts\run-hyperframes.mjs lint "C:\path\to\hyperframes-project"
+node scripts\run-hyperframes.mjs validate "C:\path\to\hyperframes-project" --no-contrast
+node scripts\run-hyperframes.mjs render "C:\path\to\hyperframes-project" --quality standard --fps 30 --workers auto --output "C:\path\to\output.mp4"
 ```
 
 Common render flags:
 
-| Flag | Typical values | Use |
-| --- | --- | --- |
-| `--output` | `path\file.mp4` | Choose the render file path. |
-| `--quality` | `draft`, `standard`, `high` | Draft for speed, standard for review, high for final. |
-| `--fps` | `24`, `30`, `60` | Use `30` for most shorts; `60` for smoother motion. |
-| `--resolution` | `portrait`, `portrait-4k`, `landscape`, `square` | Render a matching-aspect output preset. |
-| `--workers` | `auto`, `1`-`8` | Increase for speed if the machine has enough memory. |
-| `--video-bitrate` | `10M`, `20M`, `30M` | Target a specific upload bitrate. Mutually exclusive with `--crf`. |
-| `--crf` | `16`, `18`, `20`, `23` | Encoder quality override. Lower is cleaner and larger. Mutually exclusive with `--video-bitrate`. |
-| `--gpu` | flag | Try hardware-accelerated encoding. |
-| `--browser-gpu` | flag | Force Chrome/WebGL capture to use host GPU acceleration. |
-| `--docker` | flag | More reproducible output, slower setup. |
-| `--strict` | flag | Fail render on lint errors. |
-| `--strict-all` | flag | Fail render on lint errors and warnings. |
-| `--format` | `mp4`, `webm`, `mov`, `png-sequence` | Use `mp4` for uploads; use other formats for transparency or compositor handoff. |
+| Flag              | Typical values                                   | Use                                                                                               |
+| ----------------- | ------------------------------------------------ | ------------------------------------------------------------------------------------------------- |
+| `--output`        | `path\file.mp4`                                  | Choose the render file path.                                                                      |
+| `--quality`       | `draft`, `standard`, `high`                      | Draft for speed, standard for review, high for final.                                             |
+| `--fps`           | `24`, `30`, `60`                                 | Use `30` for most shorts; `60` for smoother motion.                                               |
+| `--resolution`    | `portrait`, `portrait-4k`, `landscape`, `square` | Render a matching-aspect output preset.                                                           |
+| `--workers`       | `auto`, `1`-`8`                                  | Increase for speed if the machine has enough memory.                                              |
+| `--video-bitrate` | `10M`, `20M`, `30M`                              | Target a specific upload bitrate. Mutually exclusive with `--crf`.                                |
+| `--crf`           | `16`, `18`, `20`, `23`                           | Encoder quality override. Lower is cleaner and larger. Mutually exclusive with `--video-bitrate`. |
+| `--gpu`           | flag                                             | Try hardware-accelerated encoding.                                                                |
+| `--browser-gpu`   | flag                                             | Force Chrome/WebGL capture to use host GPU acceleration.                                          |
+| `--docker`        | flag                                             | More reproducible output, slower setup.                                                           |
+| `--strict`        | flag                                             | Fail render on lint errors.                                                                       |
+| `--strict-all`    | flag                                             | Fail render on lint errors and warnings.                                                          |
+| `--format`        | `mp4`, `webm`, `mov`, `png-sequence`             | Use `mp4` for uploads; use other formats for transparency or compositor handoff.                  |
 
 ## Notes
 

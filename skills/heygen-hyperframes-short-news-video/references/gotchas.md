@@ -2,11 +2,16 @@
 
 ## PowerShell Blocks `npx.ps1`
 
-Use `npx.cmd`, not bare `npx`, for HyperFrames commands in PowerShell:
+Use the built checkout CLI wrapper for HyperFrames commands:
 
 ```powershell
-npx.cmd --no-install hyperframes lint videos\google-io-2026-update
+node scripts\run-hyperframes.mjs lint videos\google-io-2026-update
 ```
+
+Do not use `npx.cmd --no-install hyperframes ...` in this monorepo. A built
+checkout can still lack a root `node_modules\.bin\hyperframes.CMD` shim, causing
+`npx` to search for an external package instead of using
+`packages\cli\dist\cli.js`.
 
 ## Format With `oxfmt.CMD`
 
@@ -131,7 +136,7 @@ sub-compositions.
 Use:
 
 ```powershell
-npx.cmd --no-install hyperframes validate videos\<slug> --no-contrast
+node scripts\run-hyperframes.mjs validate videos\<slug> --no-contrast
 ```
 
 Full contrast validation can report sampler quirks on transformed glass layers.

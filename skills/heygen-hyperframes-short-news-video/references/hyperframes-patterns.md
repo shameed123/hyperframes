@@ -57,6 +57,9 @@ for (const [selector, start, end] of sceneWindows) {
   tl.set(selector, { opacity: 1, visibility: "visible" }, start);
   tl.set(selector, { opacity: 0, visibility: "hidden" }, end);
 }
+
+window.__timelines = window.__timelines || {};
+window.__timelines["<composition-id>"] = tl;
 ```
 
 This avoids all scenes appearing in snapshots or render frames.
@@ -217,11 +220,7 @@ Half-second opening flash:
 ```
 
 ```js
-tl.to(
-  "#opening-thumbnail",
-  { opacity: 0, scale: 0.94, duration: 0.5, ease: "power2.inOut" },
-  0,
-);
+tl.to("#opening-thumbnail", { opacity: 0, scale: 0.94, duration: 0.5, ease: "power2.inOut" }, 0);
 ```
 
 Start at full opacity. Do not animate in if the user wants the first frame to

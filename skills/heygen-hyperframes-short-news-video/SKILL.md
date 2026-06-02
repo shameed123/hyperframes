@@ -26,50 +26,61 @@ Read these references as needed:
 
 ## Default Workflow
 
-1. Discover the latest AI news first. Use primary sources when possible,
+1. Run `node scripts/daily-news-preflight.mjs` before research or paid API
+   submission. Stop immediately when it reports a blocker. The preflight
+   verifies outbound network access, direct HeyGen API quota, configured avatar
+   and voice visibility, Chrome launch, dependency readability, formatting,
+   and the local HyperFrames CLI.
+2. Discover the latest AI news first. Use primary sources when possible,
    cross-check with reputable reporting, and choose the strongest story before
    writing the script.
-2. Create `videos/<slug>/` with `assets/avatar`, `assets/captions`,
+3. Create `videos/<slug>/` with `assets/avatar`, `assets/captions`,
    `assets/motion`, `assets/motion/broll`, `assets/motion/mobile`,
    `assets/motion/maps`, `assets/sfx`, `assets/thumbnail`, `renders`, and
    `snapshots`.
-3. Use root `.env` only. Do not create a per-video `.env` or `.env.example`.
-4. Generate the HeyGen Avatar III video via HeyGen v2, using root values:
+4. Use root `.env` only. Do not create a per-video `.env` or `.env.example`.
+5. Generate the HeyGen Avatar III video via HeyGen v2, using root values:
    `HEYGEN_API_KEY`, `HEYGEN_AVATAR_ID`, `HEYGEN_VOICE_ID`,
    `HEYGEN_VOICE_SPEED`.
-5. Download the avatar MP4 to `assets/avatar/` and SRT to `assets/captions/`.
-6. Capture B-roll from the relevant source website(s) before building the
+6. Download the avatar MP4 to `assets/avatar/` and SRT to `assets/captions/`.
+7. Capture B-roll from the relevant source website(s) before building the
    video. Prefer mobile source-page scroll footage for news articles and
    product/blog pages. Save all captures locally; never depend on network
-   loading during render.
-7. Build `index.html` as a 1080x1920 HyperFrames composition.
-8. Use the avatar MP4 as a separate `<audio>` track plus muted `<video>` clips.
-9. Time scenes from the SRT. Gate each scene with timeline `set()` calls so
-   only the active scene is visible.
-10. Put the avatar in PIP or feature layouts, using cropped frames to remove
-   white side stripes.
-11. Add render-stable avatar shadows with `filter: drop-shadow(...)`, not only
-   `box-shadow`.
-12. Round avatar corners with per-placement `border-radius` values.
-13. Copy reusable SFX from `videos/_shared/sfx` into `videos/<slug>/assets/sfx`
+   loading during render. For deterministic source-page captures, create a
+   JSON array of `{ "id": "...", "url": "..." }` entries and run
+   `node scripts/capture-mobile-broll.mjs <slug> <sources-json>`.
+8. Build `index.html` as a 1080x1920 HyperFrames composition.
+9. Use the avatar MP4 as a separate `<audio>` track plus muted `<video>` clips.
+10. Time scenes from the SRT. Gate each scene with timeline `set()` calls so
+    only the active scene is visible.
+11. Put the avatar in PIP or feature layouts, using cropped frames to remove
+    white side stripes.
+12. Add render-stable avatar shadows with `filter: drop-shadow(...)`, not only
+    `box-shadow`.
+13. Round avatar corners with per-placement `border-radius` values.
+14. Copy reusable SFX from `videos/_shared/sfx` into `videos/<slug>/assets/sfx`
     and add subtle timed audio clips for whooshes, pings, pongs, pops, clicks,
     and CTA chimes. Keep SFX quiet under the avatar narration.
-14. Write `videos/<slug>/thumbnail-prompt.md` before generating thumbnail art.
+15. Write `videos/<slug>/thumbnail-prompt.md` before generating thumbnail art.
     Include the exact baked-in headline text, secondary text, visual subject,
     palette, constraints, and avoid list. Then generate or render a
     project-bound 9:16 thumbnail asset under `assets/thumbnail/`. If the
     thumbnail should appear in the video, add it as a first-frame overlay clip
     for `0.5s` with a fade/zoom-out.
-15. Run `oxfmt`, `hyperframes lint`, `hyperframes validate --no-contrast`, and
+16. Run `oxfmt`, `hyperframes lint`, `hyperframes validate --no-contrast`, and
     targeted `hyperframes snapshot` checks before handing back. Always inspect
     frames where website B-roll appears for size, scroll speed, load/cookie
     artifacts, and overlap with avatar/captions.
-16. Provide YouTube upload metadata: catchy title, SEO description, hashtags,
+17. Provide YouTube upload metadata: catchy title, SEO description, hashtags,
     upload tags, and a recommended upload time in the target audience timezone.
 
 ## Mandatory Local Conventions
 
-- Use PowerShell-safe commands: `npx.cmd --no-install hyperframes ...`.
+- Use the built checkout CLI through
+  `node scripts\run-hyperframes.mjs ...`. Do not use
+  `npx.cmd --no-install hyperframes ...` in this monorepo: the root shim may be
+  absent even when `packages/cli/dist/cli.js` is built, causing `npx` to search
+  for an external package instead of using this checkout.
 - Use `node_modules\.bin\oxfmt.CMD` for formatting changed HTML files.
 - Launch the light Studio according to `LIGHT_STUDIO_SERVER.md`.
 - If port `5192` is busy, use `5193` or another free port.

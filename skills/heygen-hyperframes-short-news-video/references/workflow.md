@@ -12,6 +12,31 @@
   those per video.
 - Do not create `.env.example` in the video folder when root `.env` is shared.
 
+## Fail-Fast Preflight
+
+Before research, folder creation, or a paid HeyGen submission, run:
+
+```powershell
+node scripts\daily-news-preflight.mjs
+```
+
+Do not continue when it exits non-zero. It distinguishes:
+
+- web-app credits from the direct API balance used by `HEYGEN_API_KEY`;
+- a valid API key from an API-visible avatar and voice;
+- source-site availability from sandbox network denial;
+- Chrome availability from child-process/profile-write restrictions;
+- a readable dependency tree from broken or sandbox-blocked package links;
+- a usable local HyperFrames CLI from a checkout that still needs a build.
+
+Do not reject a configured avatar only because it is absent from
+`GET /v2/avatars`. Some valid photo-avatar look IDs used by the legacy Avatar
+III generation workflow resolve through `GET /v3/avatars/looks/{id}` but do not
+appear in the legacy catalog. Treat either lookup as sufficient non-billing
+evidence that the ID is valid. If neither lookup succeeds, update
+`HEYGEN_AVATAR_ID` or use an API token from the HeyGen Space that owns the
+avatar.
+
 ## Folder Layout
 
 For each video:
@@ -52,6 +77,10 @@ videos/<slug>/
 ## HeyGen Avatar III
 
 Use the HeyGen v2 generation endpoint for Avatar III style digital twin videos.
+HeyGen's current documentation says v1 and v2 remain supported until
+October 31, 2026, and Avatar III generation still requires the legacy API.
+Keep this v2 path for the current Avatar III workflow, but schedule a migration
+review before that date if moving to Avatar IV or Avatar V is acceptable.
 The successful Avatar III request shape is:
 
 ```json
@@ -183,7 +212,7 @@ Use a 9:16 composition for Shorts/Reels/TikTok:
 
 ```html
 <meta name="viewport" content="width=1080, height=1920" />
-<div id="root" data-composition-id="<slug>" data-width="1080" data-height="1920">
+<div id="root" data-composition-id="<slug>" data-width="1080" data-height="1920"></div>
 ```
 
 The Google I/O visual direction was light-theme, high-energy tech editorial:

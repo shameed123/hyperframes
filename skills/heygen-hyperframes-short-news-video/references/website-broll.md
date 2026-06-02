@@ -50,6 +50,37 @@ Track source URLs in `sources.md`, `source-notes.md`, or the script file with:
 
 Use this for news articles, launch blogs, docs, and research pages.
 
+For the deterministic project helper, create a JSON array:
+
+```json
+[
+  {
+    "id": "announcement",
+    "url": "https://example.com/news/announcement",
+    "expectedTitleIncludes": "Announcement title"
+  }
+]
+```
+
+Then run:
+
+```powershell
+node scripts\capture-mobile-broll.mjs <slug> <sources-json>
+```
+
+The helper uses `puppeteer-core`, an installed system Chrome or Edge browser,
+a project-local temporary profile, a `412x915` mobile viewport, a mobile user
+agent, hero and full-page PNG captures, and a normal-speed scroll plan. It
+resets the page to the hero position before capture, records the final URL and
+title, and rejects low-content pages. Add `expectedTitleIncludes` whenever a
+redirect to the wrong article would be easy to miss.
+
+To recapture only selected sources after visual QA:
+
+```powershell
+node scripts\capture-mobile-broll.mjs <slug> <sources-json> <source-id> [<source-id>...]
+```
+
 1. Open the page in Chromium/Edge with a mobile viewport around `390x844`,
    `412x915`, or `430x932`, and a mobile user agent.
 2. Accept or dismiss cookie banners, sign-in nags, newsletter modals, and other

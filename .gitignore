@@ -115,3 +115,6 @@ docs/superpowers/
 # mp4 in videos
 videos/**/*.mp4
 videos/**/renders
+
+#log files
+automation-run-log.md
