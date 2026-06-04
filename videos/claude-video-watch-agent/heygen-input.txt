@@ -1,0 +1,21 @@
+What if your coding agent could actually watch a video, not just skim the transcript?
+
+That is what this open-source GitHub project, claude-video, unlocks.
+
+Normally, if you paste a YouTube, TikTok, Loom, or screen recording into an AI coding tool, it mostly depends on captions, titles, or whatever text it can scrape.
+
+But video is visual. The hook, the edit, the UI bug, the slide, the moment something changes on screen. That stuff matters.
+
+With slash watch, the agent downloads the video, pulls out frames with ffmpeg, grabs captions when they exist, and can fall back to Whisper when they do not.
+
+Then it hands the frames and transcript to the model together.
+
+So now Claude Code can inspect a viral short, break down the first three seconds, summarize a long lecture, or diagnose a bug from a screen recording.
+
+And the interesting part: this is not only useful for Claude. The repo also includes Codex support, so you can install it as a Codex skill and give your coding agent the same video-analysis workflow.
+
+For marketers, builders, and developers, this is huge. You can ask what made this ad work, where did this demo fail, what changed on screen, or what should I copy from this creator's structure?
+
+The link is on GitHub. It is free, open source, and honestly, this feels like one of those small tools that changes how we use AI agents.
+
+If you like AI explanation videos like this, like, subscribe, and follow for more.

@@ -256,9 +256,10 @@ What changes video to video:
 Save generated thumbnails under
 `videos/<slug>/assets/thumbnail/<slug>-thumbnail.png`.
 
-If exact headline typography is more important than model-native imagery, build
-an editable HTML/CSS thumbnail source in `assets/thumbnail/`, render it to a
-1080x1920 PNG with a headless browser, and reference the PNG in the video.
+Generate the finished thumbnail with the image model as a standalone raster
+asset. Do not build thumbnails by adding headline text with HyperFrames,
+HTML/CSS, canvas, SVG, PowerShell, or local compositing; the headline text must
+be baked into the image-model output.
 
 When the thumbnail should appear at the front of the short, add a clip at
 `data-start="0"` and `data-duration="0.5"` using the PNG, with a short

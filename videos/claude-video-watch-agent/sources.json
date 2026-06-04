@@ -1,0 +1,7 @@
+[
+  {
+    "id": "claude-video-github",
+    "url": "https://github.com/bradautomates/claude-video",
+    "expectedTitleIncludes": "claude-video"
+  }
+]

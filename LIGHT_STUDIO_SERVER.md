@@ -13,7 +13,7 @@ If the AI Terms project is copied into this repo under `videos`, run:
 
 ```powershell
 cd C:\Users\sohai\AICoding\hyperframes-studio-light
-corepack pnpm run studio:project -- -ProjectPath "videos\ai-terms-explained-without-jargon" -Relink
+bun run studio:project -- -ProjectPath "videos\ai-terms-explained-without-jargon" -Relink
 ```
 
 Then open:
@@ -26,17 +26,24 @@ Use `-Relink` when this Studio has already seen a project with the same folder
 name from another location. It updates the saved Studio project link to point at
 the copied local folder.
 
+Trailing slashes are fine. These point at the same project:
+
+```powershell
+bun run studio:project -- -ProjectPath "videos\ai-terms-explained-without-jargon"
+bun run studio:project -- -ProjectPath "videos\ai-terms-explained-without-jargon\"
+```
+
 If you want to preview the original AI Terms folder instead, use its full path:
 
 ```powershell
-corepack pnpm run studio:project -- -ProjectPath "C:\Users\sohai\AICoding\Hyperframes\videos\ai-terms-explained-without-jargon" -Relink
+bun run studio:project -- -ProjectPath "C:\Users\sohai\AICoding\Hyperframes\videos\ai-terms-explained-without-jargon" -Relink
 ```
 
 ## Start Any HyperFrames Project
 
 ```powershell
 cd C:\Users\sohai\AICoding\hyperframes-studio-light
-corepack pnpm run studio:project -- -ProjectPath "C:\path\to\hyperframes-project"
+bun run studio:project -- -ProjectPath "C:\path\to\hyperframes-project"
 ```
 
 The command:
@@ -55,7 +62,7 @@ Use `-ProjectName` if you want the Studio URL name to differ from the folder
 name:
 
 ```powershell
-corepack pnpm run studio:project -- -ProjectPath "C:\path\to\hyperframes-project" -ProjectName "my-project"
+bun run studio:project -- -ProjectPath "C:\path\to\hyperframes-project" -ProjectName "my-project"
 ```
 
 Then open:
@@ -69,13 +76,13 @@ http://127.0.0.1:5192/#project/my-project
 If port `5192` is busy, use another port:
 
 ```powershell
-corepack pnpm run studio:project -- -ProjectPath "C:\path\to\hyperframes-project" -Port 5193
+bun run studio:project -- -ProjectPath "C:\path\to\hyperframes-project" -Port 5193
 ```
 
 Then open the same project name on that port:
 
 ```text
-http://127.0.0.1:5193/#project/my-project
+http://127.0.0.1:5193/#project/hyperframes-project
 ```
 
 ## Render A Video
@@ -269,12 +276,12 @@ If startup reports missing Studio dependencies, run:
 
 ```powershell
 cd C:\Users\sohai\AICoding\hyperframes-studio-light
-corepack pnpm install --ignore-scripts
-corepack pnpm --filter @hyperframes/core run build:hyperframes-runtime
+bun install
+bun run build:hyperframes-runtime
 ```
 
 Then start the server again:
 
 ```powershell
-corepack pnpm run studio:project -- -ProjectPath "C:\path\to\hyperframes-project"
+bun run studio:project -- -ProjectPath "C:\path\to\hyperframes-project"
 ```

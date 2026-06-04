@@ -6,13 +6,13 @@ Start Studio from this repo root and pass the video folder:
 
 ```powershell
 cd C:\Users\sohai\AICoding\hyperframes-studio-light
-corepack pnpm run studio:project -- -ProjectPath "videos\google-io-2026-update" -Relink
+bun run studio:project -- -ProjectPath "videos\google-io-2026-update" -Relink
 ```
 
 If port `5192` is busy:
 
 ```powershell
-corepack pnpm run studio:project -- -ProjectPath "videos\google-io-2026-update" -Relink -Port 5193
+bun run studio:project -- -ProjectPath "videos\google-io-2026-update" -Relink -Port 5193
 ```
 
 URL pattern:

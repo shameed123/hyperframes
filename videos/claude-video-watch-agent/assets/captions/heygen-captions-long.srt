@@ -1,0 +1,175 @@
+1
+00:00:00,000 --> 00:00:01,920
+What if your coding agent could actually
+
+2
+00:00:02,020 --> 00:00:04,270
+watch a video, not just skim the
+
+3
+00:00:04,320 --> 00:00:04,920
+transcript?
+
+4
+00:00:05,180 --> 00:00:07,160
+That is what this open-source GitHub
+
+5
+00:00:07,210 --> 00:00:09,430
+project, claude-video, unlocks.
+
+6
+00:00:09,720 --> 00:00:11,540
+Normally, if you paste a YouTube,
+
+7
+00:00:11,590 --> 00:00:14,060
+TikTok, Loom, or screen recording into
+
+8
+00:00:14,160 --> 00:00:16,550
+an AI coding tool, it mostly depends on
+
+9
+00:00:16,610 --> 00:00:18,670
+captions, titles, or whatever text it
+
+10
+00:00:18,710 --> 00:00:19,310
+can scrape.
+
+11
+00:00:19,520 --> 00:00:20,570
+But video is visual.
+
+12
+00:00:20,840 --> 00:00:22,960
+The hook, the edit, the UI bug, the
+
+13
+00:00:23,010 --> 00:00:24,830
+slide, the moment something changes on
+
+14
+00:00:24,880 --> 00:00:25,230
+screen.
+
+15
+00:00:25,450 --> 00:00:26,410
+That stuff matters.
+
+16
+00:00:26,630 --> 00:00:28,700
+With slash watch, the agent downloads
+
+17
+00:00:28,750 --> 00:00:31,140
+the video, pulls out frames with ffmpeg,
+
+18
+00:00:31,440 --> 00:00:33,400
+grabs captions when they exist, and can
+
+19
+00:00:33,460 --> 00:00:35,210
+fall back to Whisper when they do not.
+
+20
+00:00:35,540 --> 00:00:37,500
+Then it hands the frames and transcript
+
+21
+00:00:37,560 --> 00:00:38,580
+to the model together.
+
+22
+00:00:38,810 --> 00:00:40,890
+So now Claude Code can inspect a viral
+
+23
+00:00:40,950 --> 00:00:42,690
+short, break down the first three
+
+24
+00:00:42,740 --> 00:00:45,330
+seconds, summarize a long lecture, or
+
+25
+00:00:45,380 --> 00:00:47,470
+diagnose a bug from a screen recording.
+
+26
+00:00:47,740 --> 00:00:49,460
+And the interesting part: this is not
+
+27
+00:00:49,520 --> 00:00:50,750
+only useful for Claude.
+
+28
+00:00:50,890 --> 00:00:53,230
+The repo also includes Codex support, so
+
+29
+00:00:53,290 --> 00:00:55,380
+you can install it as a Codex skill and
+
+30
+00:00:55,440 --> 00:00:56,980
+give your coding agent the same
+
+31
+00:00:57,050 --> 00:00:58,460
+video-analysis workflow.
+
+32
+00:00:58,910 --> 00:01:01,100
+For marketers, builders, and developers,
+
+33
+00:01:01,230 --> 00:01:02,110
+this is huge.
+
+34
+00:01:02,520 --> 00:01:04,210
+You can ask what made this ad work,
+
+35
+00:01:04,520 --> 00:01:06,690
+where did this demo fail, what changed
+
+36
+00:01:06,740 --> 00:01:08,780
+on screen, or what should I copy from
+
+37
+00:01:08,810 --> 00:01:10,010
+this creator's structure?
+
+38
+00:01:10,340 --> 00:01:11,390
+The link is on GitHub.
+
+39
+00:01:11,600 --> 00:01:13,850
+It is free, open source, and honestly,
+
+40
+00:01:13,930 --> 00:01:15,730
+this feels like one of those small tools
+
+41
+00:01:15,780 --> 00:01:17,810
+that changes how we use AI agents.
+
+42
+00:01:18,190 --> 00:01:20,200
+If you like AI explanation videos like
+
+43
+00:01:20,240 --> 00:01:22,060
+this, like, subscribe, and follow for
+
+44
+00:01:22,100 --> 00:01:22,310
+more.

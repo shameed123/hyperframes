@@ -1,0 +1,14 @@
+{
+  "endpoint": "POST https://api.heygen.com/v2/video/generate",
+  "title": "Claude Video /watch Agent",
+  "caption": true,
+  "dimension": {
+    "width": 1280,
+    "height": 720
+  },
+  "avatarStyle": "normal",
+  "voiceType": "text",
+  "voiceSpeed": 1.1,
+  "inputTextPath": "videos/claude-video-watch-agent/heygen-input.txt",
+  "submittedAt": "2026-06-02T23:06:42.214Z"
+}

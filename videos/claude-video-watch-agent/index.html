@@ -1,0 +1,1144 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #f7fafc;
+        color: #0f172a;
+        font-family: Inter, "Segoe UI", Arial, sans-serif;
+      }
+
+      #root {
+        position: relative;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 18% 8%, rgba(6, 182, 212, 0.22), transparent 28%),
+          radial-gradient(circle at 86% 26%, rgba(34, 197, 94, 0.18), transparent 25%),
+          radial-gradient(circle at 70% 92%, rgba(245, 158, 11, 0.22), transparent 34%),
+          linear-gradient(150deg, #ffffff 0%, #dff5ff 58%, #fff7e8 100%);
+        perspective: 1800px;
+      }
+
+      #root::before {
+        content: "";
+        position: absolute;
+        inset: -120px;
+        background:
+          linear-gradient(90deg, rgba(15, 23, 42, 0.07) 1px, transparent 1px),
+          linear-gradient(0deg, rgba(15, 23, 42, 0.06) 1px, transparent 1px);
+        background-size: 82px 82px;
+        transform: rotate(-8deg) scale(1.12);
+      }
+
+      .clip,
+      .scene,
+      .layer {
+        position: absolute;
+      }
+
+      .scene {
+        inset: 0;
+        z-index: 5;
+        overflow: hidden;
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      .scene-content {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+        padding: 86px 62px 150px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .kicker,
+      .chip,
+      .source-pill {
+        display: inline-flex;
+        width: max-content;
+        align-items: center;
+        gap: 10px;
+        border: 1px solid rgba(15, 23, 42, 0.1);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.78);
+        box-shadow:
+          0 22px 70px rgba(15, 23, 42, 0.12),
+          inset 0 0 0 1px rgba(255, 255, 255, 0.52);
+        backdrop-filter: blur(18px) saturate(1.24);
+      }
+
+      .kicker {
+        padding: 13px 16px;
+        color: #067b91;
+        font-family: "IBM Plex Mono", Consolas, monospace;
+        font-size: 22px;
+        font-weight: 800;
+        text-transform: uppercase;
+      }
+
+      .headline {
+        margin-top: 26px;
+        max-width: 960px;
+        color: #0f172a;
+        font-family: "Arial Black", Impact, Inter, sans-serif;
+        font-size: 88px;
+        font-weight: 900;
+        line-height: 0.94;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+
+      .headline.big {
+        font-size: 106px;
+      }
+
+      .subline {
+        margin-top: 22px;
+        max-width: 820px;
+        color: #526070;
+        font-size: 35px;
+        font-weight: 720;
+        line-height: 1.13;
+      }
+
+      .cyan {
+        color: #06b6d4;
+      }
+
+      .green {
+        color: #22c55e;
+      }
+
+      .amber {
+        color: #f59e0b;
+      }
+
+      .dark {
+        color: #24292f;
+      }
+
+      .glass {
+        border: 1px solid rgba(15, 23, 42, 0.12);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.72);
+        box-shadow:
+          0 34px 95px rgba(15, 23, 42, 0.16),
+          inset 0 0 0 1px rgba(255, 255, 255, 0.55);
+        backdrop-filter: blur(22px) saturate(1.22);
+      }
+
+      .thumb {
+        inset: 0;
+        z-index: 80;
+        overflow: hidden;
+        background: #f7fafc;
+      }
+
+      .thumb-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      .repo-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: #526070;
+        font-family: "IBM Plex Mono", Consolas, monospace;
+        font-size: 24px;
+        font-weight: 700;
+      }
+
+      .repo-title {
+        margin-top: 30px;
+        color: #24292f;
+        font-family: "Arial Black", Impact, sans-serif;
+        font-size: 62px;
+        line-height: 0.96;
+      }
+
+      .repo-desc {
+        margin-top: 18px;
+        color: #526070;
+        font-size: 30px;
+        line-height: 1.2;
+      }
+
+      .watch-chip {
+        position: absolute;
+        right: 70px;
+        bottom: 510px;
+        padding: 22px 28px;
+        background: #24292f;
+        color: #f8fafc;
+        border-radius: 8px;
+        font-family: "IBM Plex Mono", Consolas, monospace;
+        font-size: 42px;
+        font-weight: 900;
+        box-shadow: 0 34px 80px rgba(15, 23, 42, 0.26);
+      }
+
+      .frame-tile {
+        position: absolute;
+        width: 176px;
+        height: 126px;
+        border: 2px solid rgba(255, 255, 255, 0.76);
+        border-radius: 8px;
+        background:
+          linear-gradient(135deg, rgba(6, 182, 212, 0.18), rgba(245, 158, 11, 0.22)), #ffffff;
+        box-shadow: 0 22px 58px rgba(15, 23, 42, 0.16);
+      }
+
+      .frame-tile::after {
+        content: "";
+        position: absolute;
+        inset: 26px 34px;
+        border-radius: 8px;
+        background: rgba(15, 23, 42, 0.12);
+      }
+
+      .tile-a {
+        left: 92px;
+        bottom: 360px;
+        transform: rotate(7deg);
+      }
+
+      .tile-b {
+        right: 116px;
+        bottom: 300px;
+        transform: rotate(-9deg);
+      }
+
+      .tile-c {
+        left: 320px;
+        bottom: 230px;
+        transform: rotate(3deg);
+      }
+
+      .phone {
+        position: absolute;
+        width: 470px;
+        height: 1046px;
+        border-radius: 56px;
+        padding: 20px;
+        background: #24292f;
+        box-shadow:
+          0 46px 120px rgba(15, 23, 42, 0.24),
+          0 0 0 8px rgba(255, 255, 255, 0.52);
+        overflow: hidden;
+      }
+
+      .phone-screen {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        border-radius: 40px;
+        overflow: hidden;
+        background: #ffffff;
+      }
+
+      .phone-screen img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: auto;
+      }
+
+      .github-phone {
+        right: 48px;
+        top: 365px;
+        transform: rotate(4deg);
+      }
+
+      .source-pill {
+        padding: 12px 16px;
+        color: #24292f;
+        font-family: "IBM Plex Mono", Consolas, monospace;
+        font-size: 22px;
+        font-weight: 800;
+      }
+
+      .source-pill::before {
+        content: "";
+        width: 14px;
+        height: 14px;
+        border-radius: 999px;
+        background: #22c55e;
+        box-shadow: 0 0 20px rgba(34, 197, 94, 0.7);
+      }
+
+      .feature-list,
+      .pipeline,
+      .use-grid {
+        display: grid;
+        gap: 18px;
+      }
+
+      .feature-list {
+        position: absolute;
+        left: 62px;
+        bottom: 320px;
+        width: 430px;
+      }
+
+      .feature-card {
+        padding: 22px;
+        font-size: 31px;
+        font-weight: 850;
+        line-height: 1.08;
+      }
+
+      .feature-card small {
+        display: block;
+        margin-top: 10px;
+        color: #526070;
+        font-family: "IBM Plex Mono", Consolas, monospace;
+        font-size: 18px;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+
+      .pipeline {
+        grid-template-columns: 1fr;
+        position: absolute;
+        left: 74px;
+        top: 595px;
+        width: 900px;
+      }
+
+      .pipe-row {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .pipe-node {
+        flex: 1;
+        min-height: 112px;
+        padding: 22px;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.78);
+        box-shadow: 0 24px 70px rgba(15, 23, 42, 0.12);
+      }
+
+      .pipe-node strong {
+        display: block;
+        color: #24292f;
+        font-family: "Arial Black", Impact, sans-serif;
+        font-size: 30px;
+        text-transform: uppercase;
+      }
+
+      .pipe-node span {
+        display: block;
+        margin-top: 7px;
+        color: #526070;
+        font-size: 22px;
+        font-weight: 700;
+      }
+
+      .pipe-arrow {
+        color: #06b6d4;
+        font-size: 38px;
+        font-weight: 900;
+      }
+
+      .compare {
+        position: absolute;
+        left: 62px;
+        top: 570px;
+        width: 956px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 22px;
+      }
+
+      .compare-card {
+        min-height: 560px;
+        padding: 30px;
+      }
+
+      .compare-card h3 {
+        font-family: "Arial Black", Impact, sans-serif;
+        font-size: 44px;
+        text-transform: uppercase;
+      }
+
+      .compare-card p {
+        margin-top: 18px;
+        color: #526070;
+        font-size: 29px;
+        font-weight: 720;
+        line-height: 1.15;
+      }
+
+      .missed {
+        margin-top: 28px;
+        display: grid;
+        gap: 14px;
+      }
+
+      .missed div {
+        padding: 17px 18px;
+        border-radius: 8px;
+        background: rgba(6, 182, 212, 0.1);
+        color: #0f172a;
+        font-family: "IBM Plex Mono", Consolas, monospace;
+        font-size: 22px;
+        font-weight: 800;
+      }
+
+      .use-grid {
+        position: absolute;
+        left: 62px;
+        top: 610px;
+        width: 608px;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .use-card {
+        min-height: 180px;
+        padding: 22px;
+      }
+
+      .use-card b {
+        display: block;
+        color: #24292f;
+        font-family: "Arial Black", Impact, sans-serif;
+        font-size: 36px;
+        line-height: 0.98;
+        text-transform: uppercase;
+      }
+
+      .use-card span {
+        display: block;
+        margin-top: 12px;
+        color: #526070;
+        font-size: 22px;
+        font-weight: 700;
+        line-height: 1.12;
+      }
+
+      .codex-board {
+        position: absolute;
+        left: 62px;
+        top: 540px;
+        width: 956px;
+        padding: 30px 34px 34px;
+      }
+
+      .agent-columns {
+        margin-top: 28px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 22px;
+      }
+
+      .agent-card {
+        min-height: 270px;
+        padding: 28px;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.72);
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.54);
+      }
+
+      .agent-card h3 {
+        font-family: "Arial Black", Impact, sans-serif;
+        font-size: 56px;
+        text-transform: uppercase;
+      }
+
+      .agent-card p {
+        margin-top: 18px;
+        color: #526070;
+        font-size: 28px;
+        font-weight: 740;
+        line-height: 1.15;
+      }
+
+      .install-line {
+        margin-top: 28px;
+        padding: 22px;
+        border-radius: 8px;
+        background: #24292f;
+        color: #f8fafc;
+        font-family: "IBM Plex Mono", Consolas, monospace;
+        font-size: 24px;
+        font-weight: 800;
+        box-shadow: 0 28px 70px rgba(15, 23, 42, 0.22);
+      }
+
+      .payoff {
+        position: absolute;
+        left: 62px;
+        top: 610px;
+        width: 620px;
+        display: grid;
+        gap: 18px;
+      }
+
+      .payoff-card {
+        padding: 26px 28px;
+        font-family: "Arial Black", Impact, sans-serif;
+        font-size: 44px;
+        line-height: 0.98;
+        text-transform: uppercase;
+      }
+
+      .cta-scene {
+        display: grid;
+        place-items: center;
+        text-align: center;
+      }
+
+      .cta-box {
+        width: 920px;
+        padding: 58px 50px;
+      }
+
+      .cta-title {
+        font-family: "Arial Black", Impact, sans-serif;
+        font-size: 92px;
+        line-height: 0.92;
+        text-transform: uppercase;
+      }
+
+      .cta-actions {
+        margin-top: 44px;
+        display: flex;
+        justify-content: center;
+        gap: 18px;
+      }
+
+      .cta-pill {
+        padding: 19px 24px;
+        border-radius: 8px;
+        background: #24292f;
+        color: #ffffff;
+        font-family: "IBM Plex Mono", Consolas, monospace;
+        font-size: 26px;
+        font-weight: 900;
+        text-transform: uppercase;
+      }
+
+      .avatar-shot,
+      video.avatar-shot {
+        position: absolute;
+        z-index: 36;
+        object-fit: cover;
+        object-position: center;
+        filter: drop-shadow(0 34px 52px rgba(15, 23, 42, 0.38))
+          drop-shadow(0 0 34px rgba(6, 182, 212, 0.24));
+        background: transparent;
+      }
+
+      .avatar-feature {
+        right: 154px;
+        bottom: 182px;
+        width: 558px;
+        height: 558px;
+        border-radius: 24px;
+        transform: scale(1.35);
+        transform-origin: center;
+      }
+
+      .avatar-pip {
+        right: 144px;
+        bottom: 170px;
+        width: 294px;
+        height: 294px;
+        border-radius: 22px;
+        transform: scale(1.44);
+        transform-origin: center;
+      }
+
+      .avatar-codex {
+        right: 162px;
+        bottom: 210px;
+        width: 430px;
+        height: 430px;
+        border-radius: 24px;
+        transform: scale(1.42);
+        transform-origin: center;
+      }
+
+      .caption-stage {
+        left: 62px;
+        right: 62px;
+        bottom: 500px;
+        z-index: 52;
+        min-height: 142px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        pointer-events: none;
+        opacity: 0;
+      }
+
+      .caption-group {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+        color: #ffffff;
+        font-size: 40px;
+        font-weight: 820;
+        line-height: 1.08;
+        text-align: center;
+        text-transform: uppercase;
+        -webkit-text-stroke: 2px rgba(15, 23, 42, 0.9);
+        paint-order: stroke fill;
+        text-shadow:
+          0 4px 2px rgba(15, 23, 42, 0.42),
+          0 10px 26px rgba(15, 23, 42, 0.28);
+        opacity: 0;
+      }
+
+      .caption-word {
+        display: inline-flex;
+        padding: 4px 4px;
+        border-radius: 8px;
+        opacity: 0;
+      }
+
+      .caption-word.active {
+        padding: 4px 8px;
+        border-radius: 8px;
+        background: rgba(6, 182, 212, 0.25);
+        color: #06b6d4;
+        -webkit-text-stroke: 0 transparent;
+        text-shadow: none;
+        box-shadow: 0 5px 16px rgba(6, 182, 212, 0.12);
+      }
+
+      .beam {
+        position: absolute;
+        height: 18px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.78), transparent);
+        filter: blur(1px);
+        opacity: 0.65;
+      }
+
+      .beam-a {
+        left: -220px;
+        top: 290px;
+        width: 760px;
+        transform: rotate(-14deg);
+      }
+
+      .beam-b {
+        right: -230px;
+        top: 1020px;
+        width: 840px;
+        transform: rotate(13deg);
+        background: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.72), transparent);
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="claude-video-watch-agent"
+      data-start="0"
+      data-duration="82.56"
+      data-width="1080"
+      data-height="1920"
+    >
+      <div class="beam beam-a"></div>
+      <div class="beam beam-b"></div>
+
+      <div id="thumb" class="clip thumb" data-start="0" data-duration="0.5" data-track-index="20">
+        <img
+          class="thumb-img"
+          src="assets/thumbnail/claude-video-watch-agent-thumbnail-gpt.png"
+          alt="AI can watch videos thumbnail"
+          draggable="false"
+        />
+      </div>
+
+      <section id="s0" class="scene">
+        <div class="scene-content">
+          <div class="kicker">New agent skill</div>
+          <h1 class="headline big">Your agent can <span class="cyan">watch</span> video</h1>
+          <p class="subline">Not just read captions. It can inspect what happens on screen.</p>
+        </div>
+      </section>
+
+      <section id="s1" class="scene">
+        <div class="scene-content">
+          <div class="source-pill">github repo b-roll</div>
+          <h2 class="headline"><span class="dark">claude-video</span> on GitHub</h2>
+          <p class="subline">Mobile scroll capture from the actual repository page.</p>
+          <div class="feature-list">
+            <div class="feature-card glass">/watch command<small>video input</small></div>
+            <div class="feature-card glass">Open source<small>free GitHub tool</small></div>
+            <div class="feature-card glass">Works with skills<small>Claude and Codex</small></div>
+          </div>
+        </div>
+        <div class="phone github-phone">
+          <div class="phone-screen">
+            <img
+              id="github-scroll-a"
+              src="assets/motion/mobile/claude-video-github-mobile-full.png"
+              alt=""
+            />
+          </div>
+        </div>
+      </section>
+
+      <section id="s2" class="scene">
+        <div class="scene-content">
+          <div class="kicker">How slash watch works</div>
+          <h2 class="headline">Video becomes <span class="cyan">frames + words</span></h2>
+          <div class="pipeline">
+            <div class="pipe-row">
+              <div class="pipe-node"><strong>yt-dlp</strong><span>downloads the video</span></div>
+              <div class="pipe-arrow">-></div>
+              <div class="pipe-node"><strong>ffmpeg</strong><span>extracts key frames</span></div>
+            </div>
+            <div class="pipe-row">
+              <div class="pipe-node">
+                <strong>captions</strong><span>native subtitles when available</span>
+              </div>
+              <div class="pipe-arrow">-></div>
+              <div class="pipe-node"><strong>Whisper</strong><span>fallback transcript</span></div>
+            </div>
+            <div class="pipe-row">
+              <div class="pipe-node">
+                <strong>agent</strong><span>frames and transcript together</span>
+              </div>
+              <div class="pipe-arrow">-></div>
+              <div class="pipe-node">
+                <strong>answer</strong><span>visual analysis, not just text</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="s3" class="scene">
+        <div class="scene-content">
+          <div class="kicker">Transcript-only misses context</div>
+          <h2 class="headline">Video is <span class="amber">visual</span></h2>
+          <div class="compare">
+            <div class="compare-card glass">
+              <h3>Text only</h3>
+              <p>
+                It sees words, but misses the edit, timing, UI state, and what changed on screen.
+              </p>
+              <div class="missed">
+                <div>missing hook frame</div>
+                <div>missing UI bug</div>
+                <div>missing slide change</div>
+              </div>
+            </div>
+            <div class="compare-card glass">
+              <h3>Frames + transcript</h3>
+              <p>The agent can connect what was said with what was visible at that moment.</p>
+              <div class="missed">
+                <div class="green">hook detected</div>
+                <div class="green">screen change found</div>
+                <div class="green">demo failure located</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="s4" class="scene">
+        <div class="scene-content">
+          <div class="kicker">Claude Code examples</div>
+          <h2 class="headline">Ask better questions about video</h2>
+          <div class="use-grid">
+            <div class="use-card glass">
+              <b>viral short</b><span>Break down the first three seconds.</span>
+            </div>
+            <div class="use-card glass">
+              <b>lecture</b><span>Summarize the full recording fast.</span>
+            </div>
+            <div class="use-card glass">
+              <b>bug repro</b><span>Find exactly where the UI failed.</span>
+            </div>
+            <div class="use-card glass"><b>demo</b><span>Spot what changed on screen.</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="s5" class="scene">
+        <div class="scene-content">
+          <div class="kicker">Not only Claude</div>
+          <h2 class="headline big"><span class="green">Codex</span> support too</h2>
+          <div class="codex-board glass">
+            <div class="repo-bar"><span>same video-analysis workflow</span><span>/watch</span></div>
+            <div class="agent-columns">
+              <div class="agent-card">
+                <h3>Claude Code</h3>
+                <p>Use the repo's Claude install path for video-aware coding help.</p>
+              </div>
+              <div class="agent-card">
+                <h3>Codex</h3>
+                <p>Install it as a Codex skill and bring video context into your agent workflow.</p>
+              </div>
+            </div>
+            <div class="install-line">npx skills install github:bradautomates/claude-video</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="s6" class="scene">
+        <div class="scene-content">
+          <div class="kicker">For marketers and builders</div>
+          <h2 class="headline">Ask what the <span class="cyan">video</span> is doing</h2>
+          <div class="payoff">
+            <div class="payoff-card glass">What made this ad work?</div>
+            <div class="payoff-card glass">Where did the demo fail?</div>
+            <div class="payoff-card glass">Which frame changed everything?</div>
+            <div class="payoff-card glass green">Free + open source</div>
+          </div>
+          <div
+            class="phone github-phone"
+            style="top: 470px; right: 58px; transform: rotate(-3deg) scale(0.86)"
+          >
+            <div class="phone-screen">
+              <img
+                id="github-scroll-b"
+                src="assets/motion/mobile/claude-video-github-mobile-full-b.png"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="s7" class="scene cta-scene">
+        <div class="cta-box glass">
+          <div class="kicker" style="margin: 0 auto 26px">More AI explainers</div>
+          <div class="cta-title">Like.<br />Subscribe.<br /><span class="cyan">Follow.</span></div>
+          <div class="cta-actions">
+            <div class="cta-pill">Like</div>
+            <div class="cta-pill">Subscribe</div>
+            <div class="cta-pill">Follow</div>
+          </div>
+        </div>
+      </section>
+
+      <video
+        id="avatar-feature-a"
+        class="clip avatar-shot avatar-feature"
+        data-start="0"
+        data-duration="9.43"
+        data-media-start="0"
+        data-track-index="5"
+        src="assets/avatar/heygen-avatar-16x9-long.mp4"
+        muted
+        playsinline
+      ></video>
+      <video
+        id="avatar-pip-a"
+        class="clip avatar-shot avatar-pip"
+        data-start="9.43"
+        data-duration="38.3"
+        data-media-start="9.43"
+        data-track-index="5"
+        src="assets/avatar/heygen-avatar-16x9-long.mp4"
+        muted
+        playsinline
+      ></video>
+      <video
+        id="avatar-codex"
+        class="clip avatar-shot avatar-codex"
+        data-start="47.74"
+        data-duration="11.16"
+        data-media-start="47.74"
+        data-track-index="5"
+        src="assets/avatar/heygen-avatar-16x9-long.mp4"
+        muted
+        playsinline
+      ></video>
+      <video
+        id="avatar-pip-b"
+        class="clip avatar-shot avatar-pip"
+        data-start="58.91"
+        data-duration="19.27"
+        data-media-start="58.91"
+        data-track-index="5"
+        src="assets/avatar/heygen-avatar-16x9-long.mp4"
+        muted
+        playsinline
+      ></video>
+
+      <div
+        id="caption-stage"
+        class="clip caption-stage"
+        data-start="0"
+        data-duration="82.56"
+        data-track-index="12"
+      ></div>
+
+      <audio
+        id="voice"
+        data-start="0"
+        data-duration="82.56"
+        data-track-index="30"
+        src="assets/avatar/heygen-avatar-16x9-long.mp4"
+        data-volume="1"
+      ></audio>
+      <audio
+        id="sfx-whoosh-a"
+        data-start="9.43"
+        data-duration="0.9"
+        data-track-index="31"
+        src="assets/sfx/whoosh-soft.wav"
+        data-volume="0.18"
+      ></audio>
+      <audio
+        id="sfx-click-a"
+        data-start="26.7"
+        data-duration="0.5"
+        data-track-index="32"
+        src="assets/sfx/click-soft.wav"
+        data-volume="0.14"
+      ></audio>
+      <audio
+        id="sfx-ping-a"
+        data-start="47.74"
+        data-duration="0.7"
+        data-track-index="33"
+        src="assets/sfx/ping-soft.wav"
+        data-volume="0.18"
+      ></audio>
+      <audio
+        id="sfx-chime-a"
+        data-start="78.19"
+        data-duration="1.2"
+        data-track-index="34"
+        src="assets/sfx/chime-soft.wav"
+        data-volume="0.2"
+      ></audio>
+    </div>
+
+    <script src="assets/captions/captions-long.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      var CAPTION_GROUPS = window.CAPTION_GROUPS || [];
+      const tl = gsap.timeline({ paused: true });
+
+      function addCaptionGroups(groups) {
+        var stage = document.getElementById("caption-stage");
+        groups.forEach(function (group, groupIndex) {
+          var groupEl = document.createElement("div");
+          groupEl.id = "caption-group-" + groupIndex;
+          groupEl.className = "caption-group";
+
+          group.words.forEach(function (word, wordIndex) {
+            var wordEl = document.createElement("span");
+            wordEl.id = "caption-word-" + groupIndex + "-" + wordIndex;
+            wordEl.className = "caption-word";
+            wordEl.textContent = word.text;
+            groupEl.appendChild(wordEl);
+          });
+
+          stage.appendChild(groupEl);
+
+          var groupId = "#caption-group-" + groupIndex;
+          var wordSelector = groupId + " .caption-word";
+          tl.set(groupId, { opacity: 1 }, group.start);
+          tl.set(wordSelector, { opacity: 1 }, group.start);
+          tl.set(groupId, { opacity: 0 }, group.end);
+          tl.set(wordSelector, { opacity: 0 }, group.end);
+
+          group.words.forEach(function (word, wordIndex) {
+            var wordId = "#caption-word-" + groupIndex + "-" + wordIndex;
+            tl.set(wordId, { attr: { class: "caption-word active" } }, word.start);
+            tl.set(wordId, { attr: { class: "caption-word" } }, word.end);
+          });
+
+          tl.set(wordSelector, { opacity: 0 }, group.end + 0.001);
+        });
+      }
+
+      addCaptionGroups(CAPTION_GROUPS);
+      tl.set("#caption-stage", { opacity: 1, bottom: 1120, right: 620 }, 0.8);
+      tl.to("#caption-stage", { bottom: 500, right: 62, duration: 0.55, ease: "power2.inOut" }, 20);
+      const scenes = [
+        ["#s0", 0],
+        ["#s1", 9.43],
+        ["#s3", 19.52],
+        ["#s2", 26.63],
+        ["#s4", 38.81],
+        ["#s5", 47.74],
+        ["#s6", 58.91],
+        ["#s7", 78.19],
+      ];
+
+      for (let i = 0; i < scenes.length; i += 1) {
+        const [selector, start] = scenes[i];
+        const sceneElement = document.getElementById(selector.slice(1));
+        tl.set(".scene", { opacity: 0, visibility: "hidden" }, start);
+        tl.set(selector, { opacity: 1, visibility: "visible" }, start);
+        if (sceneElement && sceneElement.querySelector(".kicker, .source-pill")) {
+          tl.from(
+            `${selector} .kicker, ${selector} .source-pill`,
+            {
+              y: 28,
+              opacity: 0,
+              duration: 0.46,
+              ease: "power3.out",
+            },
+            start + 0.16,
+          );
+        }
+        if (sceneElement && sceneElement.querySelector(".headline")) {
+          tl.from(
+            `${selector} .headline`,
+            {
+              y: 56,
+              opacity: 0,
+              scale: 0.98,
+              duration: 0.58,
+              ease: "expo.out",
+            },
+            start + 0.24,
+          );
+        }
+        if (sceneElement && sceneElement.querySelector(".subline")) {
+          tl.from(
+            `${selector} .subline`,
+            {
+              x: -34,
+              opacity: 0,
+              duration: 0.48,
+              ease: "back.out(1.5)",
+            },
+            start + 0.42,
+          );
+        }
+      }
+
+      tl.to("#thumb", { opacity: 0, scale: 0.97, duration: 0.5, ease: "power2.inOut" }, 0);
+
+      tl.from(
+        "#avatar-feature-a",
+        { y: 62, scale: 1.18, opacity: 0, duration: 0.64, ease: "power3.out" },
+        0.28,
+      );
+      tl.from(
+        "#avatar-pip-a",
+        { y: 52, scale: 1.16, opacity: 0, duration: 0.48, ease: "back.out(1.4)" },
+        9.58,
+      );
+      tl.from(
+        "#avatar-codex",
+        { y: 62, scale: 1.18, opacity: 0, duration: 0.52, ease: "expo.out" },
+        47.9,
+      );
+      tl.from(
+        "#avatar-pip-b",
+        { y: 50, scale: 1.15, opacity: 0, duration: 0.46, ease: "back.out(1.4)" },
+        59.05,
+      );
+
+      tl.from(
+        "#s1 .phone",
+        { x: 150, rotate: 10, opacity: 0, duration: 0.72, ease: "expo.out" },
+        9.72,
+      );
+      tl.to("#github-scroll-a", { y: -8520, duration: 9.3, ease: "none" }, 9.96);
+      tl.from(
+        "#s1 .feature-card",
+        { x: -48, opacity: 0, stagger: 0.1, duration: 0.44, ease: "power3.out" },
+        10.1,
+      );
+
+      tl.from(
+        "#s2 .pipe-node",
+        { y: 42, opacity: 0, stagger: 0.08, duration: 0.5, ease: "power2.out" },
+        27.08,
+      );
+      tl.from(
+        "#s2 .pipe-arrow",
+        { scale: 0.4, opacity: 0, stagger: 0.08, duration: 0.34, ease: "back.out(2.2)" },
+        27.25,
+      );
+
+      tl.from(
+        "#s3 .compare-card",
+        { y: 55, rotateY: 8, opacity: 0, stagger: 0.12, duration: 0.58, ease: "expo.out" },
+        19.92,
+      );
+      tl.from(
+        "#s3 .missed div",
+        { x: -28, opacity: 0, stagger: 0.06, duration: 0.32, ease: "power2.out" },
+        20.8,
+      );
+
+      tl.from(
+        "#s4 .use-card",
+        { y: 44, scale: 0.92, opacity: 0, stagger: 0.08, duration: 0.46, ease: "back.out(1.7)" },
+        39.26,
+      );
+
+      tl.from("#s5 .codex-board", { y: 54, opacity: 0, duration: 0.56, ease: "expo.out" }, 48.1);
+      tl.from(
+        "#s5 .agent-card",
+        { y: 40, opacity: 0, stagger: 0.12, duration: 0.48, ease: "power3.out" },
+        48.5,
+      );
+      tl.from("#s5 .install-line", { x: -46, opacity: 0, duration: 0.42, ease: "circ.out" }, 48.98);
+
+      tl.from(
+        "#s6 .payoff-card",
+        { x: -54, opacity: 0, stagger: 0.1, duration: 0.46, ease: "power3.out" },
+        59.35,
+      );
+      tl.from(
+        "#s6 .phone",
+        { x: 120, rotate: 3, opacity: 0, duration: 0.56, ease: "expo.out" },
+        59.85,
+      );
+      tl.to("#github-scroll-b", { y: -8520, duration: 16.2, ease: "none" }, 60.05);
+
+      tl.from(
+        "#s7 .cta-box",
+        { y: 70, scale: 0.94, opacity: 0, duration: 0.58, ease: "expo.out" },
+        78.34,
+      );
+      tl.from(
+        "#s7 .cta-pill",
+        { y: 35, opacity: 0, stagger: 0.08, duration: 0.36, ease: "back.out(1.8)" },
+        78.88,
+      );
+      tl.to("#s7 .cta-box", { opacity: 0, y: -24, duration: 0.38, ease: "power2.in" }, 82.12);
+
+      tl.to(".beam-a", { x: 680, duration: 18, ease: "none" }, 0);
+      tl.to(".beam-b", { x: -720, duration: 22, ease: "none" }, 6);
+
+      window.__timelines["claude-video-watch-agent"] = tl;
+    </script>
+  </body>
+</html>

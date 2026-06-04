@@ -39,18 +39,36 @@ for ($i = 0; $i -lt $inputArgs.Count; $i++) {
 }
 
 if ([string]::IsNullOrWhiteSpace($ProjectPath)) {
-  throw "Usage: corepack pnpm run studio:project -- -ProjectPath C:\path\to\hyperframes-project [-ProjectName name] [-Port 5192] [-Relink]"
+  throw "Usage: bun run studio:project -- -ProjectPath C:\path\to\hyperframes-project [-ProjectName name] [-Port 5192] [-Relink]"
 }
 
 $repoRoot = (Resolve-Path (Join-Path $PSScriptRoot "..")).Path
 $studioDir = Join-Path $repoRoot "packages\studio"
-$vitePath = Join-Path $studioDir "node_modules\.bin\vite.CMD"
+$viteCandidates = @(
+  (Join-Path $studioDir "node_modules\.bin\vite.CMD"),
+  (Join-Path $studioDir "node_modules\.bin\vite.exe"),
+  (Join-Path $studioDir "node_modules\.bin\vite.bunx")
+)
+$vitePath = $viteCandidates | Where-Object { Test-Path -LiteralPath $_ } | Select-Object -First 1
 
-if (-not (Test-Path -LiteralPath $vitePath)) {
-  throw "Light Studio dependencies are missing. Run `corepack pnpm install --ignore-scripts` in $repoRoot first."
+if (-not $vitePath) {
+  throw "Light Studio dependencies are missing. Run `bun install` in $repoRoot first."
 }
 
-$resolvedProjectPath = (Resolve-Path -LiteralPath $ProjectPath).Path
+function Resolve-NormalizedPath {
+  param([Parameter(Mandatory = $true)][string]$Path)
+
+  $resolved = (Resolve-Path -LiteralPath $Path).Path
+  $fullPath = [System.IO.Path]::GetFullPath($resolved)
+  $root = [System.IO.Path]::GetPathRoot($fullPath)
+  if ($fullPath.Length -gt $root.Length) {
+    return $fullPath.TrimEnd([System.IO.Path]::DirectorySeparatorChar, [System.IO.Path]::AltDirectorySeparatorChar)
+  }
+
+  return $fullPath
+}
+
+$resolvedProjectPath = Resolve-NormalizedPath $ProjectPath
 if (-not (Test-Path -LiteralPath (Join-Path $resolvedProjectPath "index.html"))) {
   throw "Project path does not look like a HyperFrames project because index.html was not found: $resolvedProjectPath"
 }
@@ -77,8 +95,8 @@ if (Test-Path -LiteralPath $projectLink) {
   $item = Get-Item -LiteralPath $projectLink
   $target = if ($item.Target) { [string]$item.Target } else { "" }
   if ($target) {
-    $resolvedTarget = (Resolve-Path -LiteralPath $target).Path
-    if ($resolvedTarget -ne $resolvedProjectPath) {
+    $resolvedTarget = Resolve-NormalizedPath $target
+    if (-not [string]::Equals($resolvedTarget, $resolvedProjectPath, [System.StringComparison]::OrdinalIgnoreCase)) {
       if (-not $Relink) {
         throw "Studio project link '$ProjectName' already exists but points to $resolvedTarget. Re-run with -Relink to point it at $resolvedProjectPath, or use a different -ProjectName."
       }
@@ -93,7 +111,7 @@ if (Test-Path -LiteralPath $projectLink) {
       }
       New-Item -ItemType Junction -Path $projectLink -Target $resolvedProjectPath | Out-Null
     }
-  } elseif ($item.FullName -ne $resolvedProjectPath) {
+  } elseif (-not [string]::Equals((Resolve-NormalizedPath $item.FullName), $resolvedProjectPath, [System.StringComparison]::OrdinalIgnoreCase)) {
     throw "Studio project path '$ProjectName' already exists and is not a junction: $projectLink"
   }
 } else {

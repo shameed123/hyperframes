@@ -1,0 +1,11 @@
+{
+  "id": "claude-video-watch-agent",
+  "name": "Claude Video /watch Agent",
+  "createdAt": "2026-06-02T00:00:00.000Z",
+  "format": "vertical-short",
+  "aspectRatio": "9:16",
+  "targetDurationSeconds": 83,
+  "status": "production",
+  "thumbnail": "assets/thumbnail/claude-video-watch-agent-thumbnail-gpt.png",
+  "sources": ["https://github.com/bradautomates/claude-video"]
+}

@@ -1,0 +1,57 @@
+{
+  "source": "https://github.com/bradautomates/claude-video",
+  "finalUrl": "https://github.com/bradautomates/claude-video",
+  "title": "GitHub - bradautomates/claude-video: Give Claude the ability to watch any video. /watch downloads, extracts frames, transcribes, hands it all to Claude. · GitHub",
+  "viewport": {
+    "width": 412,
+    "height": 915
+  },
+  "pageHeight": 10128,
+  "scrollSeconds": 9.5,
+  "keyframes": [
+    {
+      "t": 0,
+      "y": 0
+    },
+    {
+      "t": 0.95,
+      "y": 921
+    },
+    {
+      "t": 1.9,
+      "y": 1843
+    },
+    {
+      "t": 2.85,
+      "y": 2764
+    },
+    {
+      "t": 3.8,
+      "y": 3685
+    },
+    {
+      "t": 4.75,
+      "y": 4607
+    },
+    {
+      "t": 5.7,
+      "y": 5528
+    },
+    {
+      "t": 6.65,
+      "y": 6449
+    },
+    {
+      "t": 7.6,
+      "y": 7370
+    },
+    {
+      "t": 8.55,
+      "y": 8292
+    },
+    {
+      "t": 9.5,
+      "y": 9213
+    }
+  ]
+}
