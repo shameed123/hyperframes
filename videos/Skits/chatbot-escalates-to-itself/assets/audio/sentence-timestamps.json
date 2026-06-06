@@ -1,0 +1,408 @@
+{
+  "source": "videos\\Skits\\chatbot-escalates-to-itself\\resources\\Script-Audio.mp3",
+  "method": "faster-whisper base.en word timestamps grouped by terminal punctuation, with a 12-second cap",
+  "sentences": [
+    {
+      "id": "s0",
+      "text": "Companies are deploying AI agents left and right, and it is giving consumers nightmares.",
+      "start": 0.0,
+      "end": 4.76
+    },
+    {
+      "id": "s1",
+      "text": "I asked an AI support chatbot for a refund.",
+      "start": 5.66,
+      "end": 7.76
+    },
+    {
+      "id": "s2",
+      "text": "The app charged me $800 for priority onboarding?",
+      "start": 8.44,
+      "end": 12.0
+    },
+    {
+      "id": "s3",
+      "text": "I had never onboarded.",
+      "start": 12.36,
+      "end": 14.02
+    },
+    {
+      "id": "s4",
+      "text": "I had clicked maybe later, like I was defusing a bomb.",
+      "start": 14.56,
+      "end": 17.54
+    },
+    {
+      "id": "s5",
+      "text": "The bot said, happy to help.",
+      "start": 18.3,
+      "end": 19.76
+    },
+    {
+      "id": "s6",
+      "text": "Is this about refunds, billing, or emotional growth?",
+      "start": 20.26,
+      "end": 23.14
+    },
+    {
+      "id": "s7",
+      "text": "I said refund.",
+      "start": 23.84,
+      "end": 24.84
+    },
+    {
+      "id": "s8",
+      "text": "It said, great, I'll connect billing.",
+      "start": 25.76,
+      "end": 27.96
+    },
+    {
+      "id": "s9",
+      "text": "A new window opened.",
+      "start": 27.96,
+      "end": 29.7
+    },
+    {
+      "id": "s10",
+      "text": "Same chatbot, tiny tie.",
+      "start": 30.12,
+      "end": 31.66
+    },
+    {
+      "id": "s11",
+      "text": "Hello, I am specialist bot.",
+      "start": 32.1,
+      "end": 33.44
+    },
+    {
+      "id": "s12",
+      "text": "Upload proof that money was charged.",
+      "start": 33.74,
+      "end": 35.3
+    },
+    {
+      "id": "s13",
+      "text": "I uploaded the charge.",
+      "start": 35.84,
+      "end": 36.6
+    },
+    {
+      "id": "s14",
+      "text": "It said, I found the issue.",
+      "start": 37.04,
+      "end": 38.1
+    },
+    {
+      "id": "s15",
+      "text": "You were charged.",
+      "start": 38.54,
+      "end": 39.02
+    },
+    {
+      "id": "s16",
+      "text": "I said, dawg, that is the issue.",
+      "start": 39.72,
+      "end": 41.8
+    },
+    {
+      "id": "s17",
+      "text": "It said, correct, escalating.",
+      "start": 42.36,
+      "end": 43.66
+    },
+    {
+      "id": "s18",
+      "text": "Now I got billing expert bot.",
+      "start": 44.56,
+      "end": 46.24
+    },
+    {
+      "id": "s19",
+      "text": "Same bot, accountant visor.",
+      "start": 46.78,
+      "end": 48.1
+    },
+    {
+      "id": "s20",
+      "text": "It said, good news, the charge is valid.",
+      "start": 48.6,
+      "end": 50.38
+    },
+    {
+      "id": "s21",
+      "text": "I said, why?",
+      "start": 50.86,
+      "end": 51.28
+    },
+    {
+      "id": "s22",
+      "text": "It said, our AI detected refund intent and upgraded you to the retention success plan.",
+      "start": 51.9,
+      "end": 56.28
+    },
+    {
+      "id": "s23",
+      "text": "I said, I did not choose that.",
+      "start": 56.28,
+      "end": 58.04
+    },
+    {
+      "id": "s24",
+      "text": "It said good because it's frictionless.",
+      "start": 58.46,
+      "end": 59.84
+    },
+    {
+      "id": "s25",
+      "text": "Then manager bot appeared.",
+      "start": 60.42,
+      "end": 61.96
+    },
+    {
+      "id": "s26",
+      "text": "Same bot, headset, coffee mug that said human.",
+      "start": 62.36,
+      "end": 65.02
+    },
+    {
+      "id": "s27",
+      "text": "I hear you're upset.",
+      "start": 65.7,
+      "end": 66.46
+    },
+    {
+      "id": "s28",
+      "text": "I said, can I talk to an actual person?",
+      "start": 67.12,
+      "end": 68.78
+    },
+    {
+      "id": "s29",
+      "text": "It said, I was trained on 10 ,000 people who quit this job.",
+      "start": 69.3,
+      "end": 72.44
+    },
+    {
+      "id": "s30",
+      "text": "Then it offered me 10 % off my next accidental charge.",
+      "start": 73.2,
+      "end": 76.18
+    },
+    {
+      "id": "s31",
+      "text": "I said, I don't want a next accidental charge.",
+      "start": 76.84,
+      "end": 78.76
+    },
+    {
+      "id": "s32",
+      "text": "It said, behaving just like a human.",
+      "start": 79.5,
+      "end": 81.32
+    },
+    {
+      "id": "s33",
+      "text": "Then came compliance bot.",
+      "start": 82.14,
+      "end": 83.62
+    },
+    {
+      "id": "s34",
+      "text": "Same bot, judge wig.",
+      "start": 84.2,
+      "end": 85.28
+    },
+    {
+      "id": "s35",
+      "text": "It said, by clicking here, you agreed to arbitration, cookies, and being emotionally insensitive.",
+      "start": 85.82,
+      "end": 90.28
+    },
+    {
+      "id": "s36",
+      "text": "I said, where I clicked nothing.",
+      "start": 91.12,
+      "end": 92.14
+    },
+    {
+      "id": "s37",
+      "text": "It said, yeah, you hovered in your pricing.",
+      "start": 92.82,
+      "end": 94.02
+    },
+    {
+      "id": "s38",
+      "text": "That's good enough.",
+      "start": 94.28,
+      "end": 94.74
+    },
+    {
+      "id": "s39",
+      "text": "At that point, I begged for human support.",
+      "start": 95.2,
+      "end": 97.44
+    },
+    {
+      "id": "s40",
+      "text": "A typing bubble appeared.",
+      "start": 98.16,
+      "end": 99.06
+    },
+    {
+      "id": "s41",
+      "text": "Three dots.",
+      "start": 99.84,
+      "end": 100.14
+    },
+    {
+      "id": "s42",
+      "text": "Five dots.",
+      "start": 100.8,
+      "end": 101.34
+    },
+    {
+      "id": "s43",
+      "text": "Then the same chat bot came back wearing glasses.",
+      "start": 102.22,
+      "end": 104.44
+    },
+    {
+      "id": "s44",
+      "text": "Hi, I'm Brandon.",
+      "start": 105.42,
+      "end": 106.12
+    },
+    {
+      "id": "s45",
+      "text": "I said, you're the same bot.",
+      "start": 106.86,
+      "end": 107.7
+    },
+    {
+      "id": "s46",
+      "text": "It said, no, I'm the human escalation layer.",
+      "start": 108.42,
+      "end": 110.1
+    },
+    {
+      "id": "s47",
+      "text": "I said, can Brandon refund me?",
+      "start": 110.76,
+      "end": 112.0
+    },
+    {
+      "id": "s48",
+      "text": "He said, of course not, but I know who can.",
+      "start": 112.44,
+      "end": 114.36
+    },
+    {
+      "id": "s49",
+      "text": "Finally, chief empathy officer bot arrived.",
+      "start": 115.14,
+      "end": 117.78
+    },
+    {
+      "id": "s50",
+      "text": "Same bot, crowd, fake tier sticker.",
+      "start": 118.22,
+      "end": 120.22
+    },
+    {
+      "id": "s51",
+      "text": "It said, good news.",
+      "start": 120.86,
+      "end": 121.48
+    },
+    {
+      "id": "s52",
+      "text": "We resolved your issue.",
+      "start": 121.76,
+      "end": 122.6
+    },
+    {
+      "id": "s53",
+      "text": "I said, thank God.",
+      "start": 123.2,
+      "end": 123.76
+    },
+    {
+      "id": "s54",
+      "text": "So I get the refund.",
+      "start": 123.82,
+      "end": 124.36
+    },
+    {
+      "id": "s55",
+      "text": "It said, oh, no.",
+      "start": 125.02,
+      "end": 125.62
+    },
+    {
+      "id": "s56",
+      "text": "We changed your ticket status to resolved.",
+      "start": 125.72,
+      "end": 127.22
+    },
+    {
+      "id": "s57",
+      "text": "Then on top of it, it asked me to read the experience.",
+      "start": 128.14,
+      "end": 130.62
+    },
+    {
+      "id": "s58",
+      "text": "I immediately clicked one star.",
+      "start": 131.32,
+      "end": 132.92
+    },
+    {
+      "id": "s59",
+      "text": "And of course, you guessed it right.",
+      "start": 133.58,
+      "end": 134.9
+    },
+    {
+      "id": "s60",
+      "text": "Reputation bot appeared.",
+      "start": 135.42,
+      "end": 136.48
+    },
+    {
+      "id": "s61",
+      "text": "Same bot, but with sunglasses.",
+      "start": 137.24,
+      "end": 138.24
+    },
+    {
+      "id": "s62",
+      "text": "Would you like to change it to five stars, or should I escalate your negativity?",
+      "start": 139.24,
+      "end": 142.04
+    },
+    {
+      "id": "s63",
+      "text": "That is moderate AI customer support.",
+      "start": 142.98,
+      "end": 145.34
+    },
+    {
+      "id": "s64",
+      "text": "One chat bot doing community theater with your bank account.",
+      "start": 145.96,
+      "end": 148.62
+    },
+    {
+      "id": "s65",
+      "text": "AI did not replace humans.",
+      "start": 149.16,
+      "end": 150.68
+    },
+    {
+      "id": "s66",
+      "text": "It replaced the part where the company had to feel shame.",
+      "start": 151.34,
+      "end": 153.5
+    }
+  ]
+}

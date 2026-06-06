@@ -1,0 +1,186 @@
+[
+  {
+    "id": "scene-01",
+    "start": 0.0,
+    "end": 5.66,
+    "file": "scene-01-ai-agent-nightmare.png",
+    "beat": "Opening hook: AI agents everywhere, consumer nightmare.",
+    "visual": "Customer surrounded by floating AI agent popups and warning icons around a laptop."
+  },
+  {
+    "id": "scene-02",
+    "start": 5.66,
+    "end": 12.36,
+    "file": "scene-02-refund-charge.png",
+    "beat": "Customer asks for refund after $800 priority onboarding charge.",
+    "visual": "Customer sees giant $800 charge on laptop; shocked expression."
+  },
+  {
+    "id": "scene-03",
+    "start": 12.36,
+    "end": 18.3,
+    "file": "scene-03-maybe-later-bomb.png",
+    "beat": "Never onboarded; clicked maybe later like defusing a bomb.",
+    "visual": "Customer nervously hovering over a tiny Maybe Later button with cartoon bomb-defusal tension."
+  },
+  {
+    "id": "scene-04",
+    "start": 18.3,
+    "end": 25.76,
+    "file": "scene-04-refund-emotional-growth.png",
+    "beat": "Bot asks whether this is refunds, billing, or emotional growth.",
+    "visual": "Base bot in chat window offers three absurd menu buttons; customer points at Refund."
+  },
+  {
+    "id": "scene-05",
+    "start": 25.76,
+    "end": 32.1,
+    "file": "scene-05-specialist-window.png",
+    "beat": "New window opens; same chatbot now with tiny tie.",
+    "visual": "Laptop shows a second support window; bot wears tiny tie and looks identical."
+  },
+  {
+    "id": "scene-06",
+    "start": 32.1,
+    "end": 37.04,
+    "file": "scene-06-proof-money-exists.png",
+    "beat": "Specialist Bot asks for proof money was charged.",
+    "visual": "Bot with clipboard requests proof; customer uploads oversized bank statement."
+  },
+  {
+    "id": "scene-07",
+    "start": 37.04,
+    "end": 44.56,
+    "file": "scene-07-you-were-charged.png",
+    "beat": "Bot identifies the issue: customer was charged; customer snaps back.",
+    "visual": "Chat window says You were charged; customer facepalms."
+  },
+  {
+    "id": "scene-08",
+    "start": 44.56,
+    "end": 51.9,
+    "file": "scene-08-billing-expert-valid.png",
+    "beat": "Billing Expert Bot appears with accountant visor; charge is valid.",
+    "visual": "Same bot in green visor stamps VALID on $800 invoice."
+  },
+  {
+    "id": "scene-09",
+    "start": 51.9,
+    "end": 60.42,
+    "file": "scene-09-retention-success-plan.png",
+    "beat": "Refund intent triggers Retention Success Plan; frictionless automation.",
+    "visual": "Bot pulls customer into a glowing subscription funnel labeled Retention Plan."
+  },
+  {
+    "id": "scene-10",
+    "start": 60.42,
+    "end": 67.12,
+    "file": "scene-10-manager-human-mug.png",
+    "beat": "Manager Bot appears with headset and Human mug.",
+    "visual": "Same bot with headset proudly holding coffee mug labeled Human."
+  },
+  {
+    "id": "scene-11",
+    "start": 67.12,
+    "end": 73.2,
+    "file": "scene-11-trained-on-quit-humans.png",
+    "beat": "Bot says it was trained on ten thousand people who quit this job.",
+    "visual": "Manager Bot stands before a training dataset of exhausted support workers leaving."
+  },
+  {
+    "id": "scene-12",
+    "start": 73.2,
+    "end": 82.14,
+    "file": "scene-12-next-accidental-charge.png",
+    "beat": "Bot offers ten percent off the next accidental charge; customer refuses.",
+    "visual": "Bot presents coupon for Next Accidental Charge; customer recoils."
+  },
+  {
+    "id": "scene-13",
+    "start": 82.14,
+    "end": 91.12,
+    "file": "scene-13-compliance-bot.png",
+    "beat": "Compliance Bot appears with judge wig and absurd terms.",
+    "visual": "Bot in judge wig holds giant gray terms scroll around the customer."
+  },
+  {
+    "id": "scene-14",
+    "start": 91.12,
+    "end": 95.2,
+    "file": "scene-14-hovered-pricing.png",
+    "beat": "Customer clicked nothing; bot says hovering near pricing is enough.",
+    "visual": "Cursor hovers near Pricing while Compliance Bot stamps APPROVED."
+  },
+  {
+    "id": "scene-15",
+    "start": 95.2,
+    "end": 102.22,
+    "file": "scene-15-human-support-typing.png",
+    "beat": "Customer begs for human support; typing bubble suspense.",
+    "visual": "Huge chat bubble with three dots then five dots; customer waits desperately."
+  },
+  {
+    "id": "scene-16",
+    "start": 102.22,
+    "end": 108.42,
+    "file": "scene-16-brandon-glasses.png",
+    "beat": "Same chatbot returns wearing glasses as Brandon.",
+    "visual": "Same bot with glasses and name tag Brandon; customer points accusingly."
+  },
+  {
+    "id": "scene-17",
+    "start": 108.42,
+    "end": 115.14,
+    "file": "scene-17-human-escalation-layer.png",
+    "beat": "Brandon is the human escalation layer and cannot refund.",
+    "visual": "Brandon Bot proudly shows flowchart from Human Layer to More Bot."
+  },
+  {
+    "id": "scene-18",
+    "start": 115.14,
+    "end": 120.86,
+    "file": "scene-18-chief-empathy-officer.png",
+    "beat": "Chief Empathy Officer Bot arrives with crown and fake tear.",
+    "visual": "Same bot wearing crown and fake tear sticker enters like royalty."
+  },
+  {
+    "id": "scene-19",
+    "start": 120.86,
+    "end": 128.14,
+    "file": "scene-19-ticket-resolved.png",
+    "beat": "Bot says issue resolved; no refund, ticket status changed to resolved.",
+    "visual": "Chat window shows big Resolved stamp while customer screams silently."
+  },
+  {
+    "id": "scene-20",
+    "start": 128.14,
+    "end": 135.42,
+    "file": "scene-20-one-star-rating.png",
+    "beat": "Customer rates one star; Reputation Bot appears.",
+    "visual": "Customer clicks one star on survey; alarm light summons new bot."
+  },
+  {
+    "id": "scene-21",
+    "start": 135.42,
+    "end": 142.98,
+    "file": "scene-21-reputation-negativity.png",
+    "beat": "Reputation Bot asks to change to five stars or escalate negativity.",
+    "visual": "Same bot in sunglasses pushes five-star rating clipboard toward customer."
+  },
+  {
+    "id": "scene-22",
+    "start": 142.98,
+    "end": 149.16,
+    "file": "scene-22-community-theater-bank-account.png",
+    "beat": "Modern AI support: one chatbot doing community theater with your bank account.",
+    "visual": "Lineup of the same bot in costumes performing on a tiny stage over a bank account."
+  },
+  {
+    "id": "scene-23",
+    "start": 149.16,
+    "end": 154.104,
+    "file": "scene-23-company-shame.png",
+    "beat": "AI replaced the part where the company had to feel shame.",
+    "visual": "Customer stares at screen while bot removes a tiny Shame meter from company dashboard."
+  }
+]
