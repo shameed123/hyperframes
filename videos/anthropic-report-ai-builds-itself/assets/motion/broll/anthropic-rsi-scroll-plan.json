@@ -1,0 +1,57 @@
+{
+  "source": "https://www.anthropic.com/institute/recursive-self-improvement",
+  "finalUrl": "https://www.anthropic.com/institute/recursive-self-improvement",
+  "title": "When AI builds itself \\ Anthropic",
+  "viewport": {
+    "width": 412,
+    "height": 915
+  },
+  "pageHeight": 30864,
+  "scrollSeconds": 9.5,
+  "keyframes": [
+    {
+      "t": 0,
+      "y": 0
+    },
+    {
+      "t": 0.95,
+      "y": 2995
+    },
+    {
+      "t": 1.9,
+      "y": 5990
+    },
+    {
+      "t": 2.85,
+      "y": 8985
+    },
+    {
+      "t": 3.8,
+      "y": 11980
+    },
+    {
+      "t": 4.75,
+      "y": 14975
+    },
+    {
+      "t": 5.7,
+      "y": 17969
+    },
+    {
+      "t": 6.65,
+      "y": 20964
+    },
+    {
+      "t": 7.6,
+      "y": 23959
+    },
+    {
+      "t": 8.55,
+      "y": 26954
+    },
+    {
+      "t": 9.5,
+      "y": 29949
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+[
+  {
+    "id": "anthropic-rsi",
+    "url": "https://www.anthropic.com/institute/recursive-self-improvement",
+    "expectedTitleIncludes": "When AI builds itself"
+  }
+]

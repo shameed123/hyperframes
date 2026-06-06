@@ -1,0 +1,2832 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #f7fbff;
+        color: #101827;
+        font-family: "Aptos", "Segoe UI", Arial, sans-serif;
+      }
+
+      #root {
+        position: relative;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background:
+          radial-gradient(ellipse at 18% 8%, rgba(30, 139, 255, 0.22), transparent 34%),
+          radial-gradient(ellipse at 86% 16%, rgba(255, 79, 163, 0.18), transparent 32%),
+          radial-gradient(ellipse at 50% 95%, rgba(255, 157, 46, 0.14), transparent 36%),
+          linear-gradient(145deg, #f8fcff 0%, #eaf5ff 44%, #fff7ef 100%);
+        perspective: 1800px;
+      }
+
+      #root::before {
+        content: "";
+        position: absolute;
+        inset: -220px;
+        background:
+          linear-gradient(90deg, rgba(30, 139, 255, 0.12) 1px, transparent 1px),
+          linear-gradient(0deg, rgba(16, 24, 39, 0.07) 1px, transparent 1px),
+          linear-gradient(
+            60deg,
+            transparent 0 48%,
+            rgba(30, 139, 255, 0.12) 48% 49%,
+            transparent 49% 100%
+          ),
+          linear-gradient(
+            120deg,
+            transparent 0 58%,
+            rgba(255, 79, 163, 0.1) 58% 59%,
+            transparent 59% 100%
+          );
+        background-size:
+          74px 74px,
+          74px 74px,
+          460px 460px,
+          540px 540px;
+        transform: rotate(-9deg);
+        opacity: 0.78;
+      }
+
+      #root::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(
+            120deg,
+            transparent 0 22%,
+            rgba(255, 255, 255, 0.42) 22% 24%,
+            transparent 24% 100%
+          ),
+          linear-gradient(
+            300deg,
+            transparent 0 68%,
+            rgba(36, 104, 255, 0.08) 68% 70%,
+            transparent 70% 100%
+          );
+        pointer-events: none;
+      }
+
+      .tech-layer {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        overflow: hidden;
+        pointer-events: none;
+      }
+
+      .tech-pane {
+        position: absolute;
+        border-radius: 8px;
+        border: 1px solid rgba(30, 139, 255, 0.18);
+        background:
+          linear-gradient(90deg, rgba(30, 139, 255, 0.08) 1px, transparent 1px),
+          linear-gradient(0deg, rgba(255, 79, 163, 0.06) 1px, transparent 1px),
+          rgba(255, 255, 255, 0.12);
+        background-size: 28px 28px;
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.5),
+          0 0 54px rgba(30, 139, 255, 0.12);
+        opacity: 0.58;
+      }
+
+      .tech-pane.p1 {
+        left: -84px;
+        top: 150px;
+        width: 460px;
+        height: 360px;
+        transform: rotate(-8deg);
+      }
+
+      .tech-pane.p2 {
+        right: -110px;
+        top: 548px;
+        width: 500px;
+        height: 420px;
+        transform: rotate(9deg);
+      }
+
+      .tech-pane.p3 {
+        left: 128px;
+        bottom: 190px;
+        width: 620px;
+        height: 240px;
+        transform: rotate(4deg);
+      }
+
+      .circuit-line {
+        position: absolute;
+        height: 5px;
+        border-radius: 999px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(30, 139, 255, 0.72),
+          rgba(255, 79, 163, 0.5),
+          transparent
+        );
+        box-shadow: 0 0 28px rgba(30, 139, 255, 0.22);
+        opacity: 0.66;
+      }
+
+      .circuit-line.lg1 {
+        left: -120px;
+        top: 310px;
+        width: 840px;
+        transform: rotate(-17deg);
+      }
+
+      .circuit-line.lg2 {
+        right: -180px;
+        top: 840px;
+        width: 860px;
+        transform: rotate(14deg);
+      }
+
+      .circuit-line.lg3 {
+        left: -130px;
+        bottom: 310px;
+        width: 900px;
+        transform: rotate(10deg);
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 157, 46, 0.56),
+          rgba(255, 79, 163, 0.48),
+          transparent
+        );
+      }
+
+      .data-chip {
+        position: absolute;
+        min-width: 106px;
+        padding: 10px 13px;
+        border-radius: 999px;
+        color: rgba(16, 24, 39, 0.72);
+        border: 1px solid rgba(30, 139, 255, 0.18);
+        background: rgba(255, 255, 255, 0.42);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.74),
+          0 12px 34px rgba(30, 139, 255, 0.12);
+        font-family: "IBM Plex Mono", Consolas, monospace;
+        font-size: 17px;
+        font-weight: 800;
+        text-align: center;
+        text-transform: uppercase;
+        opacity: 0.62;
+      }
+
+      .data-chip.d1 {
+        left: 92px;
+        top: 548px;
+      }
+
+      .data-chip.d2 {
+        right: 74px;
+        top: 1130px;
+      }
+
+      .data-chip.d3 {
+        left: 470px;
+        bottom: 370px;
+      }
+
+      .clip {
+        position: absolute;
+      }
+
+      .scene {
+        position: absolute;
+        inset: 0;
+        z-index: 6;
+        overflow: hidden;
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      .scene-content {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+        padding: 86px 66px 150px;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .scene-center {
+        justify-content: center;
+      }
+
+      .kicker,
+      .source-pill,
+      .metric-label,
+      .badge {
+        display: inline-flex;
+        width: max-content;
+        align-items: center;
+        gap: 10px;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.42);
+        background: rgba(224, 245, 255, 0.54);
+        box-shadow:
+          0 20px 64px rgba(30, 139, 255, 0.16),
+          inset 0 1px 0 rgba(255, 255, 255, 0.78);
+        backdrop-filter: blur(24px) saturate(1.35);
+        color: #0b66c3;
+        font-family: "IBM Plex Mono", Consolas, monospace;
+        font-size: 22px;
+        font-weight: 800;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+
+      .kicker {
+        padding: 13px 16px;
+      }
+
+      .kicker::before,
+      .source-pill::before {
+        content: "";
+        width: 12px;
+        height: 12px;
+        border-radius: 999px;
+        background: #ed3aa8;
+        box-shadow: 0 0 22px rgba(237, 58, 168, 0.52);
+      }
+
+      .headline {
+        max-width: 940px;
+        color: #101827;
+        font-family: "Archivo Black", "Arial Black", Arial, sans-serif;
+        font-size: 84px;
+        line-height: 1.12;
+        font-weight: 900;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+
+      .headline.big {
+        font-size: 94px;
+        line-height: 1.08;
+      }
+
+      .headline.compact {
+        font-size: 64px;
+        line-height: 1.16;
+      }
+
+      .subline {
+        max-width: 830px;
+        color: #566174;
+        font-size: 34px;
+        font-weight: 760;
+        line-height: 1.28;
+      }
+
+      .blue {
+        color: #2468ff;
+      }
+
+      .pink {
+        color: #c91582;
+      }
+
+      .orange {
+        color: #bd4d00;
+      }
+
+      .glass {
+        position: relative;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.92);
+        background:
+          radial-gradient(circle at 14% 18%, rgba(30, 139, 255, 0.25), transparent 34%),
+          radial-gradient(circle at 88% 8%, rgba(255, 79, 163, 0.2), transparent 28%),
+          radial-gradient(circle at 50% 110%, rgba(255, 157, 46, 0.16), transparent 34%),
+          linear-gradient(145deg, rgba(255, 255, 255, 0.58), rgba(255, 255, 255, 0.24)),
+          rgba(177, 220, 255, 0.34);
+        box-shadow:
+          0 42px 112px rgba(18, 92, 170, 0.2),
+          0 0 74px rgba(30, 139, 255, 0.16),
+          inset 0 1px 0 rgba(255, 255, 255, 0.74),
+          inset 0 -24px 52px rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(34px) saturate(1.48);
+        -webkit-backdrop-filter: blur(34px) saturate(1.48);
+        overflow: hidden;
+        isolation: isolate;
+        transform-style: preserve-3d;
+      }
+
+      .glass-strong {
+        background:
+          radial-gradient(circle at 14% 18%, rgba(30, 139, 255, 0.28), transparent 34%),
+          radial-gradient(circle at 88% 8%, rgba(255, 79, 163, 0.22), transparent 28%),
+          linear-gradient(145deg, rgba(255, 255, 255, 0.72), rgba(226, 246, 255, 0.34)),
+          rgba(147, 205, 255, 0.4);
+        box-shadow:
+          0 48px 132px rgba(18, 92, 170, 0.24),
+          0 0 86px rgba(255, 79, 163, 0.11),
+          inset 0 1px 0 rgba(255, 255, 255, 0.86),
+          inset 0 -26px 48px rgba(255, 255, 255, 0.3);
+      }
+
+      .glass::before,
+      .glass::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .glass::before {
+        background:
+          linear-gradient(130deg, rgba(255, 255, 255, 0.52), transparent 28%),
+          linear-gradient(300deg, rgba(255, 255, 255, 0.18), transparent 42%);
+        mix-blend-mode: screen;
+      }
+
+      .glass::after {
+        inset: 9px;
+        border: 1px solid rgba(255, 255, 255, 0.48);
+        opacity: 0.64;
+      }
+
+      .ghost-word {
+        position: absolute;
+        right: 18px;
+        bottom: -10px;
+        z-index: 0;
+        color: rgba(30, 139, 255, 0.08);
+        font-family: "Archivo Black", "Arial Black", Arial, sans-serif;
+        font-size: 116px;
+        line-height: 0.8;
+        font-weight: 900;
+        text-transform: uppercase;
+        pointer-events: none;
+      }
+
+      .spark {
+        position: absolute;
+        width: 18px;
+        height: 112px;
+        border-radius: 999px;
+        opacity: 0.72;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.04));
+        box-shadow: 0 0 44px currentColor;
+        pointer-events: none;
+      }
+
+      .spark.blue {
+        color: #1e8bff;
+        right: 36px;
+        top: 28px;
+        transform: rotate(-30deg);
+        background-color: rgba(30, 139, 255, 0.42);
+      }
+
+      .spark.pink {
+        color: #ff4fa3;
+        left: 36px;
+        bottom: 28px;
+        transform: rotate(42deg);
+        background-color: rgba(255, 79, 163, 0.36);
+      }
+
+      .panel-content {
+        position: relative;
+        z-index: 2;
+      }
+
+      .glass > * {
+        position: relative;
+        z-index: 2;
+      }
+
+      .glass > .ghost-word,
+      .glass > .spark {
+        z-index: 1;
+      }
+
+      .tech-node {
+        position: absolute;
+        width: 18px;
+        height: 18px;
+        border-radius: 999px;
+        background: #ffffff;
+        box-shadow:
+          0 0 0 5px rgba(30, 139, 255, 0.16),
+          0 0 34px rgba(30, 139, 255, 0.42);
+        opacity: 0.74;
+      }
+
+      .tech-node.t1 {
+        left: 152px;
+        top: 326px;
+      }
+
+      .tech-node.t2 {
+        right: 142px;
+        top: 778px;
+      }
+
+      .tech-node.t3 {
+        left: 414px;
+        bottom: 312px;
+      }
+
+      .scan-ribbon {
+        position: absolute;
+        left: -180px;
+        top: 960px;
+        width: 1440px;
+        height: 132px;
+        transform: rotate(-12deg);
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.44),
+          rgba(30, 139, 255, 0.16),
+          transparent
+        );
+        filter: blur(8px);
+        opacity: 0.48;
+      }
+
+      .beam {
+        position: absolute;
+        height: 16px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, transparent, rgba(36, 104, 255, 0.66), transparent);
+        filter: blur(0.5px);
+        opacity: 0.54;
+        z-index: 1;
+      }
+
+      .beam-a {
+        left: -240px;
+        top: 280px;
+        width: 840px;
+        transform: rotate(-14deg);
+      }
+
+      .beam-b {
+        right: -260px;
+        top: 1220px;
+        width: 920px;
+        transform: rotate(12deg);
+        background: linear-gradient(90deg, transparent, rgba(255, 138, 36, 0.58), transparent);
+      }
+
+      .beam-c {
+        left: -190px;
+        bottom: 220px;
+        width: 740px;
+        transform: rotate(8deg);
+        background: linear-gradient(90deg, transparent, rgba(237, 58, 168, 0.54), transparent);
+      }
+
+      .avatar-shot,
+      video.avatar-shot {
+        position: absolute;
+        z-index: 34;
+        object-fit: cover;
+        object-position: center center;
+        background: #ffffff;
+        overflow: hidden;
+        filter: drop-shadow(0 34px 54px rgba(16, 24, 39, 0.34))
+          drop-shadow(0 0 34px rgba(36, 104, 255, 0.18));
+        will-change: transform, opacity;
+      }
+
+      .avatar-full {
+        left: 54px;
+        top: 118px;
+        width: 972px;
+        height: 1420px;
+        border-radius: 42px;
+        border: 2px solid rgba(255, 255, 255, 0.7);
+        box-shadow:
+          0 48px 140px rgba(18, 92, 170, 0.22),
+          0 0 70px rgba(30, 139, 255, 0.16),
+          inset 0 1px 0 rgba(255, 255, 255, 0.5);
+      }
+
+      .avatar-pip {
+        right: 42px;
+        bottom: 70px;
+        width: 250px;
+        height: 444px;
+        border-radius: 24px;
+        border: 2px solid rgba(255, 255, 255, 0.85);
+        box-shadow:
+          0 36px 90px rgba(16, 24, 39, 0.28),
+          0 0 56px rgba(237, 58, 168, 0.16);
+        filter: drop-shadow(0 30px 42px rgba(16, 24, 39, 0.32))
+          drop-shadow(0 0 32px rgba(237, 58, 168, 0.16));
+      }
+
+      .caption-stage {
+        left: 58px;
+        right: 58px;
+        bottom: 340px;
+        z-index: 58;
+        min-height: 210px;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 0;
+        background: transparent;
+        box-shadow: none;
+        backdrop-filter: none;
+        pointer-events: none;
+      }
+
+      .caption-group {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 10px 12px;
+        color: #ffffff;
+        font-family: "Archivo Black", "Arial Black", Arial, sans-serif;
+        font-size: 36px;
+        font-weight: 900;
+        line-height: 1.38;
+        text-align: center;
+        text-transform: uppercase;
+        -webkit-text-stroke: 5px rgba(16, 24, 39, 0.72);
+        paint-order: stroke fill;
+        text-shadow:
+          0 5px 2px rgba(16, 24, 39, 0.34),
+          0 14px 32px rgba(16, 24, 39, 0.34);
+        opacity: 0;
+      }
+
+      .caption-word {
+        display: inline-flex;
+        padding: 0 3px;
+        line-height: 1.38;
+        opacity: 0;
+      }
+
+      .caption-word.active {
+        padding: 0 3px;
+        background: transparent;
+        color: #2468ff;
+        box-shadow: none;
+        text-shadow:
+          0 5px 2px rgba(16, 24, 39, 0.32),
+          0 0 28px rgba(36, 104, 255, 0.52);
+      }
+
+      .pip-caption {
+        right: 330px;
+        justify-content: flex-start;
+      }
+
+      .pip-caption .caption-group {
+        right: 18px;
+        justify-content: flex-start;
+        text-align: left;
+      }
+
+      .hook-panel {
+        width: 900px;
+        margin-top: 104px;
+        padding: 34px 38px;
+      }
+
+      .hook-stack {
+        position: absolute;
+        left: 64px;
+        right: 64px;
+        bottom: 392px;
+        z-index: 38;
+        display: grid;
+        gap: 16px;
+      }
+
+      .hook-card {
+        min-height: 108px;
+        display: flex;
+        align-items: center;
+        padding: 28px 32px;
+        font-family: "Archivo Black", "Arial Black", Arial, sans-serif;
+        font-size: 50px;
+        line-height: 1.18;
+        text-transform: uppercase;
+      }
+
+      .source-layout {
+        padding: 62px 66px 0;
+        gap: 14px;
+      }
+
+      .source-layout .headline {
+        max-width: 760px;
+        font-size: 48px;
+        line-height: 1.08;
+      }
+
+      .source-layout .subline {
+        max-width: 620px;
+        font-size: 26px;
+        line-height: 1.34;
+      }
+
+      .source-pill {
+        padding: 12px 16px;
+      }
+
+      .phone {
+        position: absolute;
+        width: 940px;
+        height: 1640px;
+        border-radius: 86px;
+        padding: 18px;
+        background: #101827;
+        box-shadow:
+          0 54px 150px rgba(16, 24, 39, 0.22),
+          0 0 0 8px rgba(255, 255, 255, 0.56);
+        overflow: hidden;
+        z-index: 9;
+      }
+
+      .phone-screen {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        border-radius: 66px;
+        background: #ffffff;
+      }
+
+      .phone-page {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: auto;
+        display: block;
+        will-change: transform;
+      }
+
+      .phone-a {
+        left: 58px;
+        top: 300px;
+        transform: rotate(-2.5deg);
+      }
+
+      .phone-b {
+        left: 58px;
+        top: 300px;
+        transform: rotate(2.2deg);
+      }
+
+      .source-callout {
+        position: absolute;
+        left: 86px;
+        right: 342px;
+        top: 340px;
+        z-index: 16;
+        padding: 20px 24px;
+      }
+
+      .callout-title {
+        font-family: "Archivo Black", "Arial Black", Arial, sans-serif;
+        font-size: 38px;
+        line-height: 1.08;
+        text-transform: uppercase;
+      }
+
+      .callout-copy {
+        margin-top: 10px;
+        color: #566174;
+        font-size: 24px;
+        font-weight: 780;
+        line-height: 1.34;
+      }
+
+      .metric-board {
+        position: absolute;
+        left: 66px;
+        right: 330px;
+        top: 650px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+      }
+
+      .metric-card {
+        min-height: 238px;
+        padding: 26px;
+      }
+
+      .metric-value {
+        color: #2468ff;
+        font-family: "Archivo Black", "Arial Black", Arial, sans-serif;
+        font-size: 86px;
+        line-height: 1;
+        font-weight: 900;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .metric-card:nth-child(2) .metric-value {
+        color: #bd4d00;
+      }
+
+      .metric-copy {
+        margin-top: 16px;
+        color: #566174;
+        font-family: "IBM Plex Mono", Consolas, monospace;
+        font-size: 25px;
+        font-weight: 800;
+        line-height: 1.36;
+        text-transform: uppercase;
+      }
+
+      .loop-stage {
+        position: absolute;
+        left: 66px;
+        right: 330px;
+        top: 646px;
+        min-height: 650px;
+      }
+
+      .loop-core {
+        position: absolute;
+        left: 168px;
+        top: 148px;
+        width: 310px;
+        height: 310px;
+        display: grid;
+        place-items: center;
+        padding: 28px;
+        color: #ffffff;
+        border-radius: 8px;
+        background: linear-gradient(135deg, #2468ff, #ed3aa8);
+        box-shadow: 0 36px 100px rgba(36, 104, 255, 0.25);
+        font-family: "Archivo Black", "Arial Black", Arial, sans-serif;
+        font-size: 56px;
+        line-height: 1.04;
+        text-align: center;
+        text-transform: uppercase;
+      }
+
+      .loop-card {
+        position: absolute;
+        width: 268px;
+        min-height: 150px;
+        padding: 24px;
+        font-family: "IBM Plex Mono", Consolas, monospace;
+        font-size: 26px;
+        line-height: 1.24;
+        font-weight: 900;
+        text-transform: uppercase;
+      }
+
+      .loop-label {
+        display: block;
+        color: #101827;
+        font-family: "Archivo Black", "Arial Black", Arial, sans-serif;
+        font-size: 36px;
+        line-height: 1.08;
+      }
+
+      .loop-card span {
+        display: block;
+        margin-top: 12px;
+        color: #566174;
+        font-size: 20px;
+        font-weight: 800;
+        line-height: 1.38;
+      }
+
+      .loop-card.a {
+        left: 0;
+        top: 28px;
+      }
+
+      .loop-card.b {
+        right: 10px;
+        top: 16px;
+      }
+
+      .loop-card.c {
+        left: 0;
+        bottom: 42px;
+      }
+
+      .loop-card.d {
+        right: 8px;
+        bottom: 50px;
+      }
+
+      .line {
+        position: absolute;
+        height: 4px;
+        border-radius: 999px;
+        background: linear-gradient(
+          90deg,
+          rgba(36, 104, 255, 0.2),
+          #ed3aa8,
+          rgba(255, 138, 36, 0.72)
+        );
+        transform-origin: left center;
+      }
+
+      .line.l1 {
+        left: 210px;
+        top: 158px;
+        width: 260px;
+        transform: rotate(20deg);
+      }
+
+      .line.l2 {
+        left: 318px;
+        top: 362px;
+        width: 254px;
+        transform: rotate(-21deg);
+      }
+
+      .line.l3 {
+        left: 160px;
+        top: 444px;
+        width: 244px;
+        transform: rotate(24deg);
+      }
+
+      .pipeline-board {
+        position: absolute;
+        left: 64px;
+        right: 330px;
+        top: 610px;
+        display: grid;
+        gap: 20px;
+      }
+
+      .pipe-row {
+        min-height: 148px;
+        display: grid;
+        grid-template-columns: 112px 1fr 82px;
+        align-items: center;
+        gap: 16px;
+        padding: 18px;
+      }
+
+      .pipe-num {
+        width: 74px;
+        height: 74px;
+        display: grid;
+        place-items: center;
+        border-radius: 8px;
+        background: #101827;
+        color: #ffffff;
+        font-family: "IBM Plex Mono", Consolas, monospace;
+        font-size: 28px;
+        font-weight: 900;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .pipe-title {
+        font-family: "Archivo Black", "Arial Black", Arial, sans-serif;
+        font-size: 42px;
+        line-height: 1.12;
+        text-transform: uppercase;
+      }
+
+      .pipe-copy {
+        margin-top: 8px;
+        color: #566174;
+        font-size: 25px;
+        font-weight: 760;
+        line-height: 1.26;
+      }
+
+      .pipe-status {
+        color: #2468ff;
+        font-family: "IBM Plex Mono", Consolas, monospace;
+        font-size: 22px;
+        font-weight: 900;
+        text-align: right;
+      }
+
+      .human-layout {
+        align-items: center;
+        justify-content: flex-start;
+        text-align: center;
+        padding-top: 120px;
+      }
+
+      .human-panel {
+        width: 900px;
+        padding: 28px;
+      }
+
+      .review-grid {
+        width: 900px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+      }
+
+      .review-card {
+        min-height: 190px;
+        padding: 24px;
+        text-align: left;
+      }
+
+      .review-card b {
+        display: block;
+        font-family: "Archivo Black", "Arial Black", Arial, sans-serif;
+        font-size: 42px;
+        line-height: 0.98;
+        text-transform: uppercase;
+      }
+
+      .review-card span {
+        display: block;
+        margin-top: 12px;
+        color: #566174;
+        font-size: 24px;
+        font-weight: 760;
+        line-height: 1.28;
+      }
+
+      .warning-board {
+        position: absolute;
+        left: 62px;
+        right: 330px;
+        top: 590px;
+        z-index: 19;
+        display: grid;
+        gap: 22px;
+      }
+
+      .warning-card {
+        min-height: 166px;
+        padding: 24px;
+        display: grid;
+        grid-template-columns: 94px 1fr;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .warning-icon {
+        width: 74px;
+        height: 74px;
+        display: grid;
+        place-items: center;
+        border-radius: 8px;
+        background: rgba(255, 138, 36, 0.14);
+        color: #bd4d00;
+        font-family: "Archivo Black", "Arial Black", Arial, sans-serif;
+        font-size: 42px;
+      }
+
+      .warning-title {
+        font-family: "Archivo Black", "Arial Black", Arial, sans-serif;
+        font-size: 39px;
+        line-height: 1.12;
+        text-transform: uppercase;
+      }
+
+      .warning-copy {
+        margin-top: 8px;
+        color: #566174;
+        font-size: 25px;
+        font-weight: 760;
+        line-height: 1.28;
+      }
+
+      .mythos-chart-panel {
+        position: absolute;
+        left: 58px;
+        right: 330px;
+        top: 584px;
+        z-index: 18;
+        height: 664px;
+        padding: 24px 26px 28px;
+      }
+
+      .chart-title {
+        color: #101827;
+        font-family: "Archivo Black", "Arial Black", Arial, sans-serif;
+        font-size: 34px;
+        line-height: 1.06;
+        text-transform: uppercase;
+      }
+
+      .chart-subtitle {
+        margin-top: 8px;
+        color: #566174;
+        font-family: "IBM Plex Mono", Consolas, monospace;
+        font-size: 18px;
+        font-weight: 800;
+        line-height: 1.28;
+        text-transform: uppercase;
+      }
+
+      .chart-viewport {
+        position: absolute;
+        left: 54px;
+        right: 24px;
+        top: 116px;
+        bottom: 74px;
+        overflow: hidden;
+        border-left: 2px solid rgba(16, 24, 39, 0.18);
+        border-bottom: 2px solid rgba(16, 24, 39, 0.22);
+      }
+
+      .chart-zoom-plane {
+        position: absolute;
+        inset: 0;
+        transform-origin: 100% 100%;
+        will-change: transform;
+      }
+
+      .chart-grid-line {
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: rgba(16, 24, 39, 0.08);
+      }
+
+      .chart-grid-line.g0 {
+        bottom: 0;
+      }
+
+      .chart-grid-line.g2 {
+        bottom: 18.18%;
+      }
+
+      .chart-grid-line.g4 {
+        bottom: 36.36%;
+      }
+
+      .chart-grid-line.g6 {
+        bottom: 54.54%;
+      }
+
+      .chart-grid-line.g8 {
+        bottom: 72.72%;
+      }
+
+      .chart-grid-line.g10 {
+        bottom: 90.9%;
+      }
+
+      .chart-axis-label {
+        position: absolute;
+        left: -44px;
+        color: #566174;
+        font-family: "IBM Plex Mono", Consolas, monospace;
+        font-size: 17px;
+        font-weight: 800;
+      }
+
+      .chart-axis-label.a0 {
+        bottom: -8px;
+      }
+
+      .chart-axis-label.a5 {
+        bottom: 44%;
+      }
+
+      .chart-axis-label.a10 {
+        bottom: 89%;
+      }
+
+      .chart-average {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 9.09%;
+        height: 2px;
+        background: rgba(16, 24, 39, 0.24);
+      }
+
+      .chart-average span {
+        position: absolute;
+        right: 152px;
+        bottom: 8px;
+        color: #566174;
+        font-family: "IBM Plex Mono", Consolas, monospace;
+        font-size: 16px;
+        font-weight: 800;
+        white-space: nowrap;
+      }
+
+      .chart-bars {
+        position: absolute;
+        left: 14px;
+        right: 10px;
+        bottom: 0;
+        height: 100%;
+        display: flex;
+        align-items: flex-end;
+        gap: 8px;
+      }
+
+      .chart-bar {
+        position: relative;
+        flex: 1 1 0;
+        min-width: 0;
+        height: var(--h);
+        border-radius: 2px 2px 0 0;
+        background: linear-gradient(145deg, #dc7a51, #c85f38);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.34),
+          0 0 20px rgba(255, 157, 46, 0.1);
+      }
+
+      .chart-bar.major {
+        background: linear-gradient(145deg, #f09a73, #d8754d);
+      }
+
+      .chart-bar.mythos {
+        background:
+          repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.22) 0 8px, transparent 8px 18px),
+          linear-gradient(145deg, #f09a73, #d8754d);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.42),
+          0 0 34px rgba(255, 79, 163, 0.2);
+      }
+
+      .chart-bar.mythos::after {
+        content: "";
+        position: absolute;
+        inset: -8px -7px 0;
+        border: 3px solid rgba(255, 79, 163, 0.6);
+        border-bottom: 0;
+        border-radius: 8px 8px 0 0;
+        box-shadow:
+          0 0 26px rgba(255, 79, 163, 0.36),
+          inset 0 0 22px rgba(255, 255, 255, 0.18);
+        pointer-events: none;
+      }
+
+      .bar-value {
+        position: absolute;
+        left: 50%;
+        bottom: calc(100% + 8px);
+        transform: translateX(-50%);
+        color: #d8754d;
+        font-family: "Archivo Black", "Arial Black", Arial, sans-serif;
+        font-size: 18px;
+        line-height: 1;
+        white-space: nowrap;
+      }
+
+      .bar-quarter {
+        position: absolute;
+        left: 50%;
+        bottom: -34px;
+        transform: translateX(-50%);
+        color: #566174;
+        font-family: "IBM Plex Mono", Consolas, monospace;
+        font-size: 14px;
+        font-weight: 800;
+        white-space: nowrap;
+      }
+
+      .chart-marker {
+        position: absolute;
+        top: 8px;
+        bottom: 0;
+        width: 2px;
+        border-left: 2px dashed rgba(16, 24, 39, 0.24);
+      }
+
+      .chart-marker span {
+        position: absolute;
+        left: -60px;
+        top: -4px;
+        width: 120px;
+        color: #566174;
+        font-size: 15px;
+        font-weight: 800;
+        line-height: 1.08;
+        text-align: center;
+        opacity: 0;
+      }
+
+      .chart-marker.opus {
+        right: 14.4%;
+      }
+
+      .chart-marker.mythos-internal {
+        right: 6.9%;
+      }
+
+      .chart-marker.mythos-public {
+        right: 0.7%;
+      }
+
+      .chart-callout {
+        position: absolute;
+        z-index: 24;
+        padding: 16px 18px;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.88);
+        background:
+          radial-gradient(circle at 14% 18%, rgba(30, 139, 255, 0.2), transparent 34%),
+          radial-gradient(circle at 88% 8%, rgba(255, 79, 163, 0.16), transparent 28%),
+          linear-gradient(145deg, rgba(255, 255, 255, 0.7), rgba(226, 246, 255, 0.36)),
+          rgba(177, 220, 255, 0.38);
+        box-shadow:
+          0 28px 80px rgba(18, 92, 170, 0.2),
+          inset 0 1px 0 rgba(255, 255, 255, 0.82);
+        backdrop-filter: blur(26px) saturate(1.35);
+        -webkit-backdrop-filter: blur(26px) saturate(1.35);
+        color: #101827;
+        font-family: "IBM Plex Mono", Consolas, monospace;
+        font-size: 20px;
+        font-weight: 900;
+        line-height: 1.22;
+        text-transform: uppercase;
+        opacity: 0;
+      }
+
+      .chart-callout b {
+        display: block;
+        color: #2468ff;
+        font-family: "Archivo Black", "Arial Black", Arial, sans-serif;
+        font-size: 34px;
+        line-height: 1;
+      }
+
+      .chart-callout.mythos b {
+        color: #bd4d00;
+      }
+
+      .chart-callout::after {
+        content: "";
+        position: absolute;
+        height: 8px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, #2468ff, #ed3aa8, #ff8a24);
+        box-shadow: 0 0 24px rgba(237, 58, 168, 0.28);
+        clip-path: polygon(
+          0 28%,
+          calc(100% - 16px) 28%,
+          calc(100% - 16px) 0,
+          100% 50%,
+          calc(100% - 16px) 100%,
+          calc(100% - 16px) 72%,
+          0 72%
+        );
+        transform-origin: left center;
+      }
+
+      .chart-callout.opus {
+        left: 82px;
+        bottom: 78px;
+        width: 286px;
+      }
+
+      .chart-callout.opus::after {
+        left: 284px;
+        top: 88px;
+        width: 180px;
+        transform: rotate(0deg);
+      }
+
+      .chart-callout.mythos {
+        right: 164px;
+        top: 122px;
+        width: 252px;
+      }
+
+      .chart-callout.mythos::after {
+        left: 248px;
+        top: 76px;
+        width: 112px;
+        transform: rotate(0deg);
+      }
+
+      .mythos-title-word {
+        display: block;
+        color: #bd4d00;
+      }
+
+      .network-map {
+        position: absolute;
+        left: 50px;
+        right: 318px;
+        top: 606px;
+        height: 720px;
+      }
+
+      .network-core {
+        position: absolute;
+        left: 224px;
+        top: 238px;
+        width: 264px;
+        height: 264px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        border-radius: 8px;
+        color: #ffffff;
+        background:
+          radial-gradient(circle at 24% 18%, rgba(255, 255, 255, 0.26), transparent 36%),
+          linear-gradient(135deg, #1e8bff, #ff4fa3);
+        font-family: "Archivo Black", "Arial Black", Arial, sans-serif;
+        font-size: 72px;
+        text-transform: uppercase;
+        box-shadow:
+          0 34px 110px rgba(16, 24, 39, 0.24),
+          0 0 70px rgba(36, 104, 255, 0.24);
+      }
+
+      .network-core small {
+        display: block;
+        font-family: "IBM Plex Mono", Consolas, monospace;
+        font-size: 20px;
+        font-weight: 900;
+        line-height: 1;
+        opacity: 0.82;
+      }
+
+      .network-link {
+        position: absolute;
+        height: 5px;
+        border-radius: 999px;
+        background: linear-gradient(
+          90deg,
+          rgba(30, 139, 255, 0.1),
+          rgba(30, 139, 255, 0.72),
+          rgba(255, 79, 163, 0.62),
+          rgba(255, 157, 46, 0.52)
+        );
+        box-shadow: 0 0 28px rgba(30, 139, 255, 0.26);
+        transform-origin: left center;
+        z-index: 1;
+      }
+
+      .network-link.k1 {
+        left: 244px;
+        top: 158px;
+        width: 122px;
+        transform: rotate(75deg);
+      }
+
+      .network-link.k2 {
+        left: 468px;
+        top: 180px;
+        width: 101px;
+        transform: rotate(107deg);
+      }
+
+      .network-link.k3 {
+        left: 244px;
+        top: 518px;
+        width: 60px;
+        transform: rotate(-58deg);
+      }
+
+      .network-link.k4 {
+        left: 468px;
+        top: 540px;
+        width: 79px;
+        transform: rotate(-112deg);
+      }
+
+      .network-node {
+        position: absolute;
+        width: 312px;
+        min-height: 158px;
+        padding: 24px 26px;
+        font-family: "IBM Plex Mono", Consolas, monospace;
+        font-size: 22px;
+        font-weight: 900;
+        line-height: 1.28;
+        text-transform: uppercase;
+        z-index: 2;
+      }
+
+      .network-node.n1 {
+        left: 0;
+        top: 0;
+      }
+
+      .network-node.n2 {
+        right: 0;
+        top: 22px;
+      }
+
+      .network-node.n3 {
+        left: 0;
+        bottom: 44px;
+      }
+
+      .network-node.n4 {
+        right: 0;
+        bottom: 22px;
+      }
+
+      .network-label {
+        display: block;
+        color: #101827;
+        font-family: "Archivo Black", "Arial Black", Arial, sans-serif;
+        font-size: 35px;
+        line-height: 1.08;
+      }
+
+      .network-sub {
+        display: block;
+        margin-top: 10px;
+        color: #566174;
+        font-family: "IBM Plex Mono", Consolas, monospace;
+        font-size: 21px;
+        font-weight: 800;
+        line-height: 1.34;
+        text-transform: uppercase;
+      }
+
+      .control-panel {
+        width: 900px;
+        align-self: center;
+        margin-top: 96px;
+        padding: 34px 34px 38px;
+        text-align: center;
+      }
+
+      .control-question {
+        color: #101827;
+        font-family: "Archivo Black", "Arial Black", Arial, sans-serif;
+        font-size: 84px;
+        line-height: 0.95;
+        text-transform: uppercase;
+      }
+
+      .choice-row {
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+        gap: 18px;
+      }
+
+      .choice {
+        min-width: 250px;
+        padding: 18px 22px;
+        border-radius: 8px;
+        color: #ffffff;
+        background: #2468ff;
+        font-family: "IBM Plex Mono", Consolas, monospace;
+        font-size: 28px;
+        font-weight: 900;
+        text-transform: uppercase;
+      }
+
+      .choice:nth-child(2) {
+        background: #ed3aa8;
+      }
+
+      .cta-panel {
+        width: 900px;
+        align-self: center;
+        margin-top: 102px;
+        padding: 30px;
+        text-align: center;
+      }
+
+      .cta-actions {
+        margin-top: 28px;
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+      }
+
+      .cta-pill {
+        padding: 17px 22px;
+        border-radius: 8px;
+        color: #ffffff;
+        background: #101827;
+        font-family: "IBM Plex Mono", Consolas, monospace;
+        font-size: 25px;
+        font-weight: 900;
+        text-transform: uppercase;
+      }
+
+      .cta-pill:nth-child(2) {
+        background: #2468ff;
+      }
+
+      .cta-pill:nth-child(3) {
+        background: #ed3aa8;
+      }
+
+      .transition {
+        inset: 0;
+        z-index: 70;
+        pointer-events: none;
+        opacity: 0;
+      }
+
+      .wipe-band {
+        position: absolute;
+        left: -1320px;
+        width: 1320px;
+        height: 390px;
+        border-radius: 8px;
+        transform: rotate(-12deg);
+        filter: drop-shadow(0 24px 60px rgba(36, 104, 255, 0.2));
+      }
+
+      .band-blue {
+        top: 410px;
+        background: rgba(36, 104, 255, 0.76);
+      }
+
+      .band-pink {
+        top: 728px;
+        background: rgba(237, 58, 168, 0.72);
+      }
+
+      .band-orange {
+        top: 1040px;
+        background: rgba(255, 138, 36, 0.74);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div
+      id="root"
+      data-composition-id="anthropic-report-ai-builds-itself"
+      data-start="0"
+      data-duration="176.81"
+      data-width="1080"
+      data-height="1920"
+    >
+      <div class="tech-layer" aria-hidden="true" data-layout-allow-overflow>
+        <div class="tech-pane p1"></div>
+        <div class="tech-pane p2"></div>
+        <div class="tech-pane p3"></div>
+        <div class="circuit-line lg1"></div>
+        <div class="circuit-line lg2"></div>
+        <div class="circuit-line lg3"></div>
+        <div class="tech-node t1"></div>
+        <div class="tech-node t2"></div>
+        <div class="tech-node t3"></div>
+        <div class="scan-ribbon"></div>
+        <div class="data-chip d1">model</div>
+        <div class="data-chip d2">agent</div>
+        <div class="data-chip d3">eval</div>
+      </div>
+      <div class="beam beam-a"></div>
+      <div class="beam beam-b"></div>
+      <div class="beam beam-c"></div>
+
+      <section id="scene-hook" class="scene">
+        <div class="scene-content">
+          <div class="hook-panel glass">
+            <div class="spark blue" data-layout-allow-overflow></div>
+            <div class="ghost-word">RSI</div>
+            <div class="panel-content">
+              <div class="kicker">Anthropic report</div>
+              <h1 class="headline big">
+                AI is not replacing you. <span class="pink">It is replacing itself.</span>
+              </h1>
+            </div>
+          </div>
+        </div>
+        <div class="hook-stack">
+          <div class="hook-card glass glass-strong">
+            <span class="panel-content">When AI builds itself</span>
+          </div>
+          <div class="hook-card glass">
+            <span class="panel-content">The scary part is the loop</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene-source" class="scene">
+        <div class="scene-content source-layout">
+          <div class="source-pill">source: anthropic institute</div>
+          <h2 class="headline compact">June 4 report, shown from the source</h2>
+          <p class="subline">
+            The Anthropic page becomes the evidence layer while the presenter moves into PiP.
+          </p>
+        </div>
+        <div class="phone phone-a" data-layout-allow-overflow>
+          <div class="phone-screen" data-layout-allow-overflow>
+            <img
+              id="source-page-a"
+              class="phone-page"
+              src="assets/motion/mobile/anthropic-rsi-mobile-full.png"
+              alt="Anthropic When AI builds itself mobile page"
+            />
+          </div>
+        </div>
+        <div class="source-callout glass glass-strong">
+          <div class="callout-title">When AI builds itself</div>
+          <div class="callout-copy">
+            Primary source capture from Anthropic's recursive self-improvement report.
+          </div>
+        </div>
+      </section>
+
+      <section id="scene-metrics" class="scene">
+        <div class="scene-content">
+          <div class="kicker">The headline number</div>
+          <h2 class="headline compact">
+            Anthropic says Claude authored <span class="blue">more than 80%</span> of merged
+            production code.
+          </h2>
+        </div>
+        <div class="metric-board">
+          <div class="metric-card glass glass-strong">
+            <div class="metric-value">&gt;80%</div>
+            <div class="metric-copy">merged production code attributed to Claude</div>
+          </div>
+          <div class="metric-card glass glass-strong">
+            <div class="metric-value">8x</div>
+            <div class="metric-copy">typical engineer output per day versus 2024</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene-loop" class="scene">
+        <div class="scene-content">
+          <div class="kicker">Recursive loop</div>
+          <h2 class="headline compact">
+            The company building frontier models is using those models to build itself.
+          </h2>
+        </div>
+        <div class="loop-stage">
+          <div class="line l1"></div>
+          <div class="line l2"></div>
+          <div class="line l3"></div>
+          <div class="loop-core">AI builds AI</div>
+          <div class="loop-card glass a">
+            <span class="loop-label">specify</span><span>human intent starts it</span>
+          </div>
+          <div class="loop-card glass b">
+            <span class="loop-label">code</span><span>Claude writes changes</span>
+          </div>
+          <div class="loop-card glass c">
+            <span class="loop-label">review</span><span>AI and humans inspect</span>
+          </div>
+          <div class="loop-card glass d">
+            <span class="loop-label">merge</span><span>production gets faster</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene-pipeline" class="scene">
+        <div class="scene-content">
+          <div class="kicker">Production pipeline</div>
+          <h2 class="headline compact">Not demo code. Reviewed, tested, merged code.</h2>
+        </div>
+        <div class="pipeline-board">
+          <div class="pipe-row glass">
+            <div class="pipe-num">01</div>
+            <div>
+              <div class="pipe-title">write</div>
+              <div class="pipe-copy">the agent turns goals into patches</div>
+            </div>
+            <div class="pipe-status">AI</div>
+          </div>
+          <div class="pipe-row glass">
+            <div class="pipe-num">02</div>
+            <div>
+              <div class="pipe-title">review</div>
+              <div class="pipe-copy">humans still judge direction and quality</div>
+            </div>
+            <div class="pipe-status pink">human</div>
+          </div>
+          <div class="pipe-row glass">
+            <div class="pipe-num">03</div>
+            <div>
+              <div class="pipe-title">test</div>
+              <div class="pipe-copy">the loop becomes more automated every day</div>
+            </div>
+            <div class="pipe-status orange">mixed</div>
+          </div>
+          <div class="pipe-row glass">
+            <div class="pipe-num">04</div>
+            <div>
+              <div class="pipe-title">merge</div>
+              <div class="pipe-copy">frontier systems ship their own foundation</div>
+            </div>
+            <div class="pipe-status">prod</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene-human" class="scene">
+        <div class="scene-content human-layout">
+          <div class="human-panel glass">
+            <div class="kicker" style="margin: 0 auto 22px">Human role</div>
+            <h2 class="headline compact">For now, senior engineers are the brake.</h2>
+            <p class="subline" style="margin: 18px auto 0">
+              The question is how long review remains meaningfully human.
+            </p>
+          </div>
+          <div class="review-grid">
+            <div class="review-card glass"><b>taste</b><span>is this the right problem?</span></div>
+            <div class="review-card glass">
+              <b>judgment</b><span>is the patch safe to merge?</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene-mythos" class="scene">
+        <div class="scene-content">
+          <div class="kicker">Mythos preview</div>
+          <h2 class="headline compact">
+            Anthropic's unreleased model <span class="mythos-title-word">Mythos</span> found
+            <span class="orange">vulnerabilities</span> and exploit paths.
+          </h2>
+        </div>
+        <div class="mythos-chart-panel glass glass-strong">
+          <div class="chart-title">Code contributed per person, by quarter</div>
+          <div class="chart-subtitle">Zooming into Anthropic's rightmost model comparison</div>
+          <div class="chart-viewport" aria-label="Code contributed per person by quarter bar chart">
+            <div class="chart-axis-label a0">0x</div>
+            <div class="chart-axis-label a5">5x</div>
+            <div class="chart-axis-label a10">10x</div>
+            <div class="chart-zoom-plane">
+              <div class="chart-grid-line g0"></div>
+              <div class="chart-grid-line g2"></div>
+              <div class="chart-grid-line g4"></div>
+              <div class="chart-grid-line g6"></div>
+              <div class="chart-grid-line g8"></div>
+              <div class="chart-grid-line g10"></div>
+              <div class="chart-average"><span>average before 2025</span></div>
+              <div class="chart-marker opus"><span>Claude Opus 4.5</span></div>
+              <div class="chart-marker mythos-internal">
+                <span>Mythos Preview internal access</span>
+              </div>
+              <div class="chart-marker mythos-public"><span>Claude Mythos Preview</span></div>
+              <div
+                class="chart-bars"
+                style="
+                  --hf-studio-offset-x: 4px;
+                  --hf-studio-offset-y: 4px;
+                  translate: var(--hf-studio-offset-x, 0px) var(--hf-studio-offset-y, 0px);
+                "
+                data-hf-studio-path-offset="true"
+                data-hf-studio-original-translate=""
+                data-hf-studio-original-inline-translate=""
+              >
+                <div class="chart-bar" style="--h: 12.7%">
+                  <span class="bar-quarter">Q2 2021</span>
+                </div>
+                <div class="chart-bar" style="--h: 10%"></div>
+                <div class="chart-bar" style="--h: 7.7%"></div>
+                <div class="chart-bar" style="--h: 9.5%">
+                  <span class="bar-quarter">Q1 2022</span>
+                </div>
+                <div class="chart-bar" style="--h: 10.5%"></div>
+                <div class="chart-bar" style="--h: 6.2%"></div>
+                <div class="chart-bar" style="--h: 6.2%"></div>
+                <div class="chart-bar" style="--h: 9.4%">
+                  <span class="bar-quarter">Q1 2023</span>
+                </div>
+                <div class="chart-bar" style="--h: 9.8%"></div>
+                <div class="chart-bar" style="--h: 8.9%"></div>
+                <div class="chart-bar" style="--h: 7.5%"></div>
+                <div class="chart-bar" style="--h: 9.1%">
+                  <span class="bar-quarter">Q1 2024</span>
+                </div>
+                <div class="chart-bar" style="--h: 7.5%"></div>
+                <div class="chart-bar" style="--h: 7.7%"></div>
+                <div class="chart-bar" style="--h: 8%"></div>
+                <div class="chart-bar major" style="--h: 10.9%">
+                  <span class="bar-value">1.2x</span><span class="bar-quarter">Q1 2025</span>
+                </div>
+                <div class="chart-bar major" style="--h: 13.6%">
+                  <span class="bar-value">1.5x</span>
+                </div>
+                <div class="chart-bar major" style="--h: 17.3%">
+                  <span class="bar-value">1.9x</span>
+                </div>
+                <div class="chart-bar major" style="--h: 22.7%">
+                  <span class="bar-value">2.5x</span><span class="bar-quarter">Q4 2025</span>
+                </div>
+                <div class="chart-bar major" style="--h: 52.7%">
+                  <span class="bar-value">5.8x</span><span class="bar-quarter">Q1 2026</span>
+                </div>
+                <div class="chart-bar mythos" style="--h: 72.7%">
+                  <span class="bar-value">8.0x</span><span class="bar-quarter">Q2</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="chart-callout opus">
+            <b>2.5x</b>
+            Current public benchmark: Claude Opus 4.5
+          </div>
+          <div class="chart-callout mythos">
+            <b>8.0x</b>
+            Mythos Preview is the largest bar
+          </div>
+        </div>
+        <div class="warning-board">
+          <div class="warning-card glass glass-strong">
+            <div class="warning-icon">!</div>
+            <div>
+              <div class="warning-title">Linux kernel</div>
+              <div class="warning-copy">long-lived code can still hide new attack paths</div>
+            </div>
+          </div>
+          <div class="warning-card glass glass-strong">
+            <div class="warning-icon">!</div>
+            <div>
+              <div class="warning-title">OpenSSL</div>
+              <div class="warning-copy">
+                security-critical software becomes model-searchable terrain
+              </div>
+            </div>
+          </div>
+          <div class="warning-card glass glass-strong">
+            <div class="warning-icon">!</div>
+            <div>
+              <div class="warning-title">limited release</div>
+              <div class="warning-copy">powerful tools arrive first under controlled access</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene-source-return" class="scene">
+        <div class="scene-content source-layout">
+          <div class="source-pill">source scroll</div>
+          <h2 class="headline compact">Is Mythos AGI?</h2>
+          <p class="subline">Mythos Not Released to the Public</p>
+        </div>
+        <div class="phone phone-b" data-layout-allow-overflow>
+          <div class="phone-screen" data-layout-allow-overflow>
+            <img
+              id="source-page-b"
+              class="phone-page"
+              src="assets/motion/mobile/anthropic-rsi-mobile-full-b.png"
+              alt="Anthropic source page continued"
+            />
+          </div>
+        </div>
+        <div class="source-callout glass glass-strong">
+          <div class="callout-title">faster than institutions can measure</div>
+          <div class="callout-copy">The key question shifts from capability to control.</div>
+        </div>
+      </section>
+
+      <section id="scene-everywhere" class="scene">
+        <div class="scene-content">
+          <div class="kicker">What changes</div>
+          <h2 class="headline compact">AI moves from tool to infrastructure.</h2>
+          <p class="subline">
+            Internet, research, security, and production systems all become agent-shaped.
+          </p>
+        </div>
+        <div class="network-map">
+          <div class="network-link k1"></div>
+          <div class="network-link k2"></div>
+          <div class="network-link k3"></div>
+          <div class="network-link k4"></div>
+          <div class="network-core"><span>AI</span><small>agent layer</small></div>
+          <div class="network-node glass n1">
+            <span class="network-label">Internet</span>
+            <span class="network-sub">agents browse, decide, and act online</span>
+          </div>
+          <div class="network-node glass n2">
+            <span class="network-label">Research</span>
+            <span class="network-sub">models search, test, and synthesize</span>
+          </div>
+          <div class="network-node glass n3">
+            <span class="network-label">Security</span>
+            <span class="network-sub">systems probe real attack paths</span>
+          </div>
+          <div class="network-node glass n4">
+            <span class="network-label">Production</span>
+            <span class="network-sub">code moves through reviewed pipelines</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene-control" class="scene">
+        <div class="scene-content">
+          <div class="control-panel glass glass-strong">
+            <div class="kicker" style="margin: 0 auto 24px">Control question</div>
+            <div class="control-question">Who is still in control?</div>
+            <div class="choice-row">
+              <div class="choice">humans</div>
+              <div class="choice">AI</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene-cta" class="scene">
+        <div class="scene-content">
+          <div class="cta-panel glass glass-strong">
+            <div class="kicker" style="margin: 0 auto 24px">AI videos</div>
+            <h2 class="headline compact" style="margin: 0 auto">Like, subscribe, and follow.</h2>
+            <div class="cta-actions">
+              <div class="cta-pill">Like</div>
+              <div class="cta-pill">Subscribe</div>
+              <div class="cta-pill">Follow</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <video
+        id="avatar-full-a"
+        class="clip avatar-shot avatar-full"
+        data-start="0"
+        data-duration="8.2"
+        data-media-start="0"
+        data-track-index="2"
+        src="Anthropic Report - AI Building Itself.mp4"
+        muted
+        playsinline
+      ></video>
+      <video
+        id="avatar-pip-a"
+        class="clip avatar-shot avatar-pip"
+        data-start="8.2"
+        data-duration="60.5"
+        data-media-start="8.2"
+        data-track-index="2"
+        src="Anthropic Report - AI Building Itself.mp4"
+        muted
+        playsinline
+      ></video>
+      <video
+        id="avatar-full-b"
+        class="clip avatar-shot avatar-full"
+        data-start="68.7"
+        data-duration="28.2"
+        data-media-start="68.7"
+        data-track-index="2"
+        src="Anthropic Report - AI Building Itself.mp4"
+        muted
+        playsinline
+      ></video>
+      <video
+        id="avatar-pip-b"
+        class="clip avatar-shot avatar-pip"
+        data-start="96.9"
+        data-duration="66.6"
+        data-media-start="96.9"
+        data-track-index="2"
+        src="Anthropic Report - AI Building Itself.mp4"
+        muted
+        playsinline
+      ></video>
+      <video
+        id="avatar-full-c"
+        class="clip avatar-shot avatar-full"
+        data-start="163.5"
+        data-duration="13.31"
+        data-media-start="163.5"
+        data-track-index="2"
+        src="Anthropic Report - AI Building Itself.mp4"
+        muted
+        playsinline
+      ></video>
+
+      <div
+        id="caption-stage"
+        class="clip caption-stage"
+        data-start="0"
+        data-duration="176.81"
+        data-track-index="12"
+      ></div>
+
+      <audio
+        id="voice"
+        data-start="0"
+        data-duration="176.81"
+        data-track-index="30"
+        src="Anthropic Report - AI Building Itself.mp4"
+        data-volume="1"
+      ></audio>
+
+      <audio
+        id="sfx-whoosh-a"
+        data-start="8.12"
+        data-duration="0.9"
+        data-track-index="40"
+        src="assets/sfx/whoosh-soft.wav"
+        data-volume="0.16"
+      ></audio>
+      <audio
+        id="sfx-ping-a"
+        data-start="22.4"
+        data-duration="0.7"
+        data-track-index="41"
+        src="assets/sfx/ping-soft.wav"
+        data-volume="0.16"
+      ></audio>
+      <audio
+        id="sfx-pop-a"
+        data-start="41.86"
+        data-duration="0.45"
+        data-track-index="42"
+        src="assets/sfx/pop-soft.wav"
+        data-volume="0.14"
+      ></audio>
+      <audio
+        id="sfx-click-a"
+        data-start="56.65"
+        data-duration="0.5"
+        data-track-index="43"
+        src="assets/sfx/click-soft.wav"
+        data-volume="0.12"
+      ></audio>
+      <audio
+        id="sfx-whoosh-b"
+        data-start="96.8"
+        data-duration="0.9"
+        data-track-index="44"
+        src="assets/sfx/whoosh-soft.wav"
+        data-volume="0.15"
+      ></audio>
+      <audio
+        id="sfx-pong-a"
+        data-start="145.05"
+        data-duration="0.7"
+        data-track-index="45"
+        src="assets/sfx/pong-soft.wav"
+        data-volume="0.14"
+      ></audio>
+      <audio
+        id="sfx-chime-a"
+        data-start="170.15"
+        data-duration="1.2"
+        data-track-index="46"
+        src="assets/sfx/chime-soft.wav"
+        data-volume="0.18"
+      ></audio>
+
+      <div
+        id="tr-source"
+        class="clip transition"
+        data-start="7.92"
+        data-duration="0.62"
+        data-track-index="20"
+      >
+        <div class="wipe-band band-blue"></div>
+        <div class="wipe-band band-pink"></div>
+        <div class="wipe-band band-orange"></div>
+      </div>
+      <div
+        id="tr-metrics"
+        class="clip transition"
+        data-start="21.86"
+        data-duration="0.62"
+        data-track-index="20"
+      >
+        <div class="wipe-band band-blue"></div>
+        <div class="wipe-band band-pink"></div>
+        <div class="wipe-band band-orange"></div>
+      </div>
+      <div
+        id="tr-loop"
+        class="clip transition"
+        data-start="41.42"
+        data-duration="0.62"
+        data-track-index="20"
+      >
+        <div class="wipe-band band-blue"></div>
+        <div class="wipe-band band-pink"></div>
+        <div class="wipe-band band-orange"></div>
+      </div>
+      <div
+        id="tr-pipeline"
+        class="clip transition"
+        data-start="56.16"
+        data-duration="0.62"
+        data-track-index="20"
+      >
+        <div class="wipe-band band-blue"></div>
+        <div class="wipe-band band-pink"></div>
+        <div class="wipe-band band-orange"></div>
+      </div>
+      <div
+        id="tr-human"
+        class="clip transition"
+        data-start="68.38"
+        data-duration="0.62"
+        data-track-index="20"
+      >
+        <div class="wipe-band band-blue"></div>
+        <div class="wipe-band band-pink"></div>
+        <div class="wipe-band band-orange"></div>
+      </div>
+      <div
+        id="tr-mythos"
+        class="clip transition"
+        data-start="96.62"
+        data-duration="0.62"
+        data-track-index="20"
+      >
+        <div class="wipe-band band-blue"></div>
+        <div class="wipe-band band-pink"></div>
+        <div class="wipe-band band-orange"></div>
+      </div>
+      <div
+        id="tr-source-return"
+        class="clip transition"
+        data-start="128.78"
+        data-duration="0.62"
+        data-track-index="20"
+      >
+        <div class="wipe-band band-blue"></div>
+        <div class="wipe-band band-pink"></div>
+        <div class="wipe-band band-orange"></div>
+      </div>
+      <div
+        id="tr-everywhere"
+        class="clip transition"
+        data-start="144.84"
+        data-duration="0.62"
+        data-track-index="20"
+      >
+        <div class="wipe-band band-blue"></div>
+        <div class="wipe-band band-pink"></div>
+        <div class="wipe-band band-orange"></div>
+      </div>
+      <div
+        id="tr-control"
+        class="clip transition"
+        data-start="162.96"
+        data-duration="0.62"
+        data-track-index="20"
+      >
+        <div class="wipe-band band-blue"></div>
+        <div class="wipe-band band-pink"></div>
+        <div class="wipe-band band-orange"></div>
+      </div>
+      <div
+        id="tr-cta"
+        class="clip transition"
+        data-start="172.58"
+        data-duration="0.62"
+        data-track-index="20"
+      >
+        <div class="wipe-band band-blue"></div>
+        <div class="wipe-band band-pink"></div>
+        <div class="wipe-band band-orange"></div>
+      </div>
+    </div>
+
+    <script src="assets/captions/captions.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      var CAPTION_GROUPS = window.CAPTION_GROUPS || [];
+      const tl = gsap.timeline({ paused: true });
+
+      function addCaptionGroups(groups) {
+        var stage = document.getElementById("caption-stage");
+        groups.forEach(function (group, groupIndex) {
+          var groupEl = document.createElement("div");
+          groupEl.id = "caption-group-" + groupIndex;
+          groupEl.className = "caption-group";
+
+          group.words.forEach(function (word, wordIndex) {
+            var wordEl = document.createElement("span");
+            wordEl.id = "caption-word-" + groupIndex + "-" + wordIndex;
+            wordEl.className = "caption-word";
+            wordEl.textContent = word.text;
+            groupEl.appendChild(wordEl);
+          });
+
+          stage.appendChild(groupEl);
+
+          var groupId = "#caption-group-" + groupIndex;
+          var wordSelector = groupId + " .caption-word";
+          tl.set(groupId, { opacity: 1 }, group.start);
+          tl.set(wordSelector, { opacity: 1 }, group.start);
+          tl.set(groupId, { opacity: 0 }, group.end);
+          tl.set(wordSelector, { opacity: 0 }, group.end + 0.001);
+
+          group.words.forEach(function (word, wordIndex) {
+            var wordId = "#caption-word-" + groupIndex + "-" + wordIndex;
+            tl.set(wordId, { attr: { class: "caption-word active" } }, word.start);
+            tl.set(wordId, { attr: { class: "caption-word" } }, word.end);
+          });
+        });
+      }
+
+      addCaptionGroups(CAPTION_GROUPS);
+
+      const scenes = [
+        ["#scene-hook", 0, 8.2],
+        ["#scene-source", 8.2, 22.16],
+        ["#scene-metrics", 22.16, 41.72],
+        ["#scene-loop", 41.72, 56.46],
+        ["#scene-pipeline", 56.46, 68.7],
+        ["#scene-human", 68.7, 96.92],
+        ["#scene-mythos", 96.92, 129.08],
+        ["#scene-source-return", 129.08, 145.14],
+        ["#scene-everywhere", 145.14, 163.26],
+        ["#scene-control", 163.26, 172.88],
+        ["#scene-cta", 172.88, 176.81],
+      ];
+
+      for (const [selector, start, end] of scenes) {
+        tl.set(selector, { opacity: 1, visibility: "visible" }, start);
+        tl.set(selector, { opacity: 0, visibility: "hidden" }, end);
+      }
+
+      function fromIf(selector, vars, at) {
+        if (document.querySelector(selector)) {
+          tl.from(selector, vars, at);
+        }
+      }
+
+      function enter(selector, start) {
+        fromIf(
+          selector + " .kicker, " + selector + " .source-pill",
+          { y: -34, opacity: 0, rotateX: 24, duration: 0.42, ease: "back.out(1.6)" },
+          start + 0.12,
+        );
+        fromIf(
+          selector + " .headline",
+          { y: 68, opacity: 0, scale: 0.96, rotateX: 10, duration: 0.62, ease: "expo.out" },
+          start + 0.22,
+        );
+        fromIf(
+          selector + " .subline",
+          { x: -36, opacity: 0, duration: 0.46, ease: "power3.out" },
+          start + 0.48,
+        );
+      }
+
+      function transition(selector, start) {
+        tl.set(selector, { opacity: 1 }, start);
+        tl.fromTo(
+          selector + " .band-blue",
+          { x: 0 },
+          { x: 2060, duration: 0.48, ease: "power4.inOut", immediateRender: false },
+          start,
+        );
+        tl.fromTo(
+          selector + " .band-pink",
+          { x: 0 },
+          { x: 2140, duration: 0.48, ease: "power4.inOut", immediateRender: false },
+          start + 0.04,
+        );
+        tl.fromTo(
+          selector + " .band-orange",
+          { x: 0 },
+          { x: 2220, duration: 0.48, ease: "power4.inOut", immediateRender: false },
+          start + 0.08,
+        );
+        tl.set(selector, { opacity: 0 }, start + 0.62);
+      }
+
+      function exitGlass(selector, at, vars) {
+        if (document.querySelector(selector)) {
+          tl.to(
+            selector,
+            Object.assign(
+              {
+                y: -72,
+                opacity: 0,
+                scale: 0.94,
+                rotateX: -14,
+                duration: 0.46,
+                stagger: 0.05,
+                ease: "power3.in",
+              },
+              vars || {},
+            ),
+            at,
+          );
+        }
+      }
+
+      tl.from(
+        ".tech-pane",
+        {
+          y: 80,
+          opacity: 0,
+          scale: 0.9,
+          rotateX: 22,
+          duration: 0.82,
+          stagger: 0.14,
+          ease: "expo.out",
+        },
+        0.08,
+      );
+      tl.from(
+        ".data-chip, .tech-node",
+        { opacity: 0, scale: 0.52, duration: 0.46, stagger: 0.08, ease: "back.out(1.8)" },
+        0.36,
+      );
+      tl.to(
+        ".tech-pane",
+        {
+          y: -34,
+          rotation: "+=2",
+          duration: 6.2,
+          repeat: 28,
+          yoyo: true,
+          stagger: 0.5,
+          ease: "sine.inOut",
+        },
+        0.9,
+      );
+      tl.to(
+        ".data-chip, .tech-node",
+        { y: -20, duration: 2.8, repeat: 60, yoyo: true, stagger: 0.2, ease: "sine.inOut" },
+        1.2,
+      );
+      tl.to(
+        ".circuit-line",
+        { x: 220, duration: 7.2, repeat: 26, yoyo: true, stagger: 0.38, ease: "sine.inOut" },
+        0.2,
+      );
+      tl.to(
+        ".scan-ribbon",
+        { x: 280, y: -90, duration: 4.8, repeat: 36, yoyo: true, ease: "sine.inOut" },
+        0.4,
+      );
+
+      enter("#scene-hook", 0);
+      tl.from(
+        "#scene-hook .hook-panel",
+        {
+          x: -78,
+          y: 92,
+          z: -240,
+          opacity: 0,
+          scale: 0.9,
+          rotateY: -24,
+          duration: 0.76,
+          ease: "expo.out",
+        },
+        0.14,
+      );
+      tl.from(
+        "#scene-hook .hook-card",
+        {
+          x: 130,
+          y: 90,
+          z: -180,
+          opacity: 0,
+          scale: 0.88,
+          rotateY: 28,
+          duration: 0.58,
+          stagger: 0.14,
+          ease: "back.out(1.7)",
+        },
+        1.2,
+      );
+      tl.to(
+        "#scene-hook .hook-card",
+        { y: -18, duration: 1.1, repeat: 4, yoyo: true, stagger: 0.16, ease: "sine.inOut" },
+        2.8,
+      );
+      tl.from(
+        "#avatar-full-a",
+        { opacity: 0, scale: 1.04, duration: 0.55, ease: "power2.out" },
+        0.08,
+      );
+      exitGlass("#scene-hook .hook-panel, #scene-hook .hook-card", 7.68, {
+        x: -62,
+        y: -72,
+        rotateY: -18,
+      });
+
+      transition("#tr-source", 7.92);
+      enter("#scene-source", 8.2);
+      tl.from(
+        "#scene-source .phone",
+        { x: -170, y: 80, rotateZ: -10, opacity: 0, duration: 0.72, ease: "expo.out" },
+        8.48,
+      );
+      tl.from(
+        "#scene-source .source-callout",
+        {
+          y: -58,
+          z: -160,
+          opacity: 0,
+          scale: 0.9,
+          rotateX: 18,
+          duration: 0.55,
+          ease: "back.out(1.55)",
+        },
+        8.72,
+      );
+      tl.from(
+        "#avatar-pip-a",
+        { x: 90, y: 100, opacity: 0, scale: 0.82, duration: 0.5, ease: "back.out(1.45)" },
+        8.55,
+      );
+      tl.to("#source-page-a", { y: -28000, duration: 12.8, ease: "power1.inOut" }, 8.9);
+      exitGlass("#scene-source .source-callout", 21.48, { x: -70, y: -42, rotateY: -18 });
+
+      transition("#tr-metrics", 21.86);
+      enter("#scene-metrics", 22.16);
+      tl.from(
+        "#scene-metrics .metric-card",
+        {
+          x: -92,
+          y: 86,
+          z: -220,
+          opacity: 0,
+          scale: 0.86,
+          rotateY: -28,
+          duration: 0.64,
+          stagger: 0.14,
+          ease: "back.out(1.65)",
+        },
+        22.7,
+      );
+      tl.from(
+        "#scene-metrics .metric-value",
+        { scale: 0.72, opacity: 0, duration: 0.44, stagger: 0.12, ease: "back.out(1.8)" },
+        23.08,
+      );
+      tl.to(
+        "#scene-metrics .metric-card",
+        { y: -18, duration: 1.0, repeat: 9, yoyo: true, stagger: 0.15, ease: "sine.inOut" },
+        26.0,
+      );
+      exitGlass("#scene-metrics .metric-card", 41.08, { x: 74, rotateY: 18 });
+
+      transition("#tr-loop", 41.42);
+      enter("#scene-loop", 41.72);
+      tl.from(
+        "#scene-loop .loop-core",
+        { z: -560, scale: 0.68, opacity: 0, rotateY: -48, duration: 0.72, ease: "expo.out" },
+        42.22,
+      );
+      tl.from(
+        "#scene-loop .line",
+        { scaleX: 0, opacity: 0, duration: 0.44, stagger: 0.08, ease: "power4.out" },
+        42.68,
+      );
+      tl.from(
+        "#scene-loop .loop-card",
+        {
+          x: -90,
+          y: -126,
+          z: -180,
+          opacity: 0,
+          scale: 0.86,
+          rotateY: 38,
+          duration: 0.58,
+          stagger: 0.12,
+          ease: "back.out(1.7)",
+        },
+        43.0,
+      );
+      tl.to(
+        "#scene-loop .loop-card",
+        {
+          y: -18,
+          rotateZ: 1.5,
+          duration: 0.88,
+          repeat: 6,
+          yoyo: true,
+          stagger: 0.08,
+          ease: "sine.inOut",
+        },
+        45.4,
+      );
+      tl.to(
+        "#scene-loop .loop-core",
+        { rotateY: 10, scale: 1.03, duration: 1.2, repeat: 5, yoyo: true, ease: "sine.inOut" },
+        44.8,
+      );
+      exitGlass("#scene-loop .loop-card, #scene-loop .loop-core", 55.86, {
+        x: -62,
+        y: -58,
+        rotateY: -22,
+      });
+
+      transition("#tr-pipeline", 56.16);
+      enter("#scene-pipeline", 56.46);
+      tl.from(
+        "#scene-pipeline .pipe-row",
+        {
+          x: -146,
+          y: 34,
+          z: -180,
+          opacity: 0,
+          scale: 0.9,
+          rotateY: -22,
+          duration: 0.55,
+          stagger: 0.13,
+          ease: "back.out(1.45)",
+        },
+        56.94,
+      );
+      tl.from(
+        "#scene-pipeline .pipe-num",
+        { scale: 0.7, opacity: 0, duration: 0.32, stagger: 0.12, ease: "back.out(1.8)" },
+        57.22,
+      );
+      tl.to(
+        "#scene-pipeline .pipe-status",
+        {
+          opacity: 0.55,
+          duration: 0.34,
+          repeat: 12,
+          yoyo: true,
+          stagger: 0.08,
+          ease: "power1.inOut",
+        },
+        59.2,
+      );
+      exitGlass("#scene-pipeline .pipe-row", 68.02, { x: 96, y: -22, rotateY: 18 });
+
+      transition("#tr-human", 68.38);
+      enter("#scene-human", 68.7);
+      tl.from(
+        "#avatar-full-b",
+        { opacity: 0, scale: 1.04, duration: 0.5, ease: "power2.out" },
+        68.74,
+      );
+      tl.from(
+        "#scene-human .human-panel",
+        { y: -74, z: -220, opacity: 0, scale: 0.9, rotateX: 18, duration: 0.66, ease: "expo.out" },
+        69.0,
+      );
+      tl.from(
+        "#scene-human .review-card",
+        {
+          y: 78,
+          z: -140,
+          opacity: 0,
+          scale: 0.88,
+          rotateY: 18,
+          duration: 0.52,
+          stagger: 0.14,
+          ease: "back.out(1.55)",
+        },
+        69.62,
+      );
+      exitGlass("#scene-human .human-panel, #scene-human .review-card", 96.28, {
+        y: -72,
+        rotateX: -18,
+      });
+
+      transition("#tr-mythos", 96.62);
+      enter("#scene-mythos", 96.92);
+      tl.from(
+        "#avatar-pip-b",
+        { x: 90, y: 100, opacity: 0, scale: 0.82, duration: 0.5, ease: "back.out(1.45)" },
+        97.1,
+      );
+      tl.from(
+        "#scene-mythos .mythos-chart-panel",
+        {
+          x: -86,
+          y: 64,
+          z: -220,
+          opacity: 0,
+          scale: 0.9,
+          rotateY: -22,
+          duration: 0.68,
+          ease: "expo.out",
+        },
+        97.36,
+      );
+      tl.from(
+        "#scene-mythos .chart-bar",
+        {
+          scaleY: 0,
+          transformOrigin: "bottom center",
+          opacity: 0.45,
+          duration: 0.58,
+          stagger: 0.025,
+          ease: "power3.out",
+        },
+        97.94,
+      );
+      tl.to(
+        "#scene-mythos .chart-zoom-plane",
+        { scale: 1.62, y: 118, duration: 1.05, ease: "power3.inOut" },
+        100.35,
+      );
+      tl.fromTo(
+        "#scene-mythos .chart-callout.opus",
+        { x: -48, opacity: 0, rotateY: -18 },
+        { x: 0, opacity: 1, rotateY: 0, duration: 0.48, ease: "back.out(1.55)" },
+        101.42,
+      );
+      tl.fromTo(
+        "#scene-mythos .chart-callout.mythos",
+        { x: 48, opacity: 0, rotateY: 18 },
+        { x: 0, opacity: 1, rotateY: 0, duration: 0.48, ease: "back.out(1.55)" },
+        102.58,
+      );
+      tl.to(
+        "#scene-mythos .mythos-chart-panel",
+        { y: -44, opacity: 0, scale: 0.96, rotateX: -10, duration: 0.5, ease: "power3.in" },
+        108.08,
+      );
+      tl.from(
+        "#scene-mythos .warning-card",
+        {
+          x: -140,
+          y: 34,
+          z: -180,
+          opacity: 0,
+          scale: 0.9,
+          rotateY: -28,
+          duration: 0.58,
+          stagger: 0.14,
+          ease: "back.out(1.65)",
+        },
+        108.74,
+      );
+      tl.from(
+        "#scene-mythos .warning-icon",
+        { scale: 0.62, opacity: 0, duration: 0.3, stagger: 0.12, ease: "back.out(2.2)" },
+        109.18,
+      );
+      tl.to(
+        "#scene-mythos .warning-card",
+        { y: -16, duration: 0.74, repeat: 15, yoyo: true, stagger: 0.1, ease: "sine.inOut" },
+        112.6,
+      );
+      exitGlass("#scene-mythos .warning-card", 128.44, { x: 94, y: -36, rotateY: 20 });
+
+      transition("#tr-source-return", 128.78);
+      enter("#scene-source-return", 129.08);
+      tl.from(
+        "#scene-source-return .phone",
+        { x: -160, y: 70, rotateZ: 9, opacity: 0, duration: 0.68, ease: "expo.out" },
+        129.34,
+      );
+      tl.from(
+        "#scene-source-return .source-callout",
+        {
+          y: -56,
+          z: -160,
+          opacity: 0,
+          scale: 0.9,
+          rotateX: 18,
+          duration: 0.54,
+          ease: "back.out(1.55)",
+        },
+        129.56,
+      );
+      tl.fromTo(
+        "#source-page-b",
+        { y: -24000 },
+        { y: -61000, duration: 14.2, ease: "power1.inOut", immediateRender: false },
+        129.62,
+      );
+      exitGlass("#scene-source-return .source-callout", 144.42, { x: -70, y: -42, rotateY: -18 });
+
+      transition("#tr-everywhere", 144.84);
+      enter("#scene-everywhere", 145.14);
+      tl.from(
+        "#scene-everywhere .network-core",
+        { scale: 0.68, opacity: 0, rotateY: -40, duration: 0.62, ease: "expo.out" },
+        145.58,
+      );
+      tl.from(
+        "#scene-everywhere .network-link",
+        { scaleX: 0, opacity: 0, duration: 0.42, stagger: 0.08, ease: "power4.out" },
+        145.98,
+      );
+      tl.from(
+        "#scene-everywhere .network-node",
+        {
+          x: -92,
+          y: -86,
+          z: -200,
+          opacity: 0,
+          scale: 0.86,
+          rotateY: 34,
+          duration: 0.58,
+          stagger: 0.12,
+          ease: "back.out(1.7)",
+        },
+        146.24,
+      );
+      tl.to(
+        "#scene-everywhere .network-node",
+        { y: -18, duration: 0.8, repeat: 9, yoyo: true, stagger: 0.08, ease: "sine.inOut" },
+        149.0,
+      );
+      tl.to(
+        "#scene-everywhere .network-link",
+        {
+          opacity: 0.45,
+          duration: 0.52,
+          repeat: 15,
+          yoyo: true,
+          stagger: 0.07,
+          ease: "power1.inOut",
+        },
+        149.1,
+      );
+      exitGlass("#scene-everywhere .network-node, #scene-everywhere .network-core", 162.62, {
+        x: 80,
+        y: -54,
+        rotateY: 22,
+      });
+
+      transition("#tr-control", 162.96);
+      enter("#scene-control", 163.26);
+      tl.from(
+        "#avatar-full-c",
+        { opacity: 0, scale: 1.04, duration: 0.5, ease: "power2.out" },
+        163.3,
+      );
+      tl.from(
+        "#scene-control .control-panel",
+        { y: -84, z: -220, opacity: 0, scale: 0.9, rotateX: 18, duration: 0.68, ease: "expo.out" },
+        163.56,
+      );
+      tl.from(
+        "#scene-control .choice",
+        { y: 40, opacity: 0, scale: 0.86, duration: 0.34, stagger: 0.12, ease: "back.out(1.8)" },
+        164.36,
+      );
+      tl.to(
+        "#scene-control .choice",
+        { y: -12, duration: 0.36, repeat: 7, yoyo: true, stagger: 0.12, ease: "power2.inOut" },
+        166.2,
+      );
+      exitGlass("#scene-control .control-panel", 172.24, { y: -82, rotateX: -20 });
+
+      transition("#tr-cta", 172.58);
+      enter("#scene-cta", 172.88);
+      tl.from(
+        "#scene-cta .cta-panel",
+        { y: 78, z: -220, opacity: 0, scale: 0.9, rotateX: 18, duration: 0.62, ease: "expo.out" },
+        173.05,
+      );
+      tl.from(
+        "#scene-cta .cta-pill",
+        { y: 36, opacity: 0, scale: 0.86, duration: 0.34, stagger: 0.08, ease: "back.out(1.7)" },
+        173.62,
+      );
+      tl.to(
+        "#scene-cta .cta-panel, #avatar-full-c",
+        { opacity: 0, y: -22, duration: 0.46, ease: "power2.in" },
+        176.28,
+      );
+
+      tl.to(".beam-a", { x: 720, duration: 26, repeat: 6, yoyo: true, ease: "sine.inOut" }, 0);
+      tl.to(".beam-b", { x: -760, duration: 31, repeat: 5, yoyo: true, ease: "sine.inOut" }, 3);
+      tl.to(".beam-c", { x: 640, duration: 29, repeat: 5, yoyo: true, ease: "sine.inOut" }, 6);
+
+      tl.set("#caption-stage", { bottom: 340, right: 58, left: 58 }, 0);
+      tl.set(
+        "#caption-stage",
+        { attr: { class: "clip caption-stage pip-caption" }, right: 330, left: 58, bottom: 340 },
+        8.2,
+      );
+      tl.set(
+        "#caption-stage",
+        { attr: { class: "clip caption-stage" }, right: 58, left: 58, bottom: 340 },
+        68.7,
+      );
+      tl.set(
+        "#caption-stage",
+        { attr: { class: "clip caption-stage pip-caption" }, right: 330, left: 58, bottom: 340 },
+        96.9,
+      );
+      tl.set(
+        "#caption-stage",
+        { attr: { class: "clip caption-stage" }, right: 58, left: 58, bottom: 340 },
+        163.5,
+      );
+
+      window.__timelines["anthropic-report-ai-builds-itself"] = tl;
+    </script>
+  </body>
+</html>

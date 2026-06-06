@@ -1,5 +1,9 @@
 # HyperFrames Patterns
 
+For visual styling of AI/news motion graphics, read
+`references/frosted-glass-motion.md` and use its glossy frosted-glass CSS and
+3D entrance patterns instead of flat white cards.
+
 ## Avatar Audio And Video
 
 Use the HeyGen MP4 once as narration audio, then use muted video clips for the

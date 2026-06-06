@@ -19,6 +19,8 @@ Read these references as needed:
   footage, maps/landmark visuals, and project-bound B-roll assets before
   building motion graphics.
 - `references/hyperframes-patterns.md`: composition structure, timing, scene gates, thumbnail overlay, avatar layouts, and CSS snippets.
+- `references/frosted-glass-motion.md`: reusable glossy frosted-glass card
+  style, high-tech light AI background, and 3D GSAP entrance/float snippets.
 - `references/gotchas.md`: fixes for the exact issues encountered, including side stripes, missing render shadows, rounded corners, duplicate media warnings, and PowerShell quirks.
 - `references/studio-render.md`: light Studio commands, validation, snapshots, and render variants.
 - `references/youtube-metadata.md`: title, description, hashtags, tags, SEO
@@ -50,6 +52,11 @@ Read these references as needed:
    JSON array of `{ "id": "...", "url": "..." }` entries and run
    `node scripts/capture-mobile-broll.mjs <slug> <sources-json>`.
 8. Build `index.html` as a 1080x1920 HyperFrames composition.
+   Use the frosted-glass motion style by default for AI/news overlays:
+   translucent layered cards, white rim highlights, inner shine, blue/pink/orange
+   glows, light high-tech background layers, large readable labels, and 3D
+   glass-card entrances. Read `references/frosted-glass-motion.md` before
+   designing reusable cards, graph callouts, or source-B-roll overlays.
 9. Use the avatar MP4 as a separate `<audio>` track plus muted `<video>` clips.
 10. Time scenes from the SRT. Gate each scene with timeline `set()` calls so
     only the active scene is visible.

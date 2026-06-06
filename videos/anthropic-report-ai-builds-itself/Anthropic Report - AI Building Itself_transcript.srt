@@ -1,0 +1,322 @@
+1
+00:00:00,020 --> 00:00:03,235
+You think uh scariest part of AI
+is that it's gonna replace you.
+
+2
+00:00:03,255 --> 00:00:04,557
+No the scariest part of
+
+3
+00:00:04,577 --> 00:00:06,757
+AI is that it's gonna replace itself.
+
+4
+00:00:06,777 --> 00:00:10,148
+Anthropic just published a report
+just like two days ago on June 4th.
+
+5
+00:00:10,168 --> 00:00:12,105
+report is called when AI builds itself,
+
+6
+00:00:12,125 --> 00:00:14,479
+the report anthropic talks about how today
+
+7
+00:00:14,499 --> 00:00:16,983
+eighty percent of uh the code which is
+
+8
+00:00:17,003 --> 00:00:19,305
+merged into production is AI coded.
+
+9
+00:00:19,325 --> 00:00:22,148
+Think about it, I mean this is
+this has a huge consequence.
+
+10
+00:00:22,168 --> 00:00:24,652
+Anthropic is one of the leading AI research
+
+11
+00:00:24,672 --> 00:00:26,681
+It's it's essentially Building
+
+12
+00:00:26,701 --> 00:00:28,281
+the top of the line models.
+
+13
+00:00:28,301 --> 00:00:31,985
+and not just top of the line models, they
+are like the best models the planet.
+
+14
+00:00:32,005 --> 00:00:34,290
+and 80% of the code that this leading company
+
+15
+00:00:34,310 --> 00:00:37,296
+is actually writing is not written by humans.
+
+16
+00:00:37,316 --> 00:00:38,879
+It's written by AI.
+
+17
+00:00:38,899 --> 00:00:40,003
+Their own models.
+
+18
+00:00:40,023 --> 00:00:41,663
+So AI is building itself.
+
+19
+00:00:41,683 --> 00:00:43,107
+And there is still twenty
+
+20
+00:00:43,127 --> 00:00:45,498
+percent where humans are involved, clearly,
+
+21
+00:00:45,518 --> 00:00:47,977
+but this report they argue that how
+
+22
+00:00:47,997 --> 00:00:50,551
+quickly this loop is closing, in other words,
+
+23
+00:00:50,571 --> 00:00:52,846
+the human intervention is reducing day by
+
+24
+00:00:52,866 --> 00:00:54,586
+day, and more and more
+
+25
+00:00:54,606 --> 00:00:56,455
+code is being written AI.
+
+26
+00:00:56,475 --> 00:00:59,342
+It's being reviewed by AI,
+probably, and it's being tested
+
+27
+00:00:59,362 --> 00:01:01,542
+by AI, it's being merged into the production.
+
+28
+00:01:01,562 --> 00:01:03,847
+and the thing to note is that we
+are not talking about any code.
+
+29
+00:01:03,867 --> 00:01:07,534
+We are talking about the final code that gets
+reviewed and that gets tested and all this,
+
+30
+00:01:07,554 --> 00:01:09,255
+and that goes into the production
+
+31
+00:01:09,275 --> 00:01:11,012
+pipeline of Anthropic So AI is
+
+32
+00:01:11,032 --> 00:01:13,099
+essentially building AI itself.
+
+33
+00:01:13,119 --> 00:01:16,334
+And it's just a matter of time when humans
+are gonna be completely out of the loop.
+
+34
+00:01:16,354 --> 00:01:18,160
+And AI will be completely building itself.
+
+35
+00:01:18,180 --> 00:01:20,595
+So today, at least senior
+engineers and those who
+
+36
+00:01:20,615 --> 00:01:24,446
+can review the code that AI is building, they
+could tell that whether the AI is going in the
+
+37
+00:01:24,466 --> 00:01:28,203
+right direction or not, code is the code good
+enough to basically merge into production or
+
+38
+00:01:28,223 --> 00:01:30,429
+not, but this loop is closing.
+
+39
+00:01:30,449 --> 00:01:31,959
+This is not gonna last very long.
+
+40
+00:01:31,979 --> 00:01:34,655
+Pretty soon AI will be writing such a good code
+
+41
+00:01:34,675 --> 00:01:36,872
+we will not even need human review as such.
+
+42
+00:01:36,892 --> 00:01:40,360
+Anthropic had already announced a
+model which actually is super scary.
+
+43
+00:01:40,380 --> 00:01:41,847
+mean that model is so good.
+
+44
+00:01:41,867 --> 00:01:44,456
+called Mythos That haven't
+even released it publicly.
+
+45
+00:01:44,476 --> 00:01:48,343
+was able to identify new vulnerabilities in
+the existing code, the code that exists for
+
+46
+00:01:48,363 --> 00:01:50,065
+like years, like Linux kernel,
+
+47
+00:01:50,085 --> 00:01:52,908
+OpenSSL, which is actually a security layer,
+
+48
+00:01:52,928 --> 00:01:55,204
+which most of the websites or most of the
+
+49
+00:01:55,224 --> 00:01:57,160
+entities on internet are
+
+50
+00:01:57,180 --> 00:02:01,360
+actively using to secure their artifacts.
+It found vulnerabilities in those software.
+
+51
+00:02:01,380 --> 00:02:04,230
+it's not just that it found the
+vulnerabilities, that's not the scary part.
+
+52
+00:02:04,250 --> 00:02:07,195
+The scary part is that it's found the way
+
+53
+00:02:07,215 --> 00:02:09,511
+to exploit those vulnerabilities as as well.
+
+54
+00:02:09,531 --> 00:02:11,755
+that's the part of the reason why uh Andropic
+
+55
+00:02:11,775 --> 00:02:13,624
+did not uh publicly release that model.
+
+56
+00:02:13,644 --> 00:02:16,477
+They have basically released
+it in a very limited scope.
+
+57
+00:02:16,497 --> 00:02:18,912
+They're giving it to these uh
+big companies first to make
+
+58
+00:02:18,932 --> 00:02:22,842
+sure that before they release it into wild, uh
+they have already tightened their security.
+
+59
+00:02:22,862 --> 00:02:24,779
+It is so dangerous at this point.
+
+60
+00:02:24,806 --> 00:02:27,425
+So yeah, we are going
+
+61
+00:02:27,445 --> 00:02:31,007
+into the world which is gonna be completely
+different from the world that we know today.
+
+62
+00:02:31,027 --> 00:02:33,016
+AI will be everywhere, AI is going to run
+
+63
+00:02:33,036 --> 00:02:35,355
+the internet, AI is going to run our research,
+
+64
+00:02:35,375 --> 00:02:36,819
+AI is going to run.
+
+65
+00:02:36,839 --> 00:02:38,175
+Every aspect of our life.
+
+66
+00:02:38,195 --> 00:02:40,410
+And it could be good thing,
+but could be scary as well.
+
+67
+00:02:40,430 --> 00:02:41,358
+I mean it is scary.
+
+68
+00:02:41,378 --> 00:02:41,912
+Obviously.
+
+69
+00:02:41,932 --> 00:02:43,566
+another aspect to it also.
+
+70
+00:02:43,586 --> 00:02:47,339
+if AI can improve itself faster than
+these institutions can understand it,
+
+71
+00:02:47,359 --> 00:02:48,905
+regulate it, or even measure it,
+
+72
+00:02:48,925 --> 00:02:51,044
+biggest question is no longer what can AI do.
+
+73
+00:02:51,064 --> 00:02:53,132
+biggest question is Who is still in control?
+
+74
+00:02:53,152 --> 00:02:54,280
+The humans or AI?
+
+75
+00:02:54,300 --> 00:02:56,930
+you like AI videos like this,
+like subscribe and follow.
