@@ -1,6 +1,6 @@
 ---
 name: short-form-video-from-slides
-description: Create polished 9:16 short-form educational videos from one or two selected horizontal slide images using a HeyGen Avatar III instructor, downloaded MP4 and SRT timing, slide-native HyperFrames camera choreography, cursor and underline emphasis, an AI-tech background, outlined word-highlight captions, subtle synced sound effects, a generated 0.5-second thumbnail intro, and a course plus subscribe-follow-like CTA. Use when the user asks to turn presentation slides, training slides, diagrams, or 16:9 educational slide images into a complete social short, Reel, TikTok, or YouTube Short without stopping at intermediate approvals.
+description: Create polished 9:16 short-form educational videos from one or two selected horizontal slide images using a HeyGen Avatar III instructor, downloaded MP4 and SRT timing, slide-native HyperFrames camera choreography, precise slide highlights, an AI-tech background, outlined word-highlight captions, audible synced sound effects, a thumbnail brand followed by GPT/image-model thumbnail generation, and a course plus subscribe-follow-like CTA. Use when the user asks to turn presentation slides, training slides, diagrams, or 16:9 educational slide images into a complete social short, Reel, TikTok, or YouTube Short without stopping at intermediate approvals.
 ---
 
 # Short Form Video from Slides
@@ -30,6 +30,7 @@ Produce:
 - `videos/<slug>/index.html`
 - `videos/<slug>/visual-style.md`
 - `videos/<slug>/script.md`
+- `videos/<slug>/thumbnail-brand.md`
 - `videos/<slug>/thumbnail-prompt.md`
 - `videos/<slug>/youtube-metadata.md`
 - `videos/<slug>/assets/slides/`
@@ -50,10 +51,13 @@ Produce:
    the narration. In every overview, fit the complete slide width so both left
    and right edges remain visible. Pan to the exact diagram section being
    discussed only during deliberate teaching close-ups.
-4. Use a cursor, translucent focus region, or underline to guide attention.
+4. Use a translucent focus region or underline to guide attention.
    Place title underlines below the title baseline so the title remains visible.
-   Snapshot every underline hero frame after changing any overview scale; tune
-   each underline's position and width independently.
+   Snapshot every highlight hero frame after changing any camera transform; tune
+   each highlight's `x`, `y`, `scale`, and slide camera position independently
+   until the highlight sits exactly over the named slide region. If the target
+   text starts off-canvas or outside the highlight, move the slide camera before
+   resizing the rectangle.
 5. Resize the instructor panel dynamically:
    - compact portrait near detail views;
    - wider rectangular panel when a zoomed-out slide leaves lower-canvas space;
@@ -69,7 +73,8 @@ Produce:
    sweep on the active word. Remove the outline from the active word itself.
 9. Add audible but narration-safe synced SFX: whooshes for camera movement,
    pings or clicks for focused concepts, pops for callouts, and a chime for the
-   CTA.
+   CTA. Use clear, present SFX volumes and verify they are audible in the final
+   MP4 without fighting the narration.
 10. End with a compelling AI-course CTA and an engagement CTA in this exact
     order: `Subscribe`, `Follow`, `Like`.
 11. During the CTA, enlarge the instructor panel close to full canvas width and
@@ -115,8 +120,11 @@ npx.cmd hyperframes render --output renders\<slug>-final.mp4 --quality high --wo
 
 Verify the final MP4 with `ffprobe`, extract QA PNGs with `ffmpeg`, inspect the
 initial scan, every underline state, wide avatar crop, compact avatar crop,
-active caption styling, slide transition, AI-tech background, and expanded CTA
-avatar.
+active caption styling, slide transition, AI-tech background, every fullscreen
+motion-graphics card, and expanded CTA avatar. Motion-graphics cards must be
+dense enough for their content: shrink or reposition cards when empty vertical
+space makes the frame look unfinished, and keep token/chip rows inside the card
+that explains them.
 
 Create `youtube-metadata.md` and verify that every listed SEO keyword appears
 in the public description and the YouTube Studio tags remain within the

@@ -1,0 +1,33 @@
+/* AI 101 — shared theme tokens (referenced via <link> from each slide) */
+:root {
+  --canvas-w: 1920px;
+  --canvas-h: 1080px;
+
+  /* Light theme base */
+  --bg: #FBF8F3;
+  /* warm off-white */
+  --bg-alt: #F4EFE6;
+  /* slightly deeper warm */
+  --ink: #2F3744;
+  /* dark gray for primary text */
+  --ink-2: #3A4A63;
+  --muted: #7B8AA1;
+  --line: #E4DCCB;
+
+  /* Brand triad */
+  --blue: #2563EB;
+  --blue-2: #1E40AF;
+  --blue-soft: #DBEAFE;
+
+  --pink: #EC4899;
+  --pink-2: #BE185D;
+  --pink-soft: #FCE7F3;
+
+  --orange: #F97316;
+  --orange-2: #C2410C;
+  --orange-soft: #FFEDD5;
+
+  --shadow-sm: 0 2px 8px rgba(15, 27, 45, 0.06);
+  --shadow-md: 0 8px 24px rgba(15, 27, 45, 0.08);
+  --shadow-lg: 0 20px 60px rgba(15, 27, 45, 0.12);
+}

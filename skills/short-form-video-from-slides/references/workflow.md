@@ -138,10 +138,21 @@ Save `visual-style.md` before composition edits. Default style:
 - smooth editorial pans and holds;
 - no unrelated motion-graphics scenes.
 
-## 8. Generate the Thumbnail
+## 8. Define the Thumbnail Brand, Then Generate
 
-Write `thumbnail-prompt.md`, then use an image generation model to produce a
-real raster asset. Do not approximate the thumbnail with an HTML card.
+Write `thumbnail-brand.md` first. This is the compact art-direction contract for
+all thumbnails in the video series. Include:
+
+- emotional promise and click trigger;
+- 2-3 recurring visual motifs;
+- color and lighting rules;
+- text hierarchy rules for phone-size readability;
+- banned elements such as clutter, logos, watermarks, tiny UI, and avatar use
+  unless explicitly requested.
+
+Then write `thumbnail-prompt.md` from that brand and use a GPT/image generation
+model to produce a real raster asset. Do not approximate the thumbnail with an
+HTML card.
 
 Prompt for:
 
@@ -176,6 +187,7 @@ Add:
 - true full-slide overview states with visible left and right edges, plus
   deliberate close-up camera states;
 - cursor, focus box, and low underline;
+- no black pointer arrows unless the user explicitly asks for a cursor;
 - compact and wide avatar states;
 - AI-tech background;
 - caption groups;
@@ -187,16 +199,16 @@ Use local files only during render.
 
 ## 10. Add Sound Design
 
-Use audible but narration-safe SFX:
+Use audible, present, but narration-safe SFX. Default toward the high end of
+these ranges unless the narration becomes hard to understand:
 
 | Event | Suggested SFX | Typical volume |
 | --- | --- | --- |
-| Thumbnail reveal exit | soft whoosh | `0.26-0.30` |
-| Camera settle or slide movement | soft whoosh | `0.30-0.36` |
-| First concept focus | ping | `0.28-0.32` |
-| Small pointer movement | click | `0.24-0.28` |
-| Callout or marker | pop | `0.26-0.30` |
-| Course CTA entrance | chime | `0.34-0.38` |
+| Thumbnail reveal exit | soft whoosh | `0.42-0.52` |
+| Camera settle or slide movement | soft whoosh | `0.46-0.56` |
+| First concept focus | ping | `0.46-0.56` |
+| Callout or marker | pop | `0.42-0.52` |
+| Course CTA entrance | chime | `0.54-0.64` |
 
 Each timed `<audio>` needs:
 
@@ -236,10 +248,14 @@ Use `ffmpeg` to extract representative PNGs for visual QA. Inspect:
 
 - thumbnail at `0.0-0.5s`;
 - scan around `1-4s`;
-- every underline hero frame;
+- every focus rectangle, underline, and slide-highlight hero frame; the target
+  slide region must be fully inside the highlight, and the camera must not crop
+  off the beginning or end of highlighted text;
 - wide avatar state;
 - compact avatar state;
 - both slide walkthroughs;
+- motion-graphics cards for excess empty space, odd card height, and chip rows
+  escaping the card they belong to;
 - medium solid blue active caption text with a translucent highlight sweep;
 - CTA card, expanded CTA avatar, caption clearance, and engagement order.
 

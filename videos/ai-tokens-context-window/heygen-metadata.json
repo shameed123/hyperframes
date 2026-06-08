@@ -1,0 +1,6 @@
+{
+  "videoId": "d20fbedc93c7472b8a56aae478fa3ca0",
+  "createdAt": "2026-06-08T19:21:23.304Z",
+  "apiVersion": "v2",
+  "statusEndpoint": "GET https://api.heygen.com/v1/video_status.get"
+}

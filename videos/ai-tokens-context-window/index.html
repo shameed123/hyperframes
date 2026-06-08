@@ -1,0 +1,938 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #f8fcff;
+        color: #172033;
+        font-family: "JetBrains Mono", Consolas, monospace;
+      }
+
+      #root {
+        position: relative;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        perspective: 1800px;
+        background:
+          radial-gradient(ellipse at 18% 8%, rgba(59, 130, 246, 0.22), transparent 34%),
+          radial-gradient(ellipse at 86% 16%, rgba(236, 72, 153, 0.18), transparent 32%),
+          radial-gradient(ellipse at 50% 95%, rgba(249, 115, 22, 0.14), transparent 36%),
+          linear-gradient(145deg, #fbfdff 0%, #eaf5ff 44%, #fff7ef 100%);
+      }
+
+      #root::before {
+        content: "";
+        position: absolute;
+        inset: -220px;
+        background:
+          linear-gradient(90deg, rgba(59, 130, 246, 0.12) 1px, transparent 1px),
+          linear-gradient(0deg, rgba(16, 24, 39, 0.07) 1px, transparent 1px),
+          linear-gradient(
+            60deg,
+            transparent 0 48%,
+            rgba(59, 130, 246, 0.12) 48% 49%,
+            transparent 49% 100%
+          ),
+          linear-gradient(
+            120deg,
+            transparent 0 58%,
+            rgba(236, 72, 153, 0.1) 58% 59%,
+            transparent 59% 100%
+          );
+        background-size:
+          74px 74px,
+          74px 74px,
+          460px 460px,
+          540px 540px;
+        opacity: 0.78;
+        transform: rotate(-9deg);
+      }
+
+      .clip,
+      .layer {
+        position: absolute;
+      }
+
+      .slide-layer {
+        position: absolute;
+        inset: 0;
+        z-index: 5;
+        overflow: hidden;
+        will-change: opacity;
+      }
+
+      .slide-canvas {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        border: 2px solid rgba(255, 255, 255, 0.88);
+        border-radius: 24px;
+        background: #fbf8f3;
+        box-shadow:
+          0 42px 110px rgba(47, 55, 68, 0.22),
+          0 0 0 1px rgba(47, 55, 68, 0.05);
+        transform-origin: 0 0;
+        will-change: transform;
+      }
+
+      .slide-canvas img {
+        display: block;
+        width: 1920px;
+        height: 1080px;
+      }
+
+      .topbar {
+        position: absolute;
+        left: 48px;
+        right: 48px;
+        top: 44px;
+        z-index: 40;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .lesson-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 18px;
+        border: 1px solid rgba(37, 99, 235, 0.18);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.84);
+        color: #1e40af;
+        font-size: 17px;
+        font-weight: 900;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        box-shadow: 0 18px 46px rgba(47, 55, 68, 0.12);
+        backdrop-filter: blur(18px) saturate(1.16);
+      }
+
+      .lesson-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #ec4899;
+      }
+
+      .focus-box,
+      .marker-line {
+        position: absolute;
+        z-index: 38;
+        pointer-events: none;
+      }
+
+      .focus-box {
+        width: 760px;
+        height: 150px;
+        border: 4px solid rgba(249, 115, 22, 0.72);
+        border-radius: 24px;
+        background: rgba(249, 115, 22, 0.12);
+        box-shadow: 0 0 42px rgba(249, 115, 22, 0.2);
+        opacity: 0;
+        transform-origin: 0 0;
+      }
+
+      .marker-line {
+        width: 560px;
+        height: 12px;
+        border-radius: 999px;
+        background: rgba(249, 115, 22, 0.78);
+        opacity: 0;
+        transform-origin: left center;
+      }
+
+      .cursor {
+        position: absolute;
+        display: none;
+        z-index: 45;
+        width: 0;
+        height: 0;
+        border-left: 30px solid #172033;
+        border-top: 22px solid transparent;
+        border-bottom: 22px solid transparent;
+        filter: drop-shadow(0 14px 20px rgba(15, 23, 42, 0.24));
+        opacity: 0;
+      }
+
+      .glass-scene {
+        position: absolute;
+        inset: 0;
+        z-index: 20;
+        overflow: hidden;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .glass {
+        position: absolute;
+        border: 1px solid rgba(255, 255, 255, 0.92);
+        background:
+          radial-gradient(circle at 14% 18%, rgba(59, 130, 246, 0.25), transparent 34%),
+          radial-gradient(circle at 88% 8%, rgba(236, 72, 153, 0.2), transparent 28%),
+          radial-gradient(circle at 50% 110%, rgba(249, 115, 22, 0.16), transparent 34%),
+          linear-gradient(145deg, rgba(255, 255, 255, 0.64), rgba(255, 255, 255, 0.26)),
+          rgba(177, 220, 255, 0.34);
+        box-shadow:
+          0 42px 112px rgba(18, 92, 170, 0.2),
+          0 0 74px rgba(59, 130, 246, 0.16),
+          inset 0 1px 0 rgba(255, 255, 255, 0.74),
+          inset 0 -24px 52px rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(34px) saturate(1.48);
+        -webkit-backdrop-filter: blur(34px) saturate(1.48);
+        overflow: hidden;
+        isolation: isolate;
+        transform-style: preserve-3d;
+      }
+
+      .glass::before,
+      .glass::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .glass::before {
+        background:
+          linear-gradient(130deg, rgba(255, 255, 255, 0.52), transparent 28%),
+          linear-gradient(300deg, rgba(255, 255, 255, 0.18), transparent 42%);
+        mix-blend-mode: screen;
+      }
+
+      .glass::after {
+        inset: 9px;
+        border: 1px solid rgba(255, 255, 255, 0.48);
+        opacity: 0.64;
+      }
+
+      .glass > * {
+        position: relative;
+        z-index: 2;
+      }
+
+      .tokenizer-panel {
+        left: 66px;
+        right: 66px;
+        top: 180px;
+        height: 700px;
+        border-radius: 28px;
+        padding: 48px;
+      }
+
+      .scene-kicker {
+        color: #1d4ed8;
+        font-size: 22px;
+        font-weight: 900;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .scene-title {
+        margin-top: 20px;
+        color: #172033;
+        font-family: "Instrument Serif", Georgia, serif;
+        font-size: 82px;
+        font-weight: 400;
+        line-height: 0.94;
+      }
+
+      .prompt-line {
+        margin-top: 50px;
+        padding: 28px 30px;
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.78);
+        color: #273449;
+        font-size: 32px;
+        font-weight: 800;
+        box-shadow: 0 24px 70px rgba(47, 55, 68, 0.13);
+      }
+
+      .floating-tokens {
+        position: absolute;
+        left: 96px;
+        right: 96px;
+        top: 690px;
+        z-index: 26;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        transform-style: preserve-3d;
+      }
+
+      .token-card {
+        position: relative;
+        padding: 18px 18px;
+        border-radius: 16px;
+        color: #172033;
+        font-size: 28px;
+        font-weight: 900;
+      }
+
+      .ratio-card {
+        left: 136px;
+        right: 420px;
+        bottom: 352px;
+        height: 210px;
+        border-radius: 24px;
+        padding: 28px 36px;
+        color: #172033;
+      }
+
+      .ratio-card strong {
+        display: block;
+        color: #1d4ed8;
+        font-size: 66px;
+        line-height: 0.95;
+      }
+
+      .ratio-card span {
+        display: block;
+        margin-top: 16px;
+        color: #334155;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 25px;
+        font-weight: 800;
+        line-height: 1.18;
+      }
+
+      .memory-panel {
+        left: 58px;
+        right: 58px;
+        top: 250px;
+        height: 900px;
+        border-radius: 30px;
+        padding: 46px;
+      }
+
+      .memory-window {
+        position: absolute;
+        left: 96px;
+        right: 96px;
+        top: 585px;
+        height: 260px;
+        border-radius: 26px;
+        border: 3px solid rgba(29, 78, 216, 0.5);
+        background: rgba(255, 255, 255, 0.42);
+        box-shadow: inset 0 0 0 8px rgba(255, 255, 255, 0.32);
+        overflow: hidden;
+      }
+
+      .memory-track {
+        position: absolute;
+        left: 36px;
+        top: 84px;
+        display: flex;
+        gap: 18px;
+        will-change: transform;
+      }
+
+      .memory-token {
+        flex: 0 0 auto;
+        min-width: 155px;
+        padding: 24px 18px;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.78);
+        color: #172033;
+        font-size: 26px;
+        font-weight: 900;
+        text-align: center;
+        box-shadow: 0 18px 34px rgba(15, 23, 42, 0.16);
+      }
+
+      .forget-label {
+        position: absolute;
+        left: 110px;
+        right: 110px;
+        top: 460px;
+        color: #f97316;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 38px;
+        font-weight: 900;
+        line-height: 1.08;
+      }
+
+      .avatar-frame {
+        position: absolute;
+        right: 44px;
+        bottom: 70px;
+        z-index: 52;
+        width: 330px;
+        height: 388px;
+        overflow: hidden;
+        border: 2px solid rgba(255, 255, 255, 0.9);
+        border-radius: 28px;
+        background: #ffffff;
+        box-shadow: none;
+        filter: drop-shadow(0 28px 48px rgba(15, 23, 42, 0.25));
+        transform-origin: right bottom;
+        transform-style: preserve-3d;
+        will-change: transform;
+        opacity: 0;
+      }
+
+      .avatar-frame video {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 590px;
+        height: 394px;
+        object-fit: cover;
+        transform: translate(-50%, -50%) scale(1.14);
+        will-change: transform;
+      }
+
+      .avatar-label {
+        position: absolute;
+        right: 52px;
+        bottom: 472px;
+        z-index: 53;
+        padding: 10px 14px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.86);
+        color: #1d4ed8;
+        font-size: 14px;
+        font-weight: 900;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        box-shadow: 0 14px 34px rgba(15, 23, 42, 0.12);
+        opacity: 0;
+      }
+
+
+      .course-card {
+        position: absolute;
+        left: 56px;
+        right: 56px;
+        top: 280px;
+        z-index: 47;
+        min-height: 650px;
+        padding: 42px;
+        border-radius: 28px;
+        opacity: 0;
+      }
+
+      .course-card h2 {
+        color: #172033;
+        font-family: "Instrument Serif", Georgia, serif;
+        font-size: 72px;
+        font-weight: 400;
+        line-height: 0.95;
+      }
+
+      .course-card h2 em {
+        color: #ec4899;
+        font-weight: 400;
+      }
+
+      .course-card p {
+        margin-top: 24px;
+        color: #334155;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 31px;
+        font-weight: 800;
+        line-height: 1.16;
+      }
+
+      .course-item {
+        margin-top: 26px;
+        padding: 20px 22px;
+        border-radius: 18px;
+        background: rgba(219, 234, 254, 0.74);
+        color: #1e40af;
+        font-size: 23px;
+        font-weight: 900;
+        line-height: 1.18;
+      }
+
+      .route-pills,
+      .engagement-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin-top: 28px;
+      }
+
+      .route-pill,
+      .engagement-pill {
+        padding: 15px 18px;
+        border-radius: 999px;
+        color: #ffffff;
+        font-size: 20px;
+        font-weight: 900;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .route-pill {
+        background: #f97316;
+      }
+
+      .engagement-pill {
+        background: #1d4ed8;
+      }
+
+      .thumbnail-card {
+        position: absolute;
+        inset: 0;
+        z-index: 100;
+        background: #f8fcff;
+      }
+
+      .thumbnail-card img {
+        width: 1080px;
+        height: 1920px;
+        object-fit: cover;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="root"
+      data-start="0"
+      data-width="1080"
+      data-height="1920"
+      data-duration="54.167"
+    >
+      <div class="slide-layer" data-layout-allow-overflow>
+        <div id="slide-canvas" class="slide-canvas" data-layout-allow-overflow>
+          <img src="assets/slides/tokens-context.png" alt="Tokens and context window slide" />
+        </div>
+      </div>
+
+      <div class="topbar">
+        <div class="lesson-pill"><span class="lesson-dot"></span>AI 101</div>
+        <div class="lesson-pill">Tokens + context</div>
+      </div>
+
+      <div id="focus-box" class="focus-box"></div>
+      <div id="marker-line" class="marker-line"></div>
+      <div id="cursor" class="cursor"></div>
+
+      <section id="tokenizer-scene" class="glass-scene">
+        <div class="tokenizer-panel glass">
+          <div class="scene-kicker">How the model sees text</div>
+          <h1 class="scene-title">Words become model-readable chunks.</h1>
+          <div class="prompt-line">"Artificial intelligence is wonderful."</div>
+        </div>
+        <div class="floating-tokens">
+          <div class="token-card glass">Artificial</div>
+          <div class="token-card glass">intelligence</div>
+          <div class="token-card glass">is</div>
+          <div class="token-card glass">wonder</div>
+          <div class="token-card glass">ful</div>
+          <div class="token-card glass">.</div>
+        </div>
+        <div class="ratio-card glass">
+          <strong>1 token</strong>
+          <span>is roughly three quarters of an English word.</span>
+        </div>
+      </section>
+
+      <section id="memory-scene" class="glass-scene">
+        <div class="memory-panel glass">
+          <div class="scene-kicker">Context window</div>
+          <h1 class="scene-title">The model's short-term memory.</h1>
+          <div class="memory-window" data-layout-allow-overflow>
+            <div id="memory-track" class="memory-track" data-layout-allow-overflow>
+              <div class="memory-token">Prompt</div>
+              <div class="memory-token">Rules</div>
+              <div class="memory-token">Examples</div>
+              <div class="memory-token">Question</div>
+              <div class="memory-token">New info</div>
+              <div class="memory-token">Answer</div>
+              <div class="memory-token">Follow-up</div>
+            </div>
+          </div>
+          <div class="forget-label">New tokens enter. Older tokens can slide out of view.</div>
+        </div>
+      </section>
+
+      <section id="course-card" class="course-card glass">
+        <div class="scene-kicker">Free course</div>
+        <h2>Complete <em>AI for beginners</em> course</h2>
+        <p>Understand AI without the jargon.</p>
+        <div class="course-item">
+          Training, inference, tokens, prompts, AI agents, APIs, ChatGPT, coding agents, and more
+        </div>
+        <div class="route-pills">
+          <div class="route-pill">Description</div>
+          <div class="route-pill">Bio</div>
+          <div class="route-pill">Pinned comment</div>
+        </div>
+        <div class="engagement-row">
+          <div class="engagement-pill">Subscribe</div>
+          <div class="engagement-pill">Follow</div>
+          <div class="engagement-pill">Like</div>
+        </div>
+      </section>
+
+
+
+      <div id="avatar-label" class="avatar-label">AI Instructor</div>
+      <div id="avatar-frame" class="avatar-frame" data-layout-allow-overflow>
+        <video
+          id="avatar-video"
+          class="clip"
+          data-layout-allow-overflow
+          data-start="0"
+          data-duration="54.167"
+          data-track-index="2"
+          src="assets/avatar/heygen-avatar-16x9-seekable.mp4"
+          muted
+          playsinline
+        ></video>
+      </div>
+      <audio
+        id="narration"
+        class="clip"
+        data-start="0"
+        data-duration="54.167"
+        data-track-index="10"
+        src="assets/avatar/heygen-avatar-16x9.mp4"
+      ></audio>
+
+      <audio
+        id="sfx-thumbnail-whoosh"
+        class="clip"
+        data-start="0.46"
+        data-duration="0.55"
+        data-track-index="20"
+        data-volume="0.48"
+        src="assets/sfx/whoosh-soft.wav"
+      ></audio>
+      <audio
+        id="sfx-scan"
+        class="clip"
+        data-start="0.72"
+        data-duration="0.55"
+        data-track-index="21"
+        data-volume="0.5"
+        src="assets/sfx/whoosh-soft.wav"
+      ></audio>
+      <audio
+        id="sfx-sentence"
+        class="clip"
+        data-start="5.2"
+        data-duration="0.14"
+        data-track-index="22"
+        data-volume="0.48"
+        src="assets/sfx/pop-soft.wav"
+      ></audio>
+      <audio
+        id="sfx-token-pop"
+        class="clip"
+        data-start="10.2"
+        data-duration="0.28"
+        data-track-index="23"
+        data-volume="0.52"
+        src="assets/sfx/ping-soft.wav"
+      ></audio>
+      <audio
+        id="sfx-tokenizer"
+        class="clip"
+        data-start="18.5"
+        data-duration="0.55"
+        data-track-index="24"
+        data-volume="0.54"
+        src="assets/sfx/whoosh-soft.wav"
+      ></audio>
+      <audio
+        id="sfx-context"
+        class="clip"
+        data-start="24.5"
+        data-duration="0.55"
+        data-track-index="25"
+        data-volume="0.52"
+        src="assets/sfx/whoosh-soft.wav"
+      ></audio>
+      <audio
+        id="sfx-memory"
+        class="clip"
+        data-start="28.5"
+        data-duration="0.34"
+        data-track-index="26"
+        data-volume="0.52"
+        src="assets/sfx/pong-soft.wav"
+      ></audio>
+      <audio
+        id="sfx-forget"
+        class="clip"
+        data-start="34.0"
+        data-duration="0.14"
+        data-track-index="27"
+        data-volume="0.48"
+        src="assets/sfx/pop-soft.wav"
+      ></audio>
+      <audio
+        id="sfx-recap"
+        class="clip"
+        data-start="39.2"
+        data-duration="0.55"
+        data-track-index="28"
+        data-volume="0.52"
+        src="assets/sfx/whoosh-soft.wav"
+      ></audio>
+      <audio
+        id="sfx-course-chime"
+        class="clip"
+        data-start="43.2"
+        data-duration="0.5"
+        data-track-index="29"
+        data-volume="0.6"
+        src="assets/sfx/chime-soft.wav"
+      ></audio>
+
+      <section id="thumbnail-card" class="thumbnail-card">
+        <img
+          src="assets/thumbnails/ai-tokens-context-window-generated.png"
+          alt="AI reads tokens not words"
+        />
+      </section>
+
+
+      <script>
+        window.__timelines = window.__timelines || {};
+        const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
+
+
+
+        tl.set("#slide-canvas", { x: 0, y: 0, scale: 1.778 }, 0);
+        tl.to("#thumbnail-card", { opacity: 0, duration: 0.12, ease: "power1.out" }, 0.46);
+        tl.set("#thumbnail-card", { display: "none" }, 0.58);
+        tl.to("#slide-canvas", { x: -2334, duration: 3.9, ease: "power1.inOut" }, 0.72);
+        tl.to("#avatar-frame", { opacity: 1, duration: 0.42 }, 0.72);
+        tl.to("#avatar-label", { opacity: 1, duration: 0.38 }, 0.9);
+
+
+        tl.to(
+          "#slide-canvas",
+          { x: 12, y: 248, scale: 0.55, duration: 1.08, ease: "power2.inOut" },
+          4.6,
+        );
+        tl.fromTo(
+          "#marker-line",
+          { opacity: 0, scaleX: 0, x: 488, y: 396, width: 270 },
+          { opacity: 1, scaleX: 1, duration: 0.48 },
+          5.1,
+        );
+        tl.fromTo(
+          "#cursor",
+          { opacity: 0, x: 370, y: 610, scale: 0.8 },
+          { opacity: 1, x: 448, y: 626, scale: 1, duration: 0.44, ease: "back.out(1.8)" },
+          5.35,
+        );
+
+        tl.to(
+          "#slide-canvas",
+          { x: -30, y: 452, scale: 0.78, duration: 0.9, ease: "power2.inOut" },
+          7.7,
+        );
+        tl.to("#marker-line", { opacity: 0, duration: 0.22 }, 7.7);
+        tl.fromTo(
+          "#focus-box",
+          { opacity: 0, x: 28, y: 744, scaleX: 1.32, scaleY: 0.58 },
+          { opacity: 1, duration: 0.42 },
+          8.25,
+        );
+        tl.to("#cursor", { x: 58, y: 762, duration: 0.5, ease: "power2.inOut" }, 8.5);
+
+        tl.to(
+          "#slide-canvas",
+          { x: -82, y: 282, scale: 0.92, duration: 0.86, ease: "power2.inOut" },
+          10.2,
+        );
+        tl.to("#focus-box", { x: 34, y: 779, scaleX: 0.92, scaleY: 0.56, duration: 0.56 }, 10.45);
+        tl.to("#cursor", { x: 50, y: 812, duration: 0.44 }, 10.58);
+        tl.fromTo(
+          "#slide-canvas",
+          { rotationZ: -0.18 },
+          { rotationZ: 0.18, duration: 0.5, yoyo: true, repeat: 1 },
+          12.2,
+        );
+        tl.to("#focus-box", { opacity: 0, duration: 0.28 }, 17.0);
+        tl.to("#cursor", { opacity: 0, duration: 0.24 }, 17.0);
+        tl.to(".slide-layer", { opacity: 0, duration: 0.42, ease: "power2.inOut" }, 18.08);
+        tl.set(".slide-layer", { opacity: 0, visibility: "hidden" }, 18.5);
+
+        tl.to("#tokenizer-scene", { opacity: 1, duration: 0.5, ease: "power2.inOut" }, 18.4);
+        tl.from(
+          ".tokenizer-panel",
+          {
+            y: 70,
+            z: -220,
+            opacity: 0,
+            scale: 0.88,
+            rotateY: -22,
+            duration: 0.72,
+            ease: "back.out(1.55)",
+          },
+          18.55,
+        );
+        tl.from(
+          ".floating-tokens .token-card",
+          {
+            y: 90,
+            z: -180,
+            opacity: 0,
+            scale: 0.8,
+            rotateX: -18,
+            stagger: 0.08,
+            duration: 0.5,
+            ease: "back.out(1.8)",
+          },
+          19.55,
+        );
+        tl.from(
+          ".ratio-card",
+          { y: 60, opacity: 0, scale: 0.9, rotateX: -12, duration: 0.56, ease: "expo.out" },
+          21.25,
+        );
+        tl.to(
+          ".floating-tokens .token-card",
+          { y: -16, duration: 0.94, repeat: 4, yoyo: true, stagger: 0.1, ease: "sine.inOut" },
+          20.6,
+        );
+        tl.to("#tokenizer-scene", { opacity: 0, duration: 0.42, ease: "power2.inOut" }, 24.08);
+        tl.set(".slide-layer", { opacity: 0, visibility: "visible" }, 24.5);
+        tl.to(".slide-layer", { opacity: 1, duration: 0.28, ease: "power2.inOut" }, 24.5);
+
+        tl.to(
+          "#slide-canvas",
+          { x: -52, y: -150, scale: 0.72, duration: 0.9, ease: "power2.inOut" },
+          24.5,
+        );
+        tl.to(
+          "#focus-box",
+          { opacity: 1, x: 38, y: 366, scaleX: 0.82, scaleY: 1.42, duration: 0.5 },
+          24.9,
+        );
+        tl.to(
+          "#avatar-frame",
+          { width: 550, height: 330, duration: 0.64, ease: "power2.inOut" },
+          25.1,
+        );
+        tl.to("#avatar-video", { y: 24, duration: 0.64, ease: "power2.inOut" }, 25.1);
+        tl.to("#avatar-label", { bottom: 414, duration: 0.64 }, 25.1);
+        tl.to("#focus-box", { opacity: 0, duration: 0.28 }, 28.2);
+        tl.to("#cursor", { opacity: 0, duration: 0.24 }, 28.2);
+        tl.to(".slide-layer", { opacity: 0, duration: 0.3, ease: "power2.inOut" }, 28.2);
+        tl.set(".slide-layer", { opacity: 0, duration: 0, overwrite: "auto" }, 28.5);
+        tl.set(".slide-layer", { visibility: "hidden", duration: 0, overwrite: "auto" }, 28.5);
+
+        tl.to("#memory-scene", { opacity: 1, duration: 0.48, ease: "power2.inOut" }, 28.45);
+        tl.from(
+          ".memory-panel",
+          {
+            y: 78,
+            z: -240,
+            opacity: 0,
+            scale: 0.88,
+            rotateY: 24,
+            duration: 0.62,
+            ease: "back.out(1.55)",
+          },
+          28.6,
+        );
+        tl.from(
+          ".memory-window",
+          { scaleX: 0.78, opacity: 0, duration: 0.44, ease: "power3.out" },
+          29.55,
+        );
+        tl.from(
+          ".memory-token",
+          { y: 66, opacity: 0, scale: 0.84, stagger: 0.07, duration: 0.38, ease: "back.out(1.7)" },
+          30.05,
+        );
+        tl.to("#memory-track", { x: -410, duration: 3.2, ease: "power1.inOut" }, 31.0);
+        tl.from(".forget-label", { y: 32, opacity: 0, duration: 0.45, ease: "power2.out" }, 34.0);
+        tl.to("#memory-track", { x: -700, duration: 3.7, ease: "power1.inOut" }, 34.0);
+        tl.to("#memory-scene", { opacity: 0, duration: 0.42, ease: "power2.inOut" }, 38.8);
+        tl.set(".slide-layer", { opacity: 0, visibility: "visible" }, 39.18);
+        tl.to(".slide-layer", { opacity: 1, duration: 0.34, ease: "power2.inOut" }, 39.18);
+
+        tl.to(
+          "#slide-canvas",
+          { x: 12, y: 248, scale: 0.55, rotationZ: 0, duration: 0.95, ease: "power2.inOut" },
+          39.2,
+        );
+        tl.to("#focus-box", { x: 80, y: 646, scaleX: 1.24, scaleY: 1.05, duration: 0.58 }, 39.55);
+        tl.to("#focus-box", { opacity: 1, duration: 0.24 }, 39.55);
+        tl.to(
+          "#avatar-frame",
+          { width: 330, height: 388, duration: 0.68, ease: "power2.inOut" },
+          39.2,
+        );
+        tl.to("#avatar-video", { y: 0, duration: 0.68, ease: "power2.inOut" }, 39.2);
+        tl.to("#avatar-label", { bottom: 472, duration: 0.68 }, 39.2);
+        tl.to("#focus-box", { opacity: 0, duration: 0.3 }, 43.05);
+        tl.to("#cursor", { opacity: 0, duration: 0.24 }, 43.05);
+        tl.to(".slide-layer", { opacity: 0, duration: 0.3, ease: "power2.inOut" }, 42.9);
+        tl.set(".slide-layer", { opacity: 0, duration: 0, overwrite: "auto" }, 43.2);
+        tl.set(".slide-layer", { visibility: "hidden", duration: 0, overwrite: "auto" }, 43.2);
+
+        tl.to("#course-card", { opacity: 1, duration: 0.5, ease: "power2.inOut" }, 43.2);
+        tl.from(
+          "#course-card",
+          { y: 80, z: -180, scale: 0.9, rotateX: -10, duration: 0.64, ease: "back.out(1.55)" },
+          43.2,
+        );
+        tl.from(".course-item", { x: -40, opacity: 0, duration: 0.4, ease: "power3.out" }, 45.3);
+        tl.from(
+          ".route-pill",
+          { y: 24, opacity: 0, scale: 0.9, stagger: 0.08, duration: 0.34, ease: "back.out(1.7)" },
+          47.0,
+        );
+        tl.from(
+          ".engagement-pill",
+          { y: 28, opacity: 0, scale: 0.88, stagger: 0.1, duration: 0.36, ease: "back.out(1.8)" },
+          50.7,
+        );
+        tl.set("#avatar-frame", { left: 90, right: "auto" }, 43.2);
+        tl.to(
+          "#avatar-frame",
+          { bottom: 54, width: 900, height: 430, duration: 0.68, ease: "power2.inOut" },
+          43.2,
+        );
+        tl.to("#avatar-video", { y: 34, scale: 1.62, duration: 0.68, ease: "power2.inOut" }, 43.2);
+        tl.to("#avatar-label", { right: 110, bottom: 508, duration: 0.68 }, 43.2);
+
+
+        tl.to(
+          "#avatar-frame",
+          { y: -10, duration: 2.1, repeat: 30, yoyo: true, ease: "sine.inOut" },
+          0.9,
+        );
+        tl.fromTo(
+          "#avatar-frame",
+          { rotationY: -2.4 },
+          { rotationY: 2.4, duration: 3.8, repeat: 16, yoyo: true, ease: "sine.inOut" },
+          0.9,
+        );
+
+        window.__timelines.root = tl;
+      </script>
+    </div>
+  </body>
+</html>

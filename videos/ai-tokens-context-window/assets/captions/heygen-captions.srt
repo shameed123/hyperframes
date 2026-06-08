@@ -1,0 +1,159 @@
+1
+00:00:00,000 --> 00:00:02,040
+AI doesn't read text the way we do.
+
+2
+00:00:02,180 --> 00:00:04,230
+It reads your prompt as tokens: tiny
+
+3
+00:00:04,270 --> 00:00:05,850
+chunks of words, spaces, and
+
+4
+00:00:05,910 --> 00:00:06,610
+punctuation.
+
+5
+00:00:06,690 --> 00:00:08,490
+That's why this sentence doesn't become
+
+6
+00:00:08,540 --> 00:00:09,020
+one thing.
+
+7
+00:00:09,100 --> 00:00:11,060
+It gets broken into pieces the model can
+
+8
+00:00:11,120 --> 00:00:11,680
+process.
+
+9
+00:00:11,810 --> 00:00:12,430
+Artificial.
+
+10
+00:00:12,560 --> 00:00:13,320
+Intelligence.
+
+11
+00:00:13,390 --> 00:00:13,730
+Is.
+
+12
+00:00:13,940 --> 00:00:14,360
+Wonder.
+
+13
+00:00:14,470 --> 00:00:14,810
+Ful.
+
+14
+00:00:14,920 --> 00:00:15,360
+Period.
+
+15
+00:00:15,560 --> 00:00:17,550
+Even the space before a word can become
+
+16
+00:00:17,600 --> 00:00:18,370
+part of the token.
+
+17
+00:00:18,500 --> 00:00:20,400
+A good mental shortcut: one token is
+
+18
+00:00:20,460 --> 00:00:22,000
+roughly three quarters of an English
+
+19
+00:00:22,050 --> 00:00:22,300
+word.
+
+20
+00:00:22,440 --> 00:00:23,890
+Not exact, but close enough for
+
+21
+00:00:23,940 --> 00:00:24,340
+planning.
+
+22
+00:00:24,500 --> 00:00:26,460
+Now the important part: tokens are also
+
+23
+00:00:26,540 --> 00:00:28,260
+how we measure the context window.
+
+24
+00:00:28,340 --> 00:00:30,020
+The context window is the model's
+
+25
+00:00:30,080 --> 00:00:31,030
+short-term memory.
+
+26
+00:00:31,090 --> 00:00:33,170
+It can only see so many tokens at once.
+
+27
+00:00:33,260 --> 00:00:35,070
+When the window gets too full, older
+
+28
+00:00:35,130 --> 00:00:36,350
+tokens slide out of view.
+
+29
+00:00:36,500 --> 00:00:38,250
+That's why very long chats can lose
+
+30
+00:00:38,310 --> 00:00:39,180
+earlier details.
+
+31
+00:00:39,290 --> 00:00:41,010
+So when you prompt, think in tokens:
+
+32
+00:00:41,160 --> 00:00:42,830
+what does the model need to see right
+
+33
+00:00:42,890 --> 00:00:43,110
+now?
+
+34
+00:00:43,210 --> 00:00:45,280
+Want the full AI vocabulary without the
+
+35
+00:00:45,340 --> 00:00:45,690
+jargon?
+
+36
+00:00:45,800 --> 00:00:47,770
+Check the description, bio, or pinned
+
+37
+00:00:47,830 --> 00:00:49,690
+comment for the complete AI for
+
+38
+00:00:49,750 --> 00:00:50,590
+beginners course.
+
+39
+00:00:50,690 --> 00:00:52,720
+Subscribe, follow, and like for more
+
+40
+00:00:52,770 --> 00:00:53,930
+clear AI lessons.

@@ -97,10 +97,12 @@ Let viewers read each region. Avoid continuous camera motion.
 Keep highlights translucent. Place a title underline below the visible title
 baseline rather than across the letters.
 
-Do not assume one underline transform works for every overview. The same slide
-can have different `y` positions during an early overview and a recap overview,
-and the second slide can need a different `x`, `y`, and `width`. Snapshot each
-underline hero frame after any camera change and tune each state independently:
+Do not assume one highlight transform works for every overview. The same slide
+can have different `x` and `y` positions during an early overview and a recap
+overview, and every close-up can need a different rectangle size. Snapshot each
+highlight hero frame after any camera change and tune each state independently.
+If the target begins outside the frame, fix the slide camera first; do not
+stretch the rectangle to hide a bad crop.
 
 ```js
 tl.fromTo("#marker-line", {
@@ -124,8 +126,12 @@ Use:
 
 - orange underline for key title moments;
 - translucent focus rectangle around a diagram region;
-- cursor entrance with a short `back.out(...)` ease;
-- cursor moves only when the narration names the target.
+- no black pointer arrow unless explicitly requested; a good focus region is
+  enough for most slide teaching moments.
+
+Before rendering, inspect every highlight frame and confirm the rectangle or
+underline is centered on the intended slide content with comfortable padding on
+all sides.
 
 ## Avatar Frame
 
@@ -357,4 +363,29 @@ tl.to("#caption-stage", {
 ```
 
 Use margins appropriate to the canvas and verify that captions stay clear of
-both the course card and the enlarged presenter.
+both the course card and the enlarged presenter. If the expanded presenter shows
+white side bands from the source video, either shrink the wrapper or increase
+the inner video scale until the frame is fully covered.
+
+## Motion-Graphics Cards
+
+For fullscreen HyperFrames explainers, build the hero frame first and inspect it
+as a still image. Cards should feel content-fit, not like oversized empty panels:
+
+- keep token/chip rows inside the main card that explains them;
+- shrink card height when the lower half is empty;
+- move the card on the canvas after shrinking so the surrounding captions and
+  avatar still have clean spacing;
+- avoid stacking important chips outside the glass panel unless the visual idea
+  is explicitly about items escaping a container.
+
+Snapshot each fullscreen motion-graphics scene at its densest frame and fix any
+large empty vertical bands before rendering.
+
+## Thumbnail Brand
+
+Create `thumbnail-brand.md` before `thumbnail-prompt.md`. Use it as a reusable
+thumbnail identity for the series: mood, recurring motifs, lighting, type
+hierarchy, and banned elements. Then write a precise prompt and generate the
+raster thumbnail with a GPT/image model. The final thumbnail should be readable
+at phone size and should make the viewer curious enough to click.

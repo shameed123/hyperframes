@@ -1,0 +1,1141 @@
+[
+  {
+    "start": 0,
+    "end": 1.02,
+    "words": [
+      {
+        "text": "AI",
+        "start": 0,
+        "end": 0.255
+      },
+      {
+        "text": "doesn't",
+        "start": 0.255,
+        "end": 0.51
+      },
+      {
+        "text": "read",
+        "start": 0.51,
+        "end": 0.765
+      },
+      {
+        "text": "text",
+        "start": 0.765,
+        "end": 1.02
+      }
+    ]
+  },
+  {
+    "start": 1.02,
+    "end": 2.04,
+    "words": [
+      {
+        "text": "the",
+        "start": 1.02,
+        "end": 1.275
+      },
+      {
+        "text": "way",
+        "start": 1.275,
+        "end": 1.53
+      },
+      {
+        "text": "we",
+        "start": 1.53,
+        "end": 1.785
+      },
+      {
+        "text": "do.",
+        "start": 1.785,
+        "end": 2.04
+      }
+    ]
+  },
+  {
+    "start": 2.18,
+    "end": 3.351,
+    "words": [
+      {
+        "text": "It",
+        "start": 2.18,
+        "end": 2.473
+      },
+      {
+        "text": "reads",
+        "start": 2.473,
+        "end": 2.766
+      },
+      {
+        "text": "your",
+        "start": 2.766,
+        "end": 3.059
+      },
+      {
+        "text": "prompt",
+        "start": 3.059,
+        "end": 3.351
+      }
+    ]
+  },
+  {
+    "start": 3.351,
+    "end": 4.586,
+    "words": [
+      {
+        "text": "as",
+        "start": 3.351,
+        "end": 3.644
+      },
+      {
+        "text": "tokens:",
+        "start": 3.644,
+        "end": 3.937
+      },
+      {
+        "text": "tiny",
+        "start": 3.937,
+        "end": 4.23
+      },
+      {
+        "text": "chunks",
+        "start": 4.27,
+        "end": 4.586
+      }
+    ]
+  },
+  {
+    "start": 4.586,
+    "end": 5.85,
+    "words": [
+      {
+        "text": "of",
+        "start": 4.586,
+        "end": 4.902
+      },
+      {
+        "text": "words,",
+        "start": 4.902,
+        "end": 5.218
+      },
+      {
+        "text": "spaces,",
+        "start": 5.218,
+        "end": 5.534
+      },
+      {
+        "text": "and",
+        "start": 5.534,
+        "end": 5.85
+      }
+    ]
+  },
+  {
+    "start": 5.91,
+    "end": 7.59,
+    "words": [
+      {
+        "text": "punctuation.",
+        "start": 5.91,
+        "end": 6.61
+      },
+      {
+        "text": "That's",
+        "start": 6.69,
+        "end": 6.99
+      },
+      {
+        "text": "why",
+        "start": 6.99,
+        "end": 7.29
+      },
+      {
+        "text": "this",
+        "start": 7.29,
+        "end": 7.59
+      }
+    ]
+  },
+  {
+    "start": 7.59,
+    "end": 8.78,
+    "words": [
+      {
+        "text": "sentence",
+        "start": 7.59,
+        "end": 7.89
+      },
+      {
+        "text": "doesn't",
+        "start": 7.89,
+        "end": 8.19
+      },
+      {
+        "text": "become",
+        "start": 8.19,
+        "end": 8.49
+      },
+      {
+        "text": "one",
+        "start": 8.54,
+        "end": 8.78
+      }
+    ]
+  },
+  {
+    "start": 8.78,
+    "end": 9.835,
+    "words": [
+      {
+        "text": "thing.",
+        "start": 8.78,
+        "end": 9.02
+      },
+      {
+        "text": "It",
+        "start": 9.1,
+        "end": 9.345
+      },
+      {
+        "text": "gets",
+        "start": 9.345,
+        "end": 9.59
+      },
+      {
+        "text": "broken",
+        "start": 9.59,
+        "end": 9.835
+      }
+    ]
+  },
+  {
+    "start": 9.835,
+    "end": 10.815,
+    "words": [
+      {
+        "text": "into",
+        "start": 9.835,
+        "end": 10.08
+      },
+      {
+        "text": "pieces",
+        "start": 10.08,
+        "end": 10.325
+      },
+      {
+        "text": "the",
+        "start": 10.325,
+        "end": 10.57
+      },
+      {
+        "text": "model",
+        "start": 10.57,
+        "end": 10.815
+      }
+    ]
+  },
+  {
+    "start": 10.815,
+    "end": 13.32,
+    "words": [
+      {
+        "text": "can",
+        "start": 10.815,
+        "end": 11.06
+      },
+      {
+        "text": "process.",
+        "start": 11.12,
+        "end": 11.68
+      },
+      {
+        "text": "Artificial.",
+        "start": 11.81,
+        "end": 12.43
+      },
+      {
+        "text": "Intelligence.",
+        "start": 12.56,
+        "end": 13.32
+      }
+    ]
+  },
+  {
+    "start": 13.39,
+    "end": 15.36,
+    "words": [
+      {
+        "text": "Is.",
+        "start": 13.39,
+        "end": 13.73
+      },
+      {
+        "text": "Wonder.",
+        "start": 13.94,
+        "end": 14.36
+      },
+      {
+        "text": "Ful.",
+        "start": 14.47,
+        "end": 14.81
+      },
+      {
+        "text": "Period.",
+        "start": 14.92,
+        "end": 15.36
+      }
+    ]
+  },
+  {
+    "start": 15.56,
+    "end": 16.555,
+    "words": [
+      {
+        "text": "Even",
+        "start": 15.56,
+        "end": 15.809
+      },
+      {
+        "text": "the",
+        "start": 15.809,
+        "end": 16.058
+      },
+      {
+        "text": "space",
+        "start": 16.058,
+        "end": 16.306
+      },
+      {
+        "text": "before",
+        "start": 16.306,
+        "end": 16.555
+      }
+    ]
+  },
+  {
+    "start": 16.555,
+    "end": 17.55,
+    "words": [
+      {
+        "text": "a",
+        "start": 16.555,
+        "end": 16.804
+      },
+      {
+        "text": "word",
+        "start": 16.804,
+        "end": 17.053
+      },
+      {
+        "text": "can",
+        "start": 17.053,
+        "end": 17.301
+      },
+      {
+        "text": "become",
+        "start": 17.301,
+        "end": 17.55
+      }
+    ]
+  },
+  {
+    "start": 17.6,
+    "end": 18.37,
+    "words": [
+      {
+        "text": "part",
+        "start": 17.6,
+        "end": 17.793
+      },
+      {
+        "text": "of",
+        "start": 17.793,
+        "end": 17.985
+      },
+      {
+        "text": "the",
+        "start": 17.985,
+        "end": 18.178
+      },
+      {
+        "text": "token.",
+        "start": 18.178,
+        "end": 18.37
+      }
+    ]
+  },
+  {
+    "start": 18.5,
+    "end": 19.586,
+    "words": [
+      {
+        "text": "A",
+        "start": 18.5,
+        "end": 18.771
+      },
+      {
+        "text": "good",
+        "start": 18.771,
+        "end": 19.043
+      },
+      {
+        "text": "mental",
+        "start": 19.043,
+        "end": 19.314
+      },
+      {
+        "text": "shortcut:",
+        "start": 19.314,
+        "end": 19.586
+      }
+    ]
+  },
+  {
+    "start": 19.586,
+    "end": 20.717,
+    "words": [
+      {
+        "text": "one",
+        "start": 19.586,
+        "end": 19.857
+      },
+      {
+        "text": "token",
+        "start": 19.857,
+        "end": 20.129
+      },
+      {
+        "text": "is",
+        "start": 20.129,
+        "end": 20.4
+      },
+      {
+        "text": "roughly",
+        "start": 20.46,
+        "end": 20.717
+      }
+    ]
+  },
+  {
+    "start": 20.717,
+    "end": 21.743,
+    "words": [
+      {
+        "text": "three",
+        "start": 20.717,
+        "end": 20.973
+      },
+      {
+        "text": "quarters",
+        "start": 20.973,
+        "end": 21.23
+      },
+      {
+        "text": "of",
+        "start": 21.23,
+        "end": 21.487
+      },
+      {
+        "text": "an",
+        "start": 21.487,
+        "end": 21.743
+      }
+    ]
+  },
+  {
+    "start": 21.743,
+    "end": 22.923,
+    "words": [
+      {
+        "text": "English",
+        "start": 21.743,
+        "end": 22
+      },
+      {
+        "text": "word.",
+        "start": 22.05,
+        "end": 22.3
+      },
+      {
+        "text": "Not",
+        "start": 22.44,
+        "end": 22.682
+      },
+      {
+        "text": "exact,",
+        "start": 22.682,
+        "end": 22.923
+      }
+    ]
+  },
+  {
+    "start": 22.923,
+    "end": 23.89,
+    "words": [
+      {
+        "text": "but",
+        "start": 22.923,
+        "end": 23.165
+      },
+      {
+        "text": "close",
+        "start": 23.165,
+        "end": 23.407
+      },
+      {
+        "text": "enough",
+        "start": 23.407,
+        "end": 23.648
+      },
+      {
+        "text": "for",
+        "start": 23.648,
+        "end": 23.89
+      }
+    ]
+  },
+  {
+    "start": 23.94,
+    "end": 25.34,
+    "words": [
+      {
+        "text": "planning.",
+        "start": 23.94,
+        "end": 24.34
+      },
+      {
+        "text": "Now",
+        "start": 24.5,
+        "end": 24.78
+      },
+      {
+        "text": "the",
+        "start": 24.78,
+        "end": 25.06
+      },
+      {
+        "text": "important",
+        "start": 25.06,
+        "end": 25.34
+      }
+    ]
+  },
+  {
+    "start": 25.34,
+    "end": 26.46,
+    "words": [
+      {
+        "text": "part:",
+        "start": 25.34,
+        "end": 25.62
+      },
+      {
+        "text": "tokens",
+        "start": 25.62,
+        "end": 25.9
+      },
+      {
+        "text": "are",
+        "start": 25.9,
+        "end": 26.18
+      },
+      {
+        "text": "also",
+        "start": 26.18,
+        "end": 26.46
+      }
+    ]
+  },
+  {
+    "start": 26.54,
+    "end": 27.687,
+    "words": [
+      {
+        "text": "how",
+        "start": 26.54,
+        "end": 26.827
+      },
+      {
+        "text": "we",
+        "start": 26.827,
+        "end": 27.113
+      },
+      {
+        "text": "measure",
+        "start": 27.113,
+        "end": 27.4
+      },
+      {
+        "text": "the",
+        "start": 27.4,
+        "end": 27.687
+      }
+    ]
+  },
+  {
+    "start": 27.687,
+    "end": 28.9,
+    "words": [
+      {
+        "text": "context",
+        "start": 27.687,
+        "end": 27.973
+      },
+      {
+        "text": "window.",
+        "start": 27.973,
+        "end": 28.26
+      },
+      {
+        "text": "The",
+        "start": 28.34,
+        "end": 28.62
+      },
+      {
+        "text": "context",
+        "start": 28.62,
+        "end": 28.9
+      }
+    ]
+  },
+  {
+    "start": 28.9,
+    "end": 30.02,
+    "words": [
+      {
+        "text": "window",
+        "start": 28.9,
+        "end": 29.18
+      },
+      {
+        "text": "is",
+        "start": 29.18,
+        "end": 29.46
+      },
+      {
+        "text": "the",
+        "start": 29.46,
+        "end": 29.74
+      },
+      {
+        "text": "model's",
+        "start": 29.74,
+        "end": 30.02
+      }
+    ]
+  },
+  {
+    "start": 30.08,
+    "end": 31.552,
+    "words": [
+      {
+        "text": "short-term",
+        "start": 30.08,
+        "end": 30.555
+      },
+      {
+        "text": "memory.",
+        "start": 30.555,
+        "end": 31.03
+      },
+      {
+        "text": "It",
+        "start": 31.09,
+        "end": 31.321
+      },
+      {
+        "text": "can",
+        "start": 31.321,
+        "end": 31.552
+      }
+    ]
+  },
+  {
+    "start": 31.552,
+    "end": 32.477,
+    "words": [
+      {
+        "text": "only",
+        "start": 31.552,
+        "end": 31.783
+      },
+      {
+        "text": "see",
+        "start": 31.783,
+        "end": 32.014
+      },
+      {
+        "text": "so",
+        "start": 32.014,
+        "end": 32.246
+      },
+      {
+        "text": "many",
+        "start": 32.246,
+        "end": 32.477
+      }
+    ]
+  },
+  {
+    "start": 32.477,
+    "end": 33.519,
+    "words": [
+      {
+        "text": "tokens",
+        "start": 32.477,
+        "end": 32.708
+      },
+      {
+        "text": "at",
+        "start": 32.708,
+        "end": 32.939
+      },
+      {
+        "text": "once.",
+        "start": 32.939,
+        "end": 33.17
+      },
+      {
+        "text": "When",
+        "start": 33.26,
+        "end": 33.519
+      }
+    ]
+  },
+  {
+    "start": 33.519,
+    "end": 34.553,
+    "words": [
+      {
+        "text": "the",
+        "start": 33.519,
+        "end": 33.777
+      },
+      {
+        "text": "window",
+        "start": 33.777,
+        "end": 34.036
+      },
+      {
+        "text": "gets",
+        "start": 34.036,
+        "end": 34.294
+      },
+      {
+        "text": "too",
+        "start": 34.294,
+        "end": 34.553
+      }
+    ]
+  },
+  {
+    "start": 34.553,
+    "end": 35.618,
+    "words": [
+      {
+        "text": "full,",
+        "start": 34.553,
+        "end": 34.811
+      },
+      {
+        "text": "older",
+        "start": 34.811,
+        "end": 35.07
+      },
+      {
+        "text": "tokens",
+        "start": 35.13,
+        "end": 35.374
+      },
+      {
+        "text": "slide",
+        "start": 35.374,
+        "end": 35.618
+      }
+    ]
+  },
+  {
+    "start": 35.618,
+    "end": 36.75,
+    "words": [
+      {
+        "text": "out",
+        "start": 35.618,
+        "end": 35.862
+      },
+      {
+        "text": "of",
+        "start": 35.862,
+        "end": 36.106
+      },
+      {
+        "text": "view.",
+        "start": 36.106,
+        "end": 36.35
+      },
+      {
+        "text": "That's",
+        "start": 36.5,
+        "end": 36.75
+      }
+    ]
+  },
+  {
+    "start": 36.75,
+    "end": 37.75,
+    "words": [
+      {
+        "text": "why",
+        "start": 36.75,
+        "end": 37
+      },
+      {
+        "text": "very",
+        "start": 37,
+        "end": 37.25
+      },
+      {
+        "text": "long",
+        "start": 37.25,
+        "end": 37.5
+      },
+      {
+        "text": "chats",
+        "start": 37.5,
+        "end": 37.75
+      }
+    ]
+  },
+  {
+    "start": 37.75,
+    "end": 39.18,
+    "words": [
+      {
+        "text": "can",
+        "start": 37.75,
+        "end": 38
+      },
+      {
+        "text": "lose",
+        "start": 38,
+        "end": 38.25
+      },
+      {
+        "text": "earlier",
+        "start": 38.31,
+        "end": 38.745
+      },
+      {
+        "text": "details.",
+        "start": 38.745,
+        "end": 39.18
+      }
+    ]
+  },
+  {
+    "start": 39.29,
+    "end": 40.273,
+    "words": [
+      {
+        "text": "So",
+        "start": 39.29,
+        "end": 39.536
+      },
+      {
+        "text": "when",
+        "start": 39.536,
+        "end": 39.781
+      },
+      {
+        "text": "you",
+        "start": 39.781,
+        "end": 40.027
+      },
+      {
+        "text": "prompt,",
+        "start": 40.027,
+        "end": 40.273
+      }
+    ]
+  },
+  {
+    "start": 40.273,
+    "end": 41.369,
+    "words": [
+      {
+        "text": "think",
+        "start": 40.273,
+        "end": 40.519
+      },
+      {
+        "text": "in",
+        "start": 40.519,
+        "end": 40.764
+      },
+      {
+        "text": "tokens:",
+        "start": 40.764,
+        "end": 41.01
+      },
+      {
+        "text": "what",
+        "start": 41.16,
+        "end": 41.369
+      }
+    ]
+  },
+  {
+    "start": 41.369,
+    "end": 42.204,
+    "words": [
+      {
+        "text": "does",
+        "start": 41.369,
+        "end": 41.578
+      },
+      {
+        "text": "the",
+        "start": 41.578,
+        "end": 41.786
+      },
+      {
+        "text": "model",
+        "start": 41.786,
+        "end": 41.995
+      },
+      {
+        "text": "need",
+        "start": 41.995,
+        "end": 42.204
+      }
+    ]
+  },
+  {
+    "start": 42.204,
+    "end": 43.11,
+    "words": [
+      {
+        "text": "to",
+        "start": 42.204,
+        "end": 42.412
+      },
+      {
+        "text": "see",
+        "start": 42.412,
+        "end": 42.621
+      },
+      {
+        "text": "right",
+        "start": 42.621,
+        "end": 42.83
+      },
+      {
+        "text": "now?",
+        "start": 42.89,
+        "end": 43.11
+      }
+    ]
+  },
+  {
+    "start": 43.21,
+    "end": 44.393,
+    "words": [
+      {
+        "text": "Want",
+        "start": 43.21,
+        "end": 43.506
+      },
+      {
+        "text": "the",
+        "start": 43.506,
+        "end": 43.801
+      },
+      {
+        "text": "full",
+        "start": 43.801,
+        "end": 44.097
+      },
+      {
+        "text": "AI",
+        "start": 44.097,
+        "end": 44.393
+      }
+    ]
+  },
+  {
+    "start": 44.393,
+    "end": 45.69,
+    "words": [
+      {
+        "text": "vocabulary",
+        "start": 44.393,
+        "end": 44.689
+      },
+      {
+        "text": "without",
+        "start": 44.689,
+        "end": 44.984
+      },
+      {
+        "text": "the",
+        "start": 44.984,
+        "end": 45.28
+      },
+      {
+        "text": "jargon?",
+        "start": 45.34,
+        "end": 45.69
+      }
+    ]
+  },
+  {
+    "start": 45.8,
+    "end": 47.113,
+    "words": [
+      {
+        "text": "Check",
+        "start": 45.8,
+        "end": 46.128
+      },
+      {
+        "text": "the",
+        "start": 46.128,
+        "end": 46.457
+      },
+      {
+        "text": "description,",
+        "start": 46.457,
+        "end": 46.785
+      },
+      {
+        "text": "bio,",
+        "start": 46.785,
+        "end": 47.113
+      }
+    ]
+  },
+  {
+    "start": 47.113,
+    "end": 48.45,
+    "words": [
+      {
+        "text": "or",
+        "start": 47.113,
+        "end": 47.442
+      },
+      {
+        "text": "pinned",
+        "start": 47.442,
+        "end": 47.77
+      },
+      {
+        "text": "comment",
+        "start": 47.83,
+        "end": 48.14
+      },
+      {
+        "text": "for",
+        "start": 48.14,
+        "end": 48.45
+      }
+    ]
+  },
+  {
+    "start": 48.45,
+    "end": 49.69,
+    "words": [
+      {
+        "text": "the",
+        "start": 48.45,
+        "end": 48.76
+      },
+      {
+        "text": "complete",
+        "start": 48.76,
+        "end": 49.07
+      },
+      {
+        "text": "AI",
+        "start": 49.07,
+        "end": 49.38
+      },
+      {
+        "text": "for",
+        "start": 49.38,
+        "end": 49.69
+      }
+    ]
+  },
+  {
+    "start": 49.75,
+    "end": 51.367,
+    "words": [
+      {
+        "text": "beginners",
+        "start": 49.75,
+        "end": 50.17
+      },
+      {
+        "text": "course.",
+        "start": 50.17,
+        "end": 50.59
+      },
+      {
+        "text": "Subscribe,",
+        "start": 50.69,
+        "end": 51.028
+      },
+      {
+        "text": "follow,",
+        "start": 51.028,
+        "end": 51.367
+      }
+    ]
+  },
+  {
+    "start": 51.367,
+    "end": 52.72,
+    "words": [
+      {
+        "text": "and",
+        "start": 51.367,
+        "end": 51.705
+      },
+      {
+        "text": "like",
+        "start": 51.705,
+        "end": 52.043
+      },
+      {
+        "text": "for",
+        "start": 52.043,
+        "end": 52.382
+      },
+      {
+        "text": "more",
+        "start": 52.382,
+        "end": 52.72
+      }
+    ]
+  },
+  {
+    "start": 52.77,
+    "end": 53.93,
+    "words": [
+      {
+        "text": "clear",
+        "start": 52.77,
+        "end": 53.157
+      },
+      {
+        "text": "AI",
+        "start": 53.157,
+        "end": 53.543
+      },
+      {
+        "text": "lessons.",
+        "start": 53.543,
+        "end": 53.93
+      }
+    ]
+  }
+]
