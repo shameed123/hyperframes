@@ -1,20 +1,45 @@
-# YouTube Metadata Package
+# YouTube Thumbnail And Metadata Package
 
-For every finished short news/update video, include a YouTube upload package in
-the final handoff.
+For every finished short news/update video, include a thumbnail prompt and
+YouTube upload package in the final handoff. If the user asks only for
+packaging or metadata, produce this package from the script/transcript without
+rendering the video.
 
 ## Required Fields
 
+- **Thumbnail Prompt**: a 9:16 image-generation prompt that names the central
+  visual metaphor, emotional stakes, palette, style, text-safe space, and avoid
+  list. Make it dramatic and clickable, but keep it faithful to the report or
+  news source. Save the prompt as `videos/<slug>/thumbnail-prompt.md` when
+  working inside a project folder.
 - **Title**: catchy, clear, click-worthy, and SEO-readable, 45-70 characters
   when possible. Put the core topic and hook early, and prefer a curiosity or
-  utility promise that makes the target viewer want to click.
+  controversy hook that makes the target viewer want to click.
 - **Description**: 2-4 short paragraphs. Use primary SEO keywords naturally in
   sentences; do not dump tags into the prose.
 - **Hashtags**: 3-8 visible hashtags. Put the three most important first.
 - **Tags**: comma-separated upload tags for YouTube Studio, mixing broad topic
   terms, exact title phrases, entity names, and misspelling/variant coverage.
+  Keep the full tags string under 500 characters.
 - **Upload time**: recommend a date/time and timezone. For news, prefer posting
   as soon as the video is ready; if scheduling, choose a strong audience window.
+
+## Thumbnail Prompt Pattern
+
+Use this shape when the user asks for an image prompt:
+
+```text
+Create a dramatic vertical 9:16 YouTube Shorts thumbnail about <story>.
+Scene: <central subject/action/metaphor>. Include <1-3 concrete visual
+details from transcript/source>. Mood: <stakes>. Visual style: <palette,
+lighting, finish, realism/3D/editorial direction>. Composition: <where text
+can go, what should dominate the frame>. Constraints: no clutter, no tiny
+unreadable text, no distorted hands/faces, no irrelevant logos, no misleading
+claims.
+```
+
+When title text should be baked into the image, specify exact words and keep
+them short, usually 2-5 words.
 
 ## SEO Pattern
 
@@ -62,6 +87,9 @@ Tags are entered in YouTube Studio's tag field, not pasted as a block into the
 description. They help with context and typo/variant matching, but title,
 thumbnail, and description do most of the viewer-facing work.
 
+Before returning tags, check character count if possible. Prefer fewer,
+high-intent tags over a long list that risks exceeding the 500-character limit.
+
 Good shape:
 
 ```text
@@ -96,6 +124,9 @@ Recommended upload time: Thursday, May 21, 2026 at 11:00 AM CT
 Use this structure:
 
 ```markdown
+**Thumbnail Prompt**
+...
+
 **Title**
 ...
 

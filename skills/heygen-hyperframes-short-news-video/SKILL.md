@@ -1,6 +1,6 @@
 ---
 name: heygen-hyperframes-short-news-video
-description: Use when creating future short-form news or update videos in this repo with HeyGen Avatar III, root .env credentials, SRT-based timing, source-website B-roll capture, mobile website scroll footage, HyperFrames motion graphics, avatar picture-in-picture overlays, generated thumbnails, Studio preview, and final renders. Includes the gotchas from the Google I/O 2026 and Google Genie/Street View videos such as white side stripes, video shadow loss in renders, rounded avatar corners, thumbnail intro overlays, bland graph-paper B-roll, PowerShell npx.cmd usage, and light Studio launch.
+description: Use when creating or packaging future short-form news/update videos in this repo with HeyGen Avatar III, root .env credentials, SRT-based timing, source-website B-roll capture, mobile website scroll footage, HyperFrames motion graphics, avatar picture-in-picture overlays, thumbnail image prompts, generated thumbnails, YouTube titles/descriptions/hashtags/tags, Studio preview, and final renders. Includes the gotchas from the Google I/O 2026 and Google Genie/Street View videos such as white side stripes, video shadow loss in renders, rounded avatar corners, thumbnail intro overlays, bland graph-paper B-roll, PowerShell npx.cmd usage, and light Studio launch.
 ---
 
 # HeyGen HyperFrames Short News Video
@@ -23,8 +23,9 @@ Read these references as needed:
   style, high-tech light AI background, and 3D GSAP entrance/float snippets.
 - `references/gotchas.md`: fixes for the exact issues encountered, including side stripes, missing render shadows, rounded corners, duplicate media warnings, and PowerShell quirks.
 - `references/studio-render.md`: light Studio commands, validation, snapshots, and render variants.
-- `references/youtube-metadata.md`: title, description, hashtags, tags, SEO
-  keywords, and upload-time packaging for every finished video.
+- `references/youtube-metadata.md`: thumbnail prompt, title, description,
+  hashtags, tags, SEO keywords, and upload-time packaging for every finished
+  video.
 
 ## Default Workflow
 
@@ -68,7 +69,8 @@ Read these references as needed:
 14. Copy reusable SFX from `videos/_shared/sfx` into `videos/<slug>/assets/sfx`
     and add subtle timed audio clips for whooshes, pings, pongs, pops, clicks,
     and CTA chimes. Keep SFX quiet under the avatar narration.
-15. Write `videos/<slug>/thumbnail-prompt.md` before generating thumbnail art.
+15. Write `videos/<slug>/thumbnail-prompt.md` before generating thumbnail art,
+    and provide the prompt in the handoff when the user asks for packaging.
     Include the exact baked-in headline text, secondary text, visual subject,
     palette, constraints, and avoid list. Then generate or render a
     project-bound 9:16 thumbnail asset under `assets/thumbnail/`. If the
@@ -78,8 +80,10 @@ Read these references as needed:
     targeted `hyperframes snapshot` checks before handing back. Always inspect
     frames where website B-roll appears for size, scroll speed, load/cookie
     artifacts, and overlap with avatar/captions.
-17. Provide YouTube upload metadata: catchy title, SEO description, hashtags,
-    upload tags, and a recommended upload time in the target audience timezone.
+17. Provide a complete YouTube upload package: 9:16 thumbnail image prompt,
+    catchy title, SEO description, visible hashtags, comma-separated upload
+    tags within YouTube Studio's 500-character tag limit, and a recommended
+    upload time in the target audience timezone.
 
 ## Mandatory Local Conventions
 
