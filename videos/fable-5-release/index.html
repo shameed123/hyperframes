@@ -1050,7 +1050,7 @@
         id="scene-pricing"
         class="clip scene pip-scene"
         data-start="78"
-        data-duration="7"
+        data-duration="12"
         data-track-index="3"
       >
         <div class="scene-content">
@@ -1081,8 +1081,8 @@
       <section
         id="scene-summary"
         class="clip scene pip-scene"
-        data-start="85"
-        data-duration="10"
+        data-start="90"
+        data-duration="9"
         data-track-index="3"
       >
         <div class="scene-content">
@@ -1121,8 +1121,8 @@
       <section
         id="scene-question"
         class="clip scene"
-        data-start="95"
-        data-duration="10"
+        data-start="99"
+        data-duration="9"
         data-track-index="3"
       >
         <div
@@ -1137,8 +1137,8 @@
             demo of something most people won't be able to afford?
           </p>
         </div>
-        <div class="caption-card" style="font-size: 38px; --hf-studio-offset-x: -4px; --hf-studio-offset-y: -355px; translate: var(--hf-studio-offset-x, 0px) var(--hf-studio-offset-y, 0px)" data-hf-studio-path-offset="true" data-hf-studio-original-translate="" data-hf-studio-original-inline-translate="none">
-          <span class="hot">FABLE 5:</span>&nbsp;BREAKTHROUGH OR EXPENSIVE TEASER?
+        <div class="caption-card" style="font-size: 38px; --hf-studio-offset-x: -22px; --hf-studio-offset-y: -380px; translate: var(--hf-studio-offset-x, 0px) var(--hf-studio-offset-y, 0px); --hf-studio-width: 940px; --hf-studio-height: 192px; width: 940px; height: 192px; min-width: 0px; min-height: 0px; max-width: none; max-height: none; box-sizing: border-box; scale: none" data-hf-studio-path-offset="true" data-hf-studio-original-translate="" data-hf-studio-original-inline-translate="none" data-hf-studio-box-size="true" data-hf-studio-original-width="" data-hf-studio-original-height="" data-hf-studio-original-min-width="" data-hf-studio-original-min-height="" data-hf-studio-original-max-width="" data-hf-studio-original-max-height="" data-hf-studio-original-flex-basis="" data-hf-studio-original-flex-grow="" data-hf-studio-original-flex-shrink="" data-hf-studio-original-box-sizing="" data-hf-studio-original-display="">
+          <span class="hot" style="--hf-studio-width: 217px; --hf-studio-height: 80px; width: 217px; height: 80px; min-width: 0px; min-height: 0px; max-width: none; max-height: none; flex-basis: 217px; flex-grow: 0; flex-shrink: 0; box-sizing: border-box" data-hf-studio-box-size="true" data-hf-studio-original-width="" data-hf-studio-original-height="" data-hf-studio-original-min-width="" data-hf-studio-original-min-height="" data-hf-studio-original-max-width="" data-hf-studio-original-max-height="" data-hf-studio-original-flex-basis="" data-hf-studio-original-flex-grow="" data-hf-studio-original-flex-shrink="" data-hf-studio-original-box-sizing="" data-hf-studio-original-display="">FABLE 5:</span>&nbsp;BREAKTHROUGH OR EXPENSIVE TEASER?
         </div>
       </section>
 
@@ -1280,7 +1280,7 @@
       <div
         id="tr-summary"
         class="clip transition"
-        data-start="84.72"
+        data-start="89.72"
         data-duration="0.56"
         data-track-index="20"
       >
@@ -1291,7 +1291,7 @@
       <div
         id="tr-question"
         class="clip transition"
-        data-start="94.72"
+        data-start="98.72"
         data-duration="0.56"
         data-track-index="20"
       >
@@ -1394,7 +1394,7 @@
       <audio
         id="sfx-scene-whoosh-8"
         class="clip"
-        data-start="84.6"
+        data-start="89.6"
         data-duration="0.55"
         data-track-index="40"
         data-volume="0.38"
@@ -1403,7 +1403,7 @@
       <audio
         id="sfx-scene-whoosh-9"
         class="clip"
-        data-start="94.6"
+        data-start="98.6"
         data-duration="0.55"
         data-track-index="40"
         data-volume="0.38"
@@ -1412,7 +1412,7 @@
       <audio
         id="sfx-final-chime"
         class="clip"
-        data-start="96"
+        data-start="99.5"
         data-duration="0.55"
         data-track-index="41"
         data-volume="0.45"
@@ -1445,9 +1445,9 @@
         ["#scene-vision", 48, 60],
         ["#scene-calendar", 60, 72],
         ["#scene-usage", 72, 78],
-        ["#scene-pricing", 78, 85],
-        ["#scene-summary", 85, 95],
-        ["#scene-question", 95, 105],
+        ["#scene-pricing", 78, 90],
+        ["#scene-summary", 90, 99],
+        ["#scene-question", 99, 108],
       ];
 
       for (const [selector, start, end] of sceneWindows) {
@@ -1692,8 +1692,8 @@
       );
 
       // Scene 9: Summary
-      transition("#tr-summary", 84.72);
-      enterScene("#scene-summary", 85);
+      transition("#tr-summary", 89.72);
+      enterScene("#scene-summary", 90);
       tl.from(
         "#scene-summary .summary-card",
         {
@@ -1707,7 +1707,7 @@
           stagger: 0.12,
           ease: "back.out(1.45)",
         },
-        85.42,
+        90.42,
       );
       tl.to(
         "#scene-summary .summary-card",
@@ -1720,12 +1720,12 @@
           yoyo: true,
           ease: "sine.inOut",
         },
-        86.8,
+        91.8,
       );
 
       // Scene 10: Question
-      transition("#tr-question", 94.72);
-      enterScene("#scene-question", 95);
+      transition("#tr-question", 98.72);
+      enterScene("#scene-question", 99);
 
       window.__timelines["fable-5-release"] = tl;
     </script>
