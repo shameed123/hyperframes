@@ -1,0 +1,14 @@
+{
+  "endpoint": "POST https://api.heygen.com/v2/video/generate",
+  "title": "Fable 5 Release",
+  "caption": true,
+  "dimension": {
+    "width": 1280,
+    "height": 720
+  },
+  "avatarStyle": "normal",
+  "voiceType": "text",
+  "voiceSpeed": 1.1,
+  "inputTextPath": "videos/fable-5-release/heygen-input.txt",
+  "submittedAt": "2026-06-10T17:03:57.101Z"
+}
