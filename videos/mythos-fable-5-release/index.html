@@ -1,0 +1,1645 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #0d0b1a;
+        color: #fff;
+        font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+      }
+
+      #root {
+        position: relative;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        perspective: 1800px;
+        background:
+          radial-gradient(ellipse at 20% 10%, rgba(148, 0, 255, 0.28), transparent 38%),
+          radial-gradient(ellipse at 82% 18%, rgba(255, 30, 80, 0.22), transparent 34%),
+          radial-gradient(ellipse at 50% 90%, rgba(30, 80, 255, 0.2), transparent 40%),
+          radial-gradient(ellipse at 10% 70%, rgba(255, 120, 0, 0.14), transparent 32%),
+          linear-gradient(160deg, #12081e 0%, #0d1128 50%, #1a0826 100%);
+      }
+
+      #root::before {
+        content: "";
+        position: absolute;
+        inset: -220px;
+        background:
+          linear-gradient(90deg, rgba(148, 0, 255, 0.1) 1px, transparent 1px),
+          linear-gradient(0deg, rgba(30, 80, 255, 0.08) 1px, transparent 1px),
+          linear-gradient(60deg, transparent 48%, rgba(148, 0, 255, 0.08) 48% 49%, transparent 49%),
+          linear-gradient(120deg, transparent 58%, rgba(255, 30, 80, 0.07) 58% 59%, transparent 59%);
+        background-size:
+          74px 74px,
+          74px 74px,
+          520px 520px,
+          620px 620px;
+        transform: rotate(-9deg);
+        opacity: 0.72;
+        pointer-events: none;
+      }
+
+      .clip {
+        position: absolute;
+      }
+
+      /* ── GLASS ── */
+      .glass {
+        position: relative;
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        background:
+          radial-gradient(circle at 14% 18%, rgba(148, 0, 255, 0.22), transparent 36%),
+          radial-gradient(circle at 88% 10%, rgba(255, 30, 80, 0.16), transparent 30%),
+          radial-gradient(circle at 50% 108%, rgba(30, 80, 255, 0.14), transparent 36%),
+          linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.03)),
+          rgba(20, 12, 42, 0.6);
+        box-shadow:
+          0 42px 112px rgba(0, 0, 0, 0.54),
+          0 0 74px rgba(148, 0, 255, 0.16),
+          inset 0 1px 0 rgba(255, 255, 255, 0.2),
+          inset 0 -24px 52px rgba(148, 0, 255, 0.07);
+        backdrop-filter: blur(34px) saturate(1.48);
+        -webkit-backdrop-filter: blur(34px) saturate(1.48);
+        overflow: hidden;
+        isolation: isolate;
+        transform-style: preserve-3d;
+      }
+
+      .glass::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        background:
+          linear-gradient(130deg, rgba(255, 255, 255, 0.16), transparent 28%),
+          linear-gradient(300deg, rgba(255, 255, 255, 0.06), transparent 42%);
+        mix-blend-mode: screen;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .glass::after {
+        content: "";
+        position: absolute;
+        inset: 10px;
+        border-radius: inherit;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        opacity: 0.65;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .glass > * {
+        position: relative;
+        z-index: 2;
+      }
+
+      .glass-purple {
+        border-color: rgba(148, 0, 255, 0.42);
+        background:
+          radial-gradient(circle at 14% 18%, rgba(148, 0, 255, 0.36), transparent 36%),
+          radial-gradient(circle at 88% 10%, rgba(100, 30, 255, 0.24), transparent 30%),
+          linear-gradient(145deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.04)),
+          rgba(30, 8, 60, 0.7);
+        box-shadow:
+          0 42px 112px rgba(0, 0, 0, 0.54),
+          0 0 80px rgba(148, 0, 255, 0.3),
+          inset 0 1px 0 rgba(255, 255, 255, 0.24);
+      }
+
+      .glass-red {
+        border-color: rgba(255, 30, 80, 0.38);
+        background:
+          radial-gradient(circle at 14% 18%, rgba(255, 30, 80, 0.3), transparent 36%),
+          radial-gradient(circle at 88% 10%, rgba(255, 80, 0, 0.2), transparent 30%),
+          linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.03)),
+          rgba(42, 8, 20, 0.7);
+        box-shadow:
+          0 42px 112px rgba(0, 0, 0, 0.54),
+          0 0 80px rgba(255, 30, 80, 0.26),
+          inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      }
+
+      .glass-gold {
+        border-color: rgba(255, 180, 0, 0.42);
+        background:
+          radial-gradient(circle at 14% 18%, rgba(255, 180, 0, 0.28), transparent 36%),
+          radial-gradient(circle at 88% 10%, rgba(255, 120, 0, 0.2), transparent 30%),
+          linear-gradient(145deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.04)),
+          rgba(42, 28, 0, 0.7);
+        box-shadow:
+          0 42px 112px rgba(0, 0, 0, 0.54),
+          0 0 80px rgba(255, 180, 0, 0.26),
+          inset 0 1px 0 rgba(255, 255, 255, 0.26);
+      }
+
+      .glass-blue {
+        border-color: rgba(30, 120, 255, 0.38);
+        background:
+          radial-gradient(circle at 14% 18%, rgba(30, 80, 255, 0.26), transparent 36%),
+          radial-gradient(circle at 88% 10%, rgba(0, 180, 255, 0.18), transparent 30%),
+          linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.03)),
+          rgba(8, 16, 48, 0.7);
+      }
+
+      /* ── SCENES ── */
+      .scene {
+        position: absolute;
+        inset: 0;
+        z-index: 4;
+        overflow: hidden;
+        opacity: 0;
+        visibility: hidden;
+        transform-style: preserve-3d;
+        pointer-events: none;
+      }
+
+      /* ── TYPE ── */
+      .kicker {
+        font-size: 28px;
+        font-weight: 800;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.65);
+      }
+
+      .kicker-red {
+        color: #ff3050;
+      }
+
+      .kicker-purple {
+        color: #b040ff;
+      }
+
+      .kicker-gold {
+        color: #ffb800;
+      }
+
+      .kicker-blue {
+        color: #40a0ff;
+      }
+
+      .headline {
+        font-size: 72px;
+        font-weight: 900;
+        line-height: 1.08;
+        letter-spacing: -0.02em;
+        color: #fff;
+      }
+
+      .subline {
+        font-size: 36px;
+        font-weight: 500;
+        line-height: 1.35;
+        color: rgba(255, 255, 255, 0.68);
+      }
+
+      .label {
+        font-size: 26px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      /* ── AVATAR ── */
+      .avatar-shot,
+      video.avatar-shot {
+        object-fit: cover;
+        object-position: center center;
+        overflow: hidden;
+        z-index: 50;
+        background: #000;
+        box-shadow:
+          0 52px 128px rgba(0, 0, 0, 0.72),
+          0 0 62px rgba(148, 0, 255, 0.24);
+        filter: drop-shadow(0 44px 54px rgba(0, 0, 0, 0.68)) drop-shadow(0 0 38px rgba(148, 0, 255, 0.22));
+        transform-style: preserve-3d;
+        will-change: transform, opacity;
+      }
+
+      .avatar-pip {
+        border-radius: 22px;
+        width: 630px;
+        height: 404px;
+        left: 225px;
+        box-shadow:
+          0 38px 92px rgba(0, 0, 0, 0.72),
+          0 0 52px rgba(148, 0, 255, 0.22);
+        filter: drop-shadow(0 32px 42px rgba(0, 0, 0, 0.64)) drop-shadow(0 0 34px rgba(148, 0, 255, 0.2));
+      }
+
+      #avatar-pip-a {
+        bottom: 90px;
+      }
+
+      #avatar-pip-b {
+        bottom: 90px;
+      }
+
+      #avatar-pip-c {
+        bottom: 90px;
+      }
+
+      #avatar-cta {
+        border-radius: 28px;
+        width: 700px;
+        height: 448px;
+        left: 190px;
+        bottom: 80px;
+      }
+
+      /* ── TRANSITIONS ── */
+      .transition {
+        inset: 0;
+        z-index: 40;
+        pointer-events: none;
+        overflow: hidden;
+        opacity: 0;
+      }
+
+      .wipe-band {
+        position: absolute;
+        top: -80px;
+        bottom: -80px;
+        width: 130px;
+        transform-origin: center;
+        transform: skewX(-12deg) translateX(-250px);
+      }
+
+      .band-purple {
+        background: rgba(148, 0, 255, 0.62);
+        left: -130px;
+      }
+
+      .band-red {
+        background: rgba(255, 30, 80, 0.52);
+        left: -60px;
+      }
+
+      .band-blue {
+        background: rgba(30, 80, 255, 0.42);
+        left: 10px;
+      }
+
+      /* ── BARS ── */
+      .bar-track {
+        height: 20px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+        margin-top: 12px;
+      }
+
+      .bar-fill {
+        height: 100%;
+        border-radius: 10px;
+      }
+
+      .bar-fable {
+        background: linear-gradient(90deg, #b040ff, #ff3050);
+        width: 80.3%;
+      }
+
+      .bar-opus {
+        background: linear-gradient(90deg, #4060ff, #8040ff);
+        width: 69.2%;
+      }
+
+      .bar-gpt {
+        background: linear-gradient(90deg, #404060, #6060a0);
+        width: 58.6%;
+      }
+
+      /* ── SCENE: INTRO ── */
+      #scene-intro .orb {
+        position: absolute;
+        border-radius: 50%;
+        pointer-events: none;
+      }
+
+      #scene-intro .orb-1 {
+        width: 360px;
+        height: 360px;
+        background: radial-gradient(circle, rgba(148, 0, 255, 0.28), transparent 70%);
+        right: -80px;
+        top: 80px;
+      }
+
+      #scene-intro .orb-2 {
+        width: 260px;
+        height: 260px;
+        background: radial-gradient(circle, rgba(255, 30, 80, 0.22), transparent 70%);
+        left: -60px;
+        top: 580px;
+      }
+
+      #intro-alert {
+        position: absolute;
+        top: 92px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(255, 30, 80, 0.16);
+        border: 2px solid rgba(255, 30, 80, 0.72);
+        border-radius: 48px;
+        padding: 12px 48px;
+        white-space: nowrap;
+      }
+
+      #intro-main {
+        position: absolute;
+        top: 188px;
+        left: 56px;
+        right: 56px;
+        padding: 52px 52px 44px;
+      }
+
+      .mythos-badge {
+        display: inline-block;
+        background: linear-gradient(135deg, rgba(148, 0, 255, 0.48), rgba(255, 30, 80, 0.38));
+        border: 1px solid rgba(255, 255, 255, 0.26);
+        border-radius: 12px;
+        padding: 10px 28px;
+        margin-bottom: 28px;
+      }
+
+      .mythos-badge .label {
+        font-size: 24px;
+        letter-spacing: 0.18em;
+        color: #fff;
+      }
+
+      .title-fable {
+        font-size: 118px;
+        font-weight: 900;
+        letter-spacing: -0.04em;
+        background: linear-gradient(135deg, #fff 0%, #d080ff 40%, #ff3050 80%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        line-height: 1;
+        margin-bottom: 4px;
+      }
+
+      .title-5 {
+        font-size: 158px;
+        font-weight: 900;
+        letter-spacing: -0.06em;
+        background: linear-gradient(135deg, #d080ff 0%, #ff3050 55%, #ffb800 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        line-height: 0.88;
+        margin-bottom: 36px;
+      }
+
+      .intro-tagline {
+        font-size: 36px;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.86);
+        margin-bottom: 14px;
+      }
+
+      .intro-sub {
+        font-size: 28px;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.58);
+        line-height: 1.4;
+      }
+
+      #intro-tag {
+        position: absolute;
+        top: 870px;
+        left: 56px;
+        right: 56px;
+        padding: 26px 40px;
+        text-align: center;
+      }
+
+      /* ── SCENE: LADDER ── */
+      #scene-ladder .ladder-title {
+        position: absolute;
+        top: 76px;
+        left: 56px;
+        right: 56px;
+        text-align: center;
+      }
+
+      .tier-card {
+        position: absolute;
+        left: 56px;
+        right: 56px;
+        height: 138px;
+        display: flex;
+        align-items: center;
+        padding: 0 40px;
+        gap: 32px;
+      }
+
+      .tier-dot {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+
+      .tier-name {
+        font-size: 50px;
+        font-weight: 900;
+        letter-spacing: 0.04em;
+        flex: 1;
+      }
+
+      .tier-desc {
+        font-size: 28px;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.56);
+        text-align: right;
+      }
+
+      #tier-haiku {
+        top: 228px;
+      }
+
+      #tier-sonnet {
+        top: 396px;
+      }
+
+      #tier-opus {
+        top: 564px;
+      }
+
+      #tier-fable {
+        top: 732px;
+        border: 2px solid rgba(255, 180, 0, 0.7);
+      }
+
+      .arrow-connector {
+        position: absolute;
+        left: 534px;
+        width: 4px;
+        height: 42px;
+        background: linear-gradient(to bottom, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.32));
+        border-radius: 2px;
+      }
+
+      .ac-1 {
+        top: 366px;
+      }
+
+      .ac-2 {
+        top: 534px;
+      }
+
+      .ac-3 {
+        top: 702px;
+      }
+
+      .ladder-bottom {
+        position: absolute;
+        bottom: 510px;
+        left: 56px;
+        right: 56px;
+        text-align: center;
+      }
+
+      /* ── SCENE: BENCHMARKS ── */
+      #bench-title-card {
+        position: absolute;
+        top: 76px;
+        left: 56px;
+        right: 56px;
+        padding: 32px 44px;
+      }
+
+      .bench-row {
+        position: absolute;
+        left: 56px;
+        right: 56px;
+        padding: 28px 36px;
+      }
+
+      #bench-r1 {
+        top: 298px;
+      }
+
+      #bench-r2 {
+        top: 530px;
+      }
+
+      #bench-r3 {
+        top: 762px;
+      }
+
+      .bench-model {
+        font-size: 38px;
+        font-weight: 800;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin-bottom: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .bench-score {
+        font-size: 54px;
+        font-weight: 900;
+      }
+
+      #bench-footnote {
+        position: absolute;
+        bottom: 505px;
+        left: 56px;
+        right: 56px;
+        padding: 24px 36px;
+        text-align: center;
+      }
+
+      /* ── SCENE: STRIPE ── */
+      #stripe-hdr {
+        position: absolute;
+        top: 76px;
+        left: 56px;
+        right: 56px;
+        padding: 32px 44px;
+      }
+
+      .stat-pair {
+        position: absolute;
+        top: 328px;
+        left: 56px;
+        right: 56px;
+        display: flex;
+        gap: 28px;
+      }
+
+      .stat-card {
+        flex: 1;
+        padding: 40px 32px;
+        text-align: center;
+      }
+
+      .stat-number {
+        font-size: 86px;
+        font-weight: 900;
+        line-height: 1;
+        margin-bottom: 10px;
+      }
+
+      .stat-unit {
+        font-size: 32px;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      .stat-sub {
+        font-size: 24px;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.38);
+        margin-top: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+
+      #stripe-vs {
+        position: absolute;
+        top: 668px;
+        left: 56px;
+        right: 56px;
+        text-align: center;
+      }
+
+      #stripe-detail {
+        position: absolute;
+        top: 748px;
+        left: 56px;
+        right: 56px;
+        padding: 36px 44px;
+      }
+
+      /* ── SCENE: VISION ── */
+      #vision-hdr {
+        position: absolute;
+        top: 76px;
+        left: 56px;
+        right: 56px;
+        padding: 32px 44px;
+      }
+
+      .vision-row-wrap {
+        position: absolute;
+        left: 56px;
+        right: 56px;
+        padding: 28px 36px;
+      }
+
+      #vr-1 {
+        top: 298px;
+      }
+
+      #vr-2 {
+        top: 518px;
+      }
+
+      #vr-3 {
+        top: 738px;
+      }
+
+      /* ── SCENE: CALENDAR ── */
+      #cal-hdr {
+        position: absolute;
+        top: 76px;
+        left: 56px;
+        right: 56px;
+        padding: 32px 44px;
+      }
+
+      #cal-badge {
+        position: absolute;
+        top: 298px;
+        left: 56px;
+        right: 56px;
+        padding: 44px 44px 40px;
+        text-align: center;
+      }
+
+      .cal-dates {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 32px;
+        margin: 28px 0 28px;
+      }
+
+      .cal-date-box {
+        padding: 22px 36px;
+        border-radius: 16px;
+        border: 2px solid rgba(255, 180, 0, 0.52);
+        background: rgba(255, 180, 0, 0.1);
+        text-align: center;
+      }
+
+      .cal-date-num {
+        font-size: 66px;
+        font-weight: 900;
+        color: #ffb800;
+        line-height: 1;
+      }
+
+      .cal-date-label {
+        font-size: 24px;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.6);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .free-badge {
+        display: inline-block;
+        padding: 14px 52px;
+        border-radius: 48px;
+        background: linear-gradient(135deg, rgba(255, 180, 0, 0.3), rgba(255, 80, 0, 0.26));
+        border: 2px solid rgba(255, 180, 0, 0.62);
+        margin-bottom: 4px;
+      }
+
+      .free-badge-text {
+        font-size: 32px;
+        font-weight: 900;
+        letter-spacing: 0.16em;
+        color: #ffb800;
+        text-transform: uppercase;
+      }
+
+      .tier-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        justify-content: center;
+        margin-top: 24px;
+      }
+
+      .chip {
+        padding: 10px 28px;
+        border-radius: 32px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.08);
+        font-size: 26px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      /* ── SCENE: USAGE ── */
+      #usage-hdr {
+        position: absolute;
+        top: 76px;
+        left: 56px;
+        right: 56px;
+        padding: 32px 44px;
+      }
+
+      #usage-meter {
+        position: absolute;
+        top: 298px;
+        left: 56px;
+        right: 56px;
+        padding: 52px 44px;
+        text-align: center;
+      }
+
+      .meter-label {
+        font-size: 38px;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.58);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin-bottom: 28px;
+      }
+
+      .meter-value {
+        font-size: 158px;
+        font-weight: 900;
+        line-height: 1;
+        background: linear-gradient(135deg, #ff3050, #ff8c00);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 8px;
+      }
+
+      .meter-unit {
+        font-size: 38px;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.68);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        margin-bottom: 36px;
+      }
+
+      .meter-track {
+        height: 28px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 14px;
+        overflow: hidden;
+        margin-bottom: 24px;
+      }
+
+      .meter-fill {
+        height: 100%;
+        border-radius: 14px;
+        background: linear-gradient(90deg, #ff3050, #ff8c00);
+        width: 0%;
+      }
+
+      .meter-note {
+        font-size: 28px;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.52);
+        line-height: 1.45;
+      }
+
+      /* ── SCENE: PRICING ── */
+      #pricing-hdr {
+        position: absolute;
+        top: 76px;
+        left: 56px;
+        right: 56px;
+        padding: 32px 44px;
+      }
+
+      #price-r1 {
+        position: absolute;
+        top: 308px;
+        left: 56px;
+        right: 56px;
+        padding: 40px 44px;
+      }
+
+      #price-r2 {
+        position: absolute;
+        top: 542px;
+        left: 56px;
+        right: 56px;
+        padding: 40px 44px;
+      }
+
+      #pricing-note {
+        position: absolute;
+        top: 780px;
+        left: 56px;
+        right: 56px;
+        padding: 34px 44px;
+        text-align: center;
+      }
+
+      .price-type {
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.52);
+        margin-bottom: 14px;
+      }
+
+      .price-amount {
+        font-size: 84px;
+        font-weight: 900;
+        line-height: 1;
+        margin-bottom: 8px;
+      }
+
+      .price-unit {
+        font-size: 26px;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.52);
+      }
+
+      /* ── SCENE: COMPARISON ── */
+      #comp-title-card {
+        position: absolute;
+        top: 76px;
+        left: 56px;
+        right: 56px;
+        padding: 28px 40px;
+        text-align: center;
+      }
+
+      .comp-grid {
+        position: absolute;
+        top: 250px;
+        left: 28px;
+        right: 28px;
+        display: flex;
+        gap: 16px;
+        align-items: flex-start;
+      }
+
+      .comp-card {
+        flex: 1;
+        padding: 36px 22px;
+        text-align: center;
+      }
+
+      .comp-card-center {
+        padding: 44px 26px;
+        margin-top: -22px;
+      }
+
+      .comp-name {
+        font-size: 34px;
+        font-weight: 900;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin-bottom: 22px;
+      }
+
+      .comp-stat {
+        margin-bottom: 18px;
+      }
+
+      .comp-stat-val {
+        font-size: 46px;
+        font-weight: 900;
+        line-height: 1;
+      }
+
+      .comp-stat-lbl {
+        font-size: 20px;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.5);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-top: 4px;
+      }
+
+      /* ── SCENE: CTA ── */
+      #cta-q-mark {
+        position: absolute;
+        top: 72px;
+        right: 72px;
+        font-size: 200px;
+        font-weight: 900;
+        color: rgba(255, 30, 80, 0.36);
+        line-height: 1;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      #cta-question {
+        position: absolute;
+        top: 76px;
+        left: 56px;
+        right: 56px;
+        padding: 52px 52px 44px;
+        z-index: 2;
+      }
+
+      #end-card {
+        position: absolute;
+        bottom: 550px;
+        left: 56px;
+        right: 56px;
+        padding: 38px 44px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="mythos-fable-5-release"
+      data-start="0"
+      data-duration="108.024"
+      data-width="1080"
+      data-height="1920"
+    >
+      <!-- BACKGROUND -->
+      <div
+        id="background"
+        class="clip full"
+        data-start="0"
+        data-duration="108.024"
+        data-track-index="0"
+        data-layout-ignore
+        style="z-index: 0; overflow: hidden;"
+      ></div>
+
+      <!-- NARRATION -->
+      <audio
+        id="narration"
+        class="clip"
+        data-start="0"
+        data-duration="108.024"
+        data-track-index="1"
+        data-volume="1"
+        src="assets/avatar/heygen-avatar-16x9.mp4"
+      ></audio>
+
+      <!-- AVATAR VIDEO CLIPS -->
+      <video
+        id="avatar-pip-a"
+        class="clip avatar-shot avatar-pip"
+        data-start="0"
+        data-duration="35"
+        data-media-start="0"
+        data-track-index="2"
+        src="assets/avatar/heygen-avatar-16x9.mp4"
+        muted
+        playsinline
+      ></video>
+      <video
+        id="avatar-pip-b"
+        class="clip avatar-shot avatar-pip"
+        data-start="35"
+        data-duration="25"
+        data-media-start="35"
+        data-track-index="2"
+        src="assets/avatar/heygen-avatar-16x9.mp4"
+        muted
+        playsinline
+      ></video>
+      <video
+        id="avatar-pip-c"
+        class="clip avatar-shot avatar-pip"
+        data-start="60"
+        data-duration="29"
+        data-media-start="60"
+        data-track-index="2"
+        src="assets/avatar/heygen-avatar-16x9.mp4"
+        muted
+        playsinline
+      ></video>
+      <video
+        id="avatar-cta"
+        class="clip avatar-shot"
+        data-start="89"
+        data-duration="19.024"
+        data-media-start="89"
+        data-track-index="2"
+        src="assets/avatar/heygen-avatar-16x9.mp4"
+        muted
+        playsinline
+      ></video>
+
+      <!-- SFX: WHOOSHES -->
+      <audio id="sfx-w1" class="clip" data-start="9.72"  data-duration="0.56" data-track-index="40" data-volume="0.45" src="assets/sfx/whoosh-soft.wav"></audio>
+      <audio id="sfx-w2" class="clip" data-start="17.72" data-duration="0.56" data-track-index="40" data-volume="0.45" src="assets/sfx/whoosh-soft.wav"></audio>
+      <audio id="sfx-w3" class="clip" data-start="34.72" data-duration="0.56" data-track-index="40" data-volume="0.45" src="assets/sfx/whoosh-soft.wav"></audio>
+      <audio id="sfx-w4" class="clip" data-start="47.72" data-duration="0.56" data-track-index="40" data-volume="0.45" src="assets/sfx/whoosh-soft.wav"></audio>
+      <audio id="sfx-w5" class="clip" data-start="59.72" data-duration="0.56" data-track-index="40" data-volume="0.45" src="assets/sfx/whoosh-soft.wav"></audio>
+      <audio id="sfx-w6" class="clip" data-start="71.72" data-duration="0.56" data-track-index="40" data-volume="0.45" src="assets/sfx/whoosh-soft.wav"></audio>
+      <audio id="sfx-w7" class="clip" data-start="77.72" data-duration="0.56" data-track-index="40" data-volume="0.45" src="assets/sfx/whoosh-soft.wav"></audio>
+      <audio id="sfx-w8" class="clip" data-start="88.72" data-duration="0.56" data-track-index="40" data-volume="0.45" src="assets/sfx/whoosh-soft.wav"></audio>
+      <audio id="sfx-w9" class="clip" data-start="98.72" data-duration="0.56" data-track-index="40" data-volume="0.45" src="assets/sfx/whoosh-soft.wav"></audio>
+
+      <!-- SFX: PINGS -->
+      <audio id="sfx-p0" class="clip" data-start="0.72"  data-duration="0.28" data-track-index="41" data-volume="0.55" src="assets/sfx/ping-soft.wav"></audio>
+      <audio id="sfx-p1" class="clip" data-start="10.4"  data-duration="0.28" data-track-index="41" data-volume="0.50" src="assets/sfx/ping-soft.wav"></audio>
+      <audio id="sfx-p2" class="clip" data-start="18.5"  data-duration="0.28" data-track-index="41" data-volume="0.50" src="assets/sfx/ping-soft.wav"></audio>
+      <audio id="sfx-p3" class="clip" data-start="35.5"  data-duration="0.28" data-track-index="41" data-volume="0.50" src="assets/sfx/ping-soft.wav"></audio>
+      <audio id="sfx-p4" class="clip" data-start="48.5"  data-duration="0.28" data-track-index="41" data-volume="0.50" src="assets/sfx/ping-soft.wav"></audio>
+      <audio id="sfx-p5" class="clip" data-start="60.5"  data-duration="0.28" data-track-index="41" data-volume="0.50" src="assets/sfx/ping-soft.wav"></audio>
+      <audio id="sfx-p6" class="clip" data-start="99.4"  data-duration="0.38" data-track-index="41" data-volume="0.60" src="assets/sfx/chime-soft.wav"></audio>
+
+      <!-- SFX: POPS -->
+      <audio id="sfx-pop1" class="clip" data-start="11.8" data-duration="0.22" data-track-index="42" data-volume="0.48" src="assets/sfx/pop-soft.wav"></audio>
+      <audio id="sfx-pop2" class="clip" data-start="19.1" data-duration="0.22" data-track-index="42" data-volume="0.44" src="assets/sfx/pop-soft.wav"></audio>
+      <audio id="sfx-pop3" class="clip" data-start="19.5" data-duration="0.22" data-track-index="42" data-volume="0.40" src="assets/sfx/pop-soft.wav"></audio>
+      <audio id="sfx-pop4" class="clip" data-start="61.1" data-duration="0.22" data-track-index="42" data-volume="0.44" src="assets/sfx/pop-soft.wav"></audio>
+
+      <!-- ═══════════════ SCENE: INTRO ═══════════════ -->
+      <div id="scene-intro" class="clip scene" data-start="0" data-duration="10" data-track-index="3">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+
+        <div id="intro-alert">
+          <div class="label" style="color: #ff3050; font-size: 30px; letter-spacing: 0.2em;">⚡ JUST RELEASED</div>
+        </div>
+
+        <div id="intro-main" class="glass glass-purple">
+          <div class="mythos-badge">
+            <div class="label">MYTHOS CLASS</div>
+          </div>
+          <div class="title-fable">FABLE</div>
+          <div class="title-5">5</div>
+          <div class="intro-tagline">A New Tier Above Opus</div>
+          <div class="intro-sub">Anthropic's most powerful model — ever</div>
+        </div>
+
+        <div id="intro-tag" class="glass">
+          <div
+            style="
+              font-size: 34px;
+              font-weight: 800;
+              letter-spacing: 0.14em;
+              text-transform: uppercase;
+              background: linear-gradient(90deg, #b040ff, #ff3050);
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+              background-clip: text;
+            "
+          >
+            FABLE 5 = MYTHOS-CLASS AI
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ SCENE: MODEL LADDER ═══════════════ -->
+      <div id="scene-ladder" class="clip scene" data-start="10" data-duration="8" data-track-index="4">
+        <div class="ladder-title">
+          <div class="kicker kicker-purple">Model Tiers</div>
+          <div class="headline" style="font-size: 56px; margin-top: 8px;">A New Class Is Here</div>
+        </div>
+
+        <div id="tier-haiku" class="glass tier-card">
+          <div class="tier-dot" style="background: #8090a0;"></div>
+          <div class="tier-name" style="color: rgba(255, 255, 255, 0.55);">HAIKU</div>
+          <div class="tier-desc">Fast · Light</div>
+        </div>
+        <div id="tier-sonnet" class="glass glass-blue tier-card">
+          <div class="tier-dot" style="background: #4090ff;"></div>
+          <div class="tier-name" style="color: #80c0ff;">SONNET</div>
+          <div class="tier-desc">Balanced · Smart</div>
+        </div>
+        <div id="tier-opus" class="glass tier-card" style="border-color: rgba(148, 0, 255, 0.44);">
+          <div class="tier-dot" style="background: #9030ff;"></div>
+          <div class="tier-name" style="color: #c080ff;">OPUS</div>
+          <div class="tier-desc">Powerful · Deep</div>
+        </div>
+        <div id="tier-fable" class="glass glass-gold tier-card">
+          <div class="tier-dot" style="background: #ffb800;"></div>
+          <div class="tier-name" style="color: #ffb800;">FABLE</div>
+          <div class="tier-desc" style="color: #ffd060;">Impossible Tasks</div>
+        </div>
+
+        <div class="arrow-connector ac-1"></div>
+        <div class="arrow-connector ac-2"></div>
+        <div class="arrow-connector ac-3"></div>
+
+        <div class="ladder-bottom">
+          <div class="subline" style="font-size: 30px; color: rgba(255, 255, 255, 0.5);">"Bring me the impossible project"</div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ SCENE: BENCHMARKS ═══════════════ -->
+      <div id="scene-benchmarks" class="clip scene" data-start="18" data-duration="17" data-track-index="5">
+        <div id="bench-title-card" class="glass">
+          <div class="kicker kicker-red" style="margin-bottom: 8px;">SWE-BENCH PRO</div>
+          <div class="headline" style="font-size: 54px;">Coding Benchmark</div>
+        </div>
+
+        <div id="bench-r1" class="glass glass-gold bench-row">
+          <div class="bench-model">
+            <span style="color: #ffb800;">FABLE 5</span>
+            <span class="bench-score" style="color: #ffb800;">80.3%</span>
+          </div>
+          <div class="bar-track"><div id="bar-fable" class="bar-fill bar-fable"></div></div>
+        </div>
+
+        <div id="bench-r2" class="glass bench-row" style="border-color: rgba(148, 0, 255, 0.38);">
+          <div class="bench-model">
+            <span style="color: #c080ff;">OPUS 4.8</span>
+            <span class="bench-score" style="color: #c080ff;">69.2%</span>
+          </div>
+          <div class="bar-track"><div id="bar-opus" class="bar-fill bar-opus"></div></div>
+        </div>
+
+        <div id="bench-r3" class="glass bench-row">
+          <div class="bench-model">
+            <span style="color: rgba(255, 255, 255, 0.58);">GPT-5.5</span>
+            <span class="bench-score" style="color: rgba(255, 255, 255, 0.58);">58.6%</span>
+          </div>
+          <div class="bar-track"><div id="bar-gpt" class="bar-fill bar-gpt"></div></div>
+        </div>
+
+        <div id="bench-footnote" class="glass">
+          <div style="font-size: 27px; font-weight: 700; color: rgba(255, 255, 255, 0.62);">Fable walks in and flips the table</div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ SCENE: STRIPE ═══════════════ -->
+      <div id="scene-stripe" class="clip scene" data-start="35" data-duration="13" data-track-index="6">
+        <div id="stripe-hdr" class="glass">
+          <div class="kicker kicker-blue" style="margin-bottom: 8px;">REAL WORLD TEST</div>
+          <div class="headline" style="font-size: 52px;">Stripe Codebase</div>
+          <div class="subline" style="font-size: 28px; margin-top: 8px;">50 million lines of Ruby</div>
+        </div>
+
+        <div class="stat-pair">
+          <div id="stat-fable" class="glass glass-gold stat-card">
+            <div class="stat-number" style="color: #ffb800;">1</div>
+            <div class="stat-unit">DAY</div>
+            <div class="stat-sub">Fable 5</div>
+          </div>
+          <div id="stat-team" class="glass stat-card">
+            <div class="stat-number" style="color: rgba(255, 255, 255, 0.45);">2+</div>
+            <div class="stat-unit" style="color: rgba(255, 255, 255, 0.45);">MONTHS</div>
+            <div class="stat-sub">Full Team</div>
+          </div>
+        </div>
+
+        <div id="stripe-vs">
+          <div style="font-size: 40px; font-weight: 900; color: rgba(255, 255, 255, 0.28);">vs</div>
+        </div>
+
+        <div id="stripe-detail" class="glass">
+          <div style="font-size: 28px; font-weight: 600; color: rgba(255, 255, 255, 0.65); line-height: 1.5;">
+            A migration that would take a full engineering team 2+ months — done in
+            <span style="color: #ffb800; font-weight: 800;">one day</span> by Fable 5.
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ SCENE: VISION ═══════════════ -->
+      <div id="scene-vision" class="clip scene" data-start="48" data-duration="12" data-track-index="7">
+        <div id="vision-hdr" class="glass">
+          <div class="kicker kicker-purple" style="margin-bottom: 8px;">VISION UPGRADE</div>
+          <div class="headline" style="font-size: 52px;">GDP.pdf Benchmark</div>
+          <div class="subline" style="font-size: 26px; margin-top: 8px;">Document vision test</div>
+        </div>
+
+        <div id="vr-1" class="glass glass-gold vision-row-wrap">
+          <div class="bench-model">
+            <span style="color: #ffb800;">FABLE 5</span>
+            <span class="bench-score" style="color: #ffb800;">29.8%</span>
+          </div>
+          <div class="bar-track"><div id="bar-v-fable" class="bar-fill" style="background: linear-gradient(90deg, #ffb800, #ff8c00); width: 29.8%;"></div></div>
+        </div>
+
+        <div id="vr-2" class="glass vision-row-wrap">
+          <div class="bench-model">
+            <span style="color: rgba(255, 255, 255, 0.62);">GPT-5.5</span>
+            <span class="bench-score" style="color: rgba(255, 255, 255, 0.62);">24.9%</span>
+          </div>
+          <div class="bar-track"><div id="bar-v-gpt" class="bar-fill bar-gpt" style="width: 24.9%;"></div></div>
+        </div>
+
+        <div id="vr-3" class="glass vision-row-wrap" style="border-color: rgba(148, 0, 255, 0.38);">
+          <div class="bench-model">
+            <span style="color: #c080ff;">OPUS 4.8</span>
+            <span class="bench-score" style="color: #c080ff;">22.5%</span>
+          </div>
+          <div class="bar-track"><div id="bar-v-opus" class="bar-fill bar-opus" style="width: 22.5%;"></div></div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ SCENE: CALENDAR ═══════════════ -->
+      <div id="scene-calendar" class="clip scene" data-start="60" data-duration="12" data-track-index="8">
+        <div id="cal-hdr" class="glass">
+          <div class="kicker kicker-gold" style="margin-bottom: 8px;">LIMITED ACCESS</div>
+          <div class="headline" style="font-size: 54px;">Free Window</div>
+        </div>
+
+        <div id="cal-badge" class="glass glass-gold">
+          <div class="free-badge">
+            <div class="free-badge-text">FREE WINDOW</div>
+          </div>
+          <div class="cal-dates">
+            <div id="cal-d1" class="cal-date-box">
+              <div class="cal-date-num">9</div>
+              <div class="cal-date-label">June</div>
+            </div>
+            <div style="font-size: 48px; color: rgba(255, 255, 255, 0.38);">→</div>
+            <div id="cal-d2" class="cal-date-box">
+              <div class="cal-date-num">22</div>
+              <div class="cal-date-label">June</div>
+            </div>
+          </div>
+          <div style="font-size: 28px; font-weight: 600; color: rgba(255, 255, 255, 0.62); margin-bottom: 20px;">Available via Claude.ai</div>
+          <div class="tier-chips">
+            <div id="chip-pro" class="chip">PRO</div>
+            <div id="chip-max" class="chip">MAX</div>
+            <div id="chip-team" class="chip">TEAM</div>
+            <div id="chip-ent" class="chip">ENTERPRISE</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ SCENE: USAGE ═══════════════ -->
+      <div id="scene-usage" class="clip scene" data-start="72" data-duration="6" data-track-index="9">
+        <div id="usage-hdr" class="glass">
+          <div class="kicker kicker-red" style="margin-bottom: 8px;">HEADS UP</div>
+          <div class="headline" style="font-size: 54px;">Usage Warning</div>
+        </div>
+
+        <div id="usage-meter" class="glass glass-red">
+          <div class="meter-label">Usage Cost</div>
+          <div id="meter-val" class="meter-value">2×</div>
+          <div class="meter-unit">Normal Usage</div>
+          <div class="meter-track">
+            <div id="meter-fill" class="meter-fill"></div>
+          </div>
+          <div class="meter-note">Fable 5 counts as 2× usage toward your plan limit — compute-hungry by design</div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ SCENE: PRICING ═══════════════ -->
+      <div id="scene-pricing" class="clip scene" data-start="78" data-duration="11" data-track-index="10">
+        <div id="pricing-hdr" class="glass">
+          <div class="kicker kicker-red" style="margin-bottom: 8px;">AFTER JUNE 23</div>
+          <div class="headline" style="font-size: 50px;">API Pricing</div>
+          <div class="subline" style="font-size: 24px; margin-top: 8px;">Usage credits or API required</div>
+        </div>
+
+        <div id="price-r1" class="glass">
+          <div class="price-type">Input Tokens</div>
+          <div class="price-amount">
+            <span style="color: #ff3050;">$10</span><span style="font-size: 36px; color: rgba(255, 255, 255, 0.42);">/M</span>
+          </div>
+          <div class="price-unit">per million tokens</div>
+        </div>
+
+        <div id="price-r2" class="glass">
+          <div class="price-type">Output Tokens</div>
+          <div class="price-amount">
+            <span style="color: #ff3050;">$50</span><span style="font-size: 36px; color: rgba(255, 255, 255, 0.42);">/M</span>
+          </div>
+          <div class="price-unit">per million tokens</div>
+        </div>
+
+        <div id="pricing-note" class="glass">
+          <div style="font-size: 28px; font-weight: 700; color: rgba(255, 30, 80, 0.82); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px;">
+            Double Opus 4.8 price
+          </div>
+          <div style="font-size: 24px; font-weight: 500; color: rgba(255, 255, 255, 0.5);">Serious compute for serious tasks</div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ SCENE: COMPARISON ═══════════════ -->
+      <div id="scene-comparison" class="clip scene" data-start="89" data-duration="10" data-track-index="11">
+        <div id="comp-title-card" class="glass">
+          <div class="kicker kicker-purple" style="margin-bottom: 6px;">THE FIELD</div>
+          <div class="headline" style="font-size: 52px;">How It Stacks Up</div>
+        </div>
+
+        <div class="comp-grid">
+          <div id="comp-gpt" class="glass comp-card" style="opacity: 0.72;">
+            <div class="comp-name" style="color: rgba(255, 255, 255, 0.65);">GPT<br />5.5</div>
+            <div class="comp-stat">
+              <div class="comp-stat-val" style="color: rgba(255, 255, 255, 0.58);">58.6%</div>
+              <div class="comp-stat-lbl">SWE Bench</div>
+            </div>
+            <div class="comp-stat">
+              <div class="comp-stat-val" style="color: rgba(255, 255, 255, 0.58);">24.9%</div>
+              <div class="comp-stat-lbl">GDP.pdf</div>
+            </div>
+          </div>
+          <div id="comp-fable" class="glass glass-gold comp-card comp-card-center">
+            <div class="comp-name" style="color: #ffb800; font-size: 40px;">FABLE<br />5</div>
+            <div
+              style="
+                font-size: 20px;
+                font-weight: 700;
+                letter-spacing: 0.14em;
+                color: rgba(255, 180, 0, 0.7);
+                text-transform: uppercase;
+                margin-bottom: 18px;
+              "
+            >
+              Mythos Class
+            </div>
+            <div class="comp-stat">
+              <div class="comp-stat-val" style="color: #ffb800;">80.3%</div>
+              <div class="comp-stat-lbl">SWE Bench</div>
+            </div>
+            <div class="comp-stat">
+              <div class="comp-stat-val" style="color: #ffb800;">29.8%</div>
+              <div class="comp-stat-lbl">GDP.pdf</div>
+            </div>
+            <div
+              style="
+                margin-top: 14px;
+                padding: 10px 14px;
+                background: rgba(255, 180, 0, 0.14);
+                border-radius: 10px;
+                border: 1px solid rgba(255, 180, 0, 0.34);
+                font-size: 20px;
+                font-weight: 800;
+                color: #ffb800;
+                letter-spacing: 0.08em;
+              "
+            >
+              STRONGEST
+            </div>
+          </div>
+          <div id="comp-opus" class="glass comp-card" style="opacity: 0.72; border-color: rgba(148, 0, 255, 0.38);">
+            <div class="comp-name" style="color: #c080ff;">OPUS<br />4.8</div>
+            <div class="comp-stat">
+              <div class="comp-stat-val" style="color: #c080ff;">69.2%</div>
+              <div class="comp-stat-lbl">SWE Bench</div>
+            </div>
+            <div class="comp-stat">
+              <div class="comp-stat-val" style="color: #c080ff;">22.5%</div>
+              <div class="comp-stat-lbl">GDP.pdf</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ SCENE: CTA ═══════════════ -->
+      <div id="scene-cta" class="clip scene" data-start="99" data-duration="9.024" data-track-index="12">
+        <div id="cta-q-mark">?</div>
+
+        <div id="cta-question" class="glass glass-red">
+          <div
+            style="
+              font-size: 26px;
+              font-weight: 800;
+              letter-spacing: 0.16em;
+              color: rgba(255, 30, 80, 0.8);
+              text-transform: uppercase;
+              margin-bottom: 22px;
+            "
+          >
+            The Real Question
+          </div>
+          <div style="font-size: 50px; font-weight: 900; line-height: 1.12; color: #fff; margin-bottom: 22px;">
+            Did Anthropic just release the most powerful public AI model…
+          </div>
+          <div style="font-size: 34px; font-weight: 700; color: rgba(255, 255, 255, 0.62); line-height: 1.35;">
+            or give us a limited-time demo of something most people won't afford?
+          </div>
+        </div>
+
+        <div id="end-card" class="glass">
+          <div
+            style="
+              font-size: 34px;
+              font-weight: 900;
+              letter-spacing: 0.1em;
+              text-transform: uppercase;
+              background: linear-gradient(90deg, #ff3050, #b040ff, #ffb800);
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+              background-clip: text;
+              line-height: 1.35;
+            "
+          >
+            FABLE 5: BREAKTHROUGH OR EXPENSIVE TEASER?
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ TRANSITIONS ═══════════════ -->
+      <div id="tr-ladder"     class="clip transition" data-start="9.72"  data-duration="0.56" data-track-index="20"><div class="wipe-band band-purple"></div><div class="wipe-band band-red"></div><div class="wipe-band band-blue"></div></div>
+      <div id="tr-benchmarks" class="clip transition" data-start="17.72" data-duration="0.56" data-track-index="20"><div class="wipe-band band-purple"></div><div class="wipe-band band-red"></div><div class="wipe-band band-blue"></div></div>
+      <div id="tr-stripe"     class="clip transition" data-start="34.72" data-duration="0.56" data-track-index="20"><div class="wipe-band band-purple"></div><div class="wipe-band band-red"></div><div class="wipe-band band-blue"></div></div>
+      <div id="tr-vision"     class="clip transition" data-start="47.72" data-duration="0.56" data-track-index="20"><div class="wipe-band band-purple"></div><div class="wipe-band band-red"></div><div class="wipe-band band-blue"></div></div>
+      <div id="tr-calendar"   class="clip transition" data-start="59.72" data-duration="0.56" data-track-index="20"><div class="wipe-band band-purple"></div><div class="wipe-band band-red"></div><div class="wipe-band band-blue"></div></div>
+      <div id="tr-usage"      class="clip transition" data-start="71.72" data-duration="0.56" data-track-index="20"><div class="wipe-band band-purple"></div><div class="wipe-band band-red"></div><div class="wipe-band band-blue"></div></div>
+      <div id="tr-pricing"    class="clip transition" data-start="77.72" data-duration="0.56" data-track-index="20"><div class="wipe-band band-purple"></div><div class="wipe-band band-red"></div><div class="wipe-band band-blue"></div></div>
+      <div id="tr-comparison" class="clip transition" data-start="88.72" data-duration="0.56" data-track-index="20"><div class="wipe-band band-purple"></div><div class="wipe-band band-red"></div><div class="wipe-band band-blue"></div></div>
+      <div id="tr-cta"        class="clip transition" data-start="98.72" data-duration="0.56" data-track-index="20"><div class="wipe-band band-purple"></div><div class="wipe-band band-red"></div><div class="wipe-band band-blue"></div></div>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      gsap.set(".scene, .glass, .tier-card, .comp-card, .stat-card", {
+        transformPerspective: 1800,
+        transformStyle: "preserve-3d",
+      });
+
+      // ── SCENE WINDOWS ──
+      const sceneWindows = [
+        ["#scene-intro",      0,      10],
+        ["#scene-ladder",     10,     18],
+        ["#scene-benchmarks", 18,     35],
+        ["#scene-stripe",     35,     48],
+        ["#scene-vision",     48,     60],
+        ["#scene-calendar",   60,     72],
+        ["#scene-usage",      72,     78],
+        ["#scene-pricing",    78,     89],
+        ["#scene-comparison", 89,     99],
+        ["#scene-cta",        99,     108.024],
+      ];
+
+      for (const [sel, s, e] of sceneWindows) {
+        tl.set(sel, { opacity: 1, visibility: "visible" }, s);
+        tl.set(sel, { opacity: 0, visibility: "hidden" }, e);
+      }
+
+      function fi(sel, vars, at) {
+        if (document.querySelector(sel)) tl.from(sel, vars, at);
+      }
+
+      function transition(id, at) {
+        tl.set(id, { opacity: 1 }, at);
+        tl.fromTo(id + " .band-purple", { x: 0 }, { x: 1820, duration: 0.44, ease: "power4.inOut", immediateRender: false }, at);
+        tl.fromTo(id + " .band-red",    { x: 0 }, { x: 1920, duration: 0.44, ease: "power4.inOut", immediateRender: false }, at + 0.04);
+        tl.fromTo(id + " .band-blue",   { x: 0 }, { x: 2020, duration: 0.44, ease: "power4.inOut", immediateRender: false }, at + 0.08);
+        tl.set(id, { opacity: 0 }, at + 0.56);
+      }
+
+      // ── AVATAR ENTRANCES ──
+      fi("#avatar-pip-a", { y: 160, x: 60,  scale: 0.72, opacity: 0, rotateY: 28,  duration: 0.56, ease: "back.out(1.4)"  }, 0.3);
+      fi("#avatar-pip-b", { y: 160,         scale: 0.72, opacity: 0, rotateX: 18,  duration: 0.48, ease: "back.out(1.4)"  }, 35.3);
+      fi("#avatar-pip-c", { y: 160,         scale: 0.72, opacity: 0, rotateX: 18,  duration: 0.48, ease: "back.out(1.4)"  }, 60.3);
+      fi("#avatar-cta",   { y: 180,         scale: 0.72, opacity: 0, rotateX: 24,  duration: 0.56, ease: "back.out(1.35)" }, 89.3);
+
+      // Idle floats
+      tl.to("#avatar-pip-a", { y: "-=20", duration: 1.4, repeat: 24, yoyo: true, ease: "sine.inOut" }, 1.1);
+      tl.to("#avatar-pip-b", { y: "-=20", duration: 1.4, repeat: 17, yoyo: true, ease: "sine.inOut" }, 36.0);
+      tl.to("#avatar-pip-c", { y: "-=20", duration: 1.4, repeat: 20, yoyo: true, ease: "sine.inOut" }, 61.0);
+      tl.to("#avatar-cta",   { y: "-=22", duration: 1.5, repeat: 12, yoyo: true, ease: "sine.inOut" }, 90.0);
+
+      // ────────────────────────────────────────────
+      // SCENE: INTRO  0 – 10
+      // ────────────────────────────────────────────
+      fi("#intro-alert", { y: -80, opacity: 0, rotateX: 40, scale: 0.86, duration: 0.44, ease: "back.out(1.7)"  }, 0.1);
+      fi("#intro-main",  { z: -480, rotateX: 18, rotateY: -14, scale: 0.76, opacity: 0, duration: 0.72, ease: "expo.out" }, 0.28);
+      fi("#intro-tag",   { y: 60, opacity: 0, scale: 0.9, rotateX: -18, duration: 0.52, ease: "back.out(1.5)" }, 0.82);
+
+      tl.to("#intro-main", { rotateY: 4, rotateX: -2, duration: 1.6, repeat: 5, yoyo: true, ease: "sine.inOut" }, 1.5);
+      tl.to("#intro-tag",  { y: "-=12",               duration: 1.1, repeat: 8, yoyo: true, ease: "sine.inOut" }, 1.8);
+
+      // ────────────────────────────────────────────
+      // SCENE: LADDER  10 – 18
+      // ────────────────────────────────────────────
+      transition("#tr-ladder", 9.72);
+
+      fi("#scene-ladder .ladder-title", { y: -64, opacity: 0, rotateX: 44, duration: 0.44, ease: "back.out(1.6)" }, 10.22);
+      fi("#tier-haiku",  { x: -320, z: -300, opacity: 0, rotateY:  42, scale: 0.8, duration: 0.52, ease: "expo.out"      }, 10.40);
+      fi("#tier-sonnet", { x: -320, z: -300, opacity: 0, rotateY:  42, scale: 0.8, duration: 0.52, ease: "expo.out"      }, 10.58);
+      fi("#tier-opus",   { x: -320, z: -300, opacity: 0, rotateY:  42, scale: 0.8, duration: 0.52, ease: "expo.out"      }, 10.76);
+      fi("#tier-fable",  { x:  380, z: -500, opacity: 0, rotateY: -56, scale: 0.7, duration: 0.66, ease: "back.out(1.55)"}, 11.00);
+      fi(".arrow-connector", { scaleY: 0, opacity: 0, duration: 0.28, stagger: 0.1, ease: "power3.out" }, 11.52);
+      fi(".ladder-bottom",   { y: 50, opacity: 0, duration: 0.42, ease: "power2.out" }, 12.4);
+
+      tl.to("#tier-fable", { scale: 1.03, rotateY: 4, duration: 1.0, repeat: 6, yoyo: true, ease: "sine.inOut" }, 12.0);
+
+      // ────────────────────────────────────────────
+      // SCENE: BENCHMARKS  18 – 35
+      // ────────────────────────────────────────────
+      transition("#tr-benchmarks", 17.72);
+
+      fi("#bench-title-card", { y: -80, z: -200, opacity: 0, rotateX: 32, duration: 0.52, ease: "expo.out"       }, 18.28);
+      fi("#bench-r1",         { x: -400, z: -280, opacity: 0, rotateY: 38, duration: 0.54, ease: "expo.out"      }, 18.60);
+      fi("#bench-r2",         { x: -400, z: -280, opacity: 0, rotateY: 38, duration: 0.54, ease: "expo.out"      }, 18.88);
+      fi("#bench-r3",         { x: -400, z: -280, opacity: 0, rotateY: 38, duration: 0.54, ease: "expo.out"      }, 19.16);
+
+      tl.from("#bar-fable", { width: "0%", duration: 0.72, ease: "power3.out" }, 19.00);
+      tl.from("#bar-opus",  { width: "0%", duration: 0.66, ease: "power3.out" }, 19.28);
+      tl.from("#bar-gpt",   { width: "0%", duration: 0.60, ease: "power3.out" }, 19.56);
+
+      fi("#bench-footnote", { y: 60, opacity: 0, scale: 0.92, duration: 0.44, ease: "back.out(1.4)" }, 20.4);
+
+      tl.to("#bench-r1", { y: "-=14", rotateX: -3, duration: 1.2, repeat: 11, yoyo: true, ease: "sine.inOut" }, 20.5);
+      tl.to("#bench-r2", { y: "-=14", rotateX: -3, duration: 1.2, repeat: 11, yoyo: true, ease: "sine.inOut" }, 20.7);
+      tl.to("#bench-r3", { y: "-=14", rotateX: -3, duration: 1.2, repeat: 11, yoyo: true, ease: "sine.inOut" }, 20.9);
+
+      // ────────────────────────────────────────────
+      // SCENE: STRIPE  35 – 48
+      // ────────────────────────────────────────────
+      transition("#tr-stripe", 34.72);
+
+      fi("#stripe-hdr",  { y: -80, z: -200, opacity: 0, rotateX: 28, duration: 0.52, ease: "expo.out"           }, 35.28);
+      fi("#stat-fable",  { z: -420, rotateX: 32, rotateY: -28, opacity: 0, scale: 0.72, duration: 0.62, ease: "back.out(1.55)" }, 35.66);
+      fi("#stat-team",   { z: -420, rotateX: 32, rotateY:  28, opacity: 0, scale: 0.72, duration: 0.62, ease: "back.out(1.55)" }, 35.86);
+      fi("#stripe-vs",   { opacity: 0, scale: 0.7, duration: 0.3, ease: "power3.out" }, 36.38);
+      fi("#stripe-detail",{ y: 80, opacity: 0, rotateX: 18, duration: 0.5, ease: "back.out(1.4)" }, 36.66);
+
+      tl.to("#stat-fable", { scale: 1.04, rotateY: 5, duration: 1.2, repeat: 9, yoyo: true, ease: "sine.inOut" }, 37.0);
+
+      // ────────────────────────────────────────────
+      // SCENE: VISION  48 – 60
+      // ────────────────────────────────────────────
+      transition("#tr-vision", 47.72);
+
+      fi("#vision-hdr", { y: -80, z: -200, opacity: 0, rotateX: 28, duration: 0.52, ease: "expo.out"  }, 48.28);
+      fi("#vr-1",       { x:  360, z: -300, opacity: 0, rotateY: -42, duration: 0.56, ease: "expo.out" }, 48.58);
+      fi("#vr-2",       { x:  360, z: -300, opacity: 0, rotateY: -42, duration: 0.56, ease: "expo.out" }, 48.86);
+      fi("#vr-3",       { x:  360, z: -300, opacity: 0, rotateY: -42, duration: 0.56, ease: "expo.out" }, 49.14);
+
+      tl.from("#bar-v-fable", { width: "0%", duration: 0.56, ease: "power3.out" }, 48.98);
+      tl.from("#bar-v-gpt",   { width: "0%", duration: 0.50, ease: "power3.out" }, 49.26);
+      tl.from("#bar-v-opus",  { width: "0%", duration: 0.46, ease: "power3.out" }, 49.54);
+
+      tl.to("#vr-1", { y: "-=16", rotateX: -3, duration: 1.2, repeat: 8, yoyo: true, ease: "sine.inOut" }, 50.0);
+
+      // ────────────────────────────────────────────
+      // SCENE: CALENDAR  60 – 72
+      // ────────────────────────────────────────────
+      transition("#tr-calendar", 59.72);
+
+      fi("#cal-hdr",   { y: -80, z: -200, opacity: 0, rotateX: 28, duration: 0.52, ease: "expo.out"             }, 60.28);
+      fi("#cal-badge", { z: -520, rotateX: 22, rotateY: 16, scale: 0.74, opacity: 0, duration: 0.68, ease: "back.out(1.5)" }, 60.56);
+      fi(".cal-date-box", { y: -80, opacity: 0, rotateX: 48, scale: 0.82, duration: 0.44, stagger: 0.14, ease: "back.out(1.7)" }, 61.1);
+      fi(".chip",         { y:  60, opacity: 0, scale: 0.82, duration: 0.34, stagger: 0.08, ease: "back.out(1.65)" }, 61.7);
+
+      tl.to("#cal-badge", { rotateY: 4, y: "-=14", duration: 1.4, repeat: 8, yoyo: true, ease: "sine.inOut" }, 62.4);
+
+      // ────────────────────────────────────────────
+      // SCENE: USAGE  72 – 78
+      // ────────────────────────────────────────────
+      transition("#tr-usage", 71.72);
+
+      fi("#usage-hdr",   { y: -80, z: -180, opacity: 0, rotateX: 28, duration: 0.48, ease: "expo.out"           }, 72.28);
+      fi("#usage-meter", { z: -500, rotateX: 28, scale: 0.74, opacity: 0, duration: 0.64, ease: "back.out(1.45)" }, 72.54);
+
+      tl.from("#meter-fill", { width: "0%", duration: 0.72, ease: "power2.out" }, 73.1);
+      tl.to("#meter-val",    { scale: 1.06, duration: 0.6, repeat: 7, yoyo: true, ease: "sine.inOut" }, 73.4);
+      tl.to("#usage-meter",  { rotateX: -4, rotateY: 4, duration: 1.2, repeat: 4, yoyo: true, ease: "sine.inOut" }, 73.8);
+
+      // ────────────────────────────────────────────
+      // SCENE: PRICING  78 – 85
+      // ────────────────────────────────────────────
+      transition("#tr-pricing", 77.72);
+
+      fi("#pricing-hdr",  { y: -80, z: -180, opacity: 0, rotateX: 28, duration: 0.48, ease: "expo.out"          }, 78.28);
+      fi("#price-r1",     { x: -360, z: -280, opacity: 0, rotateY:  42, duration: 0.54, ease: "expo.out"        }, 78.58);
+      fi("#price-r2",     { x:  360, z: -280, opacity: 0, rotateY: -42, duration: 0.54, ease: "expo.out"        }, 78.86);
+      fi("#pricing-note", { y: 80, opacity: 0, scale: 0.9, rotateX: 14, duration: 0.46, ease: "back.out(1.4)"   }, 79.28);
+
+      tl.to("#price-r1", { rotateY:  5, y: "-=12", duration: 1.1, repeat: 5, yoyo: true, ease: "sine.inOut" }, 79.8);
+      tl.to("#price-r2", { rotateY: -5, y: "-=12", duration: 1.1, repeat: 5, yoyo: true, ease: "sine.inOut" }, 80.0);
+
+      // ────────────────────────────────────────────
+      // SCENE: COMPARISON  89 – 99
+      // ────────────────────────────────────────────
+      transition("#tr-comparison", 88.72);
+
+      fi("#comp-title-card", { y: -80, z: -200, opacity: 0, rotateX: 32, duration: 0.52, ease: "expo.out"        }, 89.28);
+      fi("#comp-gpt",        { x: -380, z: -300, opacity: 0, rotateY:  48, duration: 0.58, ease: "expo.out"     }, 89.58);
+      fi("#comp-fable",      { z: -600, rotateX: 30, scale: 0.68, opacity: 0, duration: 0.72, ease: "back.out(1.5)" }, 89.80);
+      fi("#comp-opus",       { x:  380, z: -300, opacity: 0, rotateY: -48, duration: 0.58, ease: "expo.out"     }, 90.04);
+
+      tl.to("#comp-fable", { scale: 1.04, rotateY: 6, duration: 1.3, repeat: 7, yoyo: true, ease: "sine.inOut" }, 91.0);
+
+      // ────────────────────────────────────────────
+      // SCENE: CTA  99 – 108
+      // ────────────────────────────────────────────
+      transition("#tr-cta", 98.72);
+
+      fi("#cta-q-mark",   { opacity: 0, scale: 0.6, rotateZ: -30, duration: 0.72, ease: "back.out(1.6)"         }, 99.28);
+      fi("#cta-question", { z: -560, rotateX: 22, rotateY: -14, scale: 0.74, opacity: 0, duration: 0.72, ease: "back.out(1.45)" }, 99.36);
+      fi("#end-card",     { y: 100, opacity: 0, scale: 0.88, rotateX: 18, duration: 0.56, ease: "back.out(1.5)" }, 100.08);
+
+      tl.to("#cta-question", { rotateY: 4, rotateX: -2, duration: 1.5, repeat: 8, yoyo: true, ease: "sine.inOut" }, 100.8);
+      tl.to("#end-card",     { y: "-=16",               duration: 1.2, repeat: 9, yoyo: true, ease: "sine.inOut" }, 101.2);
+
+      window.__timelines["mythos-fable-5-release"] = tl;
+    </script>
+  </body>
+</html>

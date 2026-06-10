@@ -102,20 +102,20 @@ node scripts\run-hyperframes.mjs render videos\google-io-2026-update --output vi
 Use `node scripts\run-hyperframes.mjs` so commands run this checkout's built
 CLI without relying on a root `node_modules\.bin\hyperframes.CMD` shim.
 
-### Standard Review Render
-
-Use this for a normal review copy. It balances quality and render time:
-
-```powershell
-node scripts\run-hyperframes.mjs render videos\google-io-2026-update --quality standard --fps 30 --output videos\google-io-2026-update\renders\google-io-2026-update-standard.mp4
-```
-
 ### Fast Draft Render
 
 Use this while iterating on timing, layout, or animation:
 
 ```powershell
 node scripts\run-hyperframes.mjs render videos\google-io-2026-update --quality draft --fps 30 --output videos\google-io-2026-update\renders\google-io-2026-update-draft.mp4
+```
+
+### Standard Review Render
+
+Use this for a normal review copy. It balances quality and render time:
+
+```powershell
+node scripts\run-hyperframes.mjs render videos\google-io-2026-update --quality standard --fps 30 --output videos\google-io-2026-update\renders\google-io-2026-update-standard.mp4
 ```
 
 ### High Quality Final Render
