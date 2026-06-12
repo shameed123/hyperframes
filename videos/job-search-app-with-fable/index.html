@@ -199,12 +199,18 @@
         width: 1240px;
       }
 
-      /* Right panel (phase B: small webcam bottom-right) */
+      /* Side panel (phase B: small webcam bottom-right) — pinned left */
       .panel-right {
         position: absolute;
-        right: 60px;
+        left: 60px;
         top: 70px;
         width: 640px;
+      }
+
+      /* Override: pin this panel to the right edge instead */
+      .panel-on-right {
+        left: auto;
+        right: 60px;
       }
 
       .row-card {
@@ -783,7 +789,7 @@
 
       <!-- ═══════ S9: CLAUDE DESKTOP 97.0–140.5 ═══════ -->
       <div id="s9" class="clip scene" data-start="97" data-duration="43.5" data-track-index="11">
-        <div class="panel-right">
+        <div class="panel-right panel-on-right">
           <div id="s9-hdr" class="glass glass-blue pb-hdr">
             <div class="kicker kicker-blue" style="margin-bottom: 4px;">The Tool</div>
             <div class="headline" style="font-size: 42px;">Claude Desktop</div>
@@ -828,7 +834,7 @@
 
       <!-- ═══════ S11: SETUP CHECKLIST 155.0–188.4 ═══════ -->
       <div id="s11" class="clip scene" data-start="155" data-duration="33.4" data-track-index="13">
-        <div class="panel-right">
+        <div class="panel-right panel-on-right">
           <div id="s11-hdr" class="glass glass-green pb-hdr">
             <div class="kicker kicker-green" style="margin-bottom: 4px;">Before You Prompt</div>
             <div class="headline" style="font-size: 42px;">Setup Checklist</div>
@@ -1264,31 +1270,31 @@
       fo("#s11 .panel-right", { x: 460, z: -320, rotateY: -30, opacity: 0, duration: 0.5, ease: "power3.in" }, 187.85);
 
       // ════════ S12: MODEL LADDER 189.5–226.6 ════════
-      fi("#s12-hdr", { x: 560, z: -340, opacity: 0, rotateY: -44, duration: 0.6, ease: "expo.out" }, 189.7);
-      fi("#s12-t1", { x: 520, z: -300, opacity: 0, rotateY: -40, duration: 0.55, ease: "expo.out" }, 200.0);
-      fi("#s12-t2", { x: 520, z: -300, opacity: 0, rotateY: -40, duration: 0.55, ease: "expo.out" }, 202.2);
-      fi("#s12-t3", { x: 520, z: -300, opacity: 0, rotateY: -40, duration: 0.55, ease: "expo.out" }, 209.8);
-      fi("#s12-t4", { x: 620, z: -460, opacity: 0, rotateY: -52, scale: 0.78, duration: 0.7, ease: "back.out(1.55)" }, 221.7);
+      fi("#s12-hdr", { x: -560, z: -340, opacity: 0, rotateY: 44, duration: 0.6, ease: "expo.out" }, 189.7);
+      fi("#s12-t1", { x: -520, z: -300, opacity: 0, rotateY: 40, duration: 0.55, ease: "expo.out" }, 200.0);
+      fi("#s12-t2", { x: -520, z: -300, opacity: 0, rotateY: 40, duration: 0.55, ease: "expo.out" }, 202.2);
+      fi("#s12-t3", { x: -520, z: -300, opacity: 0, rotateY: 40, duration: 0.55, ease: "expo.out" }, 209.8);
+      fi("#s12-t4", { x: -620, z: -460, opacity: 0, rotateY: 52, scale: 0.78, duration: 0.7, ease: "back.out(1.55)" }, 221.7);
       tl.to("#s12-t4", { scale: 1.04, rotateY: 4, duration: 1.0, repeat: 3, yoyo: true, ease: "sine.inOut" }, 222.6);
-      fo("#s12 .panel-right", { x: 460, z: -320, rotateY: -30, opacity: 0, duration: 0.5, ease: "power3.in" }, 226.05);
+      fo("#s12 .panel-right", { x: -460, z: -320, rotateY: 30, opacity: 0, duration: 0.5, ease: "power3.in" }, 226.05);
 
       // ════════ S13: JUNE 22 227.3–265.6 ════════
-      fi("#s13-hdr", { x: 560, z: -340, opacity: 0, rotateY: -44, duration: 0.6, ease: "expo.out" }, 227.5);
+      fi("#s13-hdr", { x: -560, z: -340, opacity: 0, rotateY: 44, duration: 0.6, ease: "expo.out" }, 227.5);
       fi("#s13-date", { z: -560, rotateX: 34, scale: 0.7, opacity: 0, duration: 0.68, ease: "back.out(1.5)" }, 228.1);
-      fi("#s13-r1", { x: 520, z: -300, opacity: 0, rotateY: -40, duration: 0.55, ease: "expo.out" }, 240.5);
-      fi("#s13-r2", { x: 520, z: -300, opacity: 0, rotateY: -40, duration: 0.55, ease: "expo.out" }, 249.5);
+      fi("#s13-r1", { x: -520, z: -300, opacity: 0, rotateY: 40, duration: 0.55, ease: "expo.out" }, 240.5);
+      fi("#s13-r2", { x: -520, z: -300, opacity: 0, rotateY: 40, duration: 0.55, ease: "expo.out" }, 249.5);
       tl.to("#s13-date .s13-big", { scale: 1.06, duration: 0.8, repeat: 9, yoyo: true, ease: "sine.inOut" }, 229.2);
       tl.to("#s13-hdr", { rotateY: 3, duration: 1.5, repeat: 10, yoyo: true, ease: "sine.inOut" }, 228.6);
-      fo("#s13 .panel-right", { x: 460, z: -320, rotateY: -30, opacity: 0, duration: 0.5, ease: "power3.in" }, 265.05);
+      fo("#s13 .panel-right", { x: -460, z: -320, rotateY: 30, opacity: 0, duration: 0.5, ease: "power3.in" }, 265.05);
 
       // ════════ S14: NORMAL PROCESS 266.2–327.6 ════════
-      fi("#s14-hdr", { x: 560, z: -340, opacity: 0, rotateY: -44, duration: 0.6, ease: "expo.out" }, 266.4);
-      fi("#s14-n1", { x: 520, z: -300, opacity: 0, rotateY: -40, duration: 0.55, ease: "expo.out" }, 269.0);
-      fi("#s14-n2", { x: 520, z: -300, opacity: 0, rotateY: -40, duration: 0.55, ease: "expo.out" }, 279.5);
-      fi("#s14-n3", { x: 520, z: -300, opacity: 0, rotateY: -40, duration: 0.55, ease: "expo.out" }, 308.5);
-      fi("#s14-n4", { x: 520, z: -300, opacity: 0, rotateY: -40, duration: 0.55, ease: "expo.out" }, 317.0);
+      fi("#s14-hdr", { x: -560, z: -340, opacity: 0, rotateY: 44, duration: 0.6, ease: "expo.out" }, 266.4);
+      fi("#s14-n1", { x: -520, z: -300, opacity: 0, rotateY: 40, duration: 0.55, ease: "expo.out" }, 269.0);
+      fi("#s14-n2", { x: -520, z: -300, opacity: 0, rotateY: 40, duration: 0.55, ease: "expo.out" }, 279.5);
+      fi("#s14-n3", { x: -520, z: -300, opacity: 0, rotateY: 40, duration: 0.55, ease: "expo.out" }, 308.5);
+      fi("#s14-n4", { x: -520, z: -300, opacity: 0, rotateY: 40, duration: 0.55, ease: "expo.out" }, 317.0);
       tl.to("#s14-hdr", { rotateY: 3, duration: 1.6, repeat: 17, yoyo: true, ease: "sine.inOut" }, 267.4);
-      fo("#s14 .panel-right", { x: 460, z: -320, rotateY: -30, opacity: 0, duration: 0.5, ease: "power3.in" }, 327.05);
+      fo("#s14 .panel-right", { x: -460, z: -320, rotateY: 30, opacity: 0, duration: 0.5, ease: "power3.in" }, 327.05);
 
       // ════════ S15: NO PRD 328.0–338.4 ════════
       fi("#s15-card", { z: -680, rotateX: -32, scale: 0.66, opacity: 0, duration: 0.6, ease: "back.out(1.5)" }, 328.15);
@@ -1296,18 +1302,18 @@
       fo("#s15-card", { y: -170, z: -300, rotateX: 38, opacity: 0, duration: 0.45, ease: "power3.in" }, 337.85);
 
       // ════════ S16: PROMPT PT1 341.5–358.0 ════════
-      fi("#s16-hdr", { x: 560, z: -340, opacity: 0, rotateY: -44, duration: 0.6, ease: "expo.out" }, 341.7);
-      fi("#s16-r1", { x: 520, z: -300, opacity: 0, rotateY: -40, duration: 0.55, ease: "expo.out" }, 348.9);
+      fi("#s16-hdr", { x: -560, z: -340, opacity: 0, rotateY: 44, duration: 0.6, ease: "expo.out" }, 341.7);
+      fi("#s16-r1", { x: -520, z: -300, opacity: 0, rotateY: 40, duration: 0.55, ease: "expo.out" }, 348.9);
       tl.to("#s16-hdr", { rotateY: 3, duration: 1.5, repeat: 8, yoyo: true, ease: "sine.inOut" }, 342.7);
-      fo("#s16 .panel-right", { x: 460, z: -320, rotateY: -30, opacity: 0, duration: 0.5, ease: "power3.in" }, 357.45);
+      fo("#s16 .panel-right", { x: -460, z: -320, rotateY: 30, opacity: 0, duration: 0.5, ease: "power3.in" }, 357.45);
 
       // ════════ S17: API/APIFY 358.5–402.4 ════════
-      fi("#s17-hdr", { x: 560, z: -340, opacity: 0, rotateY: -44, duration: 0.6, ease: "expo.out" }, 358.7);
-      fi("#s17-r1", { x: 520, z: -300, opacity: 0, rotateY: -40, duration: 0.55, ease: "expo.out" }, 359.5);
-      fi("#s17-r2", { x: 520, z: -300, opacity: 0, rotateY: -40, duration: 0.55, ease: "expo.out" }, 364.8);
-      fi("#s17-r3", { x: 520, z: -300, opacity: 0, rotateY: -40, duration: 0.55, ease: "expo.out" }, 373.0);
+      fi("#s17-hdr", { x: -560, z: -340, opacity: 0, rotateY: 44, duration: 0.6, ease: "expo.out" }, 358.7);
+      fi("#s17-r1", { x: -520, z: -300, opacity: 0, rotateY: 40, duration: 0.55, ease: "expo.out" }, 359.5);
+      fi("#s17-r2", { x: -520, z: -300, opacity: 0, rotateY: 40, duration: 0.55, ease: "expo.out" }, 364.8);
+      fi("#s17-r3", { x: -520, z: -300, opacity: 0, rotateY: 40, duration: 0.55, ease: "expo.out" }, 373.0);
       tl.to("#s17-hdr", { rotateY: 3, duration: 1.6, repeat: 12, yoyo: true, ease: "sine.inOut" }, 359.7);
-      fo("#s17 .panel-right", { x: 460, z: -320, rotateY: -30, opacity: 0, duration: 0.5, ease: "power3.in" }, 401.85);
+      fo("#s17 .panel-right", { x: -460, z: -320, rotateY: 30, opacity: 0, duration: 0.5, ease: "power3.in" }, 401.85);
 
       // ════════ S18: COSTS LOW 403.0–418.3 ════════
       fi("#s18-card", { y: -180, z: -380, opacity: 0, rotateX: 46, scale: 0.84, duration: 0.6, ease: "back.out(1.5)" }, 403.15);
@@ -1315,34 +1321,34 @@
       fo("#s18-card", { y: -160, z: -300, rotateX: 36, opacity: 0, duration: 0.45, ease: "power3.in" }, 417.75);
 
       // ════════ S19: FEATURE STACK 418.8–448.3 ════════
-      fi("#s19-hdr", { x: 560, z: -340, opacity: 0, rotateY: -44, duration: 0.6, ease: "expo.out" }, 419.0);
-      fi("#s19-r1", { x: 520, z: -300, opacity: 0, rotateY: -40, duration: 0.55, ease: "expo.out" }, 422.5);
-      fi("#s19-r2", { x: 520, z: -300, opacity: 0, rotateY: -40, duration: 0.55, ease: "expo.out" }, 430.3);
-      fi("#s19-r3", { x: 520, z: -300, opacity: 0, rotateY: -40, duration: 0.55, ease: "expo.out" }, 439.3);
-      fi("#s19-r4", { x: 520, z: -300, opacity: 0, rotateY: -40, duration: 0.55, ease: "expo.out" }, 442.4);
+      fi("#s19-hdr", { x: -560, z: -340, opacity: 0, rotateY: 44, duration: 0.6, ease: "expo.out" }, 419.0);
+      fi("#s19-r1", { x: -520, z: -300, opacity: 0, rotateY: 40, duration: 0.55, ease: "expo.out" }, 422.5);
+      fi("#s19-r2", { x: -520, z: -300, opacity: 0, rotateY: 40, duration: 0.55, ease: "expo.out" }, 430.3);
+      fi("#s19-r3", { x: -520, z: -300, opacity: 0, rotateY: 40, duration: 0.55, ease: "expo.out" }, 439.3);
+      fi("#s19-r4", { x: -520, z: -300, opacity: 0, rotateY: 40, duration: 0.55, ease: "expo.out" }, 442.4);
       tl.to("#s19-hdr", { rotateY: 3, duration: 1.5, repeat: 16, yoyo: true, ease: "sine.inOut" }, 420.0);
-      fo("#s19 .panel-right", { x: 460, z: -320, rotateY: -30, opacity: 0, duration: 0.5, ease: "power3.in" }, 447.75);
+      fo("#s19 .panel-right", { x: -460, z: -320, rotateY: 30, opacity: 0, duration: 0.5, ease: "power3.in" }, 447.75);
 
       // ════════ S20: ROLES 448.7–462.8 ════════
-      fi("#s20-hdr", { x: 560, z: -340, opacity: 0, rotateY: -44, duration: 0.6, ease: "expo.out" }, 448.9);
+      fi("#s20-hdr", { x: -560, z: -340, opacity: 0, rotateY: 44, duration: 0.6, ease: "expo.out" }, 448.9);
       fi("#s20-r1", { z: -480, rotateX: 34, y: -100, opacity: 0, scale: 0.78, duration: 0.6, ease: "back.out(1.5)" }, 450.0);
       fi("#s20-r2", { z: -480, rotateX: -34, y: 100, opacity: 0, scale: 0.78, duration: 0.6, ease: "back.out(1.5)" }, 454.5);
       tl.to("#s20-r1", { rotateY: 3, duration: 1.1, repeat: 5, yoyo: true, ease: "sine.inOut" }, 451.0);
-      fo("#s20 .panel-right", { x: 460, z: -320, rotateY: -30, opacity: 0, duration: 0.5, ease: "power3.in" }, 462.25);
+      fo("#s20 .panel-right", { x: -460, z: -320, rotateY: 30, opacity: 0, duration: 0.5, ease: "power3.in" }, 462.25);
 
       // ════════ S21: CORNER CASES 463.2–476.3 ════════
-      fi("#s21-r1", { x: 520, z: -300, opacity: 0, rotateY: -40, duration: 0.55, ease: "expo.out" }, 463.4);
-      fi("#s21-r2", { x: 520, z: -300, opacity: 0, rotateY: -40, duration: 0.55, ease: "expo.out" }, 467.5);
-      fi("#s21-r3", { x: 520, z: -300, opacity: 0, rotateY: -40, duration: 0.55, ease: "expo.out" }, 470.5);
-      fo("#s21 .panel-right", { x: 460, z: -320, rotateY: -30, opacity: 0, duration: 0.5, ease: "power3.in" }, 475.75);
+      fi("#s21-r1", { x: -520, z: -300, opacity: 0, rotateY: 40, duration: 0.55, ease: "expo.out" }, 463.4);
+      fi("#s21-r2", { x: -520, z: -300, opacity: 0, rotateY: 40, duration: 0.55, ease: "expo.out" }, 467.5);
+      fi("#s21-r3", { x: -520, z: -300, opacity: 0, rotateY: 40, duration: 0.55, ease: "expo.out" }, 470.5);
+      fo("#s21 .panel-right", { x: -460, z: -320, rotateY: 30, opacity: 0, duration: 0.5, ease: "power3.in" }, 475.75);
 
       // ════════ S22: .ENV 476.7–522.3 ════════
-      fi("#s22-hdr", { x: 560, z: -340, opacity: 0, rotateY: -44, duration: 0.6, ease: "expo.out" }, 476.9);
+      fi("#s22-hdr", { x: -560, z: -340, opacity: 0, rotateY: 44, duration: 0.6, ease: "expo.out" }, 476.9);
       fi("#s22-code", { z: -480, rotateX: 30, opacity: 0, scale: 0.8, duration: 0.6, ease: "back.out(1.4)" }, 478.0);
-      fi("#s22-r1", { x: 520, z: -300, opacity: 0, rotateY: -40, duration: 0.55, ease: "expo.out" }, 495.0);
-      fi("#s22-r2", { x: 520, z: -300, opacity: 0, rotateY: -40, duration: 0.55, ease: "expo.out" }, 511.0);
+      fi("#s22-r1", { x: -520, z: -300, opacity: 0, rotateY: 40, duration: 0.55, ease: "expo.out" }, 495.0);
+      fi("#s22-r2", { x: -520, z: -300, opacity: 0, rotateY: 40, duration: 0.55, ease: "expo.out" }, 511.0);
       tl.to("#s22-hdr", { rotateY: 3, duration: 1.6, repeat: 13, yoyo: true, ease: "sine.inOut" }, 478.0);
-      fo("#s22 .panel-right", { x: 460, z: -320, rotateY: -30, opacity: 0, duration: 0.5, ease: "power3.in" }, 521.75);
+      fo("#s22 .panel-right", { x: -460, z: -320, rotateY: 30, opacity: 0, duration: 0.5, ease: "power3.in" }, 521.75);
 
       // ════════ S23: FROST GLASS 522.6–526 ════════
       fi("#s23-card", { z: -620, rotateX: -30, scale: 0.7, opacity: 0, duration: 0.55, ease: "back.out(1.5)" }, 522.75);
