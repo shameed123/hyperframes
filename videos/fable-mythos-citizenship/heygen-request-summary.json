@@ -1,0 +1,14 @@
+{
+  "endpoint": "POST https://api.heygen.com/v2/video/generate",
+  "title": "Will You Need to Prove Citizenship to Use AI?",
+  "caption": true,
+  "dimension": {
+    "width": 1280,
+    "height": 720
+  },
+  "avatarStyle": "normal",
+  "voiceType": "text",
+  "voiceSpeed": 1.1,
+  "inputTextPath": "videos/fable-mythos-citizenship/heygen-input.txt",
+  "submittedAt": "2026-06-14T05:58:02.108Z"
+}

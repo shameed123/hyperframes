@@ -1,0 +1,21 @@
+You may soon need to prove your citizenship just to use the most powerful AI models.
+
+Anthropic just disabled Fable 5 and Mythos 5 after a U.S. government order.
+
+And according to Reuters, Anthropic said the government ordered it to suspend access to these models for foreign nationals, citing national security concerns.
+
+That detail is extremely important. Because this is not just a normal country ban. It is not simply saying, block users outside America. It targets foreign nationals.
+
+That means even someone physically inside the United States could still be restricted if they are not a U.S. citizen.
+
+Now, to be clear, Anthropic has not officially announced a citizenship verification system yet. But if the rule is based on nationality instead of location, then location checks may not be enough.
+
+That is why some experts now expect users may eventually have to prove citizenship before Fable 5 or Mythos 5 can come back.
+
+Think about how big of a shift that would be. AI access could move from log in and pay, to prove who you are and what country you belong to.
+
+This could affect foreign students, visa holders, international workers, researchers, and even employees inside AI companies.
+
+Anthropic says other models are not affected, and it wants to restore access as soon as possible. But right now, there is no public timeline for when Fable 5 and Mythos 5 will return.
+
+So the real question is: Is this a temporary national security pause, or are we entering a new era where the most powerful AI models are treated like restricted technology?

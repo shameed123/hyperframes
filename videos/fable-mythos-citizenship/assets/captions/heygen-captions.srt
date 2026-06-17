@@ -1,0 +1,203 @@
+1
+00:00:00,000 --> 00:00:01,410
+You may soon need to prove your
+
+2
+00:00:01,450 --> 00:00:03,130
+citizenship just to use the most
+
+3
+00:00:03,200 --> 00:00:04,450
+powerful AI models.
+
+4
+00:00:04,960 --> 00:00:07,150
+Anthropic just disabled Fable 5 and
+
+5
+00:00:07,220 --> 00:00:08,840
+Mythos 5 after a U.S.
+
+6
+00:00:08,940 --> 00:00:09,720
+government order.
+
+7
+00:00:10,090 --> 00:00:11,990
+And according to Reuters, Anthropic said
+
+8
+00:00:12,040 --> 00:00:13,570
+the government ordered it to suspend
+
+9
+00:00:13,640 --> 00:00:15,350
+access to these models for foreign
+
+10
+00:00:15,390 --> 00:00:17,310
+nationals, citing national security
+
+11
+00:00:17,360 --> 00:00:17,860
+concerns.
+
+12
+00:00:17,960 --> 00:00:19,810
+That detail is extremely important.
+
+13
+00:00:19,870 --> 00:00:21,490
+Because this is not just a normal
+
+14
+00:00:21,550 --> 00:00:22,190
+country ban.
+
+15
+00:00:22,270 --> 00:00:24,200
+It is not simply saying, block users
+
+16
+00:00:24,250 --> 00:00:25,110
+outside America.
+
+17
+00:00:25,210 --> 00:00:26,730
+It targets foreign nationals.
+
+18
+00:00:26,820 --> 00:00:28,820
+That means even someone physically
+
+19
+00:00:28,880 --> 00:00:30,800
+inside the United States could still be
+
+20
+00:00:30,860 --> 00:00:32,520
+restricted if they are not a U.S.
+
+21
+00:00:32,580 --> 00:00:33,010
+citizen.
+
+22
+00:00:33,120 --> 00:00:35,050
+Now, to be clear, Anthropic has not
+
+23
+00:00:35,100 --> 00:00:36,710
+officially announced a citizenship
+
+24
+00:00:36,770 --> 00:00:38,050
+verification system yet.
+
+25
+00:00:38,180 --> 00:00:39,990
+But if the rule is based on nationality
+
+26
+00:00:40,030 --> 00:00:41,740
+instead of location, then location
+
+27
+00:00:41,800 --> 00:00:42,980
+checks may not be enough.
+
+28
+00:00:43,030 --> 00:00:44,830
+That is why some experts now expect
+
+29
+00:00:44,890 --> 00:00:46,510
+users may eventually have to prove
+
+30
+00:00:46,550 --> 00:00:48,890
+citizenship before Fable 5 or Mythos 5
+
+31
+00:00:48,940 --> 00:00:49,540
+can come back.
+
+32
+00:00:49,870 --> 00:00:51,380
+Think about how big of a shift that
+
+33
+00:00:51,410 --> 00:00:51,820
+would be.
+
+34
+00:00:52,010 --> 00:00:54,010
+AI access could move from log in and
+
+35
+00:00:54,070 --> 00:00:55,820
+pay, to prove who you are and what
+
+36
+00:00:55,880 --> 00:00:56,940
+country you belong to.
+
+37
+00:00:57,160 --> 00:00:58,920
+This could affect foreign students, visa
+
+38
+00:00:58,970 --> 00:01:00,510
+holders, international workers,
+
+39
+00:01:00,780 --> 00:01:02,810
+researchers, and even employees inside
+
+40
+00:01:02,850 --> 00:01:03,680
+AI companies.
+
+41
+00:01:04,190 --> 00:01:06,140
+Anthropic says other models are not
+
+42
+00:01:06,180 --> 00:01:08,230
+affected, and it wants to restore access
+
+43
+00:01:08,290 --> 00:01:09,300
+as soon as possible.
+
+44
+00:01:09,680 --> 00:01:11,230
+But right now, there is no public
+
+45
+00:01:11,280 --> 00:01:13,660
+timeline for when Fable 5 and Mythos 5
+
+46
+00:01:13,690 --> 00:01:14,280
+will return.
+
+47
+00:01:14,500 --> 00:01:16,220
+So the real question is: Is this a
+
+48
+00:01:16,270 --> 00:01:18,320
+temporary national security pause, or
+
+49
+00:01:18,380 --> 00:01:20,290
+are we entering a new era where the most
+
+50
+00:01:20,340 --> 00:01:22,190
+powerful AI models are treated like
+
+51
+00:01:22,240 --> 00:01:23,350
+restricted technology?

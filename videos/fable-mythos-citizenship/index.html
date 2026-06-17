@@ -1,0 +1,1676 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #f7fbff;
+        color: #101827;
+        font-family: "Aptos", "Segoe UI", Arial, sans-serif;
+      }
+
+      #root {
+        position: relative;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background:
+          radial-gradient(ellipse at 18% 8%, rgba(30, 139, 255, 0.22), transparent 34%),
+          radial-gradient(ellipse at 86% 16%, rgba(255, 79, 163, 0.18), transparent 32%),
+          radial-gradient(ellipse at 50% 95%, rgba(255, 157, 46, 0.14), transparent 36%),
+          linear-gradient(145deg, #f8fcff 0%, #eaf5ff 44%, #fff7ef 100%);
+        perspective: 1900px;
+      }
+
+      #root::before {
+        content: "";
+        position: absolute;
+        inset: -220px;
+        background:
+          linear-gradient(90deg, rgba(30, 139, 255, 0.12) 1px, transparent 1px),
+          linear-gradient(0deg, rgba(16, 24, 39, 0.07) 1px, transparent 1px),
+          linear-gradient(
+            60deg,
+            transparent 0 48%,
+            rgba(30, 139, 255, 0.12) 48% 49%,
+            transparent 49% 100%
+          ),
+          linear-gradient(
+            120deg,
+            transparent 0 58%,
+            rgba(255, 79, 163, 0.1) 58% 59%,
+            transparent 59% 100%
+          );
+        background-size:
+          74px 74px,
+          74px 74px,
+          460px 460px,
+          540px 540px;
+        transform: rotate(-9deg);
+        opacity: 0.7;
+        pointer-events: none;
+      }
+
+      /* ── Floating ambient orbs (depth) ── */
+      .orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(2px);
+        pointer-events: none;
+        z-index: 1;
+        opacity: 0.55;
+      }
+      .orb-1 {
+        width: 220px;
+        height: 220px;
+        left: -60px;
+        top: 360px;
+        background: radial-gradient(
+          circle at 34% 30%,
+          rgba(30, 139, 255, 0.5),
+          rgba(30, 139, 255, 0) 70%
+        );
+      }
+      .orb-2 {
+        width: 300px;
+        height: 300px;
+        right: -90px;
+        top: 1180px;
+        background: radial-gradient(
+          circle at 34% 30%,
+          rgba(255, 79, 163, 0.4),
+          rgba(255, 79, 163, 0) 70%
+        );
+      }
+      .orb-3 {
+        width: 180px;
+        height: 180px;
+        left: 120px;
+        top: 1560px;
+        background: radial-gradient(
+          circle at 34% 30%,
+          rgba(255, 157, 46, 0.42),
+          rgba(255, 157, 46, 0) 70%
+        );
+      }
+
+      /* ── Progress bar ── */
+      .progress-track {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 8px;
+        background: rgba(16, 24, 39, 0.08);
+        z-index: 90;
+      }
+      .progress-fill {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        transform: scaleX(0);
+        transform-origin: left center;
+        background: linear-gradient(90deg, #1e8bff, #b03aff, #ff9d2e);
+        box-shadow: 0 0 18px rgba(30, 139, 255, 0.5);
+      }
+
+      .clip {
+        position: absolute;
+      }
+
+      /* ── SCENE BASE ── */
+      .scene {
+        position: absolute;
+        inset: 0;
+        z-index: 4;
+        overflow: hidden;
+        opacity: 0;
+        visibility: hidden;
+        transform-style: preserve-3d;
+      }
+
+      /* ── GLASS ── */
+      .glass {
+        position: relative;
+        border-radius: 22px;
+        border: 1px solid rgba(255, 255, 255, 0.92);
+        background:
+          radial-gradient(circle at 14% 18%, rgba(30, 139, 255, 0.25), transparent 34%),
+          radial-gradient(circle at 88% 8%, rgba(255, 79, 163, 0.2), transparent 28%),
+          radial-gradient(circle at 50% 110%, rgba(255, 157, 46, 0.16), transparent 34%),
+          linear-gradient(145deg, rgba(255, 255, 255, 0.58), rgba(255, 255, 255, 0.24)),
+          rgba(177, 220, 255, 0.34);
+        box-shadow:
+          0 42px 112px rgba(18, 92, 170, 0.2),
+          0 0 74px rgba(30, 139, 255, 0.16),
+          inset 0 1px 0 rgba(255, 255, 255, 0.74),
+          inset 0 -24px 52px rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(34px) saturate(1.48);
+        -webkit-backdrop-filter: blur(34px) saturate(1.48);
+        overflow: hidden;
+        isolation: isolate;
+        transform-style: preserve-3d;
+        will-change: transform, opacity;
+      }
+
+      .glass::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        background:
+          linear-gradient(130deg, rgba(255, 255, 255, 0.52), transparent 28%),
+          linear-gradient(300deg, rgba(255, 255, 255, 0.18), transparent 42%);
+        mix-blend-mode: screen;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .glass::after {
+        content: "";
+        position: absolute;
+        inset: 9px;
+        border-radius: inherit;
+        border: 1px solid rgba(255, 255, 255, 0.48);
+        opacity: 0.64;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .glass > * {
+        position: relative;
+        z-index: 2;
+      }
+
+      .glass-red {
+        border-color: rgba(220, 38, 38, 0.32);
+        background:
+          radial-gradient(circle at 14% 18%, rgba(220, 38, 38, 0.18), transparent 34%),
+          radial-gradient(circle at 88% 8%, rgba(255, 79, 163, 0.14), transparent 28%),
+          linear-gradient(145deg, rgba(255, 255, 255, 0.54), rgba(255, 255, 255, 0.22)),
+          rgba(255, 200, 200, 0.3);
+        box-shadow:
+          0 42px 112px rgba(180, 20, 20, 0.18),
+          0 0 74px rgba(220, 38, 38, 0.12),
+          inset 0 1px 0 rgba(255, 255, 255, 0.74),
+          inset 0 -24px 52px rgba(255, 255, 255, 0.2);
+      }
+
+      .glass-green {
+        border-color: rgba(16, 185, 129, 0.34);
+        background:
+          radial-gradient(circle at 14% 18%, rgba(16, 185, 129, 0.18), transparent 34%),
+          radial-gradient(circle at 88% 8%, rgba(30, 139, 255, 0.12), transparent 28%),
+          linear-gradient(145deg, rgba(255, 255, 255, 0.54), rgba(255, 255, 255, 0.22)),
+          rgba(190, 245, 222, 0.32);
+        box-shadow:
+          0 42px 112px rgba(6, 120, 80, 0.16),
+          0 0 74px rgba(16, 185, 129, 0.12),
+          inset 0 1px 0 rgba(255, 255, 255, 0.74),
+          inset 0 -24px 52px rgba(255, 255, 255, 0.2);
+      }
+
+      /* ── AVATAR ── */
+      .avatar-shot {
+        object-fit: cover;
+        object-position: center center;
+        z-index: 18;
+        overflow: hidden;
+        background: #ffffff;
+        box-shadow:
+          0 52px 128px rgba(21, 22, 31, 0.46),
+          0 0 62px rgba(36, 88, 255, 0.24);
+        filter: drop-shadow(0 44px 54px rgba(21, 22, 31, 0.44))
+          drop-shadow(0 0 38px rgba(36, 88, 255, 0.22));
+        transform-style: preserve-3d;
+        will-change: transform, opacity;
+      }
+
+      /* large hero / feature / cta */
+      .av-hero {
+        border-radius: 32px;
+        width: 792px;
+        height: 528px;
+        left: 144px;
+        top: 880px;
+      }
+      .av-feature {
+        border-radius: 30px;
+        width: 700px;
+        height: 466px;
+        left: 190px;
+        top: 1030px;
+      }
+      .av-cta {
+        border-radius: 32px;
+        width: 760px;
+        height: 506px;
+        left: 160px;
+        top: 940px;
+      }
+
+      /* medium / small PiP */
+      .av-pip-r {
+        border-radius: 26px;
+        width: 384px;
+        height: 256px;
+        right: 48px;
+        bottom: 150px;
+        box-shadow:
+          0 38px 92px rgba(21, 22, 31, 0.58),
+          0 0 52px rgba(255, 58, 168, 0.22);
+        filter: drop-shadow(0 32px 42px rgba(21, 22, 31, 0.52))
+          drop-shadow(0 0 34px rgba(255, 58, 168, 0.2));
+      }
+      .av-pip-l {
+        border-radius: 26px;
+        width: 384px;
+        height: 256px;
+        left: 48px;
+        bottom: 150px;
+        box-shadow:
+          0 38px 92px rgba(21, 22, 31, 0.58),
+          0 0 52px rgba(255, 58, 168, 0.22);
+        filter: drop-shadow(0 32px 42px rgba(21, 22, 31, 0.52))
+          drop-shadow(0 0 34px rgba(255, 58, 168, 0.2));
+      }
+      .av-pip-sm {
+        border-radius: 22px;
+        width: 312px;
+        height: 208px;
+        left: 48px;
+        bottom: 160px;
+        box-shadow:
+          0 30px 76px rgba(21, 22, 31, 0.56),
+          0 0 44px rgba(30, 139, 255, 0.22);
+        filter: drop-shadow(0 26px 36px rgba(21, 22, 31, 0.5))
+          drop-shadow(0 0 30px rgba(30, 139, 255, 0.2));
+      }
+      .av-pip-sm-r {
+        border-radius: 22px;
+        width: 312px;
+        height: 208px;
+        right: 48px;
+        bottom: 160px;
+        box-shadow:
+          0 30px 76px rgba(21, 22, 31, 0.56),
+          0 0 44px rgba(30, 139, 255, 0.22);
+        filter: drop-shadow(0 26px 36px rgba(21, 22, 31, 0.5))
+          drop-shadow(0 0 30px rgba(30, 139, 255, 0.2));
+      }
+
+      .av-tag {
+        position: absolute;
+        z-index: 19;
+        font-family: "IBM Plex Mono", Consolas, monospace;
+        font-size: 22px;
+        font-weight: 800;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: #fff;
+        background: rgba(16, 24, 39, 0.78);
+        padding: 8px 18px;
+        border-radius: 999px;
+        box-shadow: 0 10px 28px rgba(16, 24, 39, 0.3);
+      }
+
+      /* ── CHIPS / LABELS ── */
+      .breaking-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        padding: 16px 34px;
+        border-radius: 999px;
+        background: rgba(220, 38, 38, 0.94);
+        color: #fff;
+        font-family: "IBM Plex Mono", Consolas, monospace;
+        font-size: 30px;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        box-shadow:
+          0 12px 42px rgba(220, 38, 38, 0.4),
+          0 0 24px rgba(220, 38, 38, 0.24);
+      }
+      .breaking-dot {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: #fff;
+        box-shadow: 0 0 12px rgba(255, 255, 255, 0.85);
+      }
+
+      .label-chip {
+        display: inline-block;
+        padding: 12px 28px;
+        border-radius: 999px;
+        font-family: "IBM Plex Mono", Consolas, monospace;
+        font-size: 26px;
+        font-weight: 800;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+      .chip-blue {
+        background: rgba(30, 139, 255, 0.14);
+        border: 1px solid rgba(30, 139, 255, 0.34);
+        color: rgba(18, 80, 180, 0.95);
+      }
+      .chip-red {
+        background: rgba(220, 38, 38, 0.12);
+        border: 1px solid rgba(220, 38, 38, 0.3);
+        color: rgba(180, 20, 20, 0.95);
+      }
+      .chip-green {
+        background: rgba(16, 185, 129, 0.12);
+        border: 1px solid rgba(16, 185, 129, 0.32);
+        color: rgba(6, 120, 80, 0.95);
+      }
+      .chip-amber {
+        background: rgba(255, 157, 46, 0.16);
+        border: 1px solid rgba(255, 157, 46, 0.4);
+        color: rgba(170, 95, 0, 0.95);
+      }
+
+      /* ── HEADLINES ── */
+      .display {
+        font-family: "Archivo Black", "Segoe UI Black", Arial, sans-serif;
+        font-weight: 900;
+        color: #101827;
+        letter-spacing: -0.02em;
+        line-height: 1.04;
+      }
+      .accent-blue {
+        color: #1565d8;
+      }
+      .accent-red {
+        color: #dc2626;
+      }
+      .accent-pink {
+        color: #d6258f;
+      }
+
+      /* ── MODEL BADGE ── */
+      .model-badge {
+        padding: 30px 26px;
+        text-align: center;
+      }
+      .model-name {
+        font-family: "Archivo Black", "Segoe UI Black", Arial, sans-serif;
+        font-size: 52px;
+        font-weight: 900;
+        color: #101827;
+        line-height: 1.05;
+      }
+      .model-sub {
+        font-size: 26px;
+        font-weight: 600;
+        color: rgba(16, 24, 39, 0.55);
+        margin-top: 8px;
+      }
+      .status-pill {
+        display: inline-block;
+        margin-top: 18px;
+        font-size: 28px;
+        font-weight: 800;
+        padding: 10px 26px;
+        border-radius: 999px;
+      }
+      .status-banned {
+        background: rgba(220, 38, 38, 0.14);
+        color: #b91c1c;
+        border: 1px solid rgba(220, 38, 38, 0.28);
+      }
+      .status-live {
+        background: rgba(16, 185, 129, 0.14);
+        color: #047857;
+        border: 1px solid rgba(16, 185, 129, 0.28);
+      }
+
+      /* ── BODY CARD TEXT ── */
+      .card-pad {
+        padding: 36px 42px;
+      }
+      .card-kicker {
+        font-family: "IBM Plex Mono", Consolas, monospace;
+        font-size: 24px;
+        font-weight: 800;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        color: rgba(16, 24, 39, 0.55);
+        margin-bottom: 14px;
+      }
+      .card-body {
+        font-size: 38px;
+        font-weight: 700;
+        color: #101827;
+        line-height: 1.42;
+      }
+      .card-body-sm {
+        font-size: 33px;
+        font-weight: 600;
+        color: rgba(16, 24, 39, 0.78);
+        line-height: 1.45;
+      }
+      .hl {
+        background: rgba(255, 200, 50, 0.42);
+        border-radius: 6px;
+        padding: 0 8px;
+        font-weight: 800;
+      }
+      .hl-red {
+        color: #dc2626;
+        font-weight: 900;
+      }
+
+      /* ── PHONE FRAME ── */
+      .phone {
+        position: absolute;
+        border-radius: 46px;
+        border: 4px solid rgba(30, 139, 255, 0.3);
+        background: #fff;
+        box-shadow:
+          0 64px 140px rgba(18, 92, 170, 0.3),
+          0 0 64px rgba(30, 139, 255, 0.16),
+          inset 0 0 0 2px rgba(255, 255, 255, 0.85);
+        overflow: hidden;
+        z-index: 12;
+      }
+      .phone-screen {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        border-radius: inherit;
+      }
+      .phone-page {
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      .phone-notch {
+        position: absolute;
+        top: 14px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 120px;
+        height: 26px;
+        border-radius: 999px;
+        background: rgba(16, 24, 39, 0.82);
+        z-index: 5;
+      }
+
+      /* ── BEFORE / AFTER ── */
+      .flow-arrow {
+        font-size: 78px;
+        font-weight: 900;
+        color: #1e8bff;
+        text-shadow: 0 8px 26px rgba(30, 139, 255, 0.4);
+      }
+
+      /* ── AFFECT CHIP CARD ── */
+      .affect-card {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        padding: 24px 26px;
+      }
+      .affect-icon {
+        font-size: 46px;
+        flex-shrink: 0;
+      }
+      .affect-text {
+        font-size: 32px;
+        font-weight: 800;
+        color: #101827;
+        line-height: 1.18;
+      }
+
+      /* ── CTA ── */
+      .follow-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
+        padding: 24px 54px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, #1e8bff, #b03aff);
+        color: #fff;
+        font-size: 40px;
+        font-weight: 800;
+        box-shadow:
+          0 18px 54px rgba(30, 139, 255, 0.4),
+          0 0 42px rgba(176, 58, 255, 0.24);
+        letter-spacing: 0.02em;
+      }
+
+      .option-title {
+        font-family: "Archivo Black", "Segoe UI Black", Arial, sans-serif;
+        font-size: 34px;
+        font-weight: 900;
+        line-height: 1.12;
+      }
+      .option-sub {
+        font-size: 28px;
+        font-weight: 600;
+        color: rgba(16, 24, 39, 0.6);
+        margin-top: 10px;
+        line-height: 1.35;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="fable-mythos-citizenship"
+      data-width="1080"
+      data-height="1920"
+      data-start="0"
+    >
+      <!-- ambient depth -->
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+
+      <!-- progress bar -->
+      <div class="progress-track"><div id="progress-fill" class="progress-fill"></div></div>
+
+      <!-- ══════════════════════════════════════════
+           NARRATION (continuous audio)
+           ══════════════════════════════════════════ -->
+      <audio
+        id="narration"
+        class="clip"
+        data-start="0"
+        data-duration="83.6"
+        data-track-index="1"
+        data-volume="1"
+        src="assets/avatar/heygen-avatar-16x9.mp4"
+      ></audio>
+
+      <!-- ── SFX (whoosh before scene, ping/pop on reveal, chime on hook + CTA) ── -->
+      <audio
+        id="sfx-s1-chime"
+        class="clip"
+        data-start="0.10"
+        data-duration="1.2"
+        data-track-index="41"
+        data-volume="0.5"
+        src="assets/sfx/chime-soft.wav"
+      ></audio>
+      <audio
+        id="sfx-s2-whoosh"
+        class="clip"
+        data-start="4.90"
+        data-duration="0.6"
+        data-track-index="40"
+        data-volume="0.42"
+        src="assets/sfx/whoosh-soft.wav"
+      ></audio>
+      <audio
+        id="sfx-s2-pop"
+        class="clip"
+        data-start="5.45"
+        data-duration="0.3"
+        data-track-index="42"
+        data-volume="0.46"
+        src="assets/sfx/pop-soft.wav"
+      ></audio>
+      <audio
+        id="sfx-s3-whoosh"
+        class="clip"
+        data-start="10.03"
+        data-duration="0.6"
+        data-track-index="40"
+        data-volume="0.42"
+        src="assets/sfx/whoosh-soft.wav"
+      ></audio>
+      <audio
+        id="sfx-s3-ping"
+        class="clip"
+        data-start="11.0"
+        data-duration="0.3"
+        data-track-index="41"
+        data-volume="0.46"
+        src="assets/sfx/ping-soft.wav"
+      ></audio>
+      <audio
+        id="sfx-s4-whoosh"
+        class="clip"
+        data-start="17.90"
+        data-duration="0.6"
+        data-track-index="40"
+        data-volume="0.42"
+        src="assets/sfx/whoosh-soft.wav"
+      ></audio>
+      <audio
+        id="sfx-s4-pong"
+        class="clip"
+        data-start="18.6"
+        data-duration="0.3"
+        data-track-index="43"
+        data-volume="0.44"
+        src="assets/sfx/pong-soft.wav"
+      ></audio>
+      <audio
+        id="sfx-s5-whoosh"
+        class="clip"
+        data-start="26.76"
+        data-duration="0.6"
+        data-track-index="40"
+        data-volume="0.42"
+        src="assets/sfx/whoosh-soft.wav"
+      ></audio>
+      <audio
+        id="sfx-s5-ping"
+        class="clip"
+        data-start="27.4"
+        data-duration="0.3"
+        data-track-index="41"
+        data-volume="0.48"
+        src="assets/sfx/ping-soft.wav"
+      ></audio>
+      <audio
+        id="sfx-s6-whoosh"
+        class="clip"
+        data-start="33.06"
+        data-duration="0.6"
+        data-track-index="40"
+        data-volume="0.42"
+        src="assets/sfx/whoosh-soft.wav"
+      ></audio>
+      <audio
+        id="sfx-s7-whoosh"
+        class="clip"
+        data-start="42.97"
+        data-duration="0.6"
+        data-track-index="40"
+        data-volume="0.42"
+        src="assets/sfx/whoosh-soft.wav"
+      ></audio>
+      <audio
+        id="sfx-s7-ping"
+        class="clip"
+        data-start="43.7"
+        data-duration="0.3"
+        data-track-index="41"
+        data-volume="0.48"
+        src="assets/sfx/ping-soft.wav"
+      ></audio>
+      <audio
+        id="sfx-s8-whoosh"
+        class="clip"
+        data-start="49.81"
+        data-duration="0.6"
+        data-track-index="40"
+        data-volume="0.42"
+        src="assets/sfx/whoosh-soft.wav"
+      ></audio>
+      <audio
+        id="sfx-s8-pop"
+        class="clip"
+        data-start="52.6"
+        data-duration="0.3"
+        data-track-index="42"
+        data-volume="0.46"
+        src="assets/sfx/pop-soft.wav"
+      ></audio>
+      <audio
+        id="sfx-s9-whoosh"
+        class="clip"
+        data-start="57.10"
+        data-duration="0.6"
+        data-track-index="40"
+        data-volume="0.42"
+        src="assets/sfx/whoosh-soft.wav"
+      ></audio>
+      <audio
+        id="sfx-s9-pop1"
+        class="clip"
+        data-start="57.8"
+        data-duration="0.25"
+        data-track-index="42"
+        data-volume="0.4"
+        src="assets/sfx/pop-soft.wav"
+      ></audio>
+      <audio
+        id="sfx-s9-pop2"
+        class="clip"
+        data-start="58.3"
+        data-duration="0.25"
+        data-track-index="43"
+        data-volume="0.4"
+        src="assets/sfx/pop-soft.wav"
+      ></audio>
+      <audio
+        id="sfx-s10-whoosh"
+        class="clip"
+        data-start="64.13"
+        data-duration="0.6"
+        data-track-index="40"
+        data-volume="0.42"
+        src="assets/sfx/whoosh-soft.wav"
+      ></audio>
+      <audio
+        id="sfx-s10-pong"
+        class="clip"
+        data-start="65.0"
+        data-duration="0.3"
+        data-track-index="43"
+        data-volume="0.44"
+        src="assets/sfx/pong-soft.wav"
+      ></audio>
+      <audio
+        id="sfx-cta-whoosh"
+        class="clip"
+        data-start="74.44"
+        data-duration="0.6"
+        data-track-index="40"
+        data-volume="0.44"
+        src="assets/sfx/whoosh-soft.wav"
+      ></audio>
+      <audio
+        id="sfx-cta-chime"
+        class="clip"
+        data-start="75.4"
+        data-duration="1.3"
+        data-track-index="41"
+        data-volume="0.55"
+        src="assets/sfx/chime-soft.wav"
+      ></audio>
+
+      <!-- ══════════════════════════════════════════
+           SCENE 1 — HOOK (0–4.96)
+           "You may soon need to prove your citizenship just to use the most powerful AI models."
+           ══════════════════════════════════════════ -->
+      <div id="scene-hook" class="scene">
+        <div
+          id="hook-chip"
+          style="
+            position: absolute;
+            top: 150px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+          "
+        >
+          <div class="breaking-chip">
+            <div class="breaking-dot"></div>
+            AI ALERT
+          </div>
+        </div>
+        <div
+          id="hook-headline"
+          style="position: absolute; top: 300px; left: 56px; right: 56px; text-align: center"
+        >
+          <div class="display" style="font-size: 96px">
+            PROVE YOUR<br /><span class="accent-red">CITIZENSHIP</span>
+          </div>
+          <div
+            class="display"
+            style="font-size: 58px; color: rgba(16, 24, 39, 0.6); margin-top: 20px"
+          >
+            …just to use the<br />most powerful AI?
+          </div>
+        </div>
+        <video
+          id="av-hook"
+          class="clip avatar-shot av-hero"
+          data-start="0"
+          data-duration="4.92"
+          data-media-start="0"
+          data-track-index="2"
+          src="assets/avatar/heygen-avatar-16x9.mp4"
+          muted
+          playsinline
+        ></video>
+      </div>
+
+      <!-- ══════════════════════════════════════════
+           SCENE 2 — THE ORDER (4.96–10.09)
+           "Anthropic just disabled Fable 5 and Mythos 5 after a U.S. government order."
+           ══════════════════════════════════════════ -->
+      <div id="scene-order" class="scene">
+        <div
+          id="order-head"
+          style="position: absolute; top: 150px; left: 56px; right: 56px; text-align: center"
+        >
+          <div class="label-chip chip-red" style="margin-bottom: 18px">Anthropic · Disabled</div>
+          <div class="display" style="font-size: 78px">
+            Two top models,<br /><span class="accent-red">switched off.</span>
+          </div>
+        </div>
+        <div
+          id="order-badge-1"
+          class="glass glass-red model-badge"
+          style="position: absolute; top: 560px; left: 56px; width: 466px"
+        >
+          <div class="model-name">Fable 5</div>
+          <div class="model-sub">Anthropic flagship</div>
+          <div class="status-pill status-banned">DISABLED ✗</div>
+        </div>
+        <div
+          id="order-badge-2"
+          class="glass glass-red model-badge"
+          style="position: absolute; top: 560px; right: 56px; width: 466px"
+        >
+          <div class="model-name">Mythos 5</div>
+          <div class="model-sub">Anthropic flagship</div>
+          <div class="status-pill status-banned">DISABLED ✗</div>
+        </div>
+        <div
+          id="order-card"
+          class="glass card-pad"
+          style="position: absolute; top: 900px; left: 56px; right: 56px; text-align: center"
+        >
+          <div class="card-body">After a <span class="hl-red">U.S. government order.</span></div>
+        </div>
+        <video
+          id="av-order"
+          class="clip avatar-shot av-pip-r"
+          data-start="4.96"
+          data-duration="5.09"
+          data-media-start="4.96"
+          data-track-index="2"
+          src="assets/avatar/heygen-avatar-16x9.mp4"
+          muted
+          playsinline
+        ></video>
+      </div>
+
+      <!-- ══════════════════════════════════════════
+           SCENE 3 — REUTERS / FOREIGN NATIONALS (10.09–17.96)
+           "according to Reuters, Anthropic said the government ordered it to suspend access
+            to these models for foreign nationals, citing national security concerns."
+           ══════════════════════════════════════════ -->
+      <div id="scene-reuters" class="scene">
+        <div id="reuters-chip" style="position: absolute; top: 148px; left: 56px">
+          <div class="label-chip chip-amber">Per Reuters</div>
+        </div>
+        <div
+          id="reuters-card"
+          class="glass card-pad"
+          style="position: absolute; top: 236px; left: 56px; width: 600px"
+        >
+          <div class="card-kicker">Anthropic said</div>
+          <div class="card-body">
+            Ordered to suspend access for<br /><span class="hl">foreign nationals</span>
+          </div>
+          <div style="margin-top: 24px" class="label-chip chip-red">National security</div>
+        </div>
+        <!-- source phone B-roll -->
+        <div
+          id="reuters-phone"
+          class="phone"
+          style="right: -26px; top: 250px; width: 372px; height: 760px; transform: rotate(3deg)"
+        >
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <img
+              id="reuters-page"
+              class="phone-page"
+              src="assets/motion/mobile/anthropic-fable-mythos-news-mobile-full.png"
+              alt="Anthropic news page"
+            />
+          </div>
+        </div>
+        <video
+          id="av-reuters"
+          class="clip avatar-shot av-pip-sm"
+          data-start="10.09"
+          data-duration="7.83"
+          data-media-start="10.09"
+          data-track-index="2"
+          src="assets/avatar/heygen-avatar-16x9.mp4"
+          muted
+          playsinline
+        ></video>
+      </div>
+
+      <!-- ══════════════════════════════════════════
+           SCENE 4 — NOT A COUNTRY BAN (17.96–26.82)
+           "this is not just a normal country ban ... It targets foreign nationals."
+           ══════════════════════════════════════════ -->
+      <div id="scene-ban" class="scene">
+        <div
+          id="ban-head"
+          style="position: absolute; top: 150px; left: 56px; right: 56px; text-align: center"
+        >
+          <div class="display" style="font-size: 70px">This isn't a<br />normal country ban.</div>
+        </div>
+        <div
+          id="ban-card-1"
+          class="glass card-pad"
+          style="position: absolute; top: 470px; left: 56px; right: 56px"
+        >
+          <div style="display: flex; align-items: center; gap: 20px">
+            <div style="font-size: 60px">🌍</div>
+            <div>
+              <div class="card-kicker" style="margin-bottom: 6px">Normal ban</div>
+              <div class="card-body-sm">Blocks users <strong>outside</strong> America</div>
+            </div>
+          </div>
+        </div>
+        <div
+          id="ban-card-2"
+          class="glass glass-red card-pad"
+          style="position: absolute; top: 740px; left: 56px; right: 56px"
+        >
+          <div style="display: flex; align-items: center; gap: 20px">
+            <div style="font-size: 60px">🎯</div>
+            <div>
+              <div class="card-kicker" style="margin-bottom: 6px; color: rgba(180, 20, 20, 0.7)">
+                This order
+              </div>
+              <div class="card-body">Targets <span class="hl-red">foreign nationals</span></div>
+            </div>
+          </div>
+        </div>
+        <video
+          id="av-ban"
+          class="clip avatar-shot av-pip-r"
+          data-start="17.96"
+          data-duration="8.82"
+          data-media-start="17.96"
+          data-track-index="2"
+          src="assets/avatar/heygen-avatar-16x9.mp4"
+          muted
+          playsinline
+        ></video>
+      </div>
+
+      <!-- ══════════════════════════════════════════
+           SCENE 5 — INSIDE THE U.S. TOO (26.82–33.12)
+           "even someone physically inside the United States could still be restricted if they are not a U.S. citizen."
+           ══════════════════════════════════════════ -->
+      <div id="scene-inside" class="scene">
+        <div
+          id="inside-head"
+          style="position: absolute; top: 160px; left: 56px; right: 56px; text-align: center"
+        >
+          <div class="display" style="font-size: 72px">
+            Inside the U.S.?<br /><span class="accent-red">Still restricted.</span>
+          </div>
+        </div>
+        <div
+          id="inside-card"
+          class="glass glass-red card-pad"
+          style="position: absolute; top: 470px; left: 56px; right: 56px; text-align: center"
+        >
+          <div style="font-size: 96px; margin-bottom: 10px">🇺🇸 🚫</div>
+          <div class="card-body">
+            Not a U.S. citizen?<br />You could be blocked —<br /><span class="hl-red"
+              >even inside America.</span
+            >
+          </div>
+        </div>
+        <video
+          id="av-inside"
+          class="clip avatar-shot av-feature"
+          data-start="26.82"
+          data-duration="6.26"
+          data-media-start="26.82"
+          data-track-index="2"
+          src="assets/avatar/heygen-avatar-16x9.mp4"
+          muted
+          playsinline
+        ></video>
+      </div>
+
+      <!-- ══════════════════════════════════════════
+           SCENE 6 — VERIFICATION / NATIONALITY≠LOCATION (33.12–43.03)
+           "Anthropic has not officially announced a citizenship verification system yet.
+            But if the rule is based on nationality instead of location, then location checks may not be enough."
+           ══════════════════════════════════════════ -->
+      <div id="scene-verify" class="scene">
+        <div
+          id="verify-head"
+          style="position: absolute; top: 150px; left: 56px; right: 56px; text-align: center"
+        >
+          <div class="label-chip chip-blue">To be clear</div>
+        </div>
+        <div
+          id="verify-card-1"
+          class="glass card-pad"
+          style="position: absolute; top: 280px; left: 56px; right: 56px"
+        >
+          <div class="card-body-sm">
+            No citizenship-verification system has been <strong>announced yet.</strong>
+          </div>
+        </div>
+        <div
+          id="verify-card-2"
+          class="glass card-pad"
+          style="position: absolute; top: 560px; left: 56px; right: 56px"
+        >
+          <div style="display: flex; align-items: center; gap: 22px">
+            <div style="font-size: 58px">📍</div>
+            <div class="card-body">Rule by <span class="hl">nationality</span>, not location.</div>
+          </div>
+        </div>
+        <div
+          id="verify-card-3"
+          class="glass glass-red card-pad"
+          style="position: absolute; top: 830px; left: 56px; right: 56px"
+        >
+          <div class="card-body">
+            So a <strong>location check</strong> <span class="hl-red">may not be enough.</span>
+          </div>
+        </div>
+        <video
+          id="av-verify"
+          class="clip avatar-shot av-pip-sm-r"
+          data-start="33.12"
+          data-duration="9.87"
+          data-media-start="33.12"
+          data-track-index="2"
+          src="assets/avatar/heygen-avatar-16x9.mp4"
+          muted
+          playsinline
+        ></video>
+      </div>
+
+      <!-- ══════════════════════════════════════════
+           SCENE 7 — EXPERTS EXPECT (43.03–49.87)
+           "some experts now expect users may eventually have to prove citizenship before Fable 5 or Mythos 5 can come back."
+           ══════════════════════════════════════════ -->
+      <div id="scene-experts" class="scene">
+        <div
+          id="experts-head"
+          style="position: absolute; top: 150px; left: 56px; right: 56px; text-align: center"
+        >
+          <div class="label-chip chip-amber" style="margin-bottom: 18px">What experts expect</div>
+        </div>
+        <div
+          id="experts-card"
+          class="glass card-pad"
+          style="
+            position: absolute;
+            top: 300px;
+            left: 56px;
+            right: 56px;
+            text-align: center;
+            padding: 48px 44px;
+          "
+        >
+          <div style="font-size: 88px; margin-bottom: 18px">🪪</div>
+          <div class="card-body" style="font-size: 42px">
+            Users may have to<br /><span class="hl">prove citizenship</span><br />before
+            <strong>Fable 5</strong> &amp; <strong>Mythos 5</strong> return.
+          </div>
+        </div>
+        <video
+          id="av-experts"
+          class="clip avatar-shot av-pip-r"
+          data-start="43.03"
+          data-duration="6.80"
+          data-media-start="43.03"
+          data-track-index="2"
+          src="assets/avatar/heygen-avatar-16x9.mp4"
+          muted
+          playsinline
+        ></video>
+      </div>
+
+      <!-- ══════════════════════════════════════════
+           SCENE 8 — THE SHIFT (49.87–57.16)
+           "AI access could move from log in and pay, to prove who you are and what country you belong to."
+           ══════════════════════════════════════════ -->
+      <div id="scene-shift" class="scene">
+        <div
+          id="shift-head"
+          style="position: absolute; top: 155px; left: 56px; right: 56px; text-align: center"
+        >
+          <div class="display" style="font-size: 66px">A massive shift</div>
+        </div>
+        <div
+          id="shift-before"
+          class="glass card-pad"
+          style="position: absolute; top: 370px; left: 56px; right: 56px; text-align: center"
+        >
+          <div style="font-size: 64px; margin-bottom: 10px">💳</div>
+          <div class="card-kicker" style="margin-bottom: 6px">Today</div>
+          <div class="card-body">Log in &amp; pay</div>
+        </div>
+        <div
+          id="shift-arrow"
+          style="position: absolute; top: 690px; left: 0; right: 0; text-align: center"
+        >
+          <span class="flow-arrow">↓</span>
+        </div>
+        <div
+          id="shift-after"
+          class="glass glass-red card-pad"
+          style="position: absolute; top: 830px; left: 56px; right: 56px; text-align: center"
+        >
+          <div style="font-size: 64px; margin-bottom: 10px">🪪</div>
+          <div class="card-kicker" style="margin-bottom: 6px; color: rgba(180, 20, 20, 0.7)">
+            Tomorrow?
+          </div>
+          <div class="card-body">
+            Prove <span class="hl-red">who you are</span> &amp; what
+            <span class="hl-red">country</span> you belong to
+          </div>
+        </div>
+        <video
+          id="av-shift"
+          class="clip avatar-shot av-pip-sm"
+          data-start="49.87"
+          data-duration="7.25"
+          data-media-start="49.87"
+          data-track-index="2"
+          src="assets/avatar/heygen-avatar-16x9.mp4"
+          muted
+          playsinline
+        ></video>
+      </div>
+
+      <!-- ══════════════════════════════════════════
+           SCENE 9 — WHO IT AFFECTS (57.16–64.19)
+           "foreign students, visa holders, international workers, researchers, and even employees inside AI companies."
+           ══════════════════════════════════════════ -->
+      <div id="scene-affect" class="scene">
+        <div
+          id="affect-head"
+          style="position: absolute; top: 155px; left: 56px; right: 56px; text-align: center"
+        >
+          <div class="display" style="font-size: 64px">Who this could affect</div>
+        </div>
+        <div
+          id="affect-grid"
+          style="
+            position: absolute;
+            top: 400px;
+            left: 56px;
+            right: 56px;
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+          "
+        >
+          <div class="glass affect-card aff">
+            <div class="affect-icon">🎓</div>
+            <div class="affect-text">Foreign students</div>
+          </div>
+          <div class="glass affect-card aff">
+            <div class="affect-icon">🛂</div>
+            <div class="affect-text">Visa holders</div>
+          </div>
+          <div class="glass affect-card aff">
+            <div class="affect-icon">🌐</div>
+            <div class="affect-text">International workers</div>
+          </div>
+          <div class="glass affect-card aff">
+            <div class="affect-icon">🔬</div>
+            <div class="affect-text">Researchers</div>
+          </div>
+          <div class="glass affect-card aff">
+            <div class="affect-icon">🏢</div>
+            <div class="affect-text">Employees inside AI companies</div>
+          </div>
+        </div>
+        <video
+          id="av-affect"
+          class="clip avatar-shot av-pip-sm-r"
+          data-start="57.16"
+          data-duration="6.99"
+          data-media-start="57.16"
+          data-track-index="2"
+          src="assets/avatar/heygen-avatar-16x9.mp4"
+          muted
+          playsinline
+        ></video>
+      </div>
+
+      <!-- ══════════════════════════════════════════
+           SCENE 10 — OTHER MODELS / NO TIMELINE (64.19–74.50)
+           "other models are not affected ... no public timeline for when Fable 5 and Mythos 5 will return."
+           ══════════════════════════════════════════ -->
+      <div id="scene-models" class="scene">
+        <div
+          id="models-head"
+          style="position: absolute; top: 150px; left: 56px; right: 56px; text-align: center"
+        >
+          <div class="display" style="font-size: 62px">Where things stand</div>
+        </div>
+        <div
+          id="models-card-1"
+          class="glass glass-green card-pad"
+          style="position: absolute; top: 380px; left: 56px; right: 56px"
+        >
+          <div style="display: flex; align-items: center; gap: 20px">
+            <div style="font-size: 54px">✅</div>
+            <div class="card-body">Other models — <strong>not affected</strong></div>
+          </div>
+        </div>
+        <div
+          id="models-card-2"
+          class="glass card-pad"
+          style="position: absolute; top: 620px; left: 56px; right: 56px"
+        >
+          <div style="display: flex; align-items: center; gap: 20px">
+            <div style="font-size: 54px">🔄</div>
+            <div class="card-body-sm">Anthropic wants access restored <strong>ASAP</strong></div>
+          </div>
+        </div>
+        <div
+          id="models-card-3"
+          class="glass glass-red card-pad"
+          style="position: absolute; top: 860px; left: 56px; right: 56px; text-align: center"
+        >
+          <div class="card-kicker" style="color: rgba(180, 20, 20, 0.7)">
+            Public return timeline
+          </div>
+          <div class="display accent-red" style="font-size: 72px">NONE YET</div>
+        </div>
+        <video
+          id="av-models"
+          class="clip avatar-shot av-pip-r"
+          data-start="64.19"
+          data-duration="10.27"
+          data-media-start="64.19"
+          data-track-index="2"
+          src="assets/avatar/heygen-avatar-16x9.mp4"
+          muted
+          playsinline
+        ></video>
+      </div>
+
+      <!-- ══════════════════════════════════════════
+           SCENE 11 — CTA / THE QUESTION (74.50–83.60)
+           "temporary national security pause, or a new era where the most powerful AI is treated like restricted technology?"
+           ══════════════════════════════════════════ -->
+      <div id="scene-cta" class="scene">
+        <div
+          id="cta-head"
+          style="position: absolute; top: 140px; left: 56px; right: 56px; text-align: center"
+        >
+          <div class="display" style="font-size: 64px">So which is it?</div>
+        </div>
+        <div
+          id="cta-opt-1"
+          class="glass card-pad"
+          style="position: absolute; top: 330px; left: 56px; width: 452px; text-align: center"
+        >
+          <div style="font-size: 54px; margin-bottom: 10px">⏸️</div>
+          <div class="option-title accent-blue">Temporary<br />pause</div>
+          <div class="option-sub">national security</div>
+        </div>
+        <div
+          id="cta-opt-2"
+          class="glass glass-red card-pad"
+          style="position: absolute; top: 330px; right: 56px; width: 452px; text-align: center"
+        >
+          <div style="font-size: 54px; margin-bottom: 10px">🔒</div>
+          <div class="option-title accent-red">Restricted<br />technology</div>
+          <div class="option-sub">a new era</div>
+        </div>
+        <div
+          id="cta-follow"
+          style="
+            position: absolute;
+            top: 660px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+          "
+        >
+          <div class="follow-btn">💬 Comment your take</div>
+        </div>
+        <video
+          id="av-cta"
+          class="clip avatar-shot av-cta"
+          data-start="74.50"
+          data-duration="9.06"
+          data-media-start="74.50"
+          data-track-index="2"
+          src="assets/avatar/heygen-avatar-16x9.mp4"
+          muted
+          playsinline
+        ></video>
+        <div id="cta-tag" class="av-tag" style="left: 160px; top: 900px">
+          + Follow for more AI news
+        </div>
+      </div>
+    </div>
+    <!-- /#root -->
+
+    <script>
+      const tl = gsap.timeline({ paused: true });
+
+      // ── Scene gates (from SRT) ─────────────────────────────────────
+      const sceneWindows = [
+        ["#scene-hook", 0, 4.96],
+        ["#scene-order", 4.96, 10.09],
+        ["#scene-reuters", 10.09, 17.96],
+        ["#scene-ban", 17.96, 26.82],
+        ["#scene-inside", 26.82, 33.12],
+        ["#scene-verify", 33.12, 43.03],
+        ["#scene-experts", 43.03, 49.87],
+        ["#scene-shift", 49.87, 57.16],
+        ["#scene-affect", 57.16, 64.19],
+        ["#scene-models", 64.19, 74.5],
+        ["#scene-cta", 74.5, 83.6],
+      ];
+      for (const [selector, start, end] of sceneWindows) {
+        tl.set(selector, { opacity: 1, visibility: "visible" }, start);
+        tl.set(selector, { opacity: 0, visibility: "hidden" }, end);
+      }
+
+      // continuous progress bar
+      tl.fromTo("#progress-fill", { scaleX: 0 }, { scaleX: 1, duration: 83.6, ease: "none" }, 0);
+
+      // ambient orbs drift (always visible)
+      tl.to(".orb-1", { y: 60, x: 30, duration: 6, repeat: 12, yoyo: true, ease: "sine.inOut" }, 0);
+      tl.to(
+        ".orb-2",
+        { y: -70, x: -26, duration: 7, repeat: 10, yoyo: true, ease: "sine.inOut" },
+        0,
+      );
+      tl.to(
+        ".orb-3",
+        { y: -50, x: 40, duration: 5.5, repeat: 13, yoyo: true, ease: "sine.inOut" },
+        0,
+      );
+
+      // helper: 3D fly-out before a scene ends
+      function flyOut(sel, at) {
+        if (document.querySelector(sel)) {
+          tl.to(
+            sel,
+            {
+              y: -70,
+              opacity: 0,
+              scale: 0.92,
+              rotateX: 16,
+              duration: 0.42,
+              stagger: 0.05,
+              ease: "power3.in",
+            },
+            at,
+          );
+        }
+      }
+      // helper: avatar 3D fly-in + gentle float, clamped to end before the scene ends
+      function avatarIn(sel, at, fromScale, endBy) {
+        tl.from(
+          sel,
+          {
+            opacity: 0,
+            scale: fromScale,
+            rotateY: -26,
+            z: -260,
+            duration: 0.62,
+            ease: "back.out(1.5)",
+          },
+          at,
+        );
+        const floatStart = at + 0.7;
+        const floatDur = 1.6;
+        const cycles = Math.max(1, Math.floor((endBy - 0.1 - floatStart) / floatDur));
+        const repeat = Math.max(1, cycles - 1);
+        tl.to(
+          sel,
+          { y: -16, duration: floatDur, repeat, yoyo: true, ease: "sine.inOut" },
+          floatStart,
+        );
+      }
+
+      // ════ SCENE 1 — HOOK ════
+      tl.from("#hook-chip", { y: -54, opacity: 0, duration: 0.46, ease: "back.out(1.6)" }, 0.1);
+      tl.from(
+        "#hook-headline",
+        { y: 70, opacity: 0, scale: 0.9, rotateX: -18, duration: 0.62, ease: "back.out(1.5)" },
+        0.3,
+      );
+      tl.to(
+        ".breaking-dot",
+        { scale: 1.4, opacity: 0.55, duration: 0.5, repeat: 8, yoyo: true, ease: "sine.inOut" },
+        0.2,
+      );
+      avatarIn("#av-hook", 0.45, 0.6, 4.96);
+      tl.to("#av-hook", { scale: 1.05, duration: 1.4, ease: "power1.inOut" }, 2.6); // grows
+      flyOut("#hook-chip", 4.66);
+      flyOut("#hook-headline", 4.66);
+
+      // ════ SCENE 2 — ORDER ════
+      tl.from("#order-head", { y: -60, opacity: 0, duration: 0.5, ease: "back.out(1.5)" }, 5.1);
+      tl.from(
+        "#order-badge-1",
+        { x: -120, opacity: 0, rotateY: -30, duration: 0.56, ease: "back.out(1.45)" },
+        5.45,
+      );
+      tl.from(
+        "#order-badge-2",
+        { x: 120, opacity: 0, rotateY: 30, duration: 0.56, ease: "back.out(1.45)" },
+        5.65,
+      );
+      tl.from(
+        "#order-card",
+        { y: 80, opacity: 0, rotateX: -16, duration: 0.5, ease: "back.out(1.4)" },
+        6.1,
+      );
+      tl.from(
+        ".status-banned",
+        { scale: 0.5, opacity: 0, duration: 0.4, stagger: 0.12, ease: "back.out(2)" },
+        6.4,
+      );
+      avatarIn("#av-order", 5.3, 0.55, 10.09);
+      flyOut("#order-head", 9.79);
+      flyOut("#order-badge-1", 9.79);
+      flyOut("#order-badge-2", 9.84);
+      flyOut("#order-card", 9.84);
+
+      // ════ SCENE 3 — REUTERS ════
+      tl.from("#reuters-chip", { y: -40, opacity: 0, duration: 0.4, ease: "power2.out" }, 10.25);
+      tl.from(
+        "#reuters-card",
+        { x: -110, opacity: 0, rotateY: -22, duration: 0.6, ease: "back.out(1.4)" },
+        10.4,
+      );
+      tl.from(
+        "#reuters-phone",
+        { x: 200, opacity: 0, rotateY: 26, duration: 0.66, ease: "back.out(1.4)" },
+        10.55,
+      );
+      tl.to("#reuters-page", { y: -1500, duration: 6.0, ease: "power1.inOut" }, 11.0); // scroll source
+      avatarIn("#av-reuters", 10.5, 0.55, 17.96);
+      flyOut("#reuters-chip", 17.66);
+      flyOut("#reuters-card", 17.66);
+      tl.to(
+        "#reuters-phone",
+        { x: 220, opacity: 0, rotateY: 26, duration: 0.42, ease: "power3.in" },
+        17.66,
+      );
+
+      // ════ SCENE 4 — NOT A COUNTRY BAN ════
+      tl.from(
+        "#ban-head",
+        { y: -60, opacity: 0, scale: 0.94, duration: 0.54, ease: "back.out(1.5)" },
+        18.1,
+      );
+      tl.from(
+        "#ban-card-1",
+        { x: -120, opacity: 0, rotateY: -22, duration: 0.56, ease: "back.out(1.4)" },
+        18.6,
+      );
+      tl.from(
+        "#ban-card-2",
+        { x: 120, opacity: 0, rotateY: 22, duration: 0.56, ease: "back.out(1.4)" },
+        22.4,
+      );
+      tl.to(
+        "#ban-card-2",
+        { scale: 1.04, duration: 0.6, repeat: 5, yoyo: true, ease: "sine.inOut" },
+        23.2,
+      );
+      avatarIn("#av-ban", 18.3, 0.55, 26.82);
+      flyOut("#ban-head", 26.52);
+      flyOut("#ban-card-1", 26.52);
+      flyOut("#ban-card-2", 26.57);
+
+      // ════ SCENE 5 — INSIDE THE U.S. ════
+      tl.from(
+        "#inside-head",
+        { y: -64, opacity: 0, rotateX: -16, duration: 0.56, ease: "back.out(1.5)" },
+        27.0,
+      );
+      tl.from(
+        "#inside-card",
+        { y: 90, opacity: 0, scale: 0.9, rotateX: 18, duration: 0.62, ease: "back.out(1.45)" },
+        27.4,
+      );
+      avatarIn("#av-inside", 27.2, 0.6, 33.12);
+      tl.to("#av-inside", { scale: 1.04, duration: 1.2, ease: "power1.inOut" }, 29.5); // grows on emphasis
+      flyOut("#inside-head", 32.82);
+      flyOut("#inside-card", 32.82);
+
+      // ════ SCENE 6 — VERIFY ════
+      tl.from("#verify-head", { y: -40, opacity: 0, duration: 0.42, ease: "back.out(1.5)" }, 33.3);
+      tl.from(
+        "#verify-card-1",
+        { x: -100, opacity: 0, rotateY: -20, duration: 0.52, ease: "back.out(1.4)" },
+        33.7,
+      );
+      tl.from(
+        "#verify-card-2",
+        { x: -100, opacity: 0, rotateY: -20, duration: 0.52, ease: "back.out(1.4)" },
+        36.6,
+      );
+      tl.from(
+        "#verify-card-3",
+        { y: 80, opacity: 0, rotateX: -14, duration: 0.54, ease: "back.out(1.4)" },
+        39.6,
+      );
+      avatarIn("#av-verify", 33.5, 0.55, 43.03);
+      flyOut("#verify-head", 42.73);
+      flyOut("#verify-card-1", 42.73);
+      flyOut("#verify-card-2", 42.78);
+      flyOut("#verify-card-3", 42.78);
+
+      // ════ SCENE 7 — EXPERTS ════
+      tl.from("#experts-head", { y: -44, opacity: 0, duration: 0.42, ease: "back.out(1.5)" }, 43.2);
+      tl.from(
+        "#experts-card",
+        { y: 90, opacity: 0, scale: 0.88, rotateX: 16, duration: 0.64, ease: "back.out(1.5)" },
+        43.6,
+      );
+      avatarIn("#av-experts", 43.4, 0.55, 49.87);
+      flyOut("#experts-head", 49.57);
+      flyOut("#experts-card", 49.57);
+
+      // ════ SCENE 8 — THE SHIFT ════
+      tl.from("#shift-head", { y: -50, opacity: 0, duration: 0.48, ease: "back.out(1.5)" }, 50.05);
+      tl.from(
+        "#shift-before",
+        { x: -120, opacity: 0, rotateY: -22, duration: 0.56, ease: "back.out(1.4)" },
+        50.4,
+      );
+      tl.from("#shift-arrow", { scale: 0, opacity: 0, duration: 0.4, ease: "back.out(2)" }, 52.0);
+      tl.from(
+        "#shift-after",
+        { x: 120, opacity: 0, rotateY: 22, duration: 0.56, ease: "back.out(1.4)" },
+        52.4,
+      );
+      tl.to(
+        "#shift-arrow",
+        { y: 14, duration: 0.7, repeat: 5, yoyo: true, ease: "sine.inOut" },
+        52.6,
+      );
+      avatarIn("#av-shift", 50.2, 0.55, 57.16);
+      flyOut("#shift-head", 56.86);
+      flyOut("#shift-before", 56.86);
+      flyOut("#shift-arrow", 56.9);
+      flyOut("#shift-after", 56.9);
+
+      // ════ SCENE 9 — WHO IT AFFECTS ════
+      tl.from("#affect-head", { y: -50, opacity: 0, duration: 0.48, ease: "back.out(1.5)" }, 57.35);
+      tl.from(
+        "#affect-grid .aff",
+        {
+          x: -130,
+          opacity: 0,
+          rotateY: -24,
+          scale: 0.9,
+          duration: 0.5,
+          stagger: 0.22,
+          ease: "back.out(1.5)",
+        },
+        57.7,
+      );
+      avatarIn("#av-affect", 57.5, 0.55, 64.19);
+      flyOut("#affect-head", 63.89);
+      flyOut("#affect-grid .aff", 63.89);
+
+      // ════ SCENE 10 — MODELS / TIMELINE ════
+      tl.from("#models-head", { y: -50, opacity: 0, duration: 0.48, ease: "back.out(1.5)" }, 64.35);
+      tl.from(
+        "#models-card-1",
+        { x: -110, opacity: 0, rotateY: -20, duration: 0.52, ease: "back.out(1.4)" },
+        64.7,
+      );
+      tl.from(
+        "#models-card-2",
+        { x: 110, opacity: 0, rotateY: 20, duration: 0.52, ease: "back.out(1.4)" },
+        67.5,
+      );
+      tl.from(
+        "#models-card-3",
+        { y: 90, opacity: 0, scale: 0.9, rotateX: 16, duration: 0.6, ease: "back.out(1.5)" },
+        70.5,
+      );
+      tl.to(
+        "#models-card-3",
+        { scale: 1.03, duration: 0.6, repeat: 4, yoyo: true, ease: "sine.inOut" },
+        71.3,
+      );
+      avatarIn("#av-models", 64.55, 0.55, 74.5);
+      flyOut("#models-head", 74.2);
+      flyOut("#models-card-1", 74.2);
+      flyOut("#models-card-2", 74.25);
+      flyOut("#models-card-3", 74.25);
+
+      // ════ SCENE 11 — CTA ════
+      tl.from(
+        "#cta-head",
+        { y: -56, opacity: 0, scale: 0.9, duration: 0.56, ease: "back.out(1.6)" },
+        74.7,
+      );
+      tl.from(
+        "#cta-opt-1",
+        { x: -120, opacity: 0, rotateY: -26, duration: 0.58, ease: "back.out(1.45)" },
+        75.1,
+      );
+      tl.from(
+        "#cta-opt-2",
+        { x: 120, opacity: 0, rotateY: 26, duration: 0.58, ease: "back.out(1.45)" },
+        75.3,
+      );
+      tl.from("#cta-follow", { scale: 0.7, opacity: 0, duration: 0.56, ease: "back.out(2)" }, 75.9);
+      tl.from("#cta-tag", { y: 30, opacity: 0, duration: 0.5, ease: "back.out(1.6)" }, 76.4);
+      avatarIn("#av-cta", 74.9, 0.6, 83.6);
+      tl.to(
+        "#cta-follow .follow-btn",
+        { scale: 1.05, duration: 0.7, repeat: 9, yoyo: true, ease: "sine.inOut" },
+        76.6,
+      );
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines["fable-mythos-citizenship"] = tl;
+    </script>
+  </body>
+</html>
