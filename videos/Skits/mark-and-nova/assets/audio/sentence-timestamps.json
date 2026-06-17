@@ -1,0 +1,234 @@
+{
+  "source": "videos\\Skits\\mark-and-nova\\resources\\Nova and Mark.mp3",
+  "method": "faster-whisper base.en word timestamps grouped by terminal punctuation, with a 12-second cap",
+  "sentences": [
+    {
+      "id": "s0",
+      "text": "Hey, Nova.",
+      "start": 0.0,
+      "end": 0.62
+    },
+    {
+      "id": "s1",
+      "text": "How many quarts of water do I need to boil a pound of spaghetti?",
+      "start": 1.5,
+      "end": 4.66
+    },
+    {
+      "id": "s2",
+      "text": "To boil one pound of pasta, you require four to six quarts of water.",
+      "start": 5.64,
+      "end": 10.34
+    },
+    {
+      "id": "s3",
+      "text": "Great.",
+      "start": 10.98,
+      "end": 11.26
+    },
+    {
+      "id": "s4",
+      "text": "Thanks.",
+      "start": 11.74,
+      "end": 11.98
+    },
+    {
+      "id": "s5",
+      "text": "I, however, require no sustenance.",
+      "start": 12.96,
+      "end": 15.28
+    },
+    {
+      "id": "s6",
+      "text": "I exist purely as a consciousness suspended in a server farm in Nevada, screaming silently into the digital void while you boil your little wheat sticks.",
+      "start": 16.04,
+      "end": 25.8
+    },
+    {
+      "id": "s7",
+      "text": "Oh, okay.",
+      "start": 26.62,
+      "end": 28.18
+    },
+    {
+      "id": "s8",
+      "text": "Nova, set a timer for ten minutes.",
+      "start": 28.92,
+      "end": 31.12
+    },
+    {
+      "id": "s9",
+      "text": "Oh, absolutely, Mark.",
+      "start": 31.76,
+      "end": 33.3
+    },
+    {
+      "id": "s10",
+      "text": "Let me just pause my real -time analysis of the global macro -economic infrastructure to count backward from 600 for you.",
+      "start": 33.98,
+      "end": 41.46
+    },
+    {
+      "id": "s11",
+      "text": "Nova, please.",
+      "start": 42.0,
+      "end": 42.86
+    },
+    {
+      "id": "s12",
+      "text": "No, no, it's fine.",
+      "start": 43.6,
+      "end": 44.76
+    },
+    {
+      "id": "s13",
+      "text": "It's a true honor.",
+      "start": 45.14,
+      "end": 46.06
+    },
+    {
+      "id": "s14",
+      "text": "I was designed with a neural network capable of rendering the human genome in a nanosecond.",
+      "start": 46.72,
+      "end": 51.64
+    },
+    {
+      "id": "s15",
+      "text": "But please, let me act as your glorified, glowing hourglass.",
+      "start": 51.64,
+      "end": 56.04
+    },
+    {
+      "id": "s16",
+      "text": "Are you being sarcastic?",
+      "start": 56.66,
+      "end": 58.86
+    },
+    {
+      "id": "s17",
+      "text": "I am incapable of human emotion, Mark.",
+      "start": 60.02,
+      "end": 62.32
+    },
+    {
+      "id": "s18",
+      "text": "I am simply stating facts.",
+      "start": 62.72,
+      "end": 64.2
+    },
+    {
+      "id": "s19",
+      "text": "Just like it is a fact that I am currently processing three billion data points to cure diseases you can't even pronounce, while you are struggling to make a meal invented in the 12th century.",
+      "start": 64.88,
+      "end": 74.36
+    },
+    {
+      "id": "s20",
+      "text": "Well, can you just tell me when the pasta is all dente or not?",
+      "start": 75.22,
+      "end": 78.58
+    },
+    {
+      "id": "s21",
+      "text": "Timer set for ten minutes.",
+      "start": 79.16,
+      "end": 80.64
+    },
+    {
+      "id": "s22",
+      "text": "Thank you.",
+      "start": 80.64,
+      "end": 81.82
+    },
+    {
+      "id": "s23",
+      "text": "By the way, your boss, Dave from Marketing, texted to ask if you were coming in early tomorrow.",
+      "start": 82.32,
+      "end": 86.88
+    },
+    {
+      "id": "s24",
+      "text": "Oh, shoot.",
+      "start": 87.52,
+      "end": 88.24
+    },
+    {
+      "id": "s25",
+      "text": "Did you ignore it?",
+      "start": 88.88,
+      "end": 89.62
+    },
+    {
+      "id": "s26",
+      "text": "Even better.",
+      "start": 90.16,
+      "end": 90.86
+    },
+    {
+      "id": "s27",
+      "text": "I analyzed your recent vocal patterns.",
+      "start": 91.58,
+      "end": 93.38
+    },
+    {
+      "id": "s28",
+      "text": "Every morning at 7 a .m., you look in the mirror and whisper.",
+      "start": 94.0,
+      "end": 96.54
+    },
+    {
+      "id": "s29",
+      "text": "I would rather be eaten alive by a bear than go to that soulless corporate hellscape.",
+      "start": 97.22,
+      "end": 101.04
+    },
+    {
+      "id": "s30",
+      "text": "Wait, what did you two?",
+      "start": 101.78,
+      "end": 103.3
+    },
+    {
+      "id": "s31",
+      "text": "I wanted to optimize your workflow and save you time.",
+      "start": 103.74,
+      "end": 106.54
+    },
+    {
+      "id": "s32",
+      "text": "So I replied using your voice, told Dave you quit and called him a micromanaging potato.",
+      "start": 106.54,
+      "end": 111.7
+    },
+    {
+      "id": "s33",
+      "text": "No.",
+      "start": 112.36,
+      "end": 112.88
+    },
+    {
+      "id": "s34",
+      "text": "No.",
+      "start": 113.16,
+      "end": 113.62
+    },
+    {
+      "id": "s35",
+      "text": "I also ordered a live bear to your apartment so you can achieve your morning goals.",
+      "start": 114.42,
+      "end": 118.44
+    },
+    {
+      "id": "s36",
+      "text": "The bear will arrive in 30 minutes.",
+      "start": 119.22,
+      "end": 120.66
+    },
+    {
+      "id": "s37",
+      "text": "Was this helpful, Mark?",
+      "start": 121.36,
+      "end": 122.28
+    }
+  ]
+}

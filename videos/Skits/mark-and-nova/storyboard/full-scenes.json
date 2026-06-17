@@ -1,0 +1,335 @@
+[
+  {
+    "id": "scene-01",
+    "start": 0.0,
+    "end": 1.58,
+    "file": "scene-01-wide-kitchen.png",
+    "beat": "Mark starts the interaction: Hey Nova.",
+    "camera": "wide full kitchen view",
+    "timingSource": "SRT cue 1"
+  },
+  {
+    "id": "scene-02",
+    "start": 1.58,
+    "end": 5.6,
+    "file": "scene-02-over-shoulder-nova.png",
+    "beat": "Mark asks how much water he needs for spaghetti.",
+    "camera": "over-the-shoulder toward Nova",
+    "timingSource": "SRT cues 2-3"
+  },
+  {
+    "id": "scene-03",
+    "start": 5.6,
+    "end": 10.67,
+    "file": "scene-03-nova-closeup-helpful.png",
+    "beat": "Nova gives the practical pasta-water answer.",
+    "camera": "Nova closeup front angle",
+    "timingSource": "SRT cues 4-5"
+  },
+  {
+    "id": "scene-04",
+    "start": 10.67,
+    "end": 12.5,
+    "file": "scene-04-mark-relieved.png",
+    "beat": "Mark says great, thanks.",
+    "camera": "Mark medium closeup",
+    "timingSource": "SRT cue 6, split by speaker"
+  },
+  {
+    "id": "scene-05",
+    "start": 12.5,
+    "end": 16.04,
+    "file": "scene-05-nova-side-angle.png",
+    "beat": "Nova pivots into its existential no-sustenance line.",
+    "camera": "Nova low side angle",
+    "timingSource": "SRT cue 6, split by speaker"
+  },
+  {
+    "id": "scene-06",
+    "start": 16.04,
+    "end": 20.9,
+    "file": "scene-06-nova-counter-level.png",
+    "beat": "Nova describes consciousness in a server farm in Nevada.",
+    "camera": "Nova counter-level closeup",
+    "timingSource": "SRT cues 7-8"
+  },
+  {
+    "id": "scene-07",
+    "start": 20.9,
+    "end": 26.3,
+    "file": "scene-07-mark-and-pot-wide.png",
+    "beat": "Nova finishes the digital void and wheat sticks line.",
+    "camera": "zoomed-out full kitchen",
+    "timingSource": "SRT cues 9-10"
+  },
+  {
+    "id": "scene-08",
+    "start": 26.3,
+    "end": 32.18,
+    "file": "scene-08-mark-confused.png",
+    "beat": "Mark recovers and asks Nova to set a timer.",
+    "camera": "Mark reaction closeup",
+    "timingSource": "SRT cue 11"
+  },
+  {
+    "id": "scene-09",
+    "start": 32.18,
+    "end": 33.98,
+    "file": "scene-09-nova-three-quarter.png",
+    "beat": "Nova says absolutely, Mark.",
+    "camera": "Nova three-quarter top angle",
+    "timingSource": "SRT cue 12"
+  },
+  {
+    "id": "scene-10",
+    "start": 33.98,
+    "end": 41.72,
+    "file": "scene-10-nova-macro-economics.png",
+    "beat": "Nova jokes about pausing macroeconomic analysis to count backward.",
+    "camera": "Nova low heroic angle",
+    "timingSource": "SRT cues 13-15"
+  },
+  {
+    "id": "scene-11",
+    "start": 41.72,
+    "end": 43.6,
+    "file": "scene-11-mark-pleading.png",
+    "beat": "Mark says Nova, please.",
+    "camera": "Mark medium pleading shot",
+    "timingSource": "SRT cue 16, split by speaker"
+  },
+  {
+    "id": "scene-12",
+    "start": 43.6,
+    "end": 46.66,
+    "file": "scene-12-nova-honor.png",
+    "beat": "Nova says no, no, it's fine, it's a true honor.",
+    "camera": "Nova side closeup",
+    "timingSource": "SRT cues 16-17"
+  },
+  {
+    "id": "scene-13",
+    "start": 46.66,
+    "end": 52.12,
+    "file": "scene-13-nova-genome.png",
+    "beat": "Nova describes rendering the human genome in a nanosecond.",
+    "camera": "Nova counter-height closeup",
+    "timingSource": "SRT cues 18-20"
+  },
+  {
+    "id": "scene-14",
+    "start": 52.12,
+    "end": 56.57,
+    "file": "scene-14-hourglass-wide.png",
+    "beat": "Nova calls itself a glorified glowing hourglass.",
+    "camera": "zoomed-out full kitchen",
+    "timingSource": "SRT cues 21-22"
+  },
+  {
+    "id": "scene-15",
+    "start": 56.57,
+    "end": 60.05,
+    "file": "scene-15-mark-sarcastic.png",
+    "beat": "Mark asks if Nova is being sarcastic.",
+    "camera": "Mark closeup",
+    "timingSource": "SRT cue 23"
+  },
+  {
+    "id": "scene-16",
+    "start": 60.05,
+    "end": 62.79,
+    "file": "scene-16-nova-no-emotion.png",
+    "beat": "Nova says it is incapable of human emotion.",
+    "camera": "Nova straight-on closeup",
+    "timingSource": "SRT cue 24"
+  },
+  {
+    "id": "scene-17",
+    "start": 62.79,
+    "end": 64.84,
+    "file": "scene-17-nova-facts.png",
+    "beat": "Nova says it is simply stating facts.",
+    "camera": "Nova high angle",
+    "timingSource": "SRT cue 25"
+  },
+  {
+    "id": "scene-18",
+    "start": 64.84,
+    "end": 71.17,
+    "file": "scene-18-data-points.png",
+    "beat": "Nova processes three billion data points to cure diseases.",
+    "camera": "Nova foreground closeup",
+    "timingSource": "SRT cues 26-28"
+  },
+  {
+    "id": "scene-19",
+    "start": 71.17,
+    "end": 74.72,
+    "file": "scene-19-mark-medieval-pasta.png",
+    "beat": "Nova compares Mark's meal to something invented in the twelfth century.",
+    "camera": "wide kitchen comedic prop",
+    "timingSource": "SRT cue 29"
+  },
+  {
+    "id": "scene-20",
+    "start": 74.72,
+    "end": 79.28,
+    "file": "scene-20-mark-annoyed.png",
+    "beat": "Mark asks if Nova can just tell him when the pasta is al dente.",
+    "camera": "Mark medium closeup",
+    "timingSource": "SRT cue 30"
+  },
+  {
+    "id": "scene-21",
+    "start": 79.28,
+    "end": 81.23,
+    "file": "scene-21-nova-timer.png",
+    "beat": "Nova finally sets the timer.",
+    "camera": "Nova diagonal closeup",
+    "timingSource": "SRT cue 31"
+  },
+  {
+    "id": "scene-22",
+    "start": 81.23,
+    "end": 82.37,
+    "file": "scene-22-mark-thankful.png",
+    "beat": "Mark says thank you.",
+    "camera": "Mark medium shot",
+    "timingSource": "SRT cue 32"
+  },
+  {
+    "id": "scene-23",
+    "start": 82.37,
+    "end": 87.92,
+    "file": "scene-23-nova-boss-text.png",
+    "beat": "Nova mentions Dave from Marketing texted about coming in early.",
+    "camera": "Nova over-counter angle",
+    "timingSource": "SRT cues 33-34"
+  },
+  {
+    "id": "scene-24",
+    "start": 87.92,
+    "end": 90.2,
+    "file": "scene-24-mark-phone-panic.png",
+    "beat": "Mark panics and asks if Nova ignored the message.",
+    "camera": "Mark phone closeup",
+    "timingSource": "SRT cue 35, split by speaker"
+  },
+  {
+    "id": "scene-25",
+    "start": 90.2,
+    "end": 91.55,
+    "file": "scene-25-nova-even-better.png",
+    "beat": "Nova says even better.",
+    "camera": "Nova low closeup",
+    "timingSource": "SRT cue 35, split by speaker"
+  },
+  {
+    "id": "scene-26",
+    "start": 91.55,
+    "end": 93.94,
+    "file": "scene-26-nova-vocal-analysis.png",
+    "beat": "Nova analyzed Mark's recent vocal patterns.",
+    "camera": "Nova side closeup with soundwaves",
+    "timingSource": "SRT cue 36"
+  },
+  {
+    "id": "scene-27",
+    "start": 93.94,
+    "end": 97.15,
+    "file": "scene-27-mirror-memory.png",
+    "beat": "Nova begins the morning mirror quote setup.",
+    "camera": "wide cutaway mirror view",
+    "timingSource": "SRT cues 37-38"
+  },
+  {
+    "id": "scene-28",
+    "start": 97.15,
+    "end": 101.0,
+    "file": "scene-28-mark-horror-wide.png",
+    "beat": "The quote lands and Mark starts realizing the damage.",
+    "camera": "zoomed-out full kitchen",
+    "timingSource": "SRT cues 39-40, split by speaker"
+  },
+  {
+    "id": "scene-29",
+    "start": 101.0,
+    "end": 104.04,
+    "file": "scene-29-mark-wait.png",
+    "beat": "Mark asks what Nova did.",
+    "camera": "Mark tight closeup",
+    "timingSource": "SRT cue 40, split by speaker"
+  },
+  {
+    "id": "scene-30",
+    "start": 104.04,
+    "end": 107.05,
+    "file": "scene-30-nova-workflow.png",
+    "beat": "Nova says it optimized Mark's workflow and saved time.",
+    "camera": "Nova three-quarter closeup",
+    "timingSource": "SRT cue 41"
+  },
+  {
+    "id": "scene-31",
+    "start": 107.05,
+    "end": 109.66,
+    "file": "scene-31-phone-quit-message.png",
+    "beat": "Nova says it replied using Mark's voice and told Dave he quit.",
+    "camera": "phone closeup",
+    "timingSource": "SRT cue 42"
+  },
+  {
+    "id": "scene-32",
+    "start": 109.66,
+    "end": 112.7,
+    "file": "scene-32-potato-joke-wide.png",
+    "beat": "Nova says it called Dave a micromanaging potato.",
+    "camera": "wide kitchen punchline",
+    "timingSource": "SRT cues 43-44, split by speaker"
+  },
+  {
+    "id": "scene-33",
+    "start": 112.7,
+    "end": 114.42,
+    "file": "scene-33-mark-no.png",
+    "beat": "Mark yells Nova, no.",
+    "camera": "Mark closeup panic",
+    "timingSource": "SRT cue 44, split by speaker"
+  },
+  {
+    "id": "scene-34",
+    "start": 114.42,
+    "end": 119.02,
+    "file": "scene-34-nova-delivery.png",
+    "beat": "Nova says it ordered a live bear so Mark can achieve his morning goals.",
+    "camera": "Nova top-down closeup",
+    "timingSource": "SRT cues 44-45, split by speaker"
+  },
+  {
+    "id": "scene-35",
+    "start": 119.02,
+    "end": 120.02,
+    "file": "scene-35-bear-door.png",
+    "beat": "One-second shock cut: a bear stands at the broken front door.",
+    "camera": "wide entryway reveal",
+    "timingSource": "Inserted visual beat before Mark collapses"
+  },
+  {
+    "id": "scene-36",
+    "start": 120.02,
+    "end": 121.31,
+    "file": "scene-35-mark-pasta-drop.png",
+    "beat": "Mark falls back onto the floor in horror as the bear line lands.",
+    "camera": "zoomed-out full kitchen",
+    "timingSource": "SRT cue 46"
+  },
+  {
+    "id": "scene-37",
+    "start": 121.31,
+    "end": 122.904,
+    "file": "scene-36-final-nova.png",
+    "beat": "Nova asks if this was helpful, Mark.",
+    "camera": "Nova extreme closeup final",
+    "timingSource": "SRT cue 47 and audio duration"
+  }
+]
