@@ -1,0 +1,57 @@
+{
+  "source": "https://www.anthropic.com/news/fable-mythos-access",
+  "finalUrl": "https://www.anthropic.com/news/fable-mythos-access",
+  "title": "Statement on the US government directive to suspend access to Fable 5 and Mythos 5 \\ Anthropic",
+  "viewport": {
+    "width": 412,
+    "height": 915
+  },
+  "pageHeight": 7900,
+  "scrollSeconds": 9.5,
+  "keyframes": [
+    {
+      "t": 0,
+      "y": 0
+    },
+    {
+      "t": 0.95,
+      "y": 699
+    },
+    {
+      "t": 1.9,
+      "y": 1397
+    },
+    {
+      "t": 2.85,
+      "y": 2096
+    },
+    {
+      "t": 3.8,
+      "y": 2794
+    },
+    {
+      "t": 4.75,
+      "y": 3493
+    },
+    {
+      "t": 5.7,
+      "y": 4191
+    },
+    {
+      "t": 6.65,
+      "y": 4890
+    },
+    {
+      "t": 7.6,
+      "y": 5588
+    },
+    {
+      "t": 8.55,
+      "y": 6287
+    },
+    {
+      "t": 9.5,
+      "y": 6985
+    }
+  ]
+}

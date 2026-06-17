@@ -1,0 +1,187 @@
+1
+00:00:00,000 --> 00:00:01,670
+Anthropic just had their two most
+
+2
+00:00:01,740 --> 00:00:03,730
+powerful AI models killed globally.
+
+3
+00:00:03,920 --> 00:00:04,410
+The reason?
+
+4
+00:00:04,680 --> 00:00:06,730
+A vulnerability so minor, you can find
+
+5
+00:00:06,780 --> 00:00:08,720
+it with free, publicly available AI
+
+6
+00:00:08,780 --> 00:00:09,120
+tools.
+
+7
+00:00:09,330 --> 00:00:11,680
+Today, Fable 5 and Mythos 5 were
+
+8
+00:00:11,710 --> 00:00:13,710
+disabled worldwide following a national
+
+9
+00:00:13,770 --> 00:00:14,780
+security directive.
+
+10
+00:00:15,010 --> 00:00:16,610
+Hundreds of millions of users.
+
+11
+00:00:16,940 --> 00:00:17,860
+Access revoked.
+
+12
+00:00:18,250 --> 00:00:18,770
+Overnight.
+
+13
+00:00:19,280 --> 00:00:19,820
+No warning.
+
+14
+00:00:20,140 --> 00:00:21,360
+Here's what makes this wild.
+
+15
+00:00:21,850 --> 00:00:23,390
+Anthropic is literally the most
+
+16
+00:00:23,510 --> 00:00:25,650
+safety-obsessed AI lab on the planet.
+
+17
+00:00:26,160 --> 00:00:28,260
+They built Fable 5 with more safeguards
+
+18
+00:00:28,310 --> 00:00:29,210
+than anyone else.
+
+19
+00:00:29,340 --> 00:00:30,790
+And they're the ones getting punished.
+
+20
+00:00:31,080 --> 00:00:33,160
+Meanwhile the exact same vulnerability
+
+21
+00:00:33,220 --> 00:00:35,330
+exists in other models — models that are
+
+22
+00:00:35,360 --> 00:00:37,260
+already publicly available to anyone on
+
+23
+00:00:37,290 --> 00:00:38,790
+the internet — and those are still
+
+24
+00:00:38,860 --> 00:00:39,170
+running.
+
+25
+00:00:39,420 --> 00:00:40,510
+Completely untouched.
+
+26
+00:00:40,760 --> 00:00:42,190
+The jailbreak that the government is
+
+27
+00:00:42,250 --> 00:00:44,240
+claiming is, according to Anthropic,
+
+28
+00:00:44,350 --> 00:00:46,170
+essentially consists of asking the model
+
+29
+00:00:46,230 --> 00:00:48,450
+to read a specific codebase and fix any
+
+30
+00:00:48,510 --> 00:00:50,380
+software flaws — something that many
+
+31
+00:00:50,430 --> 00:00:52,290
+publicly available models are capable of
+
+32
+00:00:52,350 --> 00:00:52,670
+doing.
+
+33
+00:00:53,100 --> 00:00:55,270
+Anthropic even said it themselves — this
+
+34
+00:00:55,330 --> 00:00:57,670
+is a narrow, non-universal jailbreak
+
+35
+00:00:57,720 --> 00:00:59,370
+that is widely available from other
+
+36
+00:00:59,420 --> 00:00:59,850
+models.
+
+37
+00:01:00,300 --> 00:01:01,750
+It's not some secret weapon.
+
+38
+00:01:01,860 --> 00:01:02,760
+It's not unique.
+
+39
+00:01:03,150 --> 00:01:05,720
+But somehow Fable 5 and Mythos 5 get
+
+40
+00:01:05,780 --> 00:01:07,410
+pulled while the rest of the industry
+
+41
+00:01:07,470 --> 00:01:08,950
+carries on like nothing happened.
+
+42
+00:01:09,380 --> 00:01:11,510
+The safest AI lab, the most minor
+
+43
+00:01:11,560 --> 00:01:13,630
+vulnerability, the biggest shutdown.
+
+44
+00:01:14,080 --> 00:01:15,200
+Something doesn't add up.
+
+45
+00:01:15,690 --> 00:01:17,170
+Drop your theories in the comments —
+
+46
+00:01:17,400 --> 00:01:18,590
+because mine are wild.
+
+47
+00:01:18,900 --> 00:01:19,670
+Follow for more.

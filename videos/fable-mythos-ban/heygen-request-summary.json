@@ -1,0 +1,10 @@
+{
+  "title": "They Banned the SAFEST AI Over a Bug Anyone Can Find",
+  "video_id": "176cf123c38740e0ab186ea6540911bb",
+  "submitted_at": "2026-06-12",
+  "avatar_id": "from_env:HEYGEN_AVATAR_ID",
+  "voice_id": "from_env:HEYGEN_VOICE_ID",
+  "dimension": { "width": 1280, "height": 720 },
+  "caption": true,
+  "input_text_file": "heygen-input.txt"
+}

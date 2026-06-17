@@ -1,0 +1,766 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #f7fbff;
+        color: #101827;
+        font-family: "Aptos", "Segoe UI", Arial, sans-serif;
+      }
+
+      #root {
+        position: relative;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background:
+          radial-gradient(ellipse at 18% 8%, rgba(30, 139, 255, 0.22), transparent 34%),
+          radial-gradient(ellipse at 86% 16%, rgba(255, 79, 163, 0.18), transparent 32%),
+          radial-gradient(ellipse at 50% 95%, rgba(255, 157, 46, 0.14), transparent 36%),
+          linear-gradient(145deg, #f8fcff 0%, #eaf5ff 44%, #fff7ef 100%);
+        perspective: 1800px;
+      }
+
+      #root::before {
+        content: "";
+        position: absolute;
+        inset: -220px;
+        background:
+          linear-gradient(90deg, rgba(30, 139, 255, 0.12) 1px, transparent 1px),
+          linear-gradient(0deg, rgba(16, 24, 39, 0.07) 1px, transparent 1px),
+          linear-gradient(60deg, transparent 0 48%, rgba(30, 139, 255, 0.12) 48% 49%, transparent 49% 100%),
+          linear-gradient(120deg, transparent 0 58%, rgba(255, 79, 163, 0.1) 58% 59%, transparent 59% 100%);
+        background-size: 74px 74px, 74px 74px, 460px 460px, 540px 540px;
+        transform: rotate(-9deg);
+        opacity: 0.78;
+        pointer-events: none;
+      }
+
+      .clip {
+        position: absolute;
+      }
+
+      /* ── SCENE BASE ── */
+      .scene {
+        position: absolute;
+        inset: 0;
+        z-index: 4;
+        overflow: hidden;
+        opacity: 0;
+        visibility: hidden;
+        transform-style: preserve-3d;
+      }
+
+      /* ── GLASS ── */
+      .glass {
+        position: relative;
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.92);
+        background:
+          radial-gradient(circle at 14% 18%, rgba(30, 139, 255, 0.25), transparent 34%),
+          radial-gradient(circle at 88% 8%, rgba(255, 79, 163, 0.2), transparent 28%),
+          radial-gradient(circle at 50% 110%, rgba(255, 157, 46, 0.16), transparent 34%),
+          linear-gradient(145deg, rgba(255, 255, 255, 0.58), rgba(255, 255, 255, 0.24)),
+          rgba(177, 220, 255, 0.34);
+        box-shadow:
+          0 42px 112px rgba(18, 92, 170, 0.2),
+          0 0 74px rgba(30, 139, 255, 0.16),
+          inset 0 1px 0 rgba(255, 255, 255, 0.74),
+          inset 0 -24px 52px rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(34px) saturate(1.48);
+        -webkit-backdrop-filter: blur(34px) saturate(1.48);
+        overflow: hidden;
+        isolation: isolate;
+        transform-style: preserve-3d;
+      }
+
+      .glass::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        background:
+          linear-gradient(130deg, rgba(255, 255, 255, 0.52), transparent 28%),
+          linear-gradient(300deg, rgba(255, 255, 255, 0.18), transparent 42%);
+        mix-blend-mode: screen;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .glass::after {
+        content: "";
+        position: absolute;
+        inset: 9px;
+        border-radius: inherit;
+        border: 1px solid rgba(255, 255, 255, 0.48);
+        opacity: 0.64;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .glass > * {
+        position: relative;
+        z-index: 2;
+      }
+
+      .glass-red {
+        border-color: rgba(220, 38, 38, 0.32);
+        background:
+          radial-gradient(circle at 14% 18%, rgba(220, 38, 38, 0.18), transparent 34%),
+          radial-gradient(circle at 88% 8%, rgba(255, 79, 163, 0.14), transparent 28%),
+          linear-gradient(145deg, rgba(255, 255, 255, 0.54), rgba(255, 255, 255, 0.22)),
+          rgba(255, 200, 200, 0.3);
+        box-shadow:
+          0 42px 112px rgba(180, 20, 20, 0.18),
+          0 0 74px rgba(220, 38, 38, 0.12),
+          inset 0 1px 0 rgba(255, 255, 255, 0.74),
+          inset 0 -24px 52px rgba(255, 255, 255, 0.2);
+      }
+
+      /* ── AVATAR ── */
+      .avatar-shot {
+        object-fit: cover;
+        object-position: center center;
+        z-index: 18;
+        overflow: hidden;
+        background: #ffffff;
+        box-shadow:
+          0 52px 128px rgba(21, 22, 31, 0.46),
+          0 0 62px rgba(36, 88, 255, 0.24);
+        filter: drop-shadow(0 44px 54px rgba(21, 22, 31, 0.44))
+          drop-shadow(0 0 38px rgba(36, 88, 255, 0.22));
+        transform-style: preserve-3d;
+        will-change: transform, opacity;
+      }
+
+      .avatar-pip {
+        border-radius: 22px;
+        width: 312px;
+        height: 210px;
+        left: 48px;
+        bottom: 220px;
+        box-shadow:
+          0 38px 92px rgba(21, 22, 31, 0.58),
+          0 0 52px rgba(255, 58, 168, 0.22);
+        filter: drop-shadow(0 32px 42px rgba(21, 22, 31, 0.52))
+          drop-shadow(0 0 34px rgba(255, 58, 168, 0.2));
+      }
+
+      .avatar-feature {
+        border-radius: 24px;
+        width: 680px;
+        height: 460px;
+        left: 200px;
+        bottom: 340px;
+      }
+
+      /* ── CAPTIONS ── */
+      .caption-bar {
+        position: absolute;
+        bottom: 148px;
+        left: 0;
+        right: 0;
+        text-align: center;
+        font-size: 42px;
+        font-weight: 700;
+        line-height: 1.28;
+        color: #101827;
+        text-shadow: 0 2px 14px rgba(255, 255, 255, 0.9), 0 0 42px rgba(30, 139, 255, 0.18);
+        padding: 0 56px;
+        z-index: 30;
+      }
+
+      /* ── PHONE FRAME ── */
+      .phone {
+        position: absolute;
+        border-radius: 44px;
+        border: 3px solid rgba(30, 139, 255, 0.28);
+        background: #fff;
+        box-shadow:
+          0 64px 140px rgba(18, 92, 170, 0.28),
+          0 0 64px rgba(30, 139, 255, 0.14),
+          inset 0 0 0 2px rgba(255, 255, 255, 0.8);
+        overflow: hidden;
+      }
+
+      .phone-screen {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        border-radius: inherit;
+      }
+
+      .phone-page {
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      /* ── BREAKING CHIP ── */
+      .breaking-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 30px;
+        border-radius: 999px;
+        background: rgba(220, 38, 38, 0.92);
+        color: #fff;
+        font-family: "IBM Plex Mono", Consolas, monospace;
+        font-size: 28px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        box-shadow: 0 12px 42px rgba(220, 38, 38, 0.36), 0 0 24px rgba(220, 38, 38, 0.22);
+      }
+
+      .breaking-dot {
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: #fff;
+        box-shadow: 0 0 12px rgba(255, 255, 255, 0.8);
+      }
+
+      /* ── LABEL CHIP ── */
+      .label-chip {
+        display: inline-block;
+        padding: 8px 22px;
+        border-radius: 999px;
+        font-family: "IBM Plex Mono", Consolas, monospace;
+        font-size: 22px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .chip-blue {
+        background: rgba(30, 139, 255, 0.12);
+        border: 1px solid rgba(30, 139, 255, 0.32);
+        color: rgba(18, 80, 180, 0.9);
+      }
+
+      .chip-red {
+        background: rgba(220, 38, 38, 0.1);
+        border: 1px solid rgba(220, 38, 38, 0.28);
+        color: rgba(180, 20, 20, 0.9);
+      }
+
+      .chip-green {
+        background: rgba(16, 185, 129, 0.1);
+        border: 1px solid rgba(16, 185, 129, 0.3);
+        color: rgba(6, 120, 80, 0.9);
+      }
+
+      /* ── QUOTE SCAN ── */
+      .quote-scan-wrap {
+        position: absolute;
+        overflow: hidden;
+        border-radius: 16px;
+        box-shadow:
+          0 32px 80px rgba(18, 92, 170, 0.22),
+          0 0 42px rgba(30, 139, 255, 0.14);
+        border: 2px solid rgba(30, 139, 255, 0.2);
+      }
+
+      .quote-scan-img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: auto;
+      }
+
+      /* ── SCAN HIGHLIGHT ── */
+      .scan-highlight {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 120px;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 200, 50, 0.28),
+          rgba(255, 200, 50, 0.44),
+          rgba(255, 200, 50, 0.28),
+          transparent
+        );
+        pointer-events: none;
+        z-index: 10;
+      }
+
+      /* ── STAT CARD ── */
+      .stat-card {
+        padding: 32px 36px;
+      }
+
+      .stat-num {
+        font-family: "Archivo Black", "Segoe UI Black", Arial, sans-serif;
+        font-size: 88px;
+        font-weight: 900;
+        line-height: 1;
+        color: #101827;
+        letter-spacing: -0.02em;
+      }
+
+      .stat-unit {
+        font-size: 30px;
+        font-weight: 700;
+        color: rgba(16, 24, 39, 0.62);
+        margin-top: 4px;
+        line-height: 1.3;
+      }
+
+      .stat-label {
+        font-size: 26px;
+        font-weight: 500;
+        color: rgba(16, 24, 39, 0.52);
+        margin-top: 10px;
+        line-height: 1.4;
+      }
+
+      /* ── COMPARISON ROW ── */
+      .compare-row {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        padding: 24px 28px;
+      }
+
+      .compare-icon {
+        font-size: 42px;
+        flex-shrink: 0;
+      }
+
+      .compare-name {
+        font-size: 34px;
+        font-weight: 800;
+        color: #101827;
+        line-height: 1.2;
+      }
+
+      .compare-status {
+        margin-left: auto;
+        font-size: 28px;
+        font-weight: 700;
+        padding: 8px 20px;
+        border-radius: 999px;
+      }
+
+      .status-banned {
+        background: rgba(220, 38, 38, 0.12);
+        color: #b91c1c;
+        border: 1px solid rgba(220, 38, 38, 0.24);
+      }
+
+      .status-live {
+        background: rgba(16, 185, 129, 0.12);
+        color: #047857;
+        border: 1px solid rgba(16, 185, 129, 0.24);
+      }
+
+      /* ── CTA ── */
+      .follow-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
+        padding: 22px 48px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, #1e8bff, #b03aff);
+        color: #fff;
+        font-size: 38px;
+        font-weight: 800;
+        box-shadow: 0 18px 54px rgba(30, 139, 255, 0.38), 0 0 42px rgba(176, 58, 255, 0.22);
+        letter-spacing: 0.02em;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="fable-mythos-ban" data-width="1080" data-height="1920" data-start="0">
+
+      <!-- ══════════════════════════════════════════
+           NARRATION (continuous audio)
+           ══════════════════════════════════════════ -->
+      <audio
+        id="narration"
+        class="clip"
+        data-start="0"
+        data-duration="80.09"
+        data-track-index="1"
+        data-volume="1"
+        src="assets/avatar/heygen-avatar-16x9.mp4"
+      ></audio>
+
+      <!-- SFX — timed from SRT -->
+      <!-- Hook: 0–9.33s -->
+      <audio id="sfx-hook-chime"  class="clip" data-start="0.1"  data-duration="1.2" data-track-index="41" data-volume="0.5"  src="assets/sfx/chime-soft.wav"></audio>
+      <!-- Context: 9.33–20.14s -->
+      <audio id="sfx-s2-whoosh"   class="clip" data-start="9.1"  data-duration="0.6" data-track-index="40" data-volume="0.4"  src="assets/sfx/whoosh-soft.wav"></audio>
+      <audio id="sfx-s2-ping"     class="clip" data-start="10.5" data-duration="0.3" data-track-index="41" data-volume="0.45" src="assets/sfx/ping-soft.wav"></audio>
+      <!-- Irony: 20.14–40.76s -->
+      <audio id="sfx-s3-whoosh"   class="clip" data-start="19.9" data-duration="0.6" data-track-index="40" data-volume="0.4"  src="assets/sfx/whoosh-soft.wav"></audio>
+      <audio id="sfx-s3-ping"     class="clip" data-start="21.2" data-duration="0.3" data-track-index="41" data-volume="0.45" src="assets/sfx/ping-soft.wav"></audio>
+      <!-- Quote scan: 40.76–53.10s -->
+      <audio id="sfx-s4-whoosh"   class="clip" data-start="40.5" data-duration="0.6" data-track-index="40" data-volume="0.4"  src="assets/sfx/whoosh-soft.wav"></audio>
+      <audio id="sfx-s4-ping"     class="clip" data-start="41.8" data-duration="0.3" data-track-index="41" data-volume="0.5"  src="assets/sfx/ping-soft.wav"></audio>
+      <!-- Response: 53.10–69.38s -->
+      <audio id="sfx-s5-whoosh"   class="clip" data-start="52.9" data-duration="0.6" data-track-index="40" data-volume="0.4"  src="assets/sfx/whoosh-soft.wav"></audio>
+      <!-- CTA: 69.38–80.09s -->
+      <audio id="sfx-cta-whoosh"  class="clip" data-start="69.1" data-duration="0.6" data-track-index="40" data-volume="0.42" src="assets/sfx/whoosh-soft.wav"></audio>
+      <audio id="sfx-cta-chime"   class="clip" data-start="70.8" data-duration="1.2" data-track-index="41" data-volume="0.55" src="assets/sfx/chime-soft.wav"></audio>
+
+      <!-- ══════════════════════════════════════════
+           SCENE 1 — HOOK (0–5s)
+           "Anthropic just had their two most powerful AI models killed globally..."
+           ══════════════════════════════════════════ -->
+      <div id="scene-hook" class="scene">
+        <!-- top: BREAKING label -->
+        <div id="hook-breaking" style="position:absolute; top:160px; left:0; right:0; display:flex; justify-content:center;">
+          <div class="breaking-chip">
+            <div class="breaking-dot"></div>
+            BREAKING
+          </div>
+        </div>
+
+        <!-- big headline -->
+        <div id="hook-headline" style="position:absolute; top:290px; left:60px; right:60px; text-align:center;">
+          <div style="font-family:'Archivo Black','Segoe UI Black',Arial,sans-serif; font-size:92px; font-weight:900; line-height:1.0; color:#101827; letter-spacing:-0.02em;">
+            ANTHROPIC'S<br>BEST AI<br>
+            <span style="color:#dc2626;">KILLED</span>
+          </div>
+          <div style="margin-top:18px; font-family:'Archivo Black','Segoe UI Black',Arial,sans-serif; font-size:52px; font-weight:900; color:rgba(16,24,39,0.52); letter-spacing:0.02em;">
+            GLOBALLY
+          </div>
+        </div>
+
+        <!-- reason card -->
+        <div id="hook-reason" class="glass glass-red" style="position:absolute; top:760px; left:60px; right:60px; padding:32px 40px; border-radius:20px;">
+          <div style="font-size:30px; font-weight:600; color:rgba(180,20,20,0.8); line-height:1.5;">
+            The reason? A vulnerability so minor you can find it with <strong>free, publicly available AI tools.</strong>
+          </div>
+        </div>
+
+        <!-- avatar PIP -->
+        <video
+          id="avatar-hook"
+          class="clip avatar-shot avatar-pip"
+          data-start="0"
+          data-duration="9.33"
+          data-media-start="0"
+          data-track-index="2"
+          src="assets/avatar/heygen-avatar-16x9.mp4"
+          muted
+          playsinline
+        ></video>
+      </div>
+
+      <!-- ══════════════════════════════════════════
+           SCENE 2 — CONTEXT (5–18s)
+           "Today, Fable 5 and Mythos 5 were disabled worldwide..."
+           ══════════════════════════════════════════ -->
+      <div id="scene-context" class="scene">
+        <!-- phone B-roll: Anthropic article -->
+        <div id="phone-broll" class="phone" style="right:-28px; top:190px; width:480px; height:820px; transform:rotate(-3deg);">
+          <div class="phone-screen">
+            <img
+              id="source-page"
+              class="phone-page"
+              src="assets/motion/mobile/anthropic-fable-mythos-news-mobile-full.png"
+              alt="Anthropic Fable Mythos news page"
+            />
+          </div>
+        </div>
+
+        <!-- left-side cards -->
+        <div id="ctx-title" style="position:absolute; top:170px; left:52px; right:520px;">
+          <div style="font-family:'Archivo Black','Segoe UI Black',Arial,sans-serif; font-size:72px; font-weight:900; line-height:1.05; color:#101827;">
+            Fable 5<br>&amp; Mythos 5
+          </div>
+          <div style="margin-top:10px;" class="label-chip chip-red">Disabled Worldwide</div>
+        </div>
+
+        <div id="ctx-card-users" class="glass stat-card" style="position:absolute; top:440px; left:52px; width:430px;">
+          <div style="font-size:24px; font-weight:700; color:rgba(16,24,39,0.5); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:8px;">Affected Users</div>
+          <div class="stat-num" style="font-size:72px;">100M+</div>
+          <div class="stat-label">Access revoked with zero warning</div>
+        </div>
+
+        <div id="ctx-card-date" class="glass stat-card" style="position:absolute; top:720px; left:52px; width:430px;">
+          <div style="font-size:24px; font-weight:700; color:rgba(16,24,39,0.5); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:8px;">When</div>
+          <div style="font-family:'Archivo Black','Segoe UI Black',Arial,sans-serif; font-size:46px; font-weight:900; color:#101827; line-height:1.1;">June 12,<br>2026</div>
+          <div class="stat-label">Overnight. No Warning.</div>
+        </div>
+
+        <!-- avatar PIP -->
+        <video
+          id="avatar-ctx"
+          class="clip avatar-shot avatar-pip"
+          data-start="9.34"
+          data-duration="10.80"
+          data-media-start="9.34"
+          data-track-index="2"
+          src="assets/avatar/heygen-avatar-16x9.mp4"
+          muted
+          playsinline
+        ></video>
+      </div>
+
+      <!-- ══════════════════════════════════════════
+           SCENE 3 — IRONY (18–37s)
+           "Anthropic is literally the most safety-obsessed AI lab..."
+           ══════════════════════════════════════════ -->
+      <div id="scene-irony" class="scene">
+        <!-- headline -->
+        <div id="irony-headline" style="position:absolute; top:160px; left:56px; right:56px; text-align:center;">
+          <div class="label-chip chip-blue" style="margin-bottom:20px;">The Irony</div>
+          <div style="font-family:'Archivo Black','Segoe UI Black',Arial,sans-serif; font-size:64px; font-weight:900; line-height:1.1; color:#101827;">
+            The Most<br>Safety-Obsessed<br>AI Lab…
+          </div>
+          <div style="margin-top:16px; font-size:38px; font-weight:700; color:#dc2626;">…Got Punished For It.</div>
+        </div>
+
+        <!-- comparison cards -->
+        <div id="irony-compare" style="position:absolute; top:640px; left:52px; right:52px; display:flex; flex-direction:column; gap:24px;">
+          <div class="glass compare-row" style="border-radius:20px;">
+            <div class="compare-icon">🔵</div>
+            <div>
+              <div class="compare-name">Anthropic<br>Fable 5 &amp; Mythos 5</div>
+              <div style="font-size:24px; color:rgba(16,24,39,0.5); margin-top:4px;">More safeguards than anyone</div>
+            </div>
+            <div class="compare-status status-banned">BANNED ✗</div>
+          </div>
+
+          <div class="glass compare-row" style="border-radius:20px;">
+            <div class="compare-icon">🟢</div>
+            <div>
+              <div class="compare-name">Other Public<br>AI Models</div>
+              <div style="font-size:24px; color:rgba(16,24,39,0.5); margin-top:4px;">Same capability. No scrutiny.</div>
+            </div>
+            <div class="compare-status status-live">LIVE ✓</div>
+          </div>
+        </div>
+
+        <!-- avatar feature -->
+        <video
+          id="avatar-irony"
+          class="clip avatar-shot avatar-pip"
+          data-start="20.15"
+          data-duration="20.61"
+          data-media-start="20.15"
+          data-track-index="2"
+          src="assets/avatar/heygen-avatar-16x9.mp4"
+          muted
+          playsinline
+        ></video>
+      </div>
+
+      <!-- ══════════════════════════════════════════
+           SCENE 4 — THE QUOTE / SCAN (37–52s)
+           "essentially consists of asking the model to read a specific codebase..."
+           Screenshot scans left-to-right
+           ══════════════════════════════════════════ -->
+      <div id="scene-quote" class="scene">
+        <!-- scene label -->
+        <div id="quote-label" style="position:absolute; top:148px; left:0; right:0; text-align:center;">
+          <div class="label-chip chip-red">Their Own Words</div>
+        </div>
+
+        <!-- quote scan window -->
+        <div id="quote-scan-wrap" class="quote-scan-wrap" style="top:240px; left:48px; right:48px; height:300px; overflow:hidden;">
+          <img
+            id="quote-scan-img"
+            src="assets/motion/broll/anthropic-quote-screenshot.png"
+            alt="Anthropic statement screenshot"
+            style="position:absolute; top:0; left:0; height:100%; width:auto; min-width:100%;"
+          />
+          <div id="scan-beam" class="scan-highlight"></div>
+        </div>
+
+        <!-- quote text card -->
+        <div id="quote-card" class="glass glass-red" style="position:absolute; top:580px; left:52px; right:52px; padding:36px 40px; border-radius:20px;">
+          <div style="font-size:26px; font-weight:600; color:rgba(16,24,39,0.6); margin-bottom:14px; text-transform:uppercase; letter-spacing:0.06em; font-family:'IBM Plex Mono',Consolas,monospace;">Anthropic Statement</div>
+          <div style="font-size:34px; font-weight:700; color:#101827; line-height:1.5;">
+            "…essentially consists of <span style="background:rgba(255,200,50,0.38); border-radius:4px; padding:0 4px;">asking the model to read a specific codebase and fix any software flaws</span>"
+          </div>
+          <div style="margin-top:20px; font-size:26px; font-weight:600; color:rgba(16,24,39,0.52);">
+            — Something many <strong>publicly available models</strong> can already do.
+          </div>
+        </div>
+
+        <!-- avatar PIP -->
+        <video
+          id="avatar-quote"
+          class="clip avatar-shot avatar-pip"
+          data-start="40.77"
+          data-duration="12.33"
+          data-media-start="40.77"
+          data-track-index="2"
+          src="assets/avatar/heygen-avatar-16x9.mp4"
+          muted
+          playsinline
+        ></video>
+      </div>
+
+      <!-- ══════════════════════════════════════════
+           SCENE 5 — RESPONSE (52–65s)
+           "Anthropic even said it themselves — narrow, non-universal..."
+           ══════════════════════════════════════════ -->
+      <div id="scene-response" class="scene">
+        <div id="resp-headline" style="position:absolute; top:150px; left:56px; right:56px; text-align:center;">
+          <div style="font-family:'Archivo Black','Segoe UI Black',Arial,sans-serif; font-size:66px; font-weight:900; line-height:1.1; color:#101827;">
+            But Somehow<br>Only Anthropic<br>Gets Pulled.
+          </div>
+        </div>
+
+        <div id="resp-card-1" class="glass" style="position:absolute; top:560px; left:52px; right:52px; padding:34px 38px; border-radius:20px;">
+          <div class="label-chip chip-blue" style="margin-bottom:16px;">Anthropic's Verdict</div>
+          <div style="font-size:34px; font-weight:700; color:#101827; line-height:1.5;">
+            A <strong>"narrow, non-universal jailbreak"</strong> — widely available from other models.
+          </div>
+        </div>
+
+        <div id="resp-card-2" class="glass" style="position:absolute; top:840px; left:52px; right:52px; padding:34px 38px; border-radius:20px;">
+          <div class="label-chip chip-red" style="margin-bottom:16px;">The Precedent</div>
+          <div style="font-size:34px; font-weight:700; color:#101827; line-height:1.5;">
+            Apply this standard industry-wide and it would <strong>"essentially halt all new model deployments."</strong>
+          </div>
+        </div>
+
+        <!-- avatar PIP -->
+        <video
+          id="avatar-resp"
+          class="clip avatar-shot avatar-pip"
+          data-start="53.11"
+          data-duration="16.27"
+          data-media-start="53.11"
+          data-track-index="2"
+          src="assets/avatar/heygen-avatar-16x9.mp4"
+          muted
+          playsinline
+        ></video>
+      </div>
+
+      <!-- ══════════════════════════════════════════
+           SCENE 6 — CTA (65–75s)
+           "Something doesn't add up..."
+           ══════════════════════════════════════════ -->
+      <div id="scene-cta" class="scene">
+        <div id="cta-headline" style="position:absolute; top:180px; left:52px; right:52px; text-align:center;">
+          <div style="font-family:'Archivo Black','Segoe UI Black',Arial,sans-serif; font-size:80px; font-weight:900; line-height:1.05; color:#101827;">
+            Something<br>Doesn't<br>Add Up.
+          </div>
+        </div>
+
+        <div id="cta-card" class="glass" style="position:absolute; top:600px; left:52px; right:52px; padding:40px 44px; border-radius:20px; text-align:center;">
+          <div style="font-size:54px; margin-bottom:18px;">🔍</div>
+          <div style="font-size:36px; font-weight:700; color:#101827; line-height:1.4;">
+            Drop your theories in the comments — because mine are <em>wild.</em>
+          </div>
+        </div>
+
+        <div id="cta-follow" style="position:absolute; bottom:360px; left:0; right:0; display:flex; justify-content:center;">
+          <div class="follow-btn">
+            + Follow for more
+          </div>
+        </div>
+
+        <!-- avatar feature for CTA -->
+        <video
+          id="avatar-cta"
+          class="clip avatar-shot avatar-pip"
+          data-start="69.39"
+          data-duration="10.70"
+          data-media-start="69.39"
+          data-track-index="2"
+          src="assets/avatar/heygen-avatar-16x9.mp4"
+          muted
+          playsinline
+        ></video>
+      </div>
+
+    </div><!-- /#root -->
+
+    <script>
+      // ── Scene windows — from SRT ────────────────────────────────────
+      // Hook:     0.00 – 9.33   "Anthropic just had… AI tools."
+      // Context:  9.33 – 20.14  "Today, Fable 5… No warning."
+      // Irony:   20.14 – 40.76  "Here's what makes this wild… Completely untouched."
+      // Quote:   40.76 – 53.10  "The jailbreak… capable of doing."
+      // Response:53.10 – 69.38  "Anthropic even said… nothing happened."
+      // CTA:     69.38 – 80.09  "The safest AI lab… Follow for more."
+      const sceneWindows = [
+        ["#scene-hook",      0,     9.33],
+        ["#scene-context",   9.33, 20.14],
+        ["#scene-irony",    20.14, 40.76],
+        ["#scene-quote",    40.76, 53.10],
+        ["#scene-response", 53.10, 69.38],
+        ["#scene-cta",      69.38, 80.09],
+      ];
+
+      const tl = gsap.timeline({ paused: true });
+
+      for (const [selector, start, end] of sceneWindows) {
+        tl.set(selector, { opacity: 1, visibility: "visible" }, start);
+        tl.set(selector, { opacity: 0, visibility: "hidden" }, end);
+      }
+
+      // ── Scene 1: Hook (0–9.33s) ─────────────────────────────────────
+      tl.from("#hook-breaking", { y: -54, opacity: 0, duration: 0.48, ease: "back.out(1.6)" }, 0.1);
+      tl.from("#hook-headline", { y: 72, opacity: 0, scale: 0.92, duration: 0.58, ease: "back.out(1.5)" }, 0.28);
+      tl.from("#hook-reason",   { x: -80, opacity: 0, rotateY: -12, duration: 0.52, ease: "back.out(1.4)" }, 0.52);
+      tl.to(".breaking-dot", { scale: 1.36, opacity: 0.6, duration: 0.52, repeat: 16, yoyo: true, ease: "sine.inOut" }, 0.2);
+
+      // ── Scene 2: Context (9.33–20.14s) ─────────────────────────────
+      tl.from("#phone-broll",    { x: 180, opacity: 0, rotateY: 18, duration: 0.6, ease: "back.out(1.4)" }, 9.55);
+      tl.from("#ctx-title",      { x: -80, opacity: 0, duration: 0.5, ease: "back.out(1.5)" }, 9.7);
+      tl.from("#ctx-card-users", { y: 60, opacity: 0, duration: 0.48, ease: "back.out(1.5)" }, 10.1);
+      tl.from("#ctx-card-date",  { y: 60, opacity: 0, duration: 0.48, ease: "back.out(1.5)" }, 10.4);
+      // Phone page scrolls through most of the scene (9.55s start → 10s duration covers full page height)
+      tl.to("#source-page", { y: -2800, duration: 9.0, ease: "power2.inOut" }, 10.0);
+
+      // ── Scene 3: Irony (20.14–40.76s) ──────────────────────────────
+      tl.from("#irony-headline", { y: -64, opacity: 0, duration: 0.56, ease: "back.out(1.5)" }, 20.35);
+      tl.from("#irony-compare .glass:nth-child(1)", { x: -100, opacity: 0, rotateY: -14, duration: 0.52, ease: "back.out(1.4)" }, 20.9);
+      tl.from("#irony-compare .glass:nth-child(2)", { x: -100, opacity: 0, rotateY: -14, duration: 0.52, ease: "back.out(1.4)" }, 21.3);
+
+      // ── Scene 4: Quote scan (40.76–53.10s) ─────────────────────────
+      tl.from("#quote-label",    { opacity: 0, y: -30, duration: 0.4, ease: "power2.out" }, 41.0);
+      tl.from("#quote-scan-wrap",{ scaleX: 0, opacity: 0, transformOrigin: "left center", duration: 0.6, ease: "power3.out" }, 41.2);
+      // Beam sweeps L→R over ~8s while the codebase quote is spoken (44.35–52.67s)
+      tl.fromTo("#scan-beam",
+        { x: -140 },
+        { x: 1060, duration: 8, ease: "power1.inOut", immediateRender: false },
+        44.35
+      );
+      tl.from("#quote-card", { y: 80, opacity: 0, rotateX: -12, duration: 0.58, ease: "back.out(1.4)" }, 41.8);
+
+      // ── Scene 5: Response (53.10–69.38s) ───────────────────────────
+      tl.from("#resp-headline", { y: -56, opacity: 0, duration: 0.52, ease: "back.out(1.5)" }, 53.3);
+      tl.from("#resp-card-1",   { x: -90, opacity: 0, rotateY: -12, duration: 0.52, ease: "back.out(1.4)" }, 53.8);
+      tl.from("#resp-card-2",   { x: -90, opacity: 0, rotateY: -12, duration: 0.52, ease: "back.out(1.4)" }, 54.3);
+
+      // ── Scene 6: CTA (69.38–80.09s) ────────────────────────────────
+      tl.from("#cta-headline", { scale: 0.86, opacity: 0, duration: 0.58, ease: "back.out(1.6)" }, 69.6);
+      tl.from("#cta-card",     { y: 90, opacity: 0, duration: 0.52, ease: "back.out(1.5)" }, 70.1);
+      tl.from("#cta-follow",   { scale: 0.76, opacity: 0, duration: 0.56, ease: "back.out(2.0)" }, 70.7);
+      tl.to("#cta-follow .follow-btn", { scale: 1.04, duration: 0.66, repeat: 13, yoyo: true, ease: "sine.inOut" }, 71.4);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines["fable-mythos-ban"] = tl;
+    </script>
+  </body>
+</html>
