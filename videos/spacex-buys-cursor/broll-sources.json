@@ -1,0 +1,17 @@
+[
+  {
+    "id": "cnbc",
+    "url": "https://www.cnbc.com/2026/06/16/spacex-spcx-cursor-acquisition-ipo.html",
+    "expectedTitleIncludes": "Cursor"
+  },
+  {
+    "id": "techcrunch",
+    "url": "https://techcrunch.com/2026/06/16/spacex-to-acquire-cursor-for-60b-in-stock-days-after-blockbuster-ipo/",
+    "expectedTitleIncludes": "Cursor"
+  },
+  {
+    "id": "geekwire",
+    "url": "https://www.geekwire.com/2026/spacex-leapfrogs-amazon-and-briefly-tops-microsoft-in-market-value-after-buying-ai-coding-tool-cursor/",
+    "expectedTitleIncludes": "SpaceX"
+  }
+]

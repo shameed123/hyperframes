@@ -1,0 +1,57 @@
+{
+  "source": "https://www.cnbc.com/2026/06/16/spacex-spcx-cursor-acquisition-ipo.html",
+  "finalUrl": "https://www.cnbc.com/2026/06/16/spacex-spcx-cursor-acquisition-ipo.html",
+  "title": "SpaceX to acquire the AI coding startup Cursor for $60 billion",
+  "viewport": {
+    "width": 412,
+    "height": 915
+  },
+  "pageHeight": 6919,
+  "scrollSeconds": 9.38125,
+  "keyframes": [
+    {
+      "t": 0,
+      "y": 0
+    },
+    {
+      "t": 0.94,
+      "y": 600
+    },
+    {
+      "t": 1.88,
+      "y": 1201
+    },
+    {
+      "t": 2.81,
+      "y": 1801
+    },
+    {
+      "t": 3.75,
+      "y": 2402
+    },
+    {
+      "t": 4.69,
+      "y": 3002
+    },
+    {
+      "t": 5.63,
+      "y": 3602
+    },
+    {
+      "t": 6.57,
+      "y": 4203
+    },
+    {
+      "t": 7.5,
+      "y": 4803
+    },
+    {
+      "t": 8.44,
+      "y": 5404
+    },
+    {
+      "t": 9.38,
+      "y": 6004
+    }
+  ]
+}
