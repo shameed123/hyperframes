@@ -1,0 +1,219 @@
+1
+00:00:00,000 --> 00:00:02,000
+The AI world is on fire this week.
+
+2
+00:00:02,320 --> 00:00:04,420
+Here's everything happening — Anthropic
+
+3
+00:00:04,480 --> 00:00:07,020
+launches Fable 5 on June 9th.
+
+4
+00:00:07,540 --> 00:00:09,440
+Their most powerful model ever.
+
+5
+00:00:10,070 --> 00:00:10,760
+Jailbroken.
+
+6
+00:00:11,250 --> 00:00:11,520
+In.
+
+7
+00:00:12,120 --> 00:00:12,520
+One.
+
+8
+00:00:12,920 --> 00:00:13,260
+Day.
+
+9
+00:00:13,770 --> 00:00:15,570
+A hacker called Pliny the Liberator
+
+10
+00:00:15,760 --> 00:00:17,840
+bypassed every safety layer and leaked
+
+11
+00:00:17,900 --> 00:00:20,640
+their 120,000-character system prompt.
+
+12
+00:00:20,910 --> 00:00:22,720
+The US government stepped in — and
+
+13
+00:00:22,780 --> 00:00:24,730
+Anthropic shut the model down globally.
+
+14
+00:00:25,000 --> 00:00:26,180
+Three days after launch.
+
+15
+00:00:26,560 --> 00:00:26,970
+Gone.
+
+16
+00:00:27,280 --> 00:00:29,060
+While that was happening — Anthropic
+
+17
+00:00:29,130 --> 00:00:32,140
+confidentially filed for a $965 billion
+
+18
+00:00:32,180 --> 00:00:33,070
+IPO.
+
+19
+00:00:33,230 --> 00:00:34,940
+And is simultaneously calling for a
+
+20
+00:00:34,990 --> 00:00:36,150
+global AI pause.
+
+21
+00:00:36,150 --> 00:00:38,450
+"AI is existentially dangerous.
+
+22
+00:00:38,530 --> 00:00:41,380
+Also please buy our stock." ChatGPT's
+
+23
+00:00:41,480 --> 00:00:44,450
+market share just fell from 76% to 54%
+
+24
+00:00:44,640 --> 00:00:45,800
+in one year.
+
+25
+00:00:46,200 --> 00:00:47,600
+Google Gemini is surging.
+
+26
+00:00:47,810 --> 00:00:50,790
+Claude grew 306% in a single quarter.
+
+27
+00:00:51,040 --> 00:00:53,670
+OpenAI is no longer the obvious winner.
+
+28
+00:00:53,880 --> 00:00:56,080
+The race is actually wide open now.
+
+29
+00:00:56,380 --> 00:00:59,630
+In China, streaming giant iQIYI launched
+
+30
+00:00:59,670 --> 00:01:02,150
+a database of AI-generated actors built
+
+31
+00:01:02,210 --> 00:01:03,900
+from real performers' likenesses —
+
+32
+00:01:04,260 --> 00:01:05,220
+without their consent.
+
+33
+00:01:05,620 --> 00:01:06,990
+The backlash was massive.
+
+34
+00:01:07,350 --> 00:01:08,150
+This is happening.
+
+35
+00:01:08,570 --> 00:01:09,040
+Right now.
+
+36
+00:01:09,650 --> 00:01:11,740
+Major literary prizes — including the
+
+37
+00:01:11,770 --> 00:01:13,680
+Commonwealth Short Story Prize — are
+
+38
+00:01:13,710 --> 00:01:15,430
+being accused of giving awards to
+
+39
+00:01:15,530 --> 00:01:16,750
+AI-generated fiction.
+
+40
+00:01:16,980 --> 00:01:17,880
+The authors are real.
+
+41
+00:01:18,200 --> 00:01:19,350
+The writing might not be.
+
+42
+00:01:19,570 --> 00:01:20,760
+And nobody can prove it.
+
+43
+00:01:21,080 --> 00:01:23,240
+Meanwhile Google dropped Gemma 4 — open
+
+44
+00:01:23,310 --> 00:01:24,970
+source, free, powerful.
+
+45
+00:01:25,270 --> 00:01:28,070
+Microsoft now has over 11,000 AI models
+
+46
+00:01:28,130 --> 00:01:28,860
+in its catalog.
+
+47
+00:01:29,090 --> 00:01:29,510
+Eleven.
+
+48
+00:01:29,800 --> 00:01:30,330
+Thousand.
+
+49
+00:01:30,550 --> 00:01:32,680
+A near-trillion-dollar company just had
+
+50
+00:01:32,740 --> 00:01:34,160
+its flagship model banned.
+
+51
+00:01:34,410 --> 00:01:36,350
+Writers are losing awards to machines.
+
+52
+00:01:36,700 --> 00:01:38,550
+Real actors are being replaced by
+
+53
+00:01:38,630 --> 00:01:39,470
+digital clones.
+
+54
+00:01:39,680 --> 00:01:41,450
+And we're only halfway through June.
+
+55
+00:01:41,550 --> 00:01:43,990
+For AI news, subscribe, like and follow.

@@ -1,0 +1,57 @@
+{
+  "source": "https://capacityglobal.com/news/anthropic-halts-fable-5-ai/",
+  "finalUrl": "https://capacityglobal.com/news/anthropic-halts-fable-5-ai/",
+  "title": "Why has Anthropic’s Claude Fable 5 AI model been suspended? - Capacity",
+  "viewport": {
+    "width": 412,
+    "height": 915
+  },
+  "pageHeight": 6040,
+  "scrollSeconds": 8.0078125,
+  "keyframes": [
+    {
+      "t": 0,
+      "y": 0
+    },
+    {
+      "t": 0.8,
+      "y": 513
+    },
+    {
+      "t": 1.6,
+      "y": 1025
+    },
+    {
+      "t": 2.4,
+      "y": 1538
+    },
+    {
+      "t": 3.2,
+      "y": 2050
+    },
+    {
+      "t": 4,
+      "y": 2563
+    },
+    {
+      "t": 4.8,
+      "y": 3075
+    },
+    {
+      "t": 5.61,
+      "y": 3587
+    },
+    {
+      "t": 6.41,
+      "y": 4100
+    },
+    {
+      "t": 7.21,
+      "y": 4613
+    },
+    {
+      "t": 8.01,
+      "y": 5125
+    }
+  ]
+}

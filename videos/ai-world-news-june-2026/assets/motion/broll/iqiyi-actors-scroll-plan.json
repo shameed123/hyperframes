@@ -1,0 +1,57 @@
+{
+  "source": "https://www.sixthtone.com/news/1018329/controversy-erupts-over-chinese-ai-actors-in-upcoming-short-drama",
+  "finalUrl": "https://www.sixthtone.com/news/1018329",
+  "title": "Controversy Erupts Over Chinese AI Actors in Upcoming Short Drama",
+  "viewport": {
+    "width": 412,
+    "height": 915
+  },
+  "pageHeight": 5739,
+  "scrollSeconds": 7.5375,
+  "keyframes": [
+    {
+      "t": 0,
+      "y": 0
+    },
+    {
+      "t": 0.75,
+      "y": 482
+    },
+    {
+      "t": 1.51,
+      "y": 965
+    },
+    {
+      "t": 2.26,
+      "y": 1447
+    },
+    {
+      "t": 3.02,
+      "y": 1930
+    },
+    {
+      "t": 3.77,
+      "y": 2412
+    },
+    {
+      "t": 4.52,
+      "y": 2894
+    },
+    {
+      "t": 5.28,
+      "y": 3377
+    },
+    {
+      "t": 6.03,
+      "y": 3859
+    },
+    {
+      "t": 6.78,
+      "y": 4342
+    },
+    {
+      "t": 7.54,
+      "y": 4824
+    }
+  ]
+}

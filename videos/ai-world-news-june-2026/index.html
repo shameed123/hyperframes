@@ -1,0 +1,1180 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #eaf5ff;
+        font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+      }
+
+      /* ── ROOT CANVAS ── */
+      #root {
+        position: relative;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        perspective: 1800px;
+        background:
+          radial-gradient(ellipse at 18% 8%, rgba(30, 139, 255, 0.22), transparent 34%),
+          radial-gradient(ellipse at 86% 16%, rgba(255, 79, 163, 0.18), transparent 32%),
+          radial-gradient(ellipse at 50% 95%, rgba(255, 157, 46, 0.14), transparent 36%),
+          linear-gradient(145deg, #f8fcff 0%, #eaf5ff 44%, #fff7ef 100%);
+      }
+
+      #root::before {
+        content: "";
+        position: absolute;
+        inset: -220px;
+        background:
+          linear-gradient(90deg, rgba(30, 139, 255, 0.12) 1px, transparent 1px),
+          linear-gradient(0deg, rgba(16, 24, 39, 0.07) 1px, transparent 1px),
+          linear-gradient(
+            60deg,
+            transparent 0 48%,
+            rgba(30, 139, 255, 0.12) 48% 49%,
+            transparent 49% 100%
+          ),
+          linear-gradient(
+            120deg,
+            transparent 0 58%,
+            rgba(255, 79, 163, 0.1) 58% 59%,
+            transparent 59% 100%
+          );
+        background-size:
+          74px 74px,
+          74px 74px,
+          460px 460px,
+          540px 540px;
+        transform: rotate(-9deg);
+        opacity: 0.78;
+        pointer-events: none;
+      }
+
+      .clip {
+        position: absolute;
+      }
+
+      /* ── GLASS CARDS ── */
+      .glass {
+        position: relative;
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.92);
+        background:
+          radial-gradient(circle at 14% 18%, rgba(30, 139, 255, 0.25), transparent 34%),
+          radial-gradient(circle at 88% 8%, rgba(255, 79, 163, 0.2), transparent 28%),
+          radial-gradient(circle at 50% 110%, rgba(255, 157, 46, 0.16), transparent 34%),
+          linear-gradient(145deg, rgba(255, 255, 255, 0.58), rgba(255, 255, 255, 0.24)),
+          rgba(177, 220, 255, 0.34);
+        box-shadow:
+          0 42px 112px rgba(18, 92, 170, 0.2),
+          0 0 74px rgba(30, 139, 255, 0.16),
+          inset 0 1px 0 rgba(255, 255, 255, 0.74),
+          inset 0 -24px 52px rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(34px) saturate(1.48);
+        -webkit-backdrop-filter: blur(34px) saturate(1.48);
+        overflow: hidden;
+        isolation: isolate;
+        transform-style: preserve-3d;
+      }
+
+      .glass::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        background:
+          linear-gradient(130deg, rgba(255, 255, 255, 0.52), transparent 28%),
+          linear-gradient(300deg, rgba(255, 255, 255, 0.18), transparent 42%);
+        mix-blend-mode: screen;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .glass::after {
+        content: "";
+        position: absolute;
+        inset: 9px;
+        border-radius: inherit;
+        border: 1px solid rgba(255, 255, 255, 0.48);
+        opacity: 0.64;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .glass > * {
+        position: relative;
+        z-index: 2;
+      }
+
+      .glass-red {
+        border-color: rgba(255, 55, 80, 0.6);
+        background:
+          radial-gradient(circle at 14% 18%, rgba(255, 55, 80, 0.28), transparent 36%),
+          radial-gradient(circle at 88% 10%, rgba(255, 130, 30, 0.18), transparent 30%),
+          linear-gradient(145deg, rgba(255, 255, 255, 0.52), rgba(255, 255, 255, 0.22)),
+          rgba(255, 220, 220, 0.36);
+        box-shadow:
+          0 42px 112px rgba(180, 20, 40, 0.2),
+          0 0 80px rgba(255, 55, 80, 0.2),
+          inset 0 1px 0 rgba(255, 255, 255, 0.74);
+      }
+
+      .glass-gold {
+        border-color: rgba(220, 155, 0, 0.55);
+        background:
+          radial-gradient(circle at 14% 18%, rgba(255, 185, 0, 0.26), transparent 36%),
+          radial-gradient(circle at 88% 10%, rgba(255, 120, 0, 0.18), transparent 30%),
+          linear-gradient(145deg, rgba(255, 255, 255, 0.52), rgba(255, 255, 255, 0.22)),
+          rgba(255, 245, 200, 0.36);
+        box-shadow:
+          0 42px 112px rgba(160, 100, 0, 0.18),
+          0 0 80px rgba(255, 185, 0, 0.22),
+          inset 0 1px 0 rgba(255, 255, 255, 0.74);
+      }
+
+      .glass-purple {
+        border-color: rgba(140, 60, 255, 0.5);
+        background:
+          radial-gradient(circle at 14% 18%, rgba(140, 60, 255, 0.24), transparent 36%),
+          radial-gradient(circle at 88% 10%, rgba(200, 80, 255, 0.18), transparent 30%),
+          linear-gradient(145deg, rgba(255, 255, 255, 0.52), rgba(255, 255, 255, 0.22)),
+          rgba(220, 200, 255, 0.34);
+        box-shadow:
+          0 42px 112px rgba(80, 20, 160, 0.18),
+          0 0 80px rgba(140, 60, 255, 0.2),
+          inset 0 1px 0 rgba(255, 255, 255, 0.74);
+      }
+
+      /* ── SCENES ── */
+      .scene {
+        position: absolute;
+        inset: 0;
+        z-index: 4;
+        overflow: hidden;
+        opacity: 0;
+        visibility: hidden;
+        transform-style: preserve-3d;
+        pointer-events: none;
+      }
+
+      /* ── TYPE ── */
+      .kicker {
+        font-size: 26px;
+        font-weight: 800;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: rgba(20, 40, 80, 0.58);
+      }
+
+      .kicker-red {
+        color: #d42040;
+      }
+      .kicker-gold {
+        color: #b87800;
+      }
+      .kicker-blue {
+        color: #1060cc;
+      }
+      .kicker-pink {
+        color: #c0186a;
+      }
+      .kicker-purple {
+        color: #7020cc;
+      }
+
+      .headline {
+        font-size: 66px;
+        font-weight: 900;
+        line-height: 1.06;
+        letter-spacing: -0.02em;
+        color: #0d1c3a;
+      }
+
+      .subline {
+        font-size: 34px;
+        font-weight: 500;
+        line-height: 1.36;
+        color: rgba(14, 30, 60, 0.66);
+      }
+
+      .stat-big {
+        font-size: 96px;
+        font-weight: 900;
+        letter-spacing: -0.04em;
+        line-height: 1;
+        color: #0d1c3a;
+      }
+
+      .stat-label {
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(14, 30, 60, 0.58);
+        margin-top: 6px;
+      }
+
+      /* ── PHONE FRAME ── */
+      .phone {
+        position: absolute;
+        border-radius: 54px;
+        border: 16px solid rgba(10, 12, 22, 0.93);
+        background: #0a0c16;
+        overflow: hidden;
+        box-shadow:
+          0 60px 140px rgba(0, 0, 0, 0.48),
+          0 0 0 3px rgba(50, 55, 80, 0.55),
+          0 0 0 4px rgba(255, 255, 255, 0.08),
+          inset 0 0 0 2px rgba(80, 85, 110, 0.3);
+        transform-style: preserve-3d;
+      }
+
+      .phone-screen {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        border-radius: 38px;
+      }
+
+      .phone-page {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+      }
+
+      /* ── AVATAR ── */
+      .avatar-shot,
+      video.avatar-shot {
+        object-fit: cover;
+        object-position: center center;
+        overflow: hidden;
+        background: #fff;
+        box-shadow:
+          0 52px 128px rgba(18, 80, 160, 0.32),
+          0 0 62px rgba(30, 100, 255, 0.2);
+        filter: drop-shadow(0 44px 54px rgba(18, 80, 160, 0.3))
+          drop-shadow(0 0 38px rgba(30, 100, 255, 0.18));
+        transform-style: preserve-3d;
+        will-change: transform, opacity;
+        z-index: 50;
+      }
+
+      .avatar-pip {
+        border-radius: 22px;
+        width: 630px;
+        height: 404px;
+        left: 225px;
+        bottom: 90px;
+        box-shadow:
+          0 38px 92px rgba(18, 80, 160, 0.38),
+          0 0 52px rgba(255, 79, 163, 0.18);
+        filter: drop-shadow(0 32px 42px rgba(18, 80, 160, 0.32))
+          drop-shadow(0 0 34px rgba(255, 79, 163, 0.16));
+      }
+
+      .avatar-cta {
+        border-radius: 28px;
+        width: 900px;
+        height: 577px;
+        left: 90px;
+        bottom: 80px;
+      }
+
+      /* ── TRANSITIONS ── */
+      .transition {
+        inset: 0;
+        z-index: 40;
+        pointer-events: none;
+        overflow: hidden;
+        opacity: 0;
+      }
+
+      .wipe-band {
+        position: absolute;
+        top: -80px;
+        bottom: -80px;
+        width: 120px;
+        transform-origin: center;
+        transform: skewX(-12deg) translateX(-250px);
+      }
+
+      .band-blue {
+        background: rgba(30, 100, 255, 0.45);
+        left: -120px;
+      }
+
+      .band-pink {
+        background: rgba(255, 79, 163, 0.35);
+        left: -50px;
+      }
+
+      .band-gold {
+        background: rgba(255, 185, 0, 0.4);
+        left: 20px;
+      }
+
+      /* ── SCENE: INTRO ── */
+      #intro-fire-badge {
+        position: absolute;
+        top: 96px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(255, 55, 80, 0.12);
+        border: 2px solid rgba(255, 55, 80, 0.65);
+        border-radius: 48px;
+        padding: 14px 52px;
+        white-space: nowrap;
+      }
+
+      #intro-main-card {
+        position: absolute;
+        top: 192px;
+        left: 56px;
+        right: 56px;
+        padding: 56px 52px 48px;
+      }
+
+      .intro-headline {
+        font-size: 108px;
+        font-weight: 900;
+        letter-spacing: -0.04em;
+        line-height: 0.96;
+        background: linear-gradient(135deg, #0d1c3a 0%, #1060cc 50%, #d42040 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 32px;
+      }
+
+      .intro-sub {
+        font-size: 36px;
+        font-weight: 600;
+        color: rgba(14, 30, 60, 0.65);
+        line-height: 1.4;
+      }
+
+      /* ── SCENE: FABLE5 ── */
+      #fable5-header {
+        position: absolute;
+        top: 72px;
+        left: 56px;
+        right: 56px;
+        padding: 32px 44px;
+      }
+
+      #fable5-stat-row {
+        position: absolute;
+        top: 956px;
+        left: 56px;
+        right: 56px;
+        display: flex;
+        gap: 24px;
+      }
+
+      .stat-card {
+        flex: 1;
+        padding: 36px 28px;
+        text-align: center;
+      }
+
+      #fable5-quote {
+        position: absolute;
+        top: 1202px;
+        left: 56px;
+        right: 56px;
+        padding: 36px 44px;
+      }
+
+      /* ── SCENE: IPO ── */
+      #ipo-header {
+        position: absolute;
+        top: 72px;
+        left: 56px;
+        right: 56px;
+        padding: 32px 44px;
+      }
+
+      #ipo-big-stat {
+        position: absolute;
+        top: 956px;
+        left: 56px;
+        right: 56px;
+        padding: 48px 52px;
+        text-align: center;
+      }
+
+      #ipo-irony {
+        position: absolute;
+        top: 1213px;
+        left: 56px;
+        right: 56px;
+        padding: 32px 44px;
+      }
+
+      /* ── SCENE: MARKET ── */
+      #market-header {
+        position: absolute;
+        top: 72px;
+        left: 56px;
+        right: 56px;
+        padding: 32px 44px;
+      }
+
+      .mkt-bar-row {
+        position: absolute;
+        left: 56px;
+        right: 56px;
+        padding: 28px 36px;
+      }
+
+      #mkt-r1 {
+        top: 800px;
+      }
+      #mkt-r2 {
+        top: 1022px;
+      }
+      #mkt-r3 {
+        top: 1199px;
+      }
+
+      .mkt-label {
+        font-size: 36px;
+        font-weight: 800;
+        color: #0d1c3a;
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        margin-bottom: 14px;
+      }
+
+      .mkt-pct {
+        font-size: 52px;
+        font-weight: 900;
+        letter-spacing: -0.02em;
+      }
+
+      .bar-track {
+        height: 20px;
+        background: rgba(14, 30, 60, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+      }
+
+      .bar-fill {
+        height: 100%;
+        border-radius: 10px;
+      }
+
+      .bar-chatgpt {
+        background: linear-gradient(90deg, #0060cc, #40a0ff);
+        width: 54.7%;
+      }
+      .bar-gemini {
+        background: linear-gradient(90deg, #1cb860, #00d068);
+        width: 27.4%;
+      }
+      .bar-claude {
+        background: linear-gradient(90deg, #cc6010, #ff9d2e);
+        width: 8.2%;
+      }
+
+      /* ── SCENE: ACTORS ── */
+      #actors-header {
+        position: absolute;
+        top: 72px;
+        left: 56px;
+        right: 56px;
+        padding: 32px 44px;
+      }
+
+      #actors-detail {
+        position: absolute;
+        top: 1150px;
+        left: 56px;
+        right: 56px;
+        padding: 36px 44px;
+      }
+
+      /* ── SCENE: WRITING ── */
+      #writing-header {
+        position: absolute;
+        top: 72px;
+        left: 56px;
+        right: 56px;
+        padding: 32px 44px;
+      }
+
+      #writing-detail {
+        position: absolute;
+        top: 1150px;
+        left: 56px;
+        right: 56px;
+        padding: 36px 44px;
+      }
+
+      /* ── SCENE: ARMS RACE ── */
+      #arms-title {
+        position: absolute;
+        top: 72px;
+        left: 56px;
+        right: 56px;
+        padding: 32px 44px;
+        text-align: center;
+      }
+
+      #arms-card-a {
+        position: absolute;
+        top: 856px;
+        left: 56px;
+        right: 56px;
+        padding: 44px 48px;
+      }
+
+      #arms-card-b {
+        position: absolute;
+        top: 1142px;
+        left: 56px;
+        right: 56px;
+        padding: 44px 48px;
+      }
+
+      /* ── SCENE: CTA ── */
+      #cta-card {
+        position: absolute;
+        top: 80px;
+        left: 56px;
+        right: 56px;
+        padding: 52px 52px 44px;
+        text-align: center;
+      }
+
+      .cta-headline {
+        font-size: 78px;
+        font-weight: 900;
+        letter-spacing: -0.03em;
+        line-height: 1.04;
+        color: #0d1c3a;
+        margin-bottom: 28px;
+      }
+
+      .cta-sub {
+        font-size: 34px;
+        font-weight: 600;
+        color: rgba(14, 30, 60, 0.65);
+        line-height: 1.4;
+        margin-bottom: 36px;
+      }
+
+      .cta-pill {
+        display: inline-block;
+        background: linear-gradient(135deg, #1060cc, #d42040);
+        border-radius: 60px;
+        padding: 20px 64px;
+        color: #fff;
+        font-size: 34px;
+        font-weight: 800;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        box-shadow: 0 24px 64px rgba(30, 80, 200, 0.36);
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="ai-world-news-june-2026"
+      data-start="0"
+      data-width="1080"
+      data-height="1920"
+    >
+      <!-- ── NARRATION AUDIO ── -->
+      <audio
+        id="narration"
+        class="clip"
+        data-start="0"
+        data-duration="106"
+        data-track-index="1"
+        data-volume="1"
+        src="assets/avatar/heygen-avatar-16x9.mp4"
+      ></audio>
+
+      <!-- ── AVATAR PIP (scenes 1–7) ── -->
+      <video
+        id="avatar-pip-a"
+        class="clip avatar-shot avatar-pip"
+        data-start="0"
+        data-duration="90.5"
+        data-media-start="0"
+        data-track-index="2"
+        src="assets/avatar/heygen-avatar-16x9.mp4"
+        muted
+        playsinline
+      ></video>
+
+      <!-- ── AVATAR CTA (scene 8) ── -->
+      <video
+        id="avatar-cta"
+        class="clip avatar-shot avatar-cta"
+        data-start="90.5"
+        data-duration="15.5"
+        data-media-start="90.5"
+        data-track-index="2"
+        src="assets/avatar/heygen-avatar-16x9.mp4"
+        muted
+        playsinline
+      ></video>
+
+      <!-- ══════════════════════════════════════════════════
+           SCENE 1 — HOOK / INTRO
+           0.0 → 4.5s
+      ══════════════════════════════════════════════════ -->
+      <div id="scene-intro" class="scene">
+        <div id="intro-fire-badge">
+          <span class="kicker kicker-red">Breaking &bull; June 2026</span>
+        </div>
+
+        <div id="intro-main-card" class="glass">
+          <div class="intro-headline">AI IS ON<br />FIRE<br />THIS WEEK</div>
+          <div class="intro-sub">Here's everything happening —</div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════════════════
+           SCENE 2 — FABLE 5 JAILBREAK
+           4.5 → 28.5s
+      ══════════════════════════════════════════════════ -->
+      <div id="scene-fable5" class="scene">
+        <!-- phone B-roll -->
+        <div
+          class="phone"
+          style="left: 100px; top: 380px; width: 880px; height: 1120px; transform: rotate(-1.5deg)"
+        >
+          <div class="phone-screen">
+            <img
+              id="broll-fable5"
+              class="phone-page"
+              src="assets/motion/mobile/fable5-jailbreak-mobile-full.png"
+              alt="Fable 5 jailbreak article"
+            />
+          </div>
+        </div>
+
+        <div id="fable5-header" class="glass glass-red">
+          <div class="kicker kicker-red" style="margin-bottom: 12px">
+            &#x26A0;&#xFE0F; June 9, 2026
+          </div>
+          <div class="headline">Fable 5<br />Jailbroken<br />In 1 Day</div>
+        </div>
+
+        <div id="fable5-stat-row">
+          <div class="stat-card glass glass-red">
+            <div class="stat-big" style="font-size: 72px; color: #d42040">120K</div>
+            <div class="stat-label">chars of system<br />prompt leaked</div>
+          </div>
+          <div class="stat-card glass glass-red">
+            <div class="stat-big" style="font-size: 72px; color: #d42040">72h</div>
+            <div class="stat-label">from launch<br />to global ban</div>
+          </div>
+        </div>
+
+        <div id="fable5-quote" class="glass glass-red">
+          <div class="kicker kicker-red" style="margin-bottom: 14px">Pliny the Liberator</div>
+          <div
+            class="subline"
+            style="font-size: 30px; font-style: italic; color: #5a1020; font-weight: 700"
+          >
+            "ANTHROPIC: PWNED —<br />FABLE-5: LIBERATED."
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════════════════
+           SCENE 3 — IPO HYPOCRISY
+           28.5 → 42.0s
+      ══════════════════════════════════════════════════ -->
+      <div id="scene-ipo" class="scene">
+        <!-- phone B-roll -->
+        <div
+          class="phone"
+          style="left: 100px; top: 380px; width: 880px; height: 1100px; transform: rotate(1.2deg)"
+        >
+          <div class="phone-screen">
+            <img
+              id="broll-ipo"
+              class="phone-page"
+              src="assets/motion/mobile/anthropic-ipo-mobile-full.png"
+              alt="Anthropic IPO Fortune article"
+            />
+          </div>
+        </div>
+
+        <div id="ipo-header" class="glass glass-gold">
+          <div class="kicker kicker-gold" style="margin-bottom: 12px">
+            Anthropic &bull; June 1, 2026
+          </div>
+          <div class="headline">$965B IPO<br />While Calling<br />for a Pause</div>
+        </div>
+
+        <div id="ipo-big-stat" class="glass glass-gold">
+          <div class="stat-big" style="color: #8a5800">$965B</div>
+          <div class="stat-label" style="color: #7a4800">Valuation — leapfrogged OpenAI</div>
+        </div>
+
+        <div id="ipo-irony" class="glass glass-gold">
+          <div class="kicker kicker-gold" style="margin-bottom: 12px">The contradiction</div>
+          <div
+            class="subline"
+            style="font-style: italic; color: #6a3800; font-weight: 700; font-size: 30px"
+          >
+            "AI is existentially dangerous.<br />Also — please buy our stock."
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════════════════
+           SCENE 4 — CHATGPT MARKET SHARE
+           42.0 → 55.0s
+      ══════════════════════════════════════════════════ -->
+      <div id="scene-market" class="scene">
+        <!-- phone B-roll -->
+        <div
+          class="phone"
+          style="left: 100px; top: 380px; width: 880px; height: 1120px; transform: rotate(-1deg)"
+        >
+          <div class="phone-screen">
+            <img
+              id="broll-market"
+              class="phone-page"
+              src="assets/motion/mobile/chatgpt-market-mobile-full.png"
+              alt="ChatGPT market share article"
+            />
+          </div>
+        </div>
+
+        <div id="market-header" class="glass">
+          <div class="kicker kicker-blue" style="margin-bottom: 12px">
+            AI Market Share &bull; 2025→2026
+          </div>
+          <div class="headline">ChatGPT Is<br />Losing<br />The Race</div>
+        </div>
+
+        <div id="mkt-r1" class="mkt-bar-row glass">
+          <div class="mkt-label">
+            <span>ChatGPT</span>
+            <span class="mkt-pct" style="color: #1060cc">54.7%</span>
+          </div>
+          <div class="bar-track"><div class="bar-fill bar-chatgpt"></div></div>
+          <div class="stat-label" style="margin-top: 8px; color: #555">
+            ↓ from 76.5% in Feb 2025
+          </div>
+        </div>
+
+        <div id="mkt-r2" class="mkt-bar-row glass">
+          <div class="mkt-label">
+            <span>Gemini</span>
+            <span class="mkt-pct" style="color: #1cb860">27.4%</span>
+          </div>
+          <div class="bar-track"><div class="bar-fill bar-gemini"></div></div>
+        </div>
+
+        <div id="mkt-r3" class="mkt-bar-row glass" style="border: 1px solid rgba(255, 140, 0, 0.4)">
+          <div class="mkt-label">
+            <span>Claude</span>
+            <span class="mkt-pct" style="color: #cc6010">+306%</span>
+          </div>
+          <div class="bar-track"><div class="bar-fill bar-claude"></div></div>
+          <div class="stat-label" style="margin-top: 8px; color: #c05010">
+            Fastest-growing in a single quarter
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════════════════
+           SCENE 5 — AI ACTORS IN CHINA
+           55.0 → 66.0s
+      ══════════════════════════════════════════════════ -->
+      <div id="scene-actors" class="scene">
+        <!-- phone B-roll -->
+        <div
+          class="phone"
+          style="left: 100px; top: 460px; width: 880px; height: 1040px; transform: rotate(1.6deg)"
+        >
+          <div class="phone-screen">
+            <img
+              id="broll-actors"
+              class="phone-page"
+              src="assets/motion/mobile/iqiyi-actors-mobile-full.png"
+              alt="iQIYI AI actors article"
+            />
+          </div>
+        </div>
+
+        <div id="actors-header" class="glass glass-purple">
+          <div class="kicker kicker-pink" style="margin-bottom: 12px">
+            China &bull; iQIYI Platform
+          </div>
+          <div class="headline">AI Actors<br />Replace Real<br />Performers</div>
+        </div>
+
+        <div id="actors-detail" class="glass glass-purple">
+          <div class="kicker kicker-pink" style="margin-bottom: 14px">What happened</div>
+          <div class="subline" style="color: #3a0860; font-size: 30px">
+            iQIYI launched a database of AI-generated actors using real performers' likenesses —
+            without their consent. Backlash was massive.
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════════════════
+           SCENE 6 — AI WRITING SCANDALS
+           66.0 → 78.5s
+      ══════════════════════════════════════════════════ -->
+      <div id="scene-writing" class="scene">
+        <!-- phone B-roll -->
+        <div
+          class="phone"
+          style="left: 100px; top: 430px; width: 880px; height: 1060px; transform: rotate(-1.3deg)"
+        >
+          <div class="phone-screen">
+            <img
+              id="broll-writing"
+              class="phone-page"
+              src="assets/motion/mobile/ai-writing-mobile-full.png"
+              alt="AI writing scandals article"
+            />
+          </div>
+        </div>
+
+        <div id="writing-header" class="glass glass-purple">
+          <div class="kicker kicker-purple" style="margin-bottom: 12px">
+            Literary Scandal &bull; 2026
+          </div>
+          <div class="headline">Did AI Win<br />These Literary<br />Prizes?</div>
+        </div>
+
+        <div id="writing-detail" class="glass glass-purple">
+          <div class="kicker kicker-purple" style="margin-bottom: 14px">
+            Commonwealth Short Story Prize
+          </div>
+          <div class="subline" style="color: #3a1060; font-size: 30px">
+            The authors are real.<br />The writing might not be.<br />
+            And nobody can prove it.
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════════════════
+           SCENE 7 — ARMS RACE
+           78.5 → 87.5s
+      ══════════════════════════════════════════════════ -->
+      <div id="scene-arms" class="scene">
+        <div id="arms-title" class="glass">
+          <div class="kicker kicker-blue" style="margin-bottom: 12px">
+            Meanwhile &bull; The Arms Race
+          </div>
+          <div class="headline" style="font-size: 72px; text-align: center">
+            The Numbers<br />Are Insane
+          </div>
+        </div>
+
+        <div id="arms-card-a" class="glass">
+          <div class="stat-big" style="color: #1060cc">Gemma 4</div>
+          <div class="stat-label">
+            Google — Open source, Apache 2.0,<br />built for agentic AI workflows
+          </div>
+        </div>
+
+        <div id="arms-card-b" class="glass glass-gold">
+          <div class="stat-big" style="color: #8a5800">11,000+</div>
+          <div class="stat-label" style="color: #7a4800">
+            Models in Microsoft Foundry's catalog.<br />Eleven. Thousand.
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════════════════
+           SCENE 8 — CLOSER + CTA
+           87.5 → 102.0s
+      ══════════════════════════════════════════════════ -->
+      <div id="scene-cta" class="scene">
+        <div id="cta-card" class="glass">
+          <div class="cta-headline">Only Halfway<br />Through June</div>
+          <div class="cta-sub">
+            A near-trillion-dollar company banned.<br />
+            Writers losing awards to machines.<br />
+            Actors replaced by digital clones.
+          </div>
+          <div class="cta-pill">Subscribe for AI News</div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════════════════
+           TRANSITIONS
+      ══════════════════════════════════════════════════ -->
+      <div id="tr-1" class="clip transition">
+        <div class="wipe-band band-blue"></div>
+        <div class="wipe-band band-pink"></div>
+      </div>
+      <div id="tr-2" class="clip transition">
+        <div class="wipe-band band-gold"></div>
+        <div class="wipe-band band-blue"></div>
+      </div>
+      <div id="tr-3" class="clip transition">
+        <div class="wipe-band band-blue"></div>
+        <div class="wipe-band band-pink"></div>
+      </div>
+      <div id="tr-4" class="clip transition">
+        <div class="wipe-band band-pink"></div>
+        <div class="wipe-band band-gold"></div>
+      </div>
+      <div id="tr-5" class="clip transition">
+        <div class="wipe-band band-blue"></div>
+        <div class="wipe-band band-pink"></div>
+      </div>
+      <div id="tr-6" class="clip transition">
+        <div class="wipe-band band-gold"></div>
+        <div class="wipe-band band-blue"></div>
+      </div>
+      <div id="tr-7" class="clip transition">
+        <div class="wipe-band band-pink"></div>
+        <div class="wipe-band band-blue"></div>
+      </div>
+
+      <!-- ══════════════════════════════════════════════════
+           SFX
+      ══════════════════════════════════════════════════ -->
+      <!-- intro chime -->
+      <audio
+        id="sfx-chime-intro"
+        class="clip"
+        data-start="0.1"
+        data-duration="0.7"
+        data-track-index="41"
+        data-volume="0.55"
+        src="assets/sfx/chime-soft.wav"
+      ></audio>
+      <!-- scene transitions (0.3s before each scene boundary) -->
+      <audio id="sfx-whoosh-1" class="clip" data-start="4.2"  data-duration="0.55" data-track-index="40" data-volume="0.45" src="assets/sfx/whoosh-soft.wav"></audio>
+      <audio id="sfx-whoosh-2" class="clip" data-start="26.9" data-duration="0.55" data-track-index="40" data-volume="0.45" src="assets/sfx/whoosh-soft.wav"></audio>
+      <audio id="sfx-whoosh-3" class="clip" data-start="41.2" data-duration="0.55" data-track-index="40" data-volume="0.45" src="assets/sfx/whoosh-soft.wav"></audio>
+      <audio id="sfx-whoosh-4" class="clip" data-start="55.9" data-duration="0.55" data-track-index="40" data-volume="0.45" src="assets/sfx/whoosh-soft.wav"></audio>
+      <audio id="sfx-whoosh-5" class="clip" data-start="68.8" data-duration="0.55" data-track-index="40" data-volume="0.45" src="assets/sfx/whoosh-soft.wav"></audio>
+      <audio id="sfx-whoosh-6" class="clip" data-start="80.8" data-duration="0.55" data-track-index="40" data-volume="0.45" src="assets/sfx/whoosh-soft.wav"></audio>
+      <audio id="sfx-whoosh-7" class="clip" data-start="90.2" data-duration="0.55" data-track-index="40" data-volume="0.45" src="assets/sfx/whoosh-soft.wav"></audio>
+      <!-- card reveal pings (0.6s after each scene start) -->
+      <audio id="sfx-ping-1" class="clip" data-start="5.1"  data-duration="0.3" data-track-index="41" data-volume="0.5" src="assets/sfx/ping-soft.wav"></audio>
+      <audio id="sfx-ping-2" class="clip" data-start="27.8" data-duration="0.3" data-track-index="41" data-volume="0.5" src="assets/sfx/ping-soft.wav"></audio>
+      <audio id="sfx-ping-3" class="clip" data-start="42.1" data-duration="0.3" data-track-index="41" data-volume="0.5" src="assets/sfx/ping-soft.wav"></audio>
+      <audio id="sfx-ping-4" class="clip" data-start="56.8" data-duration="0.3" data-track-index="41" data-volume="0.5" src="assets/sfx/ping-soft.wav"></audio>
+      <audio id="sfx-ping-5" class="clip" data-start="69.7" data-duration="0.3" data-track-index="41" data-volume="0.5" src="assets/sfx/ping-soft.wav"></audio>
+      <audio id="sfx-ping-6" class="clip" data-start="81.7" data-duration="0.3" data-track-index="41" data-volume="0.5" src="assets/sfx/ping-soft.wav"></audio>
+      <!-- stat pops (120k chars revealed at ~18.5s in SRT) -->
+      <audio id="sfx-pop-1" class="clip" data-start="18.5" data-duration="0.28" data-track-index="42" data-volume="0.45" src="assets/sfx/pop-soft.wav"></audio>
+      <audio id="sfx-pop-2" class="clip" data-start="19.1" data-duration="0.28" data-track-index="42" data-volume="0.45" src="assets/sfx/pop-soft.wav"></audio>
+      <!-- CTA chime -->
+      <audio id="sfx-chime-cta" class="clip" data-start="91.0" data-duration="0.7" data-track-index="41" data-volume="0.58" src="assets/sfx/chime-soft.wav"></audio>
+    </div>
+
+    <script>
+      // ── TIMING MAP (from SRT) ──
+      const S = {
+        intro: [0.0, 4.5],
+        fable5: [4.5, 27.2],
+        ipo: [27.2, 41.5],
+        market: [41.5, 56.2],
+        actors: [56.2, 69.1],
+        writing: [69.1, 81.1],
+        arms: [81.1, 90.5],
+        cta: [90.5, 106.0],
+      };
+
+      const tl = gsap.timeline({ paused: true });
+
+      // ── SCENE GATES ──
+      const sceneWindows = [
+        ["#scene-intro", S.intro[0], S.intro[1]],
+        ["#scene-fable5", S.fable5[0], S.fable5[1]],
+        ["#scene-ipo", S.ipo[0], S.ipo[1]],
+        ["#scene-market", S.market[0], S.market[1]],
+        ["#scene-actors", S.actors[0], S.actors[1]],
+        ["#scene-writing", S.writing[0], S.writing[1]],
+        ["#scene-arms", S.arms[0], S.arms[1]],
+        ["#scene-cta", S.cta[0], S.cta[1]],
+      ];
+
+      for (const [sel, start, end] of sceneWindows) {
+        tl.set(sel, { opacity: 1, visibility: "visible" }, start);
+        tl.set(sel, { opacity: 0, visibility: "hidden" }, end);
+      }
+
+      // ── HELPER ──
+      function flyIn(sel, at, fromX, fromY, fromZ, fromRotY, stagger) {
+        if (document.querySelector(sel)) {
+          tl.from(
+            sel,
+            {
+              x: fromX ?? 0,
+              y: fromY ?? 80,
+              z: fromZ ?? -200,
+              opacity: 0,
+              scale: 0.88,
+              rotateY: fromRotY ?? -22,
+              duration: 0.62,
+              stagger: stagger ?? 0,
+              ease: "back.out(1.6)",
+              immediateRender: false,
+            },
+            at,
+          );
+        }
+      }
+
+      function flyOut(sel, at, toX, toY) {
+        if (document.querySelector(sel)) {
+          tl.to(
+            sel,
+            {
+              x: toX ?? 0,
+              y: toY ?? -72,
+              opacity: 0,
+              scale: 0.94,
+              rotateX: -14,
+              duration: 0.44,
+              ease: "power3.in",
+              immediateRender: false,
+            },
+            at,
+          );
+        }
+      }
+
+      function wipe(id, at) {
+        const el = document.querySelector(id);
+        if (!el) return;
+        const bands = el.querySelectorAll(".wipe-band");
+        tl.set(id, { opacity: 1 }, at - 0.05);
+        tl.fromTo(
+          bands,
+          { x: -1200, rotateZ: -10 },
+          {
+            x: 1400,
+            rotateZ: 10,
+            duration: 0.52,
+            stagger: 0.06,
+            ease: "power3.inOut",
+            immediateRender: false,
+          },
+          at,
+        );
+        tl.set(id, { opacity: 0 }, at + 0.62);
+      }
+
+      // ── SCENE 1: INTRO ──
+      const t1 = S.intro[0];
+      flyIn("#intro-fire-badge", t1 + 0.1, 0, -40, -100, 0, 0);
+      flyIn("#intro-main-card", t1 + 0.3, -80, 60, -220, -20, 0);
+      flyOut("#intro-fire-badge", S.intro[1] - 0.5);
+      flyOut("#intro-main-card", S.intro[1] - 0.5);
+      wipe("#tr-1", S.intro[1] - 0.28);
+
+      // ── SCENE 2: FABLE 5 ──
+      const t2 = S.fable5[0];
+      flyIn(".phone:nth-of-type(1)", t2 + 0.1, 100, 100, -300, 18, 0);
+      flyIn("#fable5-header", t2 + 0.35, -90, 60, -220, -22, 0);
+      // phone B-roll scroll
+      tl.to("#broll-fable5", { y: -6800, duration: 20, ease: "power1.inOut" }, t2 + 1.2);
+      flyIn("#fable5-stat-row .stat-card", t2 + 1.0, 0, 80, -180, 0, 0.18);
+      flyIn("#fable5-quote", t2 + 8.0, 80, 60, -180, 18, 0);
+      flyOut("#fable5-header, #fable5-stat-row, #fable5-quote", S.fable5[1] - 0.5);
+      wipe("#tr-2", S.fable5[1] - 0.28);
+
+      // ── SCENE 3: IPO ──
+      const t3 = S.ipo[0];
+      flyIn(".phone:nth-of-type(2)", t3 + 0.1, -100, 100, -300, -18, 0);
+      flyIn("#ipo-header", t3 + 0.35, 90, 60, -220, 22, 0);
+      tl.to("#broll-ipo", { y: -7500, duration: 10, ease: "power1.inOut" }, t3 + 1.0);
+      flyIn("#ipo-big-stat", t3 + 1.2, 0, 80, -180, 0, 0);
+      flyIn("#ipo-irony", t3 + 4.5, -80, 60, -180, -18, 0);
+      flyOut("#ipo-header, #ipo-big-stat, #ipo-irony", S.ipo[1] - 0.5);
+      wipe("#tr-3", S.ipo[1] - 0.28);
+
+      // ── SCENE 4: MARKET ──
+      const t4 = S.market[0];
+      flyIn(".phone:nth-of-type(3)", t4 + 0.1, 100, 80, -280, 16, 0);
+      flyIn("#market-header", t4 + 0.35, -90, 60, -200, -20, 0);
+      tl.to("#broll-market", { y: -5000, duration: 10, ease: "power1.inOut" }, t4 + 1.0);
+      flyIn("#mkt-r1", t4 + 1.0, 0, 80, -180, 0, 0);
+      flyIn("#mkt-r2", t4 + 1.5, 0, 80, -180, 0, 0);
+      flyIn("#mkt-r3", t4 + 2.1, 0, 80, -180, 0, 0);
+      flyOut("#market-header, #mkt-r1, #mkt-r2, #mkt-r3", S.market[1] - 0.5);
+      wipe("#tr-4", S.market[1] - 0.28);
+
+      // ── SCENE 5: ACTORS ──
+      const t5 = S.actors[0];
+      flyIn(".phone:nth-of-type(4)", t5 + 0.1, -100, 100, -280, -18, 0);
+      flyIn("#actors-header", t5 + 0.35, 90, 60, -200, 20, 0);
+      tl.to("#broll-actors", { y: -3500, duration: 8, ease: "power1.inOut" }, t5 + 1.0);
+      flyIn("#actors-detail", t5 + 1.5, 0, 80, -180, 0, 0);
+      flyOut("#actors-header, #actors-detail", S.actors[1] - 0.5);
+      wipe("#tr-5", S.actors[1] - 0.28);
+
+      // ── SCENE 6: WRITING ──
+      const t6 = S.writing[0];
+      flyIn(".phone:nth-of-type(5)", t6 + 0.1, 100, 100, -300, 16, 0);
+      flyIn("#writing-header", t6 + 0.35, -90, 60, -200, -20, 0);
+      tl.to("#broll-writing", { y: -5000, duration: 9, ease: "power1.inOut" }, t6 + 1.0);
+      flyIn("#writing-detail", t6 + 1.5, 0, 80, -180, 0, 0);
+      flyOut("#writing-header, #writing-detail", S.writing[1] - 0.5);
+      wipe("#tr-6", S.writing[1] - 0.28);
+
+      // ── SCENE 7: ARMS RACE ──
+      const t7 = S.arms[0];
+      flyIn("#arms-title", t7 + 0.2, 0, -60, -200, 0, 0);
+      flyIn("#arms-card-a", t7 + 0.6, -100, 80, -220, -20, 0);
+      flyIn("#arms-card-b", t7 + 1.1, 100, 80, -220, 20, 0);
+      // gentle float on arms cards
+      tl.to(
+        "#arms-card-a, #arms-card-b",
+        { y: -16, duration: 1.2, repeat: 5, yoyo: true, stagger: 0.2, ease: "sine.inOut" },
+        t7 + 1.8,
+      );
+      flyOut("#arms-title, #arms-card-a, #arms-card-b", S.arms[1] - 0.5);
+      wipe("#tr-7", S.arms[1] - 0.28);
+
+      // ── SCENE 8: CTA ──
+      const t8 = S.cta[0];
+      flyIn("#cta-card", t8 + 0.3, 0, 100, -280, 0, 0);
+      // avatar swap: pip → cta size (already handled by clip windows above)
+      tl.from(
+        "#avatar-cta",
+        {
+          y: 120,
+          opacity: 0,
+          scale: 0.9,
+          duration: 0.72,
+          ease: "back.out(1.4)",
+          immediateRender: false,
+        },
+        t8 + 0.1,
+      );
+
+      // ── EXPOSE TIMELINE ──
+      window.__timelines = window.__timelines || {};
+      window.__timelines["ai-world-news-june-2026"] = tl;
+    </script>
+  </body>
+</html>

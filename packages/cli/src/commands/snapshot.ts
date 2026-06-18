@@ -168,8 +168,10 @@ async function captureSnapshots(
         const tls = win.__timelines;
         if (tls) {
           for (const key in tls) {
-            const d = tls[key]?.duration;
-            if (d != null) return typeof d === "function" ? d() : d;
+            const tl = tls[key];
+            if (!tl) continue;
+            const d = typeof tl.duration === "function" ? tl.duration() : tl.duration;
+            if (d != null) return d;
           }
         }
         return 0;

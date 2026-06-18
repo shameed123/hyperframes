@@ -1,0 +1,57 @@
+{
+  "source": "https://www.crescendo.ai/blog/ai-controversies",
+  "finalUrl": "https://www.crescendo.ai/blog/ai-controversies",
+  "title": "27 Biggest AI Controversies of 2025-2026 | The Latest Edition",
+  "viewport": {
+    "width": 412,
+    "height": 915
+  },
+  "pageHeight": 32138,
+  "scrollSeconds": 9.5,
+  "keyframes": [
+    {
+      "t": 0,
+      "y": 0
+    },
+    {
+      "t": 0.95,
+      "y": 3122
+    },
+    {
+      "t": 1.9,
+      "y": 6245
+    },
+    {
+      "t": 2.85,
+      "y": 9367
+    },
+    {
+      "t": 3.8,
+      "y": 12489
+    },
+    {
+      "t": 4.75,
+      "y": 15612
+    },
+    {
+      "t": 5.7,
+      "y": 18734
+    },
+    {
+      "t": 6.65,
+      "y": 21856
+    },
+    {
+      "t": 7.6,
+      "y": 24978
+    },
+    {
+      "t": 8.55,
+      "y": 28101
+    },
+    {
+      "t": 9.5,
+      "y": 31223
+    }
+  ]
+}
