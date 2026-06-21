@@ -1,0 +1,219 @@
+1
+00:00:00,020 --> 00:00:02,031
+ZAI released GLM 5.2.
+
+2
+00:00:02,052 --> 00:00:03,359
+And it's making a splash.
+
+3
+00:00:03,379 --> 00:00:06,200
+It has a contact window of one million tokens.
+
+4
+00:00:06,220 --> 00:00:09,520
+A big leap forward from 5.1 which had a contact
+
+5
+00:00:09,540 --> 00:00:12,066
+window of only two hundred thousand tokens.
+
+6
+00:00:12,086 --> 00:00:16,163
+With the context window of one million
+tokens, it is actually at the same level now as
+
+7
+00:00:16,183 --> 00:00:18,267
+many of the frontier models like uh
+
+8
+00:00:18,287 --> 00:00:20,621
+GPT five point five and Opus four point eight.
+
+9
+00:00:20,641 --> 00:00:23,143
+and performance wise it beats uh GPT 5.5
+
+10
+00:00:23,163 --> 00:00:24,407
+in every benchmark.
+
+11
+00:00:24,427 --> 00:00:27,725
+And it is right there where
+opus 4.8 which is amazing.
+
+12
+00:00:27,745 --> 00:00:32,108
+And here's the best part. It is five
+times cheaper than Opus 4.8. So yeah.
+
+13
+00:00:32,128 --> 00:00:35,080
+It costs $1.4 for every million input tokens.
+
+14
+00:00:35,100 --> 00:00:37,708
+and $4.4 for every million output tokens.
+
+15
+00:00:37,791 --> 00:00:40,062
+Which is five times cheaper than
+
+16
+00:00:40,082 --> 00:00:43,785
+Opus 4.8 which costs twenty-five
+dollars for a million output tokens.
+
+17
+00:00:43,805 --> 00:00:46,598
+On top of it, it is actually
+open source open weight model.
+
+18
+00:00:46,618 --> 00:00:50,792
+Which means you can basically install it on
+your local computer as well, if you want to.
+
+19
+00:00:50,812 --> 00:00:53,703
+with 750 billion that it has,
+
+20
+00:00:53,723 --> 00:00:55,907
+you will need a really powerful
+
+21
+00:00:55,927 --> 00:00:58,071
+computer to be able to run it locally.
+
+22
+00:00:58,091 --> 00:01:01,071
+So most of the people will be better
+off with their subscription plans.
+
+23
+00:01:01,154 --> 00:01:05,071
+But since the model is cheap, obviously
+the subscription plans are also cheap.
+
+24
+00:01:05,375 --> 00:01:09,455
+You can get the cheapest plan for sixteen
+dollars per month, and pro plan for around
+
+25
+00:01:09,475 --> 00:01:11,623
+sixty-five dollars per month, and max plan
+
+26
+00:01:11,643 --> 00:01:13,221
+for 144 dollars per month.
+
+27
+00:01:13,241 --> 00:01:14,588
+And if you're willing to pay
+
+28
+00:01:14,608 --> 00:01:18,754
+annually, the price drops down to twelve
+dollars per month for the cheapest plan.
+
+29
+00:01:18,899 --> 00:01:20,915
+which is way less than codex or Claude code.
+
+30
+00:01:20,935 --> 00:01:24,663
+But here's the best part. quota that comes
+with these subscription plans, they are way
+
+31
+00:01:24,683 --> 00:01:27,839
+better than what Codecs and Claude
+They have the same kind of model.
+
+32
+00:01:27,859 --> 00:01:29,733
+They have five to six hour window and
+
+33
+00:01:29,753 --> 00:01:31,039
+uh a weekly window.
+
+34
+00:01:31,158 --> 00:01:33,397
+but you will find that exhausting
+
+35
+00:01:33,417 --> 00:01:35,771
+this quota within the five hour limit,
+
+36
+00:01:35,791 --> 00:01:38,647
+or the weekly limit is very difficult.
+
+37
+00:01:38,730 --> 00:01:42,277
+Whereas if you're using codex or Claude
+every now and then I'm sure You're hitting
+
+38
+00:01:42,297 --> 00:01:43,976
+the limits and you have to back off.
+
+39
+00:01:43,996 --> 00:01:47,610
+But uh Hitting the limits here would
+be very difficult for you because they
+
+40
+00:01:47,630 --> 00:01:48,774
+come with huge quota.
+
+41
+00:01:48,893 --> 00:01:51,493
+Much bigger than any of
+these frontier agents.
+
+42
+00:01:51,513 --> 00:01:52,969
+So yeah, give it a shot.
+
+43
+00:01:52,989 --> 00:01:53,765
+Try it out.
+
+44
+00:01:53,785 --> 00:01:56,035
+if you're using codex with the GPT 5.5 or
+
+45
+00:01:56,055 --> 00:01:57,929
+Claude with the Opus four point
+
+46
+00:01:57,949 --> 00:01:59,911
+eight, and every now and then you are
+
+47
+00:01:59,931 --> 00:02:03,827
+actually running out of coda, then
+it might be worth trying this model.
+
+48
+00:02:04,026 --> 00:02:05,429
+And let me know how you find it.
+
+49
+00:02:05,548 --> 00:02:06,769
+for AI news like this,
+
+50
+00:02:06,789 --> 00:02:08,504
+don't forget to subscribe, like,
+
+51
+00:02:08,524 --> 00:02:11,013
+and follow. I'll see you in the next video.

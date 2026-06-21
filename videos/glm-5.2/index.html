@@ -1,0 +1,642 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #05060c;
+        font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+      }
+
+      #root {
+        position: relative;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #05060c;
+      }
+
+      /* ── BACKGROUND VIDEO (talking head, full frame) ── */
+      #bg-video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+        z-index: 1;
+      }
+
+      /* ── OVERLAY STAGE ──
+         Scenes sit in the upper / middle band so they clear the
+         burned-in captions near the bottom (~y1280-1400). They are
+         semi-transparent so the face still reads through, and they
+         animate IN / hold / OUT so the face is visible between beats. */
+      .scene {
+        position: absolute;
+        inset: 0;
+        z-index: 6;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 24px;
+        padding: 60px 56px 0;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        text-align: center;
+      }
+
+      /* ── GLASS CARD (semi-transparent, blurred) ── */
+      .card {
+        position: relative;
+        width: 100%;
+        max-width: 960px;
+        border-radius: 28px;
+        padding: 40px 44px;
+        background: rgba(9, 12, 26, 0.5);
+        border: 1.5px solid rgba(255, 255, 255, 0.14);
+        box-shadow:
+          0 28px 80px rgba(0, 0, 0, 0.5),
+          inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(16px) saturate(1.35);
+        -webkit-backdrop-filter: blur(16px) saturate(1.35);
+        will-change: transform, opacity;
+      }
+
+      .card-cyan {
+        border-color: rgba(43, 217, 238, 0.55);
+        box-shadow:
+          0 28px 80px rgba(0, 0, 0, 0.5),
+          0 0 60px rgba(43, 217, 238, 0.22),
+          inset 0 1px 0 rgba(255, 255, 255, 0.22);
+      }
+      .card-magenta {
+        border-color: rgba(255, 79, 163, 0.55);
+        box-shadow:
+          0 28px 80px rgba(0, 0, 0, 0.5),
+          0 0 60px rgba(255, 79, 163, 0.22),
+          inset 0 1px 0 rgba(255, 255, 255, 0.22);
+      }
+      .card-violet {
+        border-color: rgba(167, 139, 250, 0.55);
+        box-shadow:
+          0 28px 80px rgba(0, 0, 0, 0.5),
+          0 0 60px rgba(167, 139, 250, 0.22),
+          inset 0 1px 0 rgba(255, 255, 255, 0.22);
+      }
+      .card-green {
+        border-color: rgba(52, 224, 161, 0.55);
+        box-shadow:
+          0 28px 80px rgba(0, 0, 0, 0.5),
+          0 0 60px rgba(52, 224, 161, 0.2),
+          inset 0 1px 0 rgba(255, 255, 255, 0.22);
+      }
+      .card-amber {
+        border-color: rgba(255, 176, 32, 0.55);
+        box-shadow:
+          0 28px 80px rgba(0, 0, 0, 0.5),
+          0 0 60px rgba(255, 176, 32, 0.2),
+          inset 0 1px 0 rgba(255, 255, 255, 0.22);
+      }
+
+      /* ── TYPE ── */
+      .kicker {
+        font-size: 28px;
+        font-weight: 800;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: #2bd9ee;
+      }
+      .kicker.k-magenta {
+        color: #ff6fb5;
+      }
+      .kicker.k-violet {
+        color: #b9a4ff;
+      }
+      .kicker.k-green {
+        color: #4cecb0;
+      }
+      .kicker.k-amber {
+        color: #ffc24d;
+      }
+
+      .headline {
+        font-size: 76px;
+        font-weight: 900;
+        line-height: 1.02;
+        letter-spacing: -0.025em;
+        color: #ffffff;
+      }
+      .headline.sm {
+        font-size: 60px;
+      }
+
+      .subline {
+        font-size: 34px;
+        font-weight: 500;
+        line-height: 1.36;
+        color: rgba(255, 255, 255, 0.78);
+      }
+
+      .grad {
+        background: linear-gradient(115deg, #2bd9ee 0%, #a78bfa 52%, #ff4fa3 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .stat-huge {
+        font-size: 150px;
+        font-weight: 900;
+        letter-spacing: -0.04em;
+        line-height: 1.06;
+        font-variant-numeric: tabular-nums;
+        margin: 18px 0 10px;
+      }
+      .stat-label {
+        font-size: 30px;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.6);
+        margin-top: 12px;
+      }
+
+      /* ── COMPARISON BARS (context scene) ── */
+      .cmp-row {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        text-align: left;
+      }
+      .cmp-row + .cmp-row {
+        margin-top: 26px;
+      }
+      .cmp-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        font-size: 32px;
+        font-weight: 800;
+        color: #ffffff;
+      }
+      .cmp-head .val {
+        font-size: 40px;
+        font-weight: 900;
+        font-variant-numeric: tabular-nums;
+      }
+      .cmp-track {
+        height: 26px;
+        border-radius: 13px;
+        background: rgba(255, 255, 255, 0.1);
+        overflow: hidden;
+      }
+      .cmp-fill {
+        height: 100%;
+        border-radius: 13px;
+        transform-origin: left center;
+      }
+      .fill-old {
+        width: 20%;
+        background: linear-gradient(90deg, #5b6478, #8a93a8);
+      }
+      .fill-new {
+        width: 100%;
+        background: linear-gradient(90deg, #2bd9ee, #a78bfa, #ff4fa3);
+      }
+
+      /* ── PILL ROWS (frontier scene) ── */
+      .pill-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 22px 30px;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        font-size: 36px;
+        font-weight: 800;
+        color: #ffffff;
+      }
+      .pill-row + .pill-row {
+        margin-top: 16px;
+      }
+      .pill-row.hot {
+        background: rgba(43, 217, 238, 0.14);
+        border-color: rgba(43, 217, 238, 0.5);
+      }
+      .pill-row .ctx {
+        font-size: 30px;
+        font-weight: 800;
+        color: #2bd9ee;
+        font-variant-numeric: tabular-nums;
+      }
+
+      /* ── BADGE ── */
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
+        padding: 16px 36px;
+        border-radius: 50px;
+        font-size: 30px;
+        font-weight: 800;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: #ffffff;
+        background: rgba(9, 12, 26, 0.55);
+        border: 1.5px solid rgba(255, 255, 255, 0.18);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+      }
+      .badge.b-cyan {
+        border-color: rgba(43, 217, 238, 0.6);
+        color: #8defff;
+        box-shadow: 0 0 40px rgba(43, 217, 238, 0.25);
+      }
+      .badge.b-green {
+        border-color: rgba(52, 224, 161, 0.6);
+        color: #8ff0cf;
+        box-shadow: 0 0 40px rgba(52, 224, 161, 0.22);
+      }
+      .badge.b-amber {
+        border-color: rgba(255, 176, 32, 0.6);
+        color: #ffd58a;
+        box-shadow: 0 0 40px rgba(255, 176, 32, 0.22);
+      }
+
+      /* ── DUAL COMPARE (limits scene) ── */
+      .duo {
+        display: flex;
+        gap: 22px;
+        width: 100%;
+        max-width: 960px;
+      }
+      .duo .card {
+        flex: 1;
+        padding: 34px 26px;
+      }
+      .duo .duo-title {
+        font-size: 36px;
+        font-weight: 900;
+        color: #ffffff;
+      }
+      .duo .duo-sub {
+        font-size: 27px;
+        font-weight: 600;
+        margin-top: 12px;
+        line-height: 1.3;
+      }
+
+      /* ── CHECK ICON ── */
+      .check-wrap {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 22px;
+      }
+      .check-svg {
+        width: 78px;
+        height: 78px;
+        flex: none;
+      }
+      .check-svg circle {
+        fill: rgba(52, 224, 161, 0.15);
+        stroke: #34e0a1;
+        stroke-width: 4;
+      }
+      .check-svg path {
+        fill: none;
+        stroke: #34e0a1;
+        stroke-width: 7;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-dasharray: 60;
+        stroke-dashoffset: 60;
+      }
+
+      /* ── OUTRO CTA ── */
+      .cta-pill {
+        display: inline-block;
+        padding: 24px 60px;
+        border-radius: 60px;
+        font-size: 38px;
+        font-weight: 900;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #05060c;
+        background: linear-gradient(115deg, #2bd9ee, #a78bfa, #ff4fa3);
+        box-shadow: 0 24px 70px rgba(43, 217, 238, 0.4);
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="glm-5-2"
+      data-start="0"
+      data-duration="130.8"
+      data-width="1080"
+      data-height="1920"
+      data-layout-allow-occlusion
+    >
+      <!-- ── BACKGROUND TALKING-HEAD VIDEO ── -->
+      <video
+        id="bg-video"
+        class="clip"
+        data-start="0"
+        data-duration="130.8"
+        data-track-index="0"
+        src="resources/glm-5.2-dense.mp4"
+        muted
+        playsinline
+      ></video>
+
+      <!-- ── NARRATION AUDIO (from same file) ── -->
+      <audio
+        id="narration"
+        class="clip"
+        data-start="0"
+        data-duration="130.8"
+        data-track-index="1"
+        data-volume="1"
+        src="resources/glm-5.2-dense.mp4"
+      ></audio>
+
+      <!-- ══════════ INTRO CARD (0 → 0.5) — full-frame flash ══════════ -->
+      <img
+        id="intro-card"
+        class="clip"
+        data-start="0"
+        data-duration="0.5"
+        data-track-index="3"
+        src="resources/intro-card.png"
+        alt="GLM 5.2 — 5x cheaper infographic"
+        style="
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          z-index: 20;
+        "
+      />
+
+      <!-- ══════════ CONTEXT WINDOW (3.5 → 11.6) ══════════ -->
+      <div id="sc-context" class="scene">
+        <div class="card card-cyan">
+          <div class="kicker">Context Window</div>
+          <div class="stat-huge grad" style="margin-top: 14px">1M</div>
+          <div class="stat-label">tokens — a 5&times; leap over 5.1</div>
+
+          <div style="margin-top: 34px">
+            <div class="cmp-row">
+              <div class="cmp-head">
+                <span style="color: rgba(255, 255, 255, 0.7)">GLM 5.1</span>
+                <span class="val" style="color: #9aa3b8">200K</span>
+              </div>
+              <div class="cmp-track"><div class="cmp-fill fill-old"></div></div>
+            </div>
+            <div class="cmp-row">
+              <div class="cmp-head">
+                <span>GLM 5.2</span>
+                <span class="val grad">1,000,000</span>
+              </div>
+              <div class="cmp-track"><div class="cmp-fill fill-new"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════ FRONTIER LEVEL (12.2 → 20.2) ══════════ -->
+      <div id="sc-frontier" class="scene">
+        <div class="card card-violet">
+          <div class="kicker k-violet">Frontier Territory</div>
+          <div class="headline sm" style="margin-top: 14px">Same League<br />as the Frontier</div>
+          <div style="margin-top: 30px">
+            <div class="pill-row hot"><span>GLM 5.2</span><span class="ctx">1M ctx</span></div>
+            <div class="pill-row"><span>GPT-5.5</span><span class="ctx">1M ctx</span></div>
+            <div class="pill-row"><span>Opus 4.8</span><span class="ctx">1M ctx</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════ BENCHMARKS (20.6 → 27.0) ══════════ -->
+      <div id="sc-bench" class="scene">
+        <div class="card card-green">
+          <div class="check-wrap">
+            <svg class="check-svg" viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="44" />
+              <path d="M30 52 L45 67 L72 34" />
+            </svg>
+            <div style="text-align: left">
+              <div class="headline" style="font-size: 64px">Beats GPT-5.5</div>
+              <div class="subline" style="margin-top: 6px">in every benchmark</div>
+            </div>
+          </div>
+        </div>
+        <div class="badge b-cyan" style="font-size: 32px">&asymp;&nbsp;&nbsp;Matches Opus 4.8</div>
+      </div>
+
+      <!-- ══════════ OPEN WEIGHT (43.9 → 50.6) ══════════ -->
+      <div id="sc-open" class="scene">
+        <div class="badge b-green">Open Source &bull; Open Weight</div>
+        <div class="card card-green">
+          <div class="kicker k-green">Yours to run</div>
+          <div class="headline" style="margin-top: 14px">Run It<br />Yourself</div>
+          <div class="subline" style="margin-top: 18px">
+            Install GLM 5.2 on your own machine.
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════ PARAMETERS (50.9 → 58.0) ══════════ -->
+      <div id="sc-params" class="scene">
+        <div class="card card-magenta">
+          <div class="kicker k-magenta">Model Size</div>
+          <div class="stat-huge grad" style="margin-top: 30px">750B</div>
+          <div class="stat-label">parameters</div>
+        </div>
+        <div class="badge b-amber">&#9888;&#65039; Needs serious hardware to run locally</div>
+      </div>
+
+      <!-- ══════════ QUOTA (81.0 → 90.6) ══════════ -->
+      <div id="sc-quota" class="scene">
+        <div class="card card-cyan">
+          <div class="kicker">Usage Quota</div>
+          <div class="headline sm" style="margin-top: 14px">Way More<br />Headroom</div>
+          <div class="subline" style="margin-top: 14px">than Codex &amp; Claude</div>
+        </div>
+        <div style="display: flex; gap: 18px">
+          <div class="badge b-cyan" style="font-size: 28px">5&ndash;6 HR Window</div>
+          <div class="badge b-cyan" style="font-size: 28px">Weekly Window</div>
+        </div>
+      </div>
+
+      <!-- ══════════ LIMITS (91.0 → 104.6) ══════════ -->
+      <div id="sc-limits" class="scene">
+        <div class="headline sm">Hard to Hit<br />the Limit</div>
+        <div class="duo">
+          <div class="card card-green">
+            <div class="duo-title">GLM 5.2</div>
+            <div class="duo-sub" style="color: #6cf0c2">Rarely capped — keep going</div>
+          </div>
+          <div class="card card-amber">
+            <div class="duo-title">Codex / Claude</div>
+            <div class="duo-sub" style="color: #ffcf80">Hit limits, back off</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════ HUGE QUOTA (105.0 → 113.2) ══════════ -->
+      <div id="sc-huge" class="scene">
+        <div class="card card-violet">
+          <div class="headline grad" style="font-size: 92px">Huge Quota</div>
+          <div class="subline" style="margin-top: 18px; font-size: 36px">
+            Bigger than any<br />frontier agent.
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════ VERDICT (113.5 → 126.6) ══════════ -->
+      <div id="sc-verdict" class="scene">
+        <div class="badge b-cyan">The Verdict</div>
+        <div class="card card-cyan">
+          <div class="headline" style="font-size: 84px"><span class="grad">Worth a Shot</span></div>
+          <div class="subline" style="margin-top: 22px; font-size: 33px">
+            Always running out of quota on Codex or Claude? Give GLM 5.2 a try.
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════ OUTRO (127.0 → 130.8) ══════════ -->
+      <div id="sc-outro" class="scene">
+        <div class="headline sm">For more AI news</div>
+        <div class="cta-pill">Subscribe &bull; Like &bull; Follow</div>
+      </div>
+    </div>
+
+    <script>
+      // ── TIMING MAP (seconds, from SRT) ──
+      const S = {
+        context: [3.5, 11.6],
+        frontier: [12.2, 20.2],
+        bench: [20.6, 27.0], // ends before cost section (27.5–43.8) — excluded
+        open: [43.9, 50.6], // starts after cost section
+        params: [50.9, 58.0], // ends before subscription section (58–81) — excluded
+        quota: [81.0, 90.6], // starts after subscription pricing
+        limits: [91.0, 104.6],
+        huge: [105.0, 113.2],
+        verdict: [113.5, 126.6],
+        outro: [127.0, 130.8],
+      };
+
+      const tl = gsap.timeline({ paused: true });
+
+      // ── SCENE GATES ──
+      const scenes = [
+        ["#sc-context", S.context],
+        ["#sc-frontier", S.frontier],
+        ["#sc-bench", S.bench],
+        ["#sc-open", S.open],
+        ["#sc-params", S.params],
+        ["#sc-quota", S.quota],
+        ["#sc-limits", S.limits],
+        ["#sc-huge", S.huge],
+        ["#sc-verdict", S.verdict],
+        ["#sc-outro", S.outro],
+      ];
+
+      for (const [sel, [start, end]] of scenes) {
+        tl.set(sel, { opacity: 1, visibility: "visible" }, start);
+        tl.set(sel, { opacity: 0, visibility: "hidden" }, end);
+      }
+
+      // ── HELPERS: each overlay flies IN, holds, then flies OUT ──
+      const inEases = ["back.out(1.5)", "power3.out", "expo.out", "back.out(1.3)"];
+
+      function animateScene(sel, start, end, opts = {}) {
+        const children = `${sel} > *`;
+        // entrance
+        tl.from(
+          children,
+          {
+            y: 80,
+            opacity: 0,
+            scale: 0.9,
+            duration: 0.6,
+            stagger: 0.12,
+            ease: opts.inEase || "back.out(1.5)",
+            overwrite: "auto",
+            immediateRender: false,
+          },
+          start,
+        );
+        // exit (reveal the face again before next beat)
+        tl.to(
+          children,
+          {
+            y: -56,
+            opacity: 0,
+            scale: 0.94,
+            duration: 0.42,
+            stagger: 0.08,
+            ease: "power2.in",
+            overwrite: "auto",
+            immediateRender: false,
+          },
+          end - 0.52,
+        );
+      }
+
+      animateScene("#sc-context", S.context[0], S.context[1], { inEase: "power3.out" });
+      animateScene("#sc-frontier", S.frontier[0], S.frontier[1], { inEase: "expo.out" });
+      animateScene("#sc-bench", S.bench[0], S.bench[1], { inEase: "back.out(1.5)" });
+      animateScene("#sc-open", S.open[0], S.open[1], { inEase: "power3.out" });
+      animateScene("#sc-params", S.params[0], S.params[1], { inEase: "back.out(1.3)" });
+      animateScene("#sc-quota", S.quota[0], S.quota[1], { inEase: "expo.out" });
+      animateScene("#sc-limits", S.limits[0], S.limits[1], { inEase: "power3.out" });
+      animateScene("#sc-huge", S.huge[0], S.huge[1], { inEase: "back.out(1.5)" });
+      animateScene("#sc-verdict", S.verdict[0], S.verdict[1], { inEase: "expo.out" });
+      animateScene("#sc-outro", S.outro[0], S.outro[1], { inEase: "back.out(1.4)" });
+
+      // ── CONTEXT: animate comparison bars filling in ──
+      tl.from(
+        "#sc-context .fill-old",
+        { scaleX: 0, duration: 0.7, ease: "power3.out", immediateRender: false },
+        S.context[0] + 0.7,
+      );
+      tl.from(
+        "#sc-context .fill-new",
+        { scaleX: 0, duration: 1.0, ease: "power3.out", immediateRender: false },
+        S.context[0] + 0.95,
+      );
+
+      // ── BENCH: draw the green check ──
+      tl.fromTo(
+        "#sc-bench .check-svg path",
+        { strokeDashoffset: 60 },
+        { strokeDashoffset: 0, duration: 0.5, ease: "power2.out", immediateRender: false },
+        S.bench[0] + 0.5,
+      );
+
+      // ── EXPOSE TIMELINE ──
+      window.__timelines = window.__timelines || {};
+      window.__timelines["glm-5-2"] = tl;
+    </script>
+  </body>
+</html>
