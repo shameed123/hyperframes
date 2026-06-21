@@ -60,6 +60,9 @@ npm-debug.log*
 tmp/
 .tmp/
 
+# HeyGen API status responses — regenerable, contain time-limited signed CDN URLs
+videos/**/heygen-status*.json
+
 # Generated files
 packages/core/src/generated/
 packages/producer/src/services/fontData.generated.ts
