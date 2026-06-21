@@ -34,32 +34,19 @@
           linear-gradient(145deg, #f8fcff 0%, #eaf5ff 44%, #fff7ef 100%);
       }
 
+      /* circuit-board / AI-chip layer — kept faint so it stays in the background */
       #root::before {
         content: "";
         position: absolute;
-        inset: -220px;
-        background:
-          linear-gradient(90deg, rgba(30, 139, 255, 0.12) 1px, transparent 1px),
-          linear-gradient(0deg, rgba(16, 24, 39, 0.07) 1px, transparent 1px),
-          linear-gradient(
-            60deg,
-            transparent 0 48%,
-            rgba(30, 139, 255, 0.12) 48% 49%,
-            transparent 49% 100%
-          ),
-          linear-gradient(
-            120deg,
-            transparent 0 58%,
-            rgba(255, 79, 163, 0.1) 58% 59%,
-            transparent 59% 100%
-          );
+        inset: 0;
+        background-image:
+          url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='620' height='620' viewBox='0 0 620 620'><g fill='none' stroke-width='2'><g stroke='%231e8bff' stroke-opacity='0.5'><path d='M0 80H120V210H280'/><path d='M310 0V92H430V44'/><path d='M620 150H470V310'/><path d='M80 620V480H210V370'/><path d='M560 620V520H620'/><path d='M0 190H58'/></g><g stroke='%23ff4fa3' stroke-opacity='0.42'><path d='M0 330H170V430'/><path d='M620 390H510V530H390'/><path d='M230 620V530H350V450'/><path d='M370 124H530'/></g><g stroke='%23ff9d2e' stroke-opacity='0.42'><path d='M0 535H104V620'/><path d='M452 0V62H620'/><path d='M268 310H368V206'/></g></g><g fill='%231e8bff' fill-opacity='0.5'><circle cx='120' cy='80' r='5'/><circle cx='280' cy='210' r='5'/><circle cx='470' cy='150' r='5'/><circle cx='210' cy='370' r='5'/></g><g fill='%23ff4fa3' fill-opacity='0.45'><circle cx='170' cy='430' r='5'/><circle cx='390' cy='530' r='5'/><circle cx='350' cy='450' r='5'/></g><g fill='%23ff9d2e' fill-opacity='0.45'><circle cx='368' cy='206' r='5'/><circle cx='104' cy='535' r='5'/></g><g stroke='%231e8bff' stroke-opacity='0.48' fill='none' stroke-width='2'><rect x='112' y='252' width='66' height='66' rx='8'/><rect x='128' y='268' width='34' height='34' rx='3'/><path d='M112 268H100M112 285H100M112 302H100M178 268H190M178 285H190M178 302H190M128 252V240M145 252V240M162 252V240M128 318V330M145 318V330M162 318V330'/></g><g stroke='%23ff4fa3' stroke-opacity='0.4' fill='none' stroke-width='2'><rect x='446' y='402' width='66' height='66' rx='8'/><rect x='462' y='418' width='34' height='34' rx='3'/><path d='M446 418H434M446 435H434M446 452H434M512 418H524M512 435H524M512 452H524M462 402V390M479 402V390M496 402V390M462 468V480M479 468V480M496 468V480'/></g></svg>"),
+          radial-gradient(rgba(30, 139, 255, 0.05) 1.4px, transparent 1.5px);
         background-size:
-          74px 74px,
-          74px 74px,
-          460px 460px,
-          540px 540px;
-        transform: rotate(-9deg);
-        opacity: 0.78;
+          620px 620px,
+          48px 48px;
+        background-repeat: repeat, repeat;
+        opacity: 0.55;
         pointer-events: none;
       }
 
